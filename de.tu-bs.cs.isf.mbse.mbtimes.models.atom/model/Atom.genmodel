@@ -10,24 +10,24 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atom.ecore#//Entry/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atom.ecore#//Entry/title"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atom.ecore#//Entry/updated"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Atom.ecore#//Entry/writtenBy"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Atom.ecore#//Entry/authors"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atom.ecore#//Entry/content"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atom.ecore#//Entry/link"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atom.ecore#//Entry/summary"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Atom.ecore#//Entry/assignedTo"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Atom.ecore#//Entry/categories"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atom.ecore#//Entry/published"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atom.ecore#//Entry/rights"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Atom.ecore#//Entry/feed"/>
     </genClasses>
     <genClasses ecoreClass="Atom.ecore#//Feed">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atom.ecore#//Feed/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atom.ecore#//Feed/title"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atom.ecore#//Feed/updated"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Atom.ecore#//Feed/publishedBy"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Atom.ecore#//Feed/authors"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atom.ecore#//Feed/link"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atom.ecore#//Feed/icon"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atom.ecore#//Feed/subtitle"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Atom.ecore#//Feed/contains"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Atom.ecore#//Feed/assignedTo"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Atom.ecore#//Feed/categories"/>
     </genClasses>
     <genClasses ecoreClass="Atom.ecore#//Category">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atom.ecore#//Category/term"/>
