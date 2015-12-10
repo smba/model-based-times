@@ -9,6 +9,8 @@
 \usepackage{graphicx}
 \usepackage{multicol}
 
+\usepackage{wrapfig}
+
 \usepackage{picinpar}
 %uasage of picinpar:
 %\begin{window}[1,l,\includegraphics{},caption]xxxxx\end{window}
@@ -17,7 +19,7 @@
 
 \date{\today}
 \currentvolume{1}
-\currentissue{1}
+\currentissue{2}
 \SetPaperName{Model Based Times}
 \SetHeaderName{Model Based Times}
 \SetPaperLocation{Braunschweig}
@@ -34,7 +36,7 @@
 		\closearticle
 		
 		\headline{\it\huge Idea}
-		RSS und Atom Feeds zusammentragen und in einen  LaTeX Zeitungsartikel umwandeln. Dazu müssen RSS und Atom Feeds in ein gemeinsames Metamodell gebracht werden. Aus dem gemeinsamen Metamodell werden die Artikel erstellt. Das gewünschte Layout wird durch ein Metamodell festgelegt und mit Constraints versehen. Evtl. können die Feeds mit weiteren Informationen angereichert werden (Volltext, Bilder, Personen, Orte usw. identifizieren)
+		RSS und Atom Feeds zusammentragen und in einen  LaTeX Zeitungsartikel umwandeln. Dazu müssen RSS und Atom Feeds in ein gemeinsames Metamodel gebracht werden. Aus dem gemeinsamen Metamodel werden die Artikel erstellt. Das gewünschte Layout wird durch ein Metamodel festgelegt und mit Constraints versehen. Evtl. können die Feeds mit weiteren Informationen angereichert werden (Volltext, Bilder, Personen, Orte usw. identifizieren)
 		\closearticle
 		
 		\headline{\it\huge Benefit}
@@ -45,9 +47,28 @@
 		\begin{itemize}
 			\item RSS und Atom in ein unifiziertes Metamodel bringen
 			\item Ggf. Metamodel anreichern (Volltext, Bilder, Clustering, …)
-			\item Metamodell für das Layout erstellen und dafür Constraints  einbinden, z.B. geeignete Darstellungsweisen finden (Anzahl Spalten, Schriftgröße, farbliche Markierungen, Format usw.)
+			\item Metamodel für das Layout erstellen und dafür Constraints  einbinden, z.B. geeignete Darstellungsweisen finden (Anzahl Spalten, Schriftgröße, farbliche Markierungen, Format usw.)\\
+			Beispiele:
+			\begin{itemize}
+				\item Position \& Größenbereich von Bildern
+				\item Anzahl Spalten, abhängig vom Format (DIN A4/DIN A3/\ldots)
+				\item Schriftgröße
+				\item Anzahl Zeichen für Titel \& Untertitel
+				\item Volltext hat mindestens\ \ldots\ und maximal\ \ldots\ Zeichen
+				\item Constraints reagieren dynamisch aufeinander, zum Beispiel: kleinere Schriftgröße erlaubt längere Artikel
+			\end{itemize}
+			\item Erstellung und Verwaltung von Artikel mittels DSL
+			\begin{itemize}
+				\item Zeitung erstellen können, ohne \LaTeX\ können zu müssen
+				\item Manuell Artikel erstellen und in die Zeitung einbinden können
+				\item Optionen zur Generierung der Zeitungsartikel 
+			\end{itemize}
 			\item Export des Layout Metamodels mittels LaTeX Template
 		\end{itemize}
+		
+		\includegraphics[trim=0 180 0 80,clip,width=\columnwidth]{modelbasedtimesDiagram.pdf}
+		\centerline{Ein möglicher Diagrammablauf}
+		\closearticle
 		
 		\headline{\it\huge Technologien}
 		\begin{itemize}
@@ -59,7 +80,6 @@
 			\item \LaTeX\ Compiler
 			\item evtl. Google Maps
 		\end{itemize}
-		%RSS, Atom, Ecore, OCL, Xtext, LaTeX Compiler, evtl. Google Maps
 		\closearticle
 		}
 
