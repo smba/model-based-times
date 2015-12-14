@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="UnifiedModel">
+  <eClassifiers xsi:type="ecore:EClass" name="NewsChannel">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="link" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="updated" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="subtitle" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="Null"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="publisher" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="editor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="icon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="Null"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="author" upperBound="5"
+        eType="#//Author"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="category" upperBound="5"
+        eType="#//Category"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" eType="#//Language"
+        defaultValueLiteral="ENGLISH"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Article">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="link" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="published" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="subtitle" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="Null"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="author" lowerBound="1"
+        upperBound="5" eType="#//Author"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="image" upperBound="5" eType="#//Image"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="newschannel" lowerBound="1"
+        eType="#//NewsChannel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="category" lowerBound="1"
+        upperBound="5" eType="#//Category"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Image">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Author">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="email" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Category">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="article" upperBound="5"
+        eType="#//Article"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Language">
+    <eLiterals name="ENGLISH"/>
+    <eLiterals name="GERMAN" value="1"/>
+  </eClassifiers>
+</ecore:EPackage>
