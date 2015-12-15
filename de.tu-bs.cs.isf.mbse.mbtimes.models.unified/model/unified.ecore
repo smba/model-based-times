@@ -11,9 +11,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="editor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="icon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral="Null"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="author" upperBound="5"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="author" upperBound="-1"
         eType="#//Author"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="category" upperBound="5"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="category" upperBound="-1"
         eType="#//Category"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" eType="#//Language"
         defaultValueLiteral="ENGLISH"/>
@@ -26,12 +26,13 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral="Null"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="author" lowerBound="1"
-        upperBound="5" eType="#//Author"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="image" upperBound="5" eType="#//Image"/>
+        upperBound="-1" eType="#//Author"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="image" upperBound="-1"
+        eType="#//Image"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="newschannel" lowerBound="1"
         eType="#//NewsChannel"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="category" lowerBound="1"
-        upperBound="5" eType="#//Category"/>
+        upperBound="-1" eType="#//Category" eOpposite="#//Category/article"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Image">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -44,8 +45,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="Category">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="article" upperBound="5"
-        eType="#//Article"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="article" upperBound="-1"
+        eType="#//Article" eOpposite="#//Article/category"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Language">
     <eLiterals name="ENGLISH"/>
