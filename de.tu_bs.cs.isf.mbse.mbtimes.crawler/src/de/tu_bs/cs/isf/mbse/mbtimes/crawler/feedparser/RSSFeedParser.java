@@ -49,9 +49,6 @@ public class RSSFeedParser extends AbstractFeedParser {
 	
 	@Override
 	public void run() {
-		
-		System.err.println("scraping " + this.url.toString());
-		
 		HttpURLConnection httpcon;
 		try {
 			httpcon = (HttpURLConnection) this.url.openConnection();
@@ -76,23 +73,32 @@ public class RSSFeedParser extends AbstractFeedParser {
 		channel.setTitle(feed.getTitle());
 		channel.setDescription(feed.getDescription());
 		channel.setLink(feed.getLink());
+		
 		channel.setLanguage(Language.ENGLISH); //TODO
+		
 		channel.setCopyright(feed.getCopyright());
 		channel.setManagingEditor(feed.getAuthor());
 		channel.setPubDate(feed.getPublishedDate());
 		channel.setLastBuild(feed.getPublishedDate()); //TODO same
 		
+		if (feed.getImage() != null) {
+			
+			System.out.println(feed.getImage());
+			
+			SyndImage feedImage = feed.getImage();
+			Image image = this.factory.createImage();
+			image.setTitle(feedImage.getTitle());
+			image.setUrl(feed.getLink()); //oder URI?
+			
+			//dispose image to listener
+			this.listener.receiveRSSImage(image);
+		}
 		
-		SyndImage feedImage = feed.getImage();
-		Image image = this.factory.createImage();
-		image.setTitle(feedImage.getTitle());
-		image.setUrl(feed.getLink()); //oder URI?
 		
 		
 		/*
-		 * Dispose image and channel to listener
+		 * Dispose channel to listener
 		 */
-		this.listener.receiveRSSImage(image);
 		this.listener.receiveRSSChannel(channel);
 		
 		List<SyndEntry> entries = feed.getEntries();

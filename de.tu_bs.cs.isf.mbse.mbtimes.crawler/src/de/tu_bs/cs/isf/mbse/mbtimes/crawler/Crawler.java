@@ -27,8 +27,8 @@ import de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener.RSSFeedParserListener;
 public class Crawler implements RSSFeedParserListener, AtomFeedParserListener {
 
 	//CONSTANTS
-	private static String rssTargetPath = "tmp/RssOutput.rssmodel";
-	private static String atomTargetPath = "tmp/AtomOutput.atommodel"; 
+	private static String rssTargetPath = "tmp/RssOutput.rss";
+	private static String atomTargetPath = "tmp/AtomOutput.xmi"; 
 	
 	private RSSFactory rssFactory;
 	//private AtomFactory atomFactory;
@@ -68,23 +68,27 @@ public class Crawler implements RSSFeedParserListener, AtomFeedParserListener {
 	    
 	    ResourceSet resSet = new ResourceSetImpl();
 	    
-	    if ((new File(rssTargetPath)).exists()) {
-	    	this.rssResource = resSet.createResource(URI.createURI("tmp/file.rss"));
-	    } else {
-	    	throw new RuntimeException("RSS target file " + rssTargetPath + " does not exist.");
+	    if (!(new File(rssTargetPath)).exists()) {
+	    	File f = new File(rssTargetPath);
+	    	f.getParentFile().mkdirs(); 
+	    	try {
+				f.createNewFile();
+			} catch (IOException e) {
+				System.err.println("Crawler could not create output file.");
+			}
 	    }
+	    this.rssResource = resSet.createResource(URI.createURI(rssTargetPath));
+	    
 	    
 	}
 	
 	@Override
 	public void receiveRSSItem(Item item) {
-		System.err.println("receiving item");
 		rssResource.getContents().add(item);
 	}
 
 	@Override
 	public void receiveRSSChannel(Channel channel) {
-		System.err.println("Receiving channel");
 		rssResource.getContents().add(channel);
 	}
 
