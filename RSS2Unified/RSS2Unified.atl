@@ -1,0 +1,52 @@
+-- @path Unified=/de.tu-bs.cs.isf.mbse.mbtimes.models.unified/model/unified.ecore
+-- @path RSS=/de.tu-bs.cs.isf.mbse.mbtimes.models.rss/model/RSS.ecore
+module RSS2Unified;
+create OUT: Unified from IN: RSS;
+
+rule Item2Article {
+	from 
+		s: RSS!Item
+	to	
+		t: Unified!Article (
+			author <- s.author,
+			published <- s.pubDate,
+			title <- s.title,
+			subtitle <- s.description,
+			category <- s.categories,
+			newschannel <- s.channel,
+			image <- s.enclosure
+		)
+}
+
+rule Channel2NewsChannel {
+	from
+		s: RSS!Channel
+	to
+		t: Unified!NewsChannel (
+			title <- s.title,
+			link <- s.link,
+			updated <- s.lastBuild,
+			subtitle <- s.description,
+			editor <- s.managingEditor,
+			category <- s.categories
+		)
+}
+
+rule Category2Category {
+	from
+		s: RSS!Category
+	to
+		t: Unified!Category (
+			label <- s.category,
+			id <- s.domain	
+		)
+}
+
+rule Image2NewschannelIcon {
+	from
+		s: RSS!Image
+	to
+		t: Unified!NewsChannel (
+			icon <- s.url
+		)
+}
