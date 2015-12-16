@@ -27,10 +27,11 @@ import de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener.RSSFeedParserListener;
 public class Crawler implements RSSFeedParserListener, AtomFeedParserListener {
 
 	//CONSTANTS
-	private static String rssTargetPath;
-	//private static String atomTargetPath; TODO
+	private static String rssTargetPath = "tmp/RssOutput.rssmodel";
+	private static String atomTargetPath = "tmp/AtomOutput.atommodel"; 
 	
 	private RSSFactory rssFactory;
+	//private AtomFactory atomFactory;
 	
 	private Resource rssResource;
 	//TODO atom
