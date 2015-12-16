@@ -32,7 +32,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="newschannel" lowerBound="1"
         eType="#//NewsChannel"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="category" lowerBound="1"
-        upperBound="-1" eType="#//Category" eOpposite="#//Category/article"/>
+        upperBound="-1" eType="#//Category"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Image">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -45,8 +45,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="Category">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="article" upperBound="-1"
-        eType="#//Article" eOpposite="#//Article/category"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Language">
     <eLiterals name="ENGLISH"/>
