@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.tu-bs.cs.isf.mbse.mbtimes.models.layout/src"
+    modelPluginID="de.tu-bs.cs.isf.mbse.mbtimes.models.layout" modelName="Layout"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>Layout.ecore</foreignModel>
+  <genPackages prefix="Layout" disposableProviderFactory="true" ecorePackage="Layout.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Layout.ecore#//Language">
+      <genEnumLiterals ecoreEnumLiteral="Layout.ecore#//Language/english"/>
+      <genEnumLiterals ecoreEnumLiteral="Layout.ecore#//Language/ngerman"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Layout.ecore#//Position">
+      <genEnumLiterals ecoreEnumLiteral="Layout.ecore#//Position/c"/>
+      <genEnumLiterals ecoreEnumLiteral="Layout.ecore#//Position/l"/>
+      <genEnumLiterals ecoreEnumLiteral="Layout.ecore#//Position/r"/>
+    </genEnums>
+    <genClasses ecoreClass="Layout.ecore#//Document">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Layout.ecore#//Document/date"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Layout.ecore#//Document/volume"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Layout.ecore#//Document/issue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Layout.ecore#//Document/location"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Layout.ecore#//Document/price"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Layout.ecore#//Document/title"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Layout.ecore#//Document/fontSize"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Layout.ecore#//Document/paperFormat"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Layout.ecore#//Document/language"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Layout.ecore#//Document/NumberColumns"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Layout.ecore#//Document/article"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Layout.ecore#//Document/section"/>
+    </genClasses>
+    <genClasses ecoreClass="Layout.ecore#//Article">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Layout.ecore#//Article/title"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Layout.ecore#//Article/subtitle"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Layout.ecore#//Article/author"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Layout.ecore#//Article/content"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Layout.ecore#//Article/image"/>
+    </genClasses>
+    <genClasses ecoreClass="Layout.ecore#//Image">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Layout.ecore#//Image/filePath"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Layout.ecore#//Image/title"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Layout.ecore#//Image/linesAbove"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Layout.ecore#//Image/Position"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Layout.ecore#//Image/width"/>
+    </genClasses>
+    <genClasses ecoreClass="Layout.ecore#//Section">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Layout.ecore#//Section/Name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Layout.ecore#//Section/article"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
