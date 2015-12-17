@@ -1,0 +1,71 @@
+//this line indicates we want the new grammar to be derived from the build in grammar terminals
+// which defines some basic terminal rules like STRING, ID and so forth
+grammar de.tu_bs.cs.isf.mbse.mbtimes.Npl with org.eclipse.xtext.common.Terminals
+
+//this line defines the name and namespace URI for our grammar
+generate npl "http://www.tu_bs.de/cs/isf/mbse/mbtimes/Npl"
+
+Declaration:
+	"newspaper" name=STRING
+	"feed" "link" feedlinks = Feedlinks
+	"topics" topics = Topics
+	"date" date = Date
+	"location" location = STRING
+	"price" price = Price
+	"volume" volume = INT
+	"language" language = Language
+	"number" "of" "articles" article_cnt = INT
+	"minimum" "number" "of" "characters" "in" "article" article_char_min = INT
+	"maximum" "number" "of" "characters" "in" "article" article_char_max = INT
+	"number" "of" "images" "per" "article" article_images = INT
+	"number" "of" "columns" columns_cnt = INT
+	"font" "size" font_size = INT
+	;
+
+Date: // TODO: validation checks to ensure that date inputs have a correct range
+	"{"
+	day = INT '-'
+	month = INT '-'
+	year = INT
+	"}"	
+;
+
+ Language: // Enum?
+	"{"
+	"English" | "German"
+	"}"			
+;
+
+Price:
+	"{"
+	value = STRING
+	currency = Currency	
+	"}"	
+;
+
+Currency: // Enum?
+	"{"
+	"Euro" | "Dollar"
+	"}"
+;
+
+Topics: // TODO
+	"{"
+	
+	"}"
+;
+
+Feedlinks:
+	"{"
+	pairs+=Pair (", " pairs+=Pair)*	
+	"}"
+;
+
+Pair:
+	"{"
+	key = STRING // id für feedlink
+	value = STRING //feedlink
+	"}"
+;
+
+
