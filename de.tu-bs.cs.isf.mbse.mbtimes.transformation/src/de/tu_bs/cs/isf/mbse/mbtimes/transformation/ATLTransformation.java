@@ -1,4 +1,5 @@
 package de.tu_bs.cs.isf.mbse.mbtimes.transformation;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -22,14 +23,14 @@ import org.eclipse.m2m.atl.engine.emfvm.launch.EMFVMLauncher;
  * This class encapsulates performs M2M transformation using ATL (Atlas
  * Transformation Language).
  * 
- * This class requires the following plug-ins:
- * - org.eclipse.m2m.atl.core
- * - org.eclipse.m2m.atl.core.emf
- * - org.eclipse.m2m.atl.engine.emfvm.launch
+ * This class requires the following plug-ins: - org.eclipse.m2m.atl.core -
+ * org.eclipse.m2m.atl.core.emf - org.eclipse.m2m.atl.engine.emfvm.launch
  * 
  * @author Stefan Mühlbauer <s.muehlbauer@tu-bs.de>
  * 
- * @see https://github.com/101companies/101repo/blob/master/contributions/atl/src/atl/RunTransfoJava.java
+ * 
+ * @see https://github.com/101companies/101repo/blob/master/contributions/atl/
+ *      src/atl/RunTransfoJava.java for reference
  *
  */
 class ATLTransformation {
@@ -38,6 +39,7 @@ class ATLTransformation {
 	protected ModelFactory modelFactory;
 	protected IInjector injector;
 	protected IExtractor extractor;
+	protected String sourceMetamodelodelName;
 
 	IReferenceModel sourceMetamodel;
 	IReferenceModel targetMetamodel;
@@ -60,57 +62,74 @@ class ATLTransformation {
 		this.extractor = new EMFExtractor();
 
 	}
-	
+
 	/**
 	 * Load the metamodels to the ATLTransformation class.
 	 * 
-	 * @param 	sourceMetamodelPath 	Path to the source metamodel, like "/anywhere/source.ecore"
-	 * @param 	targetMetamodelPath 	Path to the target metamodel, like "/anywhere/target.ecore"
-	 * @throws 	ATLCoreException
+	 * @param sourceMetamodelPath
+	 *            Path to the source metamodel, like "/anywhere/source.ecore"
+	 * @param targetMetamodelPath
+	 *            Path to the target metamodel, like "/anywhere/target.ecore"
+	 * @throws ATLCoreException
 	 */
 	public void loadMetamodels(String sourceMetamodelPath, String targetMetamodelPath) throws ATLCoreException {
 
 		this.sourceMetamodel = modelFactory.newReferenceModel();
 		injector.inject(sourceMetamodel, sourceMetamodelPath);
 
+		int slash;
+		if (sourceMetamodelPath.lastIndexOf("/") != -1) {
+			slash = sourceMetamodelPath.lastIndexOf("/");
+		} else {
+			slash = 0;
+		}
+		int dot = sourceMetamodelPath.lastIndexOf(".");
+		String metamodelName = sourceMetamodelPath.substring(slash + 1, dot);
+		this.sourceMetamodelodelName = sourceMetamodelPath.substring(slash + 1, dot);
+
 		this.targetMetamodel = modelFactory.newReferenceModel();
 		injector.inject(targetMetamodel, targetMetamodelPath);
 
 	}
-	
+
 	/**
 	 * Performs a given ATL transformation on a source model.
 	 * 
-	 * @param 	sourceModelPath			Path to the source model to transform, like "/anywhere/source.xmi"
-	 * @param	transformationASMPath	Path to the (compiled, hence .asm) ATL M2M transformation file, like "/anywhere/transformation.asm"
-	 * @param 	targetModelPath			Path to the target model to transform, like "/anywhere/target.xmi"
+	 * @param sourceModelPath
+	 *            Path to the source model to transform, like
+	 *            "/anywhere/source.xmi"
+	 * @param transformationASMPath
+	 *            Path to the (compiled, hence .asm) ATL M2M transformation
+	 *            file, like "/anywhere/transformation.asm"
+	 * @param targetModelPath
+	 *            Path to the target model to transform, like
+	 *            "/anywhere/target.xmi"
 	 * 
-	 * @throws 	ATLCoreException
-	 * @throws 	FileNotFoundException
+	 * @throws ATLCoreException
+	 * @throws FileNotFoundException
 	 */
-	public void runTransformation(String sourceModelPath, String transformationASMPath, String targetModelPath) throws ATLCoreException, FileNotFoundException {
+	public void runTransformation(String sourceModelPath, String transformationASMPath, String targetModelPath)
+			throws ATLCoreException, FileNotFoundException {
 
 		IModel sourceModel = modelFactory.newModel(sourceMetamodel);
 		injector.inject(sourceModel, sourceModelPath);
 
 		transformationLauncher.initialize(new HashMap<String, Object>());
-		transformationLauncher.addInOutModel(sourceModel, "IN", "Company"); //TODO replace 'Company'
-		
-		//Not sure what this is actually doing
+		transformationLauncher.addInOutModel(sourceModel, "IN", sourceMetamodelodelName);
+
+		// Not sure what this is actually doing
 		IReferenceModel refiningTraceMetamodel = modelFactory.getBuiltInResource("RefiningTrace.ecore");
-		
+
 		IModel refiningTraceModel = modelFactory.newModel(refiningTraceMetamodel);
-		
+
 		transformationLauncher.addOutModel(refiningTraceModel, "refiningTrace", "RefiningTrace");
-		transformationLauncher.launch(ILauncher.RUN_MODE, new NullProgressMonitor(), new HashMap<String, Object>(), new FileInputStream(transformationASMPath));
+		transformationLauncher.launch(ILauncher.RUN_MODE, new NullProgressMonitor(), new HashMap<String, Object>(),
+				new FileInputStream(transformationASMPath));
 
 		IModel sourceModelTransformed = sourceModel;
-		
+
 		extractor.extract(sourceModelTransformed, targetModelPath);
-		
-		/*
-		 * Unload all models and metamodels (EMF-specific)
-		 */
+
 		EMFModelFactory emfModelFactory = (EMFModelFactory) modelFactory;
 		emfModelFactory.unload((EMFModel) sourceModelTransformed);
 		emfModelFactory.unload((EMFReferenceModel) sourceMetamodel);
