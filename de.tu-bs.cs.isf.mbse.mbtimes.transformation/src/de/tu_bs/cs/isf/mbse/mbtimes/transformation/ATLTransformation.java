@@ -40,7 +40,8 @@ class ATLTransformation {
 	protected IInjector injector;
 	protected IExtractor extractor;
 	protected String sourceMetamodelodelName;
-
+	protected String targetMetamodelodelName;
+	
 	IReferenceModel sourceMetamodel;
 	IReferenceModel targetMetamodel;
 
@@ -76,16 +77,6 @@ class ATLTransformation {
 
 		this.sourceMetamodel = modelFactory.newReferenceModel();
 		injector.inject(sourceMetamodel, sourceMetamodelPath);
-
-		int slash;
-		if (sourceMetamodelPath.lastIndexOf("/") != -1) {
-			slash = sourceMetamodelPath.lastIndexOf("/");
-		} else {
-			slash = 0;
-		}
-		int dot = sourceMetamodelPath.lastIndexOf(".");
-		String metamodelName = sourceMetamodelPath.substring(slash + 1, dot);
-		this.sourceMetamodelodelName = sourceMetamodelPath.substring(slash + 1, dot);
 
 		this.targetMetamodel = modelFactory.newReferenceModel();
 		injector.inject(targetMetamodel, targetMetamodelPath);
@@ -134,4 +125,5 @@ class ATLTransformation {
 		emfModelFactory.unload((EMFModel) sourceModelTransformed);
 		emfModelFactory.unload((EMFReferenceModel) sourceMetamodel);
 	}
+
 }
