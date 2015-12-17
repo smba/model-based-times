@@ -3,4 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: de.tu-bs.cs.isf.mbse.mbtimes.models.rss
 Bundle-SymbolicName: de.tu-bs.cs.isf.mbse.mbtimes.models.rss; singleton:=true
 Bundle-Version: 0.1.0.qualifier
-Require-Bundle: org.eclipse.emf.ecore
+Require-Bundle: org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.xmi;bundle-version="2.11.1",
+ org.eclipse.emf.ecore.xmi.source;bundle-version="2.11.1"
