@@ -35,6 +35,7 @@ public class RSSFeedParser extends AbstractFeedParser {
 	public RSSFeedParser(RSSFeedParserListener listener, URL link) {
 		this.listener = listener;
 		this.url = link;
+		initialize();
 	}
 	
 	@Override
