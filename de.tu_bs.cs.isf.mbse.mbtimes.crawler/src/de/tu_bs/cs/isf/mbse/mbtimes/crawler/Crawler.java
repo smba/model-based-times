@@ -2,6 +2,8 @@ package de.tu_bs.cs.isf.mbse.mbtimes.crawler;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
@@ -27,8 +29,10 @@ import de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener.RSSFeedParserListener;
 public class Crawler implements RSSFeedParserListener, AtomFeedParserListener {
 
 	//CONSTANTS
-	private static String rssTargetPath = "tmp/RssOutput.rss";
-	private static String atomTargetPath = "tmp/AtomOutput.xmi"; 
+	private static final String RSS_TARGET_PATH = "tmp/RssOutput.rss";
+	private static final String ATOM_TARGET_PATH = "tmp/AtomOutput.xmi"; 
+	
+	private static final int THREADPOOL_SIZE = 5;	
 	
 	private RSSFactory rssFactory;
 	//private AtomFactory atomFactory;
@@ -39,13 +43,18 @@ public class Crawler implements RSSFeedParserListener, AtomFeedParserListener {
 	public void crawl() {
 		String[] feeds = {"https://www.freitag.de/politik/@@RSS"};
 
-		ExecutorService executor = Executors.newFixedThreadPool(5); // 5 is of course random number
+		ExecutorService executor = Executors.newFixedThreadPool(THREADPOOL_SIZE);
 
 		for (String feed : feeds) {
 			
 			//TODO ergaenze Atom
 			
-			Runnable worker = new RSSFeedParser(this, feed);
+			Runnable worker = null;
+			try {
+				worker = new RSSFeedParser(this, new URL(feed));
+			} catch (MalformedURLException e) {
+				throw new RuntimeException("The URL " + feed + " is malformed. Please check the link.");
+			}
 			executor.execute(worker);
 		}
 		executor.shutdown();
@@ -68,16 +77,16 @@ public class Crawler implements RSSFeedParserListener, AtomFeedParserListener {
 	    
 	    ResourceSet resSet = new ResourceSetImpl();
 	    
-	    if (!(new File(rssTargetPath)).exists()) {
-	    	File f = new File(rssTargetPath);
+	    if (!(new File(RSS_TARGET_PATH)).exists()) {
+	    	File f = new File(RSS_TARGET_PATH);
 	    	f.getParentFile().mkdirs(); 
 	    	try {
 				f.createNewFile();
 			} catch (IOException e) {
-				System.err.println("Crawler could not create output file.");
+				throw new RuntimeException("Crawler could not create output file " + f.getName() + ".");
 			}
 	    }
-	    this.rssResource = resSet.createResource(URI.createURI(rssTargetPath));
+	    this.rssResource = resSet.createResource(URI.createURI(RSS_TARGET_PATH));
 	    
 	    
 	}
@@ -128,6 +137,30 @@ public class Crawler implements RSSFeedParserListener, AtomFeedParserListener {
 		Crawler c = new Crawler();
 		c.crawl();
 		c.disposeRSS();
+	}
+
+	@Override
+	public void receiveAtomAuthor() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void receiveAtomEntry() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void receiveAtomCategory() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void receiveAtomFeed() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

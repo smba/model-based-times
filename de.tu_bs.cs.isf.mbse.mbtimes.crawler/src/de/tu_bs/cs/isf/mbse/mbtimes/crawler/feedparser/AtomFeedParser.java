@@ -8,4 +8,10 @@ public class AtomFeedParser extends AbstractFeedParser {
 		
 	}
 
+	@Override
+	public void initialize() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

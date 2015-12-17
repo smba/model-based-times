@@ -11,7 +11,13 @@ public abstract class AbstractFeedParser implements FeedParser, Runnable {
 	@Override
 	abstract public void run();
 
-	
+	/**
+	 * Retrieves the full text of an article specified by the given URL url.
+	 * 
+	 * @param url
+	 * @return
+	 * @throws IOException
+	 */
 	protected String getText(URL url) throws IOException {
 		String text = "";
 		try {
@@ -19,8 +25,9 @@ public abstract class AbstractFeedParser implements FeedParser, Runnable {
 		} catch (BoilerpipeProcessingException e) {
 			throw new IOException(e);
 		}
-
 		return text;
 	}
+	
+	abstract public void initialize();
 
 }

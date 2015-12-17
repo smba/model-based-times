@@ -32,19 +32,9 @@ public class RSSFeedParser extends AbstractFeedParser {
 	private URL url;
 	private RSSFactory factory;
 	
-	public RSSFeedParser(RSSFeedParserListener listener, String link) {
+	public RSSFeedParser(RSSFeedParserListener listener, URL link) {
 		this.listener = listener;
-		try {
-			this.url = new URL(link);
-		} catch (MalformedURLException e) {
-			throw new RuntimeException(e);
-		}
-		
-		/*
-		 * Register factory
-		 */
-		RSSPackage.eINSTANCE.eClass();
-	    this.factory = RSSFactory.eINSTANCE;
+		this.url = link;
 	}
 	
 	@Override
@@ -166,5 +156,14 @@ public class RSSFeedParser extends AbstractFeedParser {
 				listener.receiveRSSItem(item);
 			}
 		}
+	}
+
+	@Override
+	public void initialize() {
+		/*
+		 * Register factory
+		 */
+		RSSPackage.eINSTANCE.eClass();
+	    this.factory = RSSFactory.eINSTANCE;
 	}
 }
