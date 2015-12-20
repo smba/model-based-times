@@ -7,19 +7,18 @@ generate npl "http://www.tu_bs.de/cs/isf/mbse/mbtimes/Npl"
 
 Declaration:
 	"newspaper" name=STRING
-	"feed" "link" feedlinks = Feedlinks
+	"feed link" feedlinks = Feedlinks
 	"topics" topics = Topics
 	"date" date = Date
 	"location" location = STRING
 	"price" price = Price
 	"volume" volume = INT
 	"language" language = Language
-	"number" "of" "articles" article_cnt = INT
-	"minimum" "number" "of" "characters" "in" "article" article_char_min = INT
-	"maximum" "number" "of" "characters" "in" "article" article_char_max = INT
-	"number" "of" "images" "per" "article" article_images = INT
-	"number" "of" "columns" columns_cnt = INT
-	"font" "size" font_size = INT
+	"number of articles" article_cnt = INT
+	"number of characters per article" article_char_min = INT "-" article_char_max = INT
+	"number of images per article" article_images = INT
+	"number of columns" columns_cnt = INT
+	"font size" font_size = INT
 	;
 
 Date: // TODO: validation checks to ensure that date inputs have a correct range
@@ -30,7 +29,7 @@ Date: // TODO: validation checks to ensure that date inputs have a correct range
 	"}"	
 ;
 
- Language: // Enum?
+ Language: 
 	"{"
 	"English" | "German"
 	"}"			
@@ -43,7 +42,7 @@ Price:
 	"}"	
 ;
 
-Currency: // Enum?
+Currency: 
 	"{"
 	"Euro" | "Dollar"
 	"}"
