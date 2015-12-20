@@ -14,12 +14,19 @@ Declaration:
 	"price" price = Price
 	"volume" volume = INT
 	"language" language = Language
+	"format" format = Format
 	"number of articles" article_cnt = INT
 	"number of characters per article" article_char_min = INT "-" article_char_max = INT
 	"number of images per article" article_images = INT
 	"number of columns" columns_cnt = INT
 	"font size" font_size = INT
 	;
+
+Format:
+	"{"
+	"DIN A5" | "DIN A4" | "DIN A3"
+	"}"	
+;
 
 Date: // TODO: validation checks to ensure that date inputs have a correct range
 	"{"
