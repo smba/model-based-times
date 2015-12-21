@@ -1,5 +1,6 @@
 //this line indicates we want the new grammar to be derived from the build in grammar terminals
 // which defines some basic terminal rules like STRING, ID and so forth
+// with erweitert grammatiken
 grammar de.tu_bs.cs.isf.mbse.mbtimes.Npl with org.eclipse.xtext.common.Terminals
 
 //this line defines the name and namespace URI for our grammar
@@ -11,7 +12,7 @@ Declaration:
 	"topics" "{"
 		topics+=Topic (topics+=Topic)*
 	"}"
-	"date" date=Date
+	("date" date=Date)?
 	"location" location=STRING
 	"price" price=Price
 	"volume" volume=INT
@@ -32,7 +33,7 @@ Date: // TODO: validation checks to ensure that date inputs have a correct range
 	"{" day=INT '-' month=INT '-' year=INT "}";
 
 Language:
-	"{" "English" | "German" "}";
+	 "English" | "German" ;
 
 Price:
 	"{" value=STRING currency=Currency "}";
