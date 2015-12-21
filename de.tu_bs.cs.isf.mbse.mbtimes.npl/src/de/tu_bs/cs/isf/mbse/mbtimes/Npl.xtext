@@ -6,72 +6,57 @@ grammar de.tu_bs.cs.isf.mbse.mbtimes.Npl with org.eclipse.xtext.common.Terminals
 generate npl "http://www.tu_bs.de/cs/isf/mbse/mbtimes/Npl"
 
 Declaration:
-	"newspaper" name=STRING
-	"feed link" feedlinks = Feedlinks
-	"topics" topics = Topics
-	"date" date = Date
-	"location" location = STRING
-	"price" price = Price
-	"volume" volume = INT
-	"language" language = Language
-	"format" format = Format
-	"number of articles" article_cnt = INT
-	"number of characters per article" article_char_min = INT "-" article_char_max = INT
-	"number of images per article" article_images = INT
-	"number of columns" columns_cnt = INT
-	"font size" font_size = INT
-	;
+	"newspaper" name=ID
+	"feed link" feedlinks=Feedlinks
+	"topics" "{"
+		topics+=Topic (topics+=Topic)*
+	"}"
+	"date" date=Date
+	"location" location=STRING
+	"price" price=Price
+	"volume" volume=INT
+	"language" language=Language
+	"format" format=Format
+	"number of articles" article_cnt=INT
+	"number of characters per article" article_char_min=INT "-" article_char_max=INT
+	"number of images per article" article_images=INT
+	"number of columns" columns_cnt=INT
+	"font size" font_size=INT;
 
 Format:
 	"{"
 	"DIN A6" | "DIN A5" | "DIN A4" | "DIN A3" | "DIN A2" | "DIN A1" | "DIN A0"
-	"}"	
-;
+	"}";
 
 Date: // TODO: validation checks to ensure that date inputs have a correct range
-	"{"
-	day = INT '-'
-	month = INT '-'
-	year = INT
-	"}"	
-;
+	"{" day=INT '-' month=INT '-' year=INT "}";
 
- Language: 
-	"{"
-	"English" | "German"
-	"}"			
-;
+Language:
+	"{" "English" | "German" "}";
 
 Price:
-	"{"
-	value = STRING
-	currency = Currency	
-	"}"	
-;
+	"{" value=STRING currency=Currency "}";
 
-Currency: 
-	"{"
-	"Euro" | "Dollar"
-	"}"
-;
+Currency:
+	"Euro" | "Dollar";
 
-Topics: // TODO
-	"{"
-	
-	"}"
-;
+Topic:
+	"topic" name=ID "{"
+	tags+=TopicTag (", " tags+=TopicTag)*
+	"}";
+
+TopicTag:
+	value=STRING;
 
 Feedlinks:
 	"{"
-	pairs+=Pair (", " pairs+=Pair)*	
-	"}"
-;
+	pairs+=Pair (", " pairs+=Pair)*
+	"}";
 
 Pair:
 	"{"
-	key = STRING // id für feedlink
-	value = STRING //feedlink
-	"}"
-;
+	key=ID // id für feedlink
+	value=STRING //feedlink
+	"}";
 
 
