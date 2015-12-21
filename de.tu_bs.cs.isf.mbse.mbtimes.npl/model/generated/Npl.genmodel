@@ -10,6 +10,28 @@
     <genClasses ecoreClass="Npl.ecore#//Declaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//Declaration/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Npl.ecore#//Declaration/feedlinks"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//Declaration/topics"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Npl.ecore#//Declaration/date"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//Declaration/location"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Npl.ecore#//Declaration/price"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//Declaration/volume"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//Declaration/language"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//Declaration/format"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//Declaration/article_cnt"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//Declaration/article_char_min"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//Declaration/article_char_max"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//Declaration/article_images"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//Declaration/columns_cnt"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//Declaration/font_size"/>
+    </genClasses>
+    <genClasses ecoreClass="Npl.ecore#//Date">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//Date/day"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//Date/month"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//Date/year"/>
+    </genClasses>
+    <genClasses ecoreClass="Npl.ecore#//Price">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//Price/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//Price/currency"/>
     </genClasses>
     <genClasses ecoreClass="Npl.ecore#//Feedlinks">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Npl.ecore#//Feedlinks/pairs"/>

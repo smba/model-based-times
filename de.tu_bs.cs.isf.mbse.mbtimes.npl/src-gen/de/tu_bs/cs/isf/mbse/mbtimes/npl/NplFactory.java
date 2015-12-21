@@ -32,6 +32,24 @@ public interface NplFactory extends EFactory
   Declaration createDeclaration();
 
   /**
+   * Returns a new object of class '<em>Date</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Date</em>'.
+   * @generated
+   */
+  Date createDate();
+
+  /**
+   * Returns a new object of class '<em>Price</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Price</em>'.
+   * @generated
+   */
+  Price createPrice();
+
+  /**
    * Returns a new object of class '<em>Feedlinks</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

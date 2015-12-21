@@ -3,14 +3,25 @@
  */
 package de.tu_bs.cs.isf.mbse.mbtimes.validation
 
-//import org.eclipse.xtext.validation.Check
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage
+import org.eclipse.xtext.validation.Check
+
 
 /**
- * This class contains custom validation rules. 
- *
+ * This class checks whether a user has typed in a name for the newspaper. 
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class NplValidator extends AbstractNplValidator {
+
+	@Check
+	def checkTitleIsNotEmpty(Declaration title) {
+		if (title.getName().isEmpty()) {
+			error("Title cannot be empty", NplPackage.Literals.DECLARATION__NAME)
+		}
+	}
+
+
 
 //  public static val INVALID_NAME = 'invalidName'
 //

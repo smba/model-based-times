@@ -79,6 +79,20 @@ public class NplSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case NplPackage.DATE:
+      {
+        Date date = (Date)theEObject;
+        T result = caseDate(date);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case NplPackage.PRICE:
+      {
+        Price price = (Price)theEObject;
+        T result = casePrice(price);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case NplPackage.FEEDLINKS:
       {
         Feedlinks feedlinks = (Feedlinks)theEObject;
@@ -109,6 +123,38 @@ public class NplSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseDeclaration(Declaration object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Date</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Date</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDate(Date object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Price</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Price</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePrice(Price object)
   {
     return null;
   }

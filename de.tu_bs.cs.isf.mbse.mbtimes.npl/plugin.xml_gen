@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.tu_bs.de/cs/isf/mbse/mbtimes/Npl" 
+       class = "de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage"
+       genModel = "model/generated/Npl.genmodel" /> 
+	
+  </extension>
+
+
+
+</plugin>

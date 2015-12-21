@@ -85,13 +85,213 @@ public interface NplPackage extends EPackage
   int DECLARATION__FEEDLINKS = 1;
 
   /**
+   * The feature id for the '<em><b>Topics</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECLARATION__TOPICS = 2;
+
+  /**
+   * The feature id for the '<em><b>Date</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECLARATION__DATE = 3;
+
+  /**
+   * The feature id for the '<em><b>Location</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECLARATION__LOCATION = 4;
+
+  /**
+   * The feature id for the '<em><b>Price</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECLARATION__PRICE = 5;
+
+  /**
+   * The feature id for the '<em><b>Volume</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECLARATION__VOLUME = 6;
+
+  /**
+   * The feature id for the '<em><b>Language</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECLARATION__LANGUAGE = 7;
+
+  /**
+   * The feature id for the '<em><b>Format</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECLARATION__FORMAT = 8;
+
+  /**
+   * The feature id for the '<em><b>Article cnt</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECLARATION__ARTICLE_CNT = 9;
+
+  /**
+   * The feature id for the '<em><b>Article char min</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECLARATION__ARTICLE_CHAR_MIN = 10;
+
+  /**
+   * The feature id for the '<em><b>Article char max</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECLARATION__ARTICLE_CHAR_MAX = 11;
+
+  /**
+   * The feature id for the '<em><b>Article images</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECLARATION__ARTICLE_IMAGES = 12;
+
+  /**
+   * The feature id for the '<em><b>Columns cnt</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECLARATION__COLUMNS_CNT = 13;
+
+  /**
+   * The feature id for the '<em><b>Font size</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECLARATION__FONT_SIZE = 14;
+
+  /**
    * The number of structural features of the '<em>Declaration</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DECLARATION_FEATURE_COUNT = 2;
+  int DECLARATION_FEATURE_COUNT = 15;
+
+  /**
+   * The meta object id for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DateImpl <em>Date</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DateImpl
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getDate()
+   * @generated
+   */
+  int DATE = 1;
+
+  /**
+   * The feature id for the '<em><b>Day</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DATE__DAY = 0;
+
+  /**
+   * The feature id for the '<em><b>Month</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DATE__MONTH = 1;
+
+  /**
+   * The feature id for the '<em><b>Year</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DATE__YEAR = 2;
+
+  /**
+   * The number of structural features of the '<em>Date</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DATE_FEATURE_COUNT = 3;
+
+  /**
+   * The meta object id for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.PriceImpl <em>Price</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.PriceImpl
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getPrice()
+   * @generated
+   */
+  int PRICE = 2;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRICE__VALUE = 0;
+
+  /**
+   * The feature id for the '<em><b>Currency</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRICE__CURRENCY = 1;
+
+  /**
+   * The number of structural features of the '<em>Price</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRICE_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.FeedlinksImpl <em>Feedlinks</em>}' class.
@@ -101,7 +301,7 @@ public interface NplPackage extends EPackage
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getFeedlinks()
    * @generated
    */
-  int FEEDLINKS = 1;
+  int FEEDLINKS = 3;
 
   /**
    * The feature id for the '<em><b>Pairs</b></em>' containment reference list.
@@ -129,7 +329,7 @@ public interface NplPackage extends EPackage
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getPair()
    * @generated
    */
-  int PAIR = 2;
+  int PAIR = 4;
 
   /**
    * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -190,6 +390,224 @@ public interface NplPackage extends EPackage
    * @generated
    */
   EReference getDeclaration_Feedlinks();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getTopics <em>Topics</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Topics</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getTopics()
+   * @see #getDeclaration()
+   * @generated
+   */
+  EAttribute getDeclaration_Topics();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getDate <em>Date</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Date</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getDate()
+   * @see #getDeclaration()
+   * @generated
+   */
+  EReference getDeclaration_Date();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getLocation <em>Location</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Location</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getLocation()
+   * @see #getDeclaration()
+   * @generated
+   */
+  EAttribute getDeclaration_Location();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getPrice <em>Price</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Price</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getPrice()
+   * @see #getDeclaration()
+   * @generated
+   */
+  EReference getDeclaration_Price();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getVolume <em>Volume</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Volume</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getVolume()
+   * @see #getDeclaration()
+   * @generated
+   */
+  EAttribute getDeclaration_Volume();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getLanguage <em>Language</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Language</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getLanguage()
+   * @see #getDeclaration()
+   * @generated
+   */
+  EAttribute getDeclaration_Language();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFormat <em>Format</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Format</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFormat()
+   * @see #getDeclaration()
+   * @generated
+   */
+  EAttribute getDeclaration_Format();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_cnt <em>Article cnt</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Article cnt</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_cnt()
+   * @see #getDeclaration()
+   * @generated
+   */
+  EAttribute getDeclaration_Article_cnt();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_char_min <em>Article char min</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Article char min</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_char_min()
+   * @see #getDeclaration()
+   * @generated
+   */
+  EAttribute getDeclaration_Article_char_min();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_char_max <em>Article char max</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Article char max</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_char_max()
+   * @see #getDeclaration()
+   * @generated
+   */
+  EAttribute getDeclaration_Article_char_max();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_images <em>Article images</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Article images</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_images()
+   * @see #getDeclaration()
+   * @generated
+   */
+  EAttribute getDeclaration_Article_images();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getColumns_cnt <em>Columns cnt</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Columns cnt</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getColumns_cnt()
+   * @see #getDeclaration()
+   * @generated
+   */
+  EAttribute getDeclaration_Columns_cnt();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFont_size <em>Font size</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Font size</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFont_size()
+   * @see #getDeclaration()
+   * @generated
+   */
+  EAttribute getDeclaration_Font_size();
+
+  /**
+   * Returns the meta object for class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Date <em>Date</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Date</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Date
+   * @generated
+   */
+  EClass getDate();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Date#getDay <em>Day</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Day</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Date#getDay()
+   * @see #getDate()
+   * @generated
+   */
+  EAttribute getDate_Day();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Date#getMonth <em>Month</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Month</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Date#getMonth()
+   * @see #getDate()
+   * @generated
+   */
+  EAttribute getDate_Month();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Date#getYear <em>Year</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Year</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Date#getYear()
+   * @see #getDate()
+   * @generated
+   */
+  EAttribute getDate_Year();
+
+  /**
+   * Returns the meta object for class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Price <em>Price</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Price</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Price
+   * @generated
+   */
+  EClass getPrice();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Price#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Price#getValue()
+   * @see #getPrice()
+   * @generated
+   */
+  EAttribute getPrice_Value();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Price#getCurrency <em>Currency</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Currency</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Price#getCurrency()
+   * @see #getPrice()
+   * @generated
+   */
+  EAttribute getPrice_Currency();
 
   /**
    * Returns the meta object for class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Feedlinks <em>Feedlinks</em>}'.
@@ -292,6 +710,170 @@ public interface NplPackage extends EPackage
      * @generated
      */
     EReference DECLARATION__FEEDLINKS = eINSTANCE.getDeclaration_Feedlinks();
+
+    /**
+     * The meta object literal for the '<em><b>Topics</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DECLARATION__TOPICS = eINSTANCE.getDeclaration_Topics();
+
+    /**
+     * The meta object literal for the '<em><b>Date</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DECLARATION__DATE = eINSTANCE.getDeclaration_Date();
+
+    /**
+     * The meta object literal for the '<em><b>Location</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DECLARATION__LOCATION = eINSTANCE.getDeclaration_Location();
+
+    /**
+     * The meta object literal for the '<em><b>Price</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DECLARATION__PRICE = eINSTANCE.getDeclaration_Price();
+
+    /**
+     * The meta object literal for the '<em><b>Volume</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DECLARATION__VOLUME = eINSTANCE.getDeclaration_Volume();
+
+    /**
+     * The meta object literal for the '<em><b>Language</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DECLARATION__LANGUAGE = eINSTANCE.getDeclaration_Language();
+
+    /**
+     * The meta object literal for the '<em><b>Format</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DECLARATION__FORMAT = eINSTANCE.getDeclaration_Format();
+
+    /**
+     * The meta object literal for the '<em><b>Article cnt</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DECLARATION__ARTICLE_CNT = eINSTANCE.getDeclaration_Article_cnt();
+
+    /**
+     * The meta object literal for the '<em><b>Article char min</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DECLARATION__ARTICLE_CHAR_MIN = eINSTANCE.getDeclaration_Article_char_min();
+
+    /**
+     * The meta object literal for the '<em><b>Article char max</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DECLARATION__ARTICLE_CHAR_MAX = eINSTANCE.getDeclaration_Article_char_max();
+
+    /**
+     * The meta object literal for the '<em><b>Article images</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DECLARATION__ARTICLE_IMAGES = eINSTANCE.getDeclaration_Article_images();
+
+    /**
+     * The meta object literal for the '<em><b>Columns cnt</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DECLARATION__COLUMNS_CNT = eINSTANCE.getDeclaration_Columns_cnt();
+
+    /**
+     * The meta object literal for the '<em><b>Font size</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DECLARATION__FONT_SIZE = eINSTANCE.getDeclaration_Font_size();
+
+    /**
+     * The meta object literal for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DateImpl <em>Date</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DateImpl
+     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getDate()
+     * @generated
+     */
+    EClass DATE = eINSTANCE.getDate();
+
+    /**
+     * The meta object literal for the '<em><b>Day</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DATE__DAY = eINSTANCE.getDate_Day();
+
+    /**
+     * The meta object literal for the '<em><b>Month</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DATE__MONTH = eINSTANCE.getDate_Month();
+
+    /**
+     * The meta object literal for the '<em><b>Year</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DATE__YEAR = eINSTANCE.getDate_Year();
+
+    /**
+     * The meta object literal for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.PriceImpl <em>Price</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.PriceImpl
+     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getPrice()
+     * @generated
+     */
+    EClass PRICE = eINSTANCE.getPrice();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PRICE__VALUE = eINSTANCE.getPrice_Value();
+
+    /**
+     * The meta object literal for the '<em><b>Currency</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PRICE__CURRENCY = eINSTANCE.getPrice_Currency();
 
     /**
      * The meta object literal for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.FeedlinksImpl <em>Feedlinks</em>}' class.

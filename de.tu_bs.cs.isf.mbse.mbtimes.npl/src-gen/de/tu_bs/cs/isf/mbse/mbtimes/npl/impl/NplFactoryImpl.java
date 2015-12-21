@@ -65,6 +65,8 @@ public class NplFactoryImpl extends EFactoryImpl implements NplFactory
     switch (eClass.getClassifierID())
     {
       case NplPackage.DECLARATION: return createDeclaration();
+      case NplPackage.DATE: return createDate();
+      case NplPackage.PRICE: return createPrice();
       case NplPackage.FEEDLINKS: return createFeedlinks();
       case NplPackage.PAIR: return createPair();
       default:
@@ -81,6 +83,28 @@ public class NplFactoryImpl extends EFactoryImpl implements NplFactory
   {
     DeclarationImpl declaration = new DeclarationImpl();
     return declaration;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Date createDate()
+  {
+    DateImpl date = new DateImpl();
+    return date;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Price createPrice()
+  {
+    PriceImpl price = new PriceImpl();
+    return price;
   }
 
   /**
