@@ -1047,11 +1047,11 @@ rule__Declaration__Group__18__Impl
     }
 :
 (
-{ before(grammarAccess.getDeclarationAccess().getNumberOfArticlesPerArticlesKeyword_18()); }
+{ before(grammarAccess.getDeclarationAccess().getNumberOfArticlesPerTopicKeyword_18()); }
 
-	'number of articles per articles' 
+	'number of articles per topic' 
 
-{ after(grammarAccess.getDeclarationAccess().getNumberOfArticlesPerArticlesKeyword_18()); }
+{ after(grammarAccess.getDeclarationAccess().getNumberOfArticlesPerTopicKeyword_18()); }
 )
 
 ;

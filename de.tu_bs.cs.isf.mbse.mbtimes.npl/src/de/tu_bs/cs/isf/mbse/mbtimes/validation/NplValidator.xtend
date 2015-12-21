@@ -16,10 +16,24 @@ import org.eclipse.xtext.validation.Check
  */
 class NplValidator extends AbstractNplValidator {
 
+	
+	/*
+	 * This constraint checks whether the number of articles is positive and smaller than 6.
+	 */
 	@Check
-	def checkTitleIsNotEmpty(Declaration title) {
-		if (title.getName().isEmpty()) {
-			error("Title cannot be empty", NplPackage.Literals.DECLARATION__NAME)
+	def checkNrArticles(Declaration articles) {
+		if (articles.article_cnt < 0 && articles.article_cnt > 5) {
+			error("Number of articles must be greater than 0 and smaller than 6", NplPackage.Literals.DECLARATION__ARTICLE_CNT)
+		}
+	}
+	
+	/*
+	 * This constraint checks whether the number of images is positive and smaller than 6.
+	 */
+	@Check
+	def checkNrImages(Declaration images) {
+		if (images.article_images < 0 && images.article_images > 5) {
+			error("Number of images must be greater than 0 and smaller than 6", NplPackage.Literals.DECLARATION__ARTICLE_IMAGES)
 		}
 	}
 

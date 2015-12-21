@@ -301,9 +301,9 @@ ruleDeclaration returns [EObject current=null]
 	    }
 
 )
-)	otherlv_21='number of articles per articles' 
+)	otherlv_21='number of articles per topic' 
     {
-    	newLeafNode(otherlv_21, grammarAccess.getDeclarationAccess().getNumberOfArticlesPerArticlesKeyword_18());
+    	newLeafNode(otherlv_21, grammarAccess.getDeclarationAccess().getNumberOfArticlesPerTopicKeyword_18());
     }
 (
 (

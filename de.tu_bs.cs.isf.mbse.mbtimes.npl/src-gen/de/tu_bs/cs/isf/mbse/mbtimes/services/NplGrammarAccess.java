@@ -55,7 +55,7 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFormatKeyword_16 = (Keyword)cGroup.eContents().get(16);
 		private final Assignment cFormatAssignment_17 = (Assignment)cGroup.eContents().get(17);
 		private final RuleCall cFormatFormatParserRuleCall_17_0 = (RuleCall)cFormatAssignment_17.eContents().get(0);
-		private final Keyword cNumberOfArticlesPerArticlesKeyword_18 = (Keyword)cGroup.eContents().get(18);
+		private final Keyword cNumberOfArticlesPerTopicKeyword_18 = (Keyword)cGroup.eContents().get(18);
 		private final Assignment cArticle_cntAssignment_19 = (Assignment)cGroup.eContents().get(19);
 		private final RuleCall cArticle_cntINTTerminalRuleCall_19_0 = (RuleCall)cArticle_cntAssignment_19.eContents().get(0);
 		private final Keyword cNumberOfWordsPerArticleKeyword_20 = (Keyword)cGroup.eContents().get(20);
@@ -78,14 +78,14 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		//Declaration:
 		//	"newspaper" name=ID "feed link" feedlinks=Feedlinks "topics" "{" topics+=Topic topics+=Topic* "}" ("date" date=Date)?
 		//	("location" location=STRING)? "price" price=Price ("volume" volume=INT)? "language" language=Language "format"
-		//	format=Format "number of articles per articles" article_cnt=INT "number of words per article" article_char_min=INT "-"
+		//	format=Format "number of articles per topic" article_cnt=INT "number of words per article" article_char_min=INT "-"
 		//	article_char_max=INT ("number of images per article" article_images=INT)? "number of columns" columns_cnt=INT
 		//	"font size" font_size=FontSize;
 		@Override public ParserRule getRule() { return rule; }
 
 		//"newspaper" name=ID "feed link" feedlinks=Feedlinks "topics" "{" topics+=Topic topics+=Topic* "}" ("date" date=Date)?
 		//("location" location=STRING)? "price" price=Price ("volume" volume=INT)? "language" language=Language "format"
-		//format=Format "number of articles per articles" article_cnt=INT "number of words per article" article_char_min=INT "-"
+		//format=Format "number of articles per topic" article_cnt=INT "number of words per article" article_char_min=INT "-"
 		//article_char_max=INT ("number of images per article" article_images=INT)? "number of columns" columns_cnt=INT
 		//"font size" font_size=FontSize
 		public Group getGroup() { return cGroup; }
@@ -192,8 +192,8 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		//Format
 		public RuleCall getFormatFormatParserRuleCall_17_0() { return cFormatFormatParserRuleCall_17_0; }
 
-		//"number of articles per articles"
-		public Keyword getNumberOfArticlesPerArticlesKeyword_18() { return cNumberOfArticlesPerArticlesKeyword_18; }
+		//"number of articles per topic"
+		public Keyword getNumberOfArticlesPerTopicKeyword_18() { return cNumberOfArticlesPerTopicKeyword_18; }
 
 		//article_cnt=INT
 		public Assignment getArticle_cntAssignment_19() { return cArticle_cntAssignment_19; }
@@ -783,7 +783,7 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 	//Declaration:
 	//	"newspaper" name=ID "feed link" feedlinks=Feedlinks "topics" "{" topics+=Topic topics+=Topic* "}" ("date" date=Date)?
 	//	("location" location=STRING)? "price" price=Price ("volume" volume=INT)? "language" language=Language "format"
-	//	format=Format "number of articles per articles" article_cnt=INT "number of words per article" article_char_min=INT "-"
+	//	format=Format "number of articles per topic" article_cnt=INT "number of words per article" article_char_min=INT "-"
 	//	article_char_max=INT ("number of images per article" article_images=INT)? "number of columns" columns_cnt=INT
 	//	"font size" font_size=FontSize;
 	public DeclarationElements getDeclarationAccess() {

@@ -238,10 +238,10 @@ public class InternalNplLexer extends Lexer {
         try {
             int _type = T__19;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:19:7: ( 'number of articles per articles' )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:19:9: 'number of articles per articles'
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:19:7: ( 'number of articles per topic' )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:19:9: 'number of articles per topic'
             {
-            match("number of articles per articles"); 
+            match("number of articles per topic"); 
 
 
             }
@@ -1558,7 +1558,7 @@ public class InternalNplLexer extends Lexer {
     static final String DFA12_acceptS =
         "\4\uffff\1\4\1\5\2\uffff\1\13\11\uffff\1\42\1\43\3\uffff\1\47\1\50\2\uffff\1\42\3\uffff\1\4\1\5\3\uffff\1\13\11\uffff\1\41\1\43\1\44\1\45\1\46\1\47\50\uffff\1\2\1\uffff\1\15\5\uffff\1\16\6\uffff\1\36\5\uffff\1\40\1\6\1\uffff\1\24\2\uffff\1\22\1\uffff\1\25\1\26\1\27\1\30\1\31\1\32\1\33\5\uffff\1\10\1\3\2\uffff\1\20\1\23\1\37\1\uffff\1\35\4\uffff\1\34\2\uffff\1\7\1\17\1\1\1\uffff\1\11\1\12\1\14\1\21";
     static final String DFA12_specialS =
-        "\1\1\23\uffff\1\0\1\2\u0087\uffff}>";
+        "\1\0\23\uffff\1\2\1\1\u0087\uffff}>";
     static final String[] DFA12_transitionS = {
             "\11\30\2\27\2\30\1\27\22\30\1\27\1\30\1\24\4\30\1\25\4\30\1\20\1\10\1\30\1\26\12\23\7\30\3\22\1\15\1\16\1\22\1\17\23\22\3\30\1\21\1\22\1\30\3\22\1\11\1\22\1\2\5\22\1\7\1\14\1\1\1\22\1\6\2\22\1\13\1\3\1\22\1\12\4\22\1\4\1\30\1\5\uff82\30",
             "\1\31\17\uffff\1\32",
@@ -1756,16 +1756,6 @@ public class InternalNplLexer extends Lexer {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA12_20 = input.LA(1);
-
-                        s = -1;
-                        if ( ((LA12_20>='\u0000' && LA12_20<='\uFFFF')) ) {s = 48;}
-
-                        else s = 24;
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
                         int LA12_0 = input.LA(1);
 
                         s = -1;
@@ -1819,11 +1809,21 @@ public class InternalNplLexer extends Lexer {
 
                         if ( s>=0 ) return s;
                         break;
-                    case 2 : 
+                    case 1 : 
                         int LA12_21 = input.LA(1);
 
                         s = -1;
                         if ( ((LA12_21>='\u0000' && LA12_21<='\uFFFF')) ) {s = 48;}
+
+                        else s = 24;
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
+                        int LA12_20 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA12_20>='\u0000' && LA12_20<='\uFFFF')) ) {s = 48;}
 
                         else s = 24;
 

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalNplParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'newspaper'", "'feed link'", "'topics'", "'{'", "'}'", "'price'", "'language'", "'format'", "'number of articles per articles'", "'number of words per article'", "'-'", "'number of columns'", "'font size'", "'date'", "'location'", "'volume'", "'number of images per article'", "'small'", "'medium'", "'large'", "'DIN A6'", "'DIN A5'", "'DIN A4'", "'DIN A3'", "'DIN A2'", "'DIN A1'", "'DIN A0'", "'English'", "'German'", "'Euro'", "'Dollar'", "'topic'", "', '"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'newspaper'", "'feed link'", "'topics'", "'{'", "'}'", "'price'", "'language'", "'format'", "'number of articles per topic'", "'number of words per article'", "'-'", "'number of columns'", "'font size'", "'date'", "'location'", "'volume'", "'number of images per article'", "'small'", "'medium'", "'large'", "'DIN A6'", "'DIN A5'", "'DIN A4'", "'DIN A3'", "'DIN A2'", "'DIN A1'", "'DIN A0'", "'English'", "'German'", "'Euro'", "'Dollar'", "'topic'", "', '"
     };
     public static final int T__19=19;
     public static final int T__15=15;
@@ -3042,21 +3042,21 @@ public class InternalNplParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Declaration__Group__18__Impl"
-    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:1044:1: rule__Declaration__Group__18__Impl : ( 'number of articles per articles' ) ;
+    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:1044:1: rule__Declaration__Group__18__Impl : ( 'number of articles per topic' ) ;
     public final void rule__Declaration__Group__18__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:1048:1: ( ( 'number of articles per articles' ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:1049:1: ( 'number of articles per articles' )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:1048:1: ( ( 'number of articles per topic' ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:1049:1: ( 'number of articles per topic' )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:1049:1: ( 'number of articles per articles' )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:1050:1: 'number of articles per articles'
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:1049:1: ( 'number of articles per topic' )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:1050:1: 'number of articles per topic'
             {
-             before(grammarAccess.getDeclarationAccess().getNumberOfArticlesPerArticlesKeyword_18()); 
+             before(grammarAccess.getDeclarationAccess().getNumberOfArticlesPerTopicKeyword_18()); 
             match(input,19,FOLLOW_19_in_rule__Declaration__Group__18__Impl2171); 
-             after(grammarAccess.getDeclarationAccess().getNumberOfArticlesPerArticlesKeyword_18()); 
+             after(grammarAccess.getDeclarationAccess().getNumberOfArticlesPerTopicKeyword_18()); 
 
             }
 

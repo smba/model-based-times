@@ -18,7 +18,7 @@ Declaration:
 	("volume" volume=INT)?
 	"language" language=Language
 	"format" format=Format
-	"number of articles per articles" article_cnt=INT
+	"number of articles per topic" article_cnt=INT
 	"number of words per article" article_char_min=INT "-" article_char_max=INT
 	("number of images per article" article_images=INT)?
 	"number of columns" columns_cnt=INT
