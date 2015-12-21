@@ -7,8 +7,10 @@ grammar de.tu_bs.cs.isf.mbse.mbtimes.Npl with org.eclipse.xtext.common.Terminals
 generate npl "http://www.tu_bs.de/cs/isf/mbse/mbtimes/Npl"
 
 Declaration:
-	"newspaper" name=ID
-	"feed link" feedlinks=Feedlinks
+	"newspaper" name=ID "{"
+	"feed links" "{"
+		feedlinks += Pair (", " pairs+=Pair)*
+	"}"
 	"topics" "{"
 		topics+=Topic (topics+=Topic)*
 	"}"
@@ -22,7 +24,9 @@ Declaration:
 	"number of words per article" article_char_min=INT "-" article_char_max=INT
 	("number of images per article" article_images=INT)?
 	"number of columns" columns_cnt=INT
-	"font size" font_size=FontSize;
+	"font size" font_size=FontSize
+	
+"}";
 
 // Nutzer kann auswählen, ob die Schriftgröße klein, medium und groß sein soll. Größe sollte 
 // abhängig vom gewählten Format festgelegt. 
@@ -49,11 +53,11 @@ Language returns EString:
 	 
 
 Price:
-	"{" value=STRING currency=Currency "}";
+	"{" value=ID currency=Currency "}";
 
 Currency returns EString:
-	{EString} "Euro" | 
-	{EString} "Dollar";
+	{EString} "Euro [€]" | 
+	{EString} "Dollar [$]";
 
 Topic:
 	"topic" name=ID "{"
@@ -63,15 +67,10 @@ Topic:
 TopicTag:
 	value=STRING;
 
-Feedlinks:
-	"{"
-	pairs+=Pair (", " pairs+=Pair)*
-	"}";
-
+ // id für feedlink
+ //feedlink
 Pair:
-	"{"
-	key=ID // id für feedlink
-	value=STRING //feedlink
-	"}";
+	key = ID ":" value = STRING 
+;
 
 
