@@ -4,18 +4,27 @@ package de.tu_bs.cs.isf.mbse.mbtimes.npl.impl;
 
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Date;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration;
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.EString;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Feedlinks;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Price;
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic;
+
+import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -77,24 +86,14 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
   protected Feedlinks feedlinks;
 
   /**
-   * The default value of the '{@link #getTopics() <em>Topics</em>}' attribute.
+   * The cached value of the '{@link #getTopics() <em>Topics</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getTopics()
    * @generated
    * @ordered
    */
-  protected static final String TOPICS_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getTopics() <em>Topics</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getTopics()
-   * @generated
-   * @ordered
-   */
-  protected String topics = TOPICS_EDEFAULT;
+  protected EList<Topic> topics;
 
   /**
    * The cached value of the '{@link #getDate() <em>Date</em>}' containment reference.
@@ -157,44 +156,24 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
   protected int volume = VOLUME_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getLanguage() <em>Language</em>}' attribute.
+   * The cached value of the '{@link #getLanguage() <em>Language</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getLanguage()
    * @generated
    * @ordered
    */
-  protected static final String LANGUAGE_EDEFAULT = null;
+  protected EString language;
 
   /**
-   * The cached value of the '{@link #getLanguage() <em>Language</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getLanguage()
-   * @generated
-   * @ordered
-   */
-  protected String language = LANGUAGE_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getFormat() <em>Format</em>}' attribute.
+   * The cached value of the '{@link #getFormat() <em>Format</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getFormat()
    * @generated
    * @ordered
    */
-  protected static final String FORMAT_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getFormat() <em>Format</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getFormat()
-   * @generated
-   * @ordered
-   */
-  protected String format = FORMAT_EDEFAULT;
+  protected EString format;
 
   /**
    * The default value of the '{@link #getArticle_cnt() <em>Article cnt</em>}' attribute.
@@ -297,24 +276,14 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
   protected int columns_cnt = COLUMNS_CNT_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getFont_size() <em>Font size</em>}' attribute.
+   * The cached value of the '{@link #getFont_size() <em>Font size</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getFont_size()
    * @generated
    * @ordered
    */
-  protected static final int FONT_SIZE_EDEFAULT = 0;
-
-  /**
-   * The cached value of the '{@link #getFont_size() <em>Font size</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getFont_size()
-   * @generated
-   * @ordered
-   */
-  protected int font_size = FONT_SIZE_EDEFAULT;
+  protected EString font_size;
 
   /**
    * <!-- begin-user-doc -->
@@ -413,22 +382,13 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getTopics()
+  public EList<Topic> getTopics()
   {
+    if (topics == null)
+    {
+      topics = new EObjectContainmentEList<Topic>(Topic.class, this, NplPackage.DECLARATION__TOPICS);
+    }
     return topics;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setTopics(String newTopics)
-  {
-    String oldTopics = topics;
-    topics = newTopics;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__TOPICS, oldTopics, topics));
   }
 
   /**
@@ -578,7 +538,7 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getLanguage()
+  public EString getLanguage()
   {
     return language;
   }
@@ -588,12 +548,16 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setLanguage(String newLanguage)
+  public NotificationChain basicSetLanguage(EString newLanguage, NotificationChain msgs)
   {
-    String oldLanguage = language;
+    EString oldLanguage = language;
     language = newLanguage;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__LANGUAGE, oldLanguage, language));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__LANGUAGE, oldLanguage, newLanguage);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -601,7 +565,28 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getFormat()
+  public void setLanguage(EString newLanguage)
+  {
+    if (newLanguage != language)
+    {
+      NotificationChain msgs = null;
+      if (language != null)
+        msgs = ((InternalEObject)language).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NplPackage.DECLARATION__LANGUAGE, null, msgs);
+      if (newLanguage != null)
+        msgs = ((InternalEObject)newLanguage).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NplPackage.DECLARATION__LANGUAGE, null, msgs);
+      msgs = basicSetLanguage(newLanguage, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__LANGUAGE, newLanguage, newLanguage));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EString getFormat()
   {
     return format;
   }
@@ -611,12 +596,37 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setFormat(String newFormat)
+  public NotificationChain basicSetFormat(EString newFormat, NotificationChain msgs)
   {
-    String oldFormat = format;
+    EString oldFormat = format;
     format = newFormat;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__FORMAT, oldFormat, format));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__FORMAT, oldFormat, newFormat);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setFormat(EString newFormat)
+  {
+    if (newFormat != format)
+    {
+      NotificationChain msgs = null;
+      if (format != null)
+        msgs = ((InternalEObject)format).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NplPackage.DECLARATION__FORMAT, null, msgs);
+      if (newFormat != null)
+        msgs = ((InternalEObject)newFormat).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NplPackage.DECLARATION__FORMAT, null, msgs);
+      msgs = basicSetFormat(newFormat, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__FORMAT, newFormat, newFormat));
   }
 
   /**
@@ -739,7 +749,7 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public int getFont_size()
+  public EString getFont_size()
   {
     return font_size;
   }
@@ -749,12 +759,37 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setFont_size(int newFont_size)
+  public NotificationChain basicSetFont_size(EString newFont_size, NotificationChain msgs)
   {
-    int oldFont_size = font_size;
+    EString oldFont_size = font_size;
     font_size = newFont_size;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__FONT_SIZE, oldFont_size, font_size));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__FONT_SIZE, oldFont_size, newFont_size);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setFont_size(EString newFont_size)
+  {
+    if (newFont_size != font_size)
+    {
+      NotificationChain msgs = null;
+      if (font_size != null)
+        msgs = ((InternalEObject)font_size).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NplPackage.DECLARATION__FONT_SIZE, null, msgs);
+      if (newFont_size != null)
+        msgs = ((InternalEObject)newFont_size).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NplPackage.DECLARATION__FONT_SIZE, null, msgs);
+      msgs = basicSetFont_size(newFont_size, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__FONT_SIZE, newFont_size, newFont_size));
   }
 
   /**
@@ -769,10 +804,18 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
     {
       case NplPackage.DECLARATION__FEEDLINKS:
         return basicSetFeedlinks(null, msgs);
+      case NplPackage.DECLARATION__TOPICS:
+        return ((InternalEList<?>)getTopics()).basicRemove(otherEnd, msgs);
       case NplPackage.DECLARATION__DATE:
         return basicSetDate(null, msgs);
       case NplPackage.DECLARATION__PRICE:
         return basicSetPrice(null, msgs);
+      case NplPackage.DECLARATION__LANGUAGE:
+        return basicSetLanguage(null, msgs);
+      case NplPackage.DECLARATION__FORMAT:
+        return basicSetFormat(null, msgs);
+      case NplPackage.DECLARATION__FONT_SIZE:
+        return basicSetFont_size(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -826,6 +869,7 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -838,7 +882,8 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
         setFeedlinks((Feedlinks)newValue);
         return;
       case NplPackage.DECLARATION__TOPICS:
-        setTopics((String)newValue);
+        getTopics().clear();
+        getTopics().addAll((Collection<? extends Topic>)newValue);
         return;
       case NplPackage.DECLARATION__DATE:
         setDate((Date)newValue);
@@ -853,10 +898,10 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
         setVolume((Integer)newValue);
         return;
       case NplPackage.DECLARATION__LANGUAGE:
-        setLanguage((String)newValue);
+        setLanguage((EString)newValue);
         return;
       case NplPackage.DECLARATION__FORMAT:
-        setFormat((String)newValue);
+        setFormat((EString)newValue);
         return;
       case NplPackage.DECLARATION__ARTICLE_CNT:
         setArticle_cnt((Integer)newValue);
@@ -874,7 +919,7 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
         setColumns_cnt((Integer)newValue);
         return;
       case NplPackage.DECLARATION__FONT_SIZE:
-        setFont_size((Integer)newValue);
+        setFont_size((EString)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -897,7 +942,7 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
         setFeedlinks((Feedlinks)null);
         return;
       case NplPackage.DECLARATION__TOPICS:
-        setTopics(TOPICS_EDEFAULT);
+        getTopics().clear();
         return;
       case NplPackage.DECLARATION__DATE:
         setDate((Date)null);
@@ -912,10 +957,10 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
         setVolume(VOLUME_EDEFAULT);
         return;
       case NplPackage.DECLARATION__LANGUAGE:
-        setLanguage(LANGUAGE_EDEFAULT);
+        setLanguage((EString)null);
         return;
       case NplPackage.DECLARATION__FORMAT:
-        setFormat(FORMAT_EDEFAULT);
+        setFormat((EString)null);
         return;
       case NplPackage.DECLARATION__ARTICLE_CNT:
         setArticle_cnt(ARTICLE_CNT_EDEFAULT);
@@ -933,7 +978,7 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
         setColumns_cnt(COLUMNS_CNT_EDEFAULT);
         return;
       case NplPackage.DECLARATION__FONT_SIZE:
-        setFont_size(FONT_SIZE_EDEFAULT);
+        setFont_size((EString)null);
         return;
     }
     super.eUnset(featureID);
@@ -954,7 +999,7 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
       case NplPackage.DECLARATION__FEEDLINKS:
         return feedlinks != null;
       case NplPackage.DECLARATION__TOPICS:
-        return TOPICS_EDEFAULT == null ? topics != null : !TOPICS_EDEFAULT.equals(topics);
+        return topics != null && !topics.isEmpty();
       case NplPackage.DECLARATION__DATE:
         return date != null;
       case NplPackage.DECLARATION__LOCATION:
@@ -964,9 +1009,9 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
       case NplPackage.DECLARATION__VOLUME:
         return volume != VOLUME_EDEFAULT;
       case NplPackage.DECLARATION__LANGUAGE:
-        return LANGUAGE_EDEFAULT == null ? language != null : !LANGUAGE_EDEFAULT.equals(language);
+        return language != null;
       case NplPackage.DECLARATION__FORMAT:
-        return FORMAT_EDEFAULT == null ? format != null : !FORMAT_EDEFAULT.equals(format);
+        return format != null;
       case NplPackage.DECLARATION__ARTICLE_CNT:
         return article_cnt != ARTICLE_CNT_EDEFAULT;
       case NplPackage.DECLARATION__ARTICLE_CHAR_MIN:
@@ -978,7 +1023,7 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
       case NplPackage.DECLARATION__COLUMNS_CNT:
         return columns_cnt != COLUMNS_CNT_EDEFAULT;
       case NplPackage.DECLARATION__FONT_SIZE:
-        return font_size != FONT_SIZE_EDEFAULT;
+        return font_size != null;
     }
     return super.eIsSet(featureID);
   }
@@ -996,16 +1041,10 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
-    result.append(", topics: ");
-    result.append(topics);
     result.append(", location: ");
     result.append(location);
     result.append(", volume: ");
     result.append(volume);
-    result.append(", language: ");
-    result.append(language);
-    result.append(", format: ");
-    result.append(format);
     result.append(", article_cnt: ");
     result.append(article_cnt);
     result.append(", article_char_min: ");
@@ -1016,8 +1055,6 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
     result.append(article_images);
     result.append(", columns_cnt: ");
     result.append(columns_cnt);
-    result.append(", font_size: ");
-    result.append(font_size);
     result.append(')');
     return result.toString();
   }

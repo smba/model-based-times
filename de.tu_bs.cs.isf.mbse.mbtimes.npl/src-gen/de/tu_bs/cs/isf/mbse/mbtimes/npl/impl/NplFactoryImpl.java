@@ -65,8 +65,11 @@ public class NplFactoryImpl extends EFactoryImpl implements NplFactory
     switch (eClass.getClassifierID())
     {
       case NplPackage.DECLARATION: return createDeclaration();
+      case NplPackage.ESTRING: return createEString();
       case NplPackage.DATE: return createDate();
       case NplPackage.PRICE: return createPrice();
+      case NplPackage.TOPIC: return createTopic();
+      case NplPackage.TOPIC_TAG: return createTopicTag();
       case NplPackage.FEEDLINKS: return createFeedlinks();
       case NplPackage.PAIR: return createPair();
       default:
@@ -90,6 +93,17 @@ public class NplFactoryImpl extends EFactoryImpl implements NplFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public EString createEString()
+  {
+    EStringImpl eString = new EStringImpl();
+    return eString;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Date createDate()
   {
     DateImpl date = new DateImpl();
@@ -105,6 +119,28 @@ public class NplFactoryImpl extends EFactoryImpl implements NplFactory
   {
     PriceImpl price = new PriceImpl();
     return price;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Topic createTopic()
+  {
+    TopicImpl topic = new TopicImpl();
+    return topic;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TopicTag createTopicTag()
+  {
+    TopicTagImpl topicTag = new TopicTagImpl();
+    return topicTag;
   }
 
   /**

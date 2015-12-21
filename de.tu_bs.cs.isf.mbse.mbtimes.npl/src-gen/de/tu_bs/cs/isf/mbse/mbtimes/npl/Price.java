@@ -50,29 +50,29 @@ public interface Price extends EObject
   void setValue(String value);
 
   /**
-   * Returns the value of the '<em><b>Currency</b></em>' attribute.
+   * Returns the value of the '<em><b>Currency</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Currency</em>' attribute isn't clear,
+   * If the meaning of the '<em>Currency</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Currency</em>' attribute.
-   * @see #setCurrency(String)
+   * @return the value of the '<em>Currency</em>' containment reference.
+   * @see #setCurrency(EString)
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getPrice_Currency()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getCurrency();
+  EString getCurrency();
 
   /**
-   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Price#getCurrency <em>Currency</em>}' attribute.
+   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Price#getCurrency <em>Currency</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Currency</em>' attribute.
+   * @param value the new value of the '<em>Currency</em>' containment reference.
    * @see #getCurrency()
    * @generated
    */
-  void setCurrency(String value);
+  void setCurrency(EString value);
 
 } // Price

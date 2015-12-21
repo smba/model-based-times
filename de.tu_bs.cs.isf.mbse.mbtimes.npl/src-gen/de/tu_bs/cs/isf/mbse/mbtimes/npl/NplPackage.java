@@ -85,7 +85,7 @@ public interface NplPackage extends EPackage
   int DECLARATION__FEEDLINKS = 1;
 
   /**
-   * The feature id for the '<em><b>Topics</b></em>' attribute.
+   * The feature id for the '<em><b>Topics</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -130,7 +130,7 @@ public interface NplPackage extends EPackage
   int DECLARATION__VOLUME = 6;
 
   /**
-   * The feature id for the '<em><b>Language</b></em>' attribute.
+   * The feature id for the '<em><b>Language</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -139,7 +139,7 @@ public interface NplPackage extends EPackage
   int DECLARATION__LANGUAGE = 7;
 
   /**
-   * The feature id for the '<em><b>Format</b></em>' attribute.
+   * The feature id for the '<em><b>Format</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -193,7 +193,7 @@ public interface NplPackage extends EPackage
   int DECLARATION__COLUMNS_CNT = 13;
 
   /**
-   * The feature id for the '<em><b>Font size</b></em>' attribute.
+   * The feature id for the '<em><b>Font size</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -211,6 +211,25 @@ public interface NplPackage extends EPackage
   int DECLARATION_FEATURE_COUNT = 15;
 
   /**
+   * The meta object id for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.EStringImpl <em>EString</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.EStringImpl
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getEString()
+   * @generated
+   */
+  int ESTRING = 1;
+
+  /**
+   * The number of structural features of the '<em>EString</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ESTRING_FEATURE_COUNT = 0;
+
+  /**
    * The meta object id for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DateImpl <em>Date</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -218,7 +237,7 @@ public interface NplPackage extends EPackage
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getDate()
    * @generated
    */
-  int DATE = 1;
+  int DATE = 2;
 
   /**
    * The feature id for the '<em><b>Day</b></em>' attribute.
@@ -264,7 +283,7 @@ public interface NplPackage extends EPackage
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getPrice()
    * @generated
    */
-  int PRICE = 2;
+  int PRICE = 3;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -276,7 +295,7 @@ public interface NplPackage extends EPackage
   int PRICE__VALUE = 0;
 
   /**
-   * The feature id for the '<em><b>Currency</b></em>' attribute.
+   * The feature id for the '<em><b>Currency</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -294,6 +313,71 @@ public interface NplPackage extends EPackage
   int PRICE_FEATURE_COUNT = 2;
 
   /**
+   * The meta object id for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.TopicImpl <em>Topic</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.TopicImpl
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getTopic()
+   * @generated
+   */
+  int TOPIC = 4;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TOPIC__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Tags</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TOPIC__TAGS = 1;
+
+  /**
+   * The number of structural features of the '<em>Topic</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TOPIC_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.TopicTagImpl <em>Topic Tag</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.TopicTagImpl
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getTopicTag()
+   * @generated
+   */
+  int TOPIC_TAG = 5;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TOPIC_TAG__VALUE = 0;
+
+  /**
+   * The number of structural features of the '<em>Topic Tag</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TOPIC_TAG_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.FeedlinksImpl <em>Feedlinks</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -301,7 +385,7 @@ public interface NplPackage extends EPackage
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getFeedlinks()
    * @generated
    */
-  int FEEDLINKS = 3;
+  int FEEDLINKS = 6;
 
   /**
    * The feature id for the '<em><b>Pairs</b></em>' containment reference list.
@@ -329,7 +413,7 @@ public interface NplPackage extends EPackage
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getPair()
    * @generated
    */
-  int PAIR = 4;
+  int PAIR = 7;
 
   /**
    * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -392,15 +476,15 @@ public interface NplPackage extends EPackage
   EReference getDeclaration_Feedlinks();
 
   /**
-   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getTopics <em>Topics</em>}'.
+   * Returns the meta object for the containment reference list '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getTopics <em>Topics</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Topics</em>'.
+   * @return the meta object for the containment reference list '<em>Topics</em>'.
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getTopics()
    * @see #getDeclaration()
    * @generated
    */
-  EAttribute getDeclaration_Topics();
+  EReference getDeclaration_Topics();
 
   /**
    * Returns the meta object for the containment reference '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getDate <em>Date</em>}'.
@@ -447,26 +531,26 @@ public interface NplPackage extends EPackage
   EAttribute getDeclaration_Volume();
 
   /**
-   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getLanguage <em>Language</em>}'.
+   * Returns the meta object for the containment reference '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getLanguage <em>Language</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Language</em>'.
+   * @return the meta object for the containment reference '<em>Language</em>'.
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getLanguage()
    * @see #getDeclaration()
    * @generated
    */
-  EAttribute getDeclaration_Language();
+  EReference getDeclaration_Language();
 
   /**
-   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFormat <em>Format</em>}'.
+   * Returns the meta object for the containment reference '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFormat <em>Format</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Format</em>'.
+   * @return the meta object for the containment reference '<em>Format</em>'.
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFormat()
    * @see #getDeclaration()
    * @generated
    */
-  EAttribute getDeclaration_Format();
+  EReference getDeclaration_Format();
 
   /**
    * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_cnt <em>Article cnt</em>}'.
@@ -524,15 +608,25 @@ public interface NplPackage extends EPackage
   EAttribute getDeclaration_Columns_cnt();
 
   /**
-   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFont_size <em>Font size</em>}'.
+   * Returns the meta object for the containment reference '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFont_size <em>Font size</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Font size</em>'.
+   * @return the meta object for the containment reference '<em>Font size</em>'.
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFont_size()
    * @see #getDeclaration()
    * @generated
    */
-  EAttribute getDeclaration_Font_size();
+  EReference getDeclaration_Font_size();
+
+  /**
+   * Returns the meta object for class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.EString <em>EString</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>EString</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.EString
+   * @generated
+   */
+  EClass getEString();
 
   /**
    * Returns the meta object for class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Date <em>Date</em>}'.
@@ -599,15 +693,68 @@ public interface NplPackage extends EPackage
   EAttribute getPrice_Value();
 
   /**
-   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Price#getCurrency <em>Currency</em>}'.
+   * Returns the meta object for the containment reference '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Price#getCurrency <em>Currency</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Currency</em>'.
+   * @return the meta object for the containment reference '<em>Currency</em>'.
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Price#getCurrency()
    * @see #getPrice()
    * @generated
    */
-  EAttribute getPrice_Currency();
+  EReference getPrice_Currency();
+
+  /**
+   * Returns the meta object for class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic <em>Topic</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Topic</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic
+   * @generated
+   */
+  EClass getTopic();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic#getName()
+   * @see #getTopic()
+   * @generated
+   */
+  EAttribute getTopic_Name();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic#getTags <em>Tags</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Tags</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic#getTags()
+   * @see #getTopic()
+   * @generated
+   */
+  EReference getTopic_Tags();
+
+  /**
+   * Returns the meta object for class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.TopicTag <em>Topic Tag</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Topic Tag</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.TopicTag
+   * @generated
+   */
+  EClass getTopicTag();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.TopicTag#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.TopicTag#getValue()
+   * @see #getTopicTag()
+   * @generated
+   */
+  EAttribute getTopicTag_Value();
 
   /**
    * Returns the meta object for class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Feedlinks <em>Feedlinks</em>}'.
@@ -712,12 +859,12 @@ public interface NplPackage extends EPackage
     EReference DECLARATION__FEEDLINKS = eINSTANCE.getDeclaration_Feedlinks();
 
     /**
-     * The meta object literal for the '<em><b>Topics</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Topics</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DECLARATION__TOPICS = eINSTANCE.getDeclaration_Topics();
+    EReference DECLARATION__TOPICS = eINSTANCE.getDeclaration_Topics();
 
     /**
      * The meta object literal for the '<em><b>Date</b></em>' containment reference feature.
@@ -752,20 +899,20 @@ public interface NplPackage extends EPackage
     EAttribute DECLARATION__VOLUME = eINSTANCE.getDeclaration_Volume();
 
     /**
-     * The meta object literal for the '<em><b>Language</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Language</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DECLARATION__LANGUAGE = eINSTANCE.getDeclaration_Language();
+    EReference DECLARATION__LANGUAGE = eINSTANCE.getDeclaration_Language();
 
     /**
-     * The meta object literal for the '<em><b>Format</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Format</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DECLARATION__FORMAT = eINSTANCE.getDeclaration_Format();
+    EReference DECLARATION__FORMAT = eINSTANCE.getDeclaration_Format();
 
     /**
      * The meta object literal for the '<em><b>Article cnt</b></em>' attribute feature.
@@ -808,12 +955,22 @@ public interface NplPackage extends EPackage
     EAttribute DECLARATION__COLUMNS_CNT = eINSTANCE.getDeclaration_Columns_cnt();
 
     /**
-     * The meta object literal for the '<em><b>Font size</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Font size</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DECLARATION__FONT_SIZE = eINSTANCE.getDeclaration_Font_size();
+    EReference DECLARATION__FONT_SIZE = eINSTANCE.getDeclaration_Font_size();
+
+    /**
+     * The meta object literal for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.EStringImpl <em>EString</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.EStringImpl
+     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getEString()
+     * @generated
+     */
+    EClass ESTRING = eINSTANCE.getEString();
 
     /**
      * The meta object literal for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DateImpl <em>Date</em>}' class.
@@ -868,12 +1025,56 @@ public interface NplPackage extends EPackage
     EAttribute PRICE__VALUE = eINSTANCE.getPrice_Value();
 
     /**
-     * The meta object literal for the '<em><b>Currency</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Currency</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute PRICE__CURRENCY = eINSTANCE.getPrice_Currency();
+    EReference PRICE__CURRENCY = eINSTANCE.getPrice_Currency();
+
+    /**
+     * The meta object literal for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.TopicImpl <em>Topic</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.TopicImpl
+     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getTopic()
+     * @generated
+     */
+    EClass TOPIC = eINSTANCE.getTopic();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TOPIC__NAME = eINSTANCE.getTopic_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Tags</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TOPIC__TAGS = eINSTANCE.getTopic_Tags();
+
+    /**
+     * The meta object literal for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.TopicTagImpl <em>Topic Tag</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.TopicTagImpl
+     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getTopicTag()
+     * @generated
+     */
+    EClass TOPIC_TAG = eINSTANCE.getTopicTag();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TOPIC_TAG__VALUE = eINSTANCE.getTopicTag_Value();
 
     /**
      * The meta object literal for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.FeedlinksImpl <em>Feedlinks</em>}' class.

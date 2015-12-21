@@ -32,6 +32,15 @@ public interface NplFactory extends EFactory
   Declaration createDeclaration();
 
   /**
+   * Returns a new object of class '<em>EString</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>EString</em>'.
+   * @generated
+   */
+  EString createEString();
+
+  /**
    * Returns a new object of class '<em>Date</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -48,6 +57,24 @@ public interface NplFactory extends EFactory
    * @generated
    */
   Price createPrice();
+
+  /**
+   * Returns a new object of class '<em>Topic</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Topic</em>'.
+   * @generated
+   */
+  Topic createTopic();
+
+  /**
+   * Returns a new object of class '<em>Topic Tag</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Topic Tag</em>'.
+   * @generated
+   */
+  TopicTag createTopicTag();
 
   /**
    * Returns a new object of class '<em>Feedlinks</em>'.

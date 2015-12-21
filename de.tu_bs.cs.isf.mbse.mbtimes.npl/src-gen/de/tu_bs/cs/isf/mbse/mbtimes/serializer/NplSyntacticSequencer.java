@@ -11,6 +11,9 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.AlternativeAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
+import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
 import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 
@@ -18,10 +21,18 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class NplSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected NplGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_Currency_DollarKeyword_1_1_or_EuroKeyword_0_1;
+	protected AbstractElementAlias match_FontSize_LargeKeyword_2_1_or_MediumKeyword_1_1_or_SmallKeyword_0_1;
+	protected AbstractElementAlias match_Format_DINA0Keyword_6_1_or_DINA1Keyword_5_1_or_DINA2Keyword_4_1_or_DINA3Keyword_3_1_or_DINA4Keyword_2_1_or_DINA5Keyword_1_1_or_DINA6Keyword_0_1;
+	protected AbstractElementAlias match_Language_EnglishKeyword_0_1_or_GermanKeyword_1_1;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (NplGrammarAccess) access;
+		match_Currency_DollarKeyword_1_1_or_EuroKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getCurrencyAccess().getDollarKeyword_1_1()), new TokenAlias(false, false, grammarAccess.getCurrencyAccess().getEuroKeyword_0_1()));
+		match_FontSize_LargeKeyword_2_1_or_MediumKeyword_1_1_or_SmallKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getFontSizeAccess().getLargeKeyword_2_1()), new TokenAlias(false, false, grammarAccess.getFontSizeAccess().getMediumKeyword_1_1()), new TokenAlias(false, false, grammarAccess.getFontSizeAccess().getSmallKeyword_0_1()));
+		match_Format_DINA0Keyword_6_1_or_DINA1Keyword_5_1_or_DINA2Keyword_4_1_or_DINA3Keyword_3_1_or_DINA4Keyword_2_1_or_DINA5Keyword_1_1_or_DINA6Keyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getFormatAccess().getDINA0Keyword_6_1()), new TokenAlias(false, false, grammarAccess.getFormatAccess().getDINA1Keyword_5_1()), new TokenAlias(false, false, grammarAccess.getFormatAccess().getDINA2Keyword_4_1()), new TokenAlias(false, false, grammarAccess.getFormatAccess().getDINA3Keyword_3_1()), new TokenAlias(false, false, grammarAccess.getFormatAccess().getDINA4Keyword_2_1()), new TokenAlias(false, false, grammarAccess.getFormatAccess().getDINA5Keyword_1_1()), new TokenAlias(false, false, grammarAccess.getFormatAccess().getDINA6Keyword_0_1()));
+		match_Language_EnglishKeyword_0_1_or_GermanKeyword_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getLanguageAccess().getEnglishKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getLanguageAccess().getGermanKeyword_1_1()));
 	}
 	
 	@Override
@@ -36,8 +47,68 @@ public class NplSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			acceptNodes(getLastNavigableState(), syntaxNodes);
+			if(match_Currency_DollarKeyword_1_1_or_EuroKeyword_0_1.equals(syntax))
+				emit_Currency_DollarKeyword_1_1_or_EuroKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_FontSize_LargeKeyword_2_1_or_MediumKeyword_1_1_or_SmallKeyword_0_1.equals(syntax))
+				emit_FontSize_LargeKeyword_2_1_or_MediumKeyword_1_1_or_SmallKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_Format_DINA0Keyword_6_1_or_DINA1Keyword_5_1_or_DINA2Keyword_4_1_or_DINA3Keyword_3_1_or_DINA4Keyword_2_1_or_DINA5Keyword_1_1_or_DINA6Keyword_0_1.equals(syntax))
+				emit_Format_DINA0Keyword_6_1_or_DINA1Keyword_5_1_or_DINA2Keyword_4_1_or_DINA3Keyword_3_1_or_DINA4Keyword_2_1_or_DINA5Keyword_1_1_or_DINA6Keyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_Language_EnglishKeyword_0_1_or_GermanKeyword_1_1.equals(syntax))
+				emit_Language_EnglishKeyword_0_1_or_GermanKeyword_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
+			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
+	/**
+	 * Ambiguous syntax:
+	 *     'Euro' | 'Dollar'
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) (rule start)
+	 */
+	protected void emit_Currency_DollarKeyword_1_1_or_EuroKeyword_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     'small' | 'medium' | 'large'
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) (rule start)
+	 */
+	protected void emit_FontSize_LargeKeyword_2_1_or_MediumKeyword_1_1_or_SmallKeyword_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     (
+	  *         'DIN A6' | 
+	  *         'DIN A5' | 
+	  *         'DIN A4' | 
+	  *         'DIN A3' | 
+	  *         'DIN A2' | 
+	  *         'DIN A1' | 
+	  *         'DIN A0'
+	  *     )
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) (rule start)
+	 */
+	protected void emit_Format_DINA0Keyword_6_1_or_DINA1Keyword_5_1_or_DINA2Keyword_4_1_or_DINA3Keyword_3_1_or_DINA4Keyword_2_1_or_DINA5Keyword_1_1_or_DINA6Keyword_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     'English' | 'German'
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) (rule start)
+	 */
+	protected void emit_Language_EnglishKeyword_0_1_or_GermanKeyword_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 }

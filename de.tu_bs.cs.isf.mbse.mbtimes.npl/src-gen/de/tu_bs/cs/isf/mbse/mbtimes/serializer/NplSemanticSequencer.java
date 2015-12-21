@@ -7,10 +7,13 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Date;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration;
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.EString;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Feedlinks;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Pair;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Price;
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic;
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.TopicTag;
 import de.tu_bs.cs.isf.mbse.mbtimes.services.NplGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.serializer.acceptor.ISemanticSequenceAcceptor;
@@ -39,6 +42,9 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case NplPackage.DECLARATION:
 				sequence_Declaration(context, (Declaration) semanticObject); 
 				return; 
+			case NplPackage.ESTRING:
+				sequence_Currency_FontSize_Format_Language(context, (EString) semanticObject); 
+				return; 
 			case NplPackage.FEEDLINKS:
 				sequence_Feedlinks(context, (Feedlinks) semanticObject); 
 				return; 
@@ -48,9 +54,24 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case NplPackage.PRICE:
 				sequence_Price(context, (Price) semanticObject); 
 				return; 
+			case NplPackage.TOPIC:
+				sequence_Topic(context, (Topic) semanticObject); 
+				return; 
+			case NplPackage.TOPIC_TAG:
+				sequence_TopicTag(context, (TopicTag) semanticObject); 
+				return; 
 			}
 		if (errorAcceptor != null) errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
+	
+	/**
+	 * Constraint:
+	 *     {EString}
+	 */
+	protected void sequence_Currency_FontSize_Format_Language(EObject context, EString semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
 	
 	/**
 	 * Constraint:
@@ -77,74 +98,26 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * Constraint:
 	 *     (
-	 *         name=STRING 
+	 *         name=ID 
 	 *         feedlinks=Feedlinks 
-	 *         topics=Topics 
-	 *         date=Date 
-	 *         location=STRING 
+	 *         topics+=Topic 
+	 *         topics+=Topic* 
+	 *         date=Date? 
+	 *         location=STRING? 
 	 *         price=Price 
-	 *         volume=INT 
+	 *         volume=INT? 
 	 *         language=Language 
 	 *         format=Format 
 	 *         article_cnt=INT 
 	 *         article_char_min=INT 
 	 *         article_char_max=INT 
-	 *         article_images=INT 
+	 *         article_images=INT? 
 	 *         columns_cnt=INT 
-	 *         font_size=INT
+	 *         font_size=FontSize
 	 *     )
 	 */
 	protected void sequence_Declaration(EObject context, Declaration semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, NplPackage.Literals.DECLARATION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, NplPackage.Literals.DECLARATION__NAME));
-			if(transientValues.isValueTransient(semanticObject, NplPackage.Literals.DECLARATION__FEEDLINKS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, NplPackage.Literals.DECLARATION__FEEDLINKS));
-			if(transientValues.isValueTransient(semanticObject, NplPackage.Literals.DECLARATION__TOPICS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, NplPackage.Literals.DECLARATION__TOPICS));
-			if(transientValues.isValueTransient(semanticObject, NplPackage.Literals.DECLARATION__DATE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, NplPackage.Literals.DECLARATION__DATE));
-			if(transientValues.isValueTransient(semanticObject, NplPackage.Literals.DECLARATION__LOCATION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, NplPackage.Literals.DECLARATION__LOCATION));
-			if(transientValues.isValueTransient(semanticObject, NplPackage.Literals.DECLARATION__PRICE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, NplPackage.Literals.DECLARATION__PRICE));
-			if(transientValues.isValueTransient(semanticObject, NplPackage.Literals.DECLARATION__VOLUME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, NplPackage.Literals.DECLARATION__VOLUME));
-			if(transientValues.isValueTransient(semanticObject, NplPackage.Literals.DECLARATION__LANGUAGE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, NplPackage.Literals.DECLARATION__LANGUAGE));
-			if(transientValues.isValueTransient(semanticObject, NplPackage.Literals.DECLARATION__FORMAT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, NplPackage.Literals.DECLARATION__FORMAT));
-			if(transientValues.isValueTransient(semanticObject, NplPackage.Literals.DECLARATION__ARTICLE_CNT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, NplPackage.Literals.DECLARATION__ARTICLE_CNT));
-			if(transientValues.isValueTransient(semanticObject, NplPackage.Literals.DECLARATION__ARTICLE_CHAR_MIN) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, NplPackage.Literals.DECLARATION__ARTICLE_CHAR_MIN));
-			if(transientValues.isValueTransient(semanticObject, NplPackage.Literals.DECLARATION__ARTICLE_CHAR_MAX) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, NplPackage.Literals.DECLARATION__ARTICLE_CHAR_MAX));
-			if(transientValues.isValueTransient(semanticObject, NplPackage.Literals.DECLARATION__ARTICLE_IMAGES) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, NplPackage.Literals.DECLARATION__ARTICLE_IMAGES));
-			if(transientValues.isValueTransient(semanticObject, NplPackage.Literals.DECLARATION__COLUMNS_CNT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, NplPackage.Literals.DECLARATION__COLUMNS_CNT));
-			if(transientValues.isValueTransient(semanticObject, NplPackage.Literals.DECLARATION__FONT_SIZE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, NplPackage.Literals.DECLARATION__FONT_SIZE));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getDeclarationAccess().getNameSTRINGTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getDeclarationAccess().getFeedlinksFeedlinksParserRuleCall_3_0(), semanticObject.getFeedlinks());
-		feeder.accept(grammarAccess.getDeclarationAccess().getTopicsTopicsParserRuleCall_5_0(), semanticObject.getTopics());
-		feeder.accept(grammarAccess.getDeclarationAccess().getDateDateParserRuleCall_7_0(), semanticObject.getDate());
-		feeder.accept(grammarAccess.getDeclarationAccess().getLocationSTRINGTerminalRuleCall_9_0(), semanticObject.getLocation());
-		feeder.accept(grammarAccess.getDeclarationAccess().getPricePriceParserRuleCall_11_0(), semanticObject.getPrice());
-		feeder.accept(grammarAccess.getDeclarationAccess().getVolumeINTTerminalRuleCall_13_0(), semanticObject.getVolume());
-		feeder.accept(grammarAccess.getDeclarationAccess().getLanguageLanguageParserRuleCall_15_0(), semanticObject.getLanguage());
-		feeder.accept(grammarAccess.getDeclarationAccess().getFormatFormatParserRuleCall_17_0(), semanticObject.getFormat());
-		feeder.accept(grammarAccess.getDeclarationAccess().getArticle_cntINTTerminalRuleCall_19_0(), semanticObject.getArticle_cnt());
-		feeder.accept(grammarAccess.getDeclarationAccess().getArticle_char_minINTTerminalRuleCall_21_0(), semanticObject.getArticle_char_min());
-		feeder.accept(grammarAccess.getDeclarationAccess().getArticle_char_maxINTTerminalRuleCall_23_0(), semanticObject.getArticle_char_max());
-		feeder.accept(grammarAccess.getDeclarationAccess().getArticle_imagesINTTerminalRuleCall_25_0(), semanticObject.getArticle_images());
-		feeder.accept(grammarAccess.getDeclarationAccess().getColumns_cntINTTerminalRuleCall_27_0(), semanticObject.getColumns_cnt());
-		feeder.accept(grammarAccess.getDeclarationAccess().getFont_sizeINTTerminalRuleCall_29_0(), semanticObject.getFont_size());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -159,7 +132,7 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (key=STRING value=STRING)
+	 *     (key=ID value=STRING)
 	 */
 	protected void sequence_Pair(EObject context, Pair semanticObject) {
 		if(errorAcceptor != null) {
@@ -170,7 +143,7 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPairAccess().getKeySTRINGTerminalRuleCall_1_0(), semanticObject.getKey());
+		feeder.accept(grammarAccess.getPairAccess().getKeyIDTerminalRuleCall_1_0(), semanticObject.getKey());
 		feeder.accept(grammarAccess.getPairAccess().getValueSTRINGTerminalRuleCall_2_0(), semanticObject.getValue());
 		feeder.finish();
 	}
@@ -192,5 +165,30 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		feeder.accept(grammarAccess.getPriceAccess().getValueSTRINGTerminalRuleCall_1_0(), semanticObject.getValue());
 		feeder.accept(grammarAccess.getPriceAccess().getCurrencyCurrencyParserRuleCall_2_0(), semanticObject.getCurrency());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     value=STRING
+	 */
+	protected void sequence_TopicTag(EObject context, TopicTag semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, NplPackage.Literals.TOPIC_TAG__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, NplPackage.Literals.TOPIC_TAG__VALUE));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getTopicTagAccess().getValueSTRINGTerminalRuleCall_0(), semanticObject.getValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name=ID tags+=TopicTag tags+=TopicTag*)
+	 */
+	protected void sequence_Topic(EObject context, Topic semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 }

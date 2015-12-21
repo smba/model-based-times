@@ -2,6 +2,8 @@
  */
 package de.tu_bs.cs.isf.mbse.mbtimes.npl;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -89,30 +91,20 @@ public interface Declaration extends EObject
   void setFeedlinks(Feedlinks value);
 
   /**
-   * Returns the value of the '<em><b>Topics</b></em>' attribute.
+   * Returns the value of the '<em><b>Topics</b></em>' containment reference list.
+   * The list contents are of type {@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Topics</em>' attribute isn't clear,
+   * If the meaning of the '<em>Topics</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Topics</em>' attribute.
-   * @see #setTopics(String)
+   * @return the value of the '<em>Topics</em>' containment reference list.
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_Topics()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getTopics();
-
-  /**
-   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getTopics <em>Topics</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Topics</em>' attribute.
-   * @see #getTopics()
-   * @generated
-   */
-  void setTopics(String value);
+  EList<Topic> getTopics();
 
   /**
    * Returns the value of the '<em><b>Date</b></em>' containment reference.
@@ -219,56 +211,56 @@ public interface Declaration extends EObject
   void setVolume(int value);
 
   /**
-   * Returns the value of the '<em><b>Language</b></em>' attribute.
+   * Returns the value of the '<em><b>Language</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Language</em>' attribute isn't clear,
+   * If the meaning of the '<em>Language</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Language</em>' attribute.
-   * @see #setLanguage(String)
+   * @return the value of the '<em>Language</em>' containment reference.
+   * @see #setLanguage(EString)
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_Language()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getLanguage();
+  EString getLanguage();
 
   /**
-   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getLanguage <em>Language</em>}' attribute.
+   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getLanguage <em>Language</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Language</em>' attribute.
+   * @param value the new value of the '<em>Language</em>' containment reference.
    * @see #getLanguage()
    * @generated
    */
-  void setLanguage(String value);
+  void setLanguage(EString value);
 
   /**
-   * Returns the value of the '<em><b>Format</b></em>' attribute.
+   * Returns the value of the '<em><b>Format</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Format</em>' attribute isn't clear,
+   * If the meaning of the '<em>Format</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Format</em>' attribute.
-   * @see #setFormat(String)
+   * @return the value of the '<em>Format</em>' containment reference.
+   * @see #setFormat(EString)
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_Format()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getFormat();
+  EString getFormat();
 
   /**
-   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFormat <em>Format</em>}' attribute.
+   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFormat <em>Format</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Format</em>' attribute.
+   * @param value the new value of the '<em>Format</em>' containment reference.
    * @see #getFormat()
    * @generated
    */
-  void setFormat(String value);
+  void setFormat(EString value);
 
   /**
    * Returns the value of the '<em><b>Article cnt</b></em>' attribute.
@@ -401,29 +393,29 @@ public interface Declaration extends EObject
   void setColumns_cnt(int value);
 
   /**
-   * Returns the value of the '<em><b>Font size</b></em>' attribute.
+   * Returns the value of the '<em><b>Font size</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Font size</em>' attribute isn't clear,
+   * If the meaning of the '<em>Font size</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Font size</em>' attribute.
-   * @see #setFont_size(int)
+   * @return the value of the '<em>Font size</em>' containment reference.
+   * @see #setFont_size(EString)
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_Font_size()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  int getFont_size();
+  EString getFont_size();
 
   /**
-   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFont_size <em>Font size</em>}' attribute.
+   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFont_size <em>Font size</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Font size</em>' attribute.
+   * @param value the new value of the '<em>Font size</em>' containment reference.
    * @see #getFont_size()
    * @generated
    */
-  void setFont_size(int value);
+  void setFont_size(EString value);
 
 } // Declaration

@@ -2,12 +2,15 @@
  */
 package de.tu_bs.cs.isf.mbse.mbtimes.npl.impl;
 
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.EString;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Price;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -49,24 +52,14 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price
   protected String value = VALUE_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getCurrency() <em>Currency</em>}' attribute.
+   * The cached value of the '{@link #getCurrency() <em>Currency</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getCurrency()
    * @generated
    * @ordered
    */
-  protected static final String CURRENCY_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getCurrency() <em>Currency</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getCurrency()
-   * @generated
-   * @ordered
-   */
-  protected String currency = CURRENCY_EDEFAULT;
+  protected EString currency;
 
   /**
    * <!-- begin-user-doc -->
@@ -117,7 +110,7 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getCurrency()
+  public EString getCurrency()
   {
     return currency;
   }
@@ -127,12 +120,53 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setCurrency(String newCurrency)
+  public NotificationChain basicSetCurrency(EString newCurrency, NotificationChain msgs)
   {
-    String oldCurrency = currency;
+    EString oldCurrency = currency;
     currency = newCurrency;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.PRICE__CURRENCY, oldCurrency, currency));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NplPackage.PRICE__CURRENCY, oldCurrency, newCurrency);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setCurrency(EString newCurrency)
+  {
+    if (newCurrency != currency)
+    {
+      NotificationChain msgs = null;
+      if (currency != null)
+        msgs = ((InternalEObject)currency).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NplPackage.PRICE__CURRENCY, null, msgs);
+      if (newCurrency != null)
+        msgs = ((InternalEObject)newCurrency).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NplPackage.PRICE__CURRENCY, null, msgs);
+      msgs = basicSetCurrency(newCurrency, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.PRICE__CURRENCY, newCurrency, newCurrency));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case NplPackage.PRICE__CURRENCY:
+        return basicSetCurrency(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -167,7 +201,7 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price
         setValue((String)newValue);
         return;
       case NplPackage.PRICE__CURRENCY:
-        setCurrency((String)newValue);
+        setCurrency((EString)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -187,7 +221,7 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price
         setValue(VALUE_EDEFAULT);
         return;
       case NplPackage.PRICE__CURRENCY:
-        setCurrency(CURRENCY_EDEFAULT);
+        setCurrency((EString)null);
         return;
     }
     super.eUnset(featureID);
@@ -206,7 +240,7 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price
       case NplPackage.PRICE__VALUE:
         return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
       case NplPackage.PRICE__CURRENCY:
-        return CURRENCY_EDEFAULT == null ? currency != null : !CURRENCY_EDEFAULT.equals(currency);
+        return currency != null;
     }
     return super.eIsSet(featureID);
   }
@@ -224,8 +258,6 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (value: ");
     result.append(value);
-    result.append(", currency: ");
-    result.append(currency);
     result.append(')');
     return result.toString();
   }

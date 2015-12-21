@@ -13,17 +13,19 @@ Declaration:
 		topics+=Topic (topics+=Topic)*
 	"}"
 	("date" date=Date)?
-	"location" location=STRING
+	("location" location=STRING)?
 	"price" price=Price
-	"volume" volume=INT
+	("volume" volume=INT)?
 	"language" language=Language
 	"format" format=Format
-	"number of articles" article_cnt=INT
-	"number of characters per article" article_char_min=INT "-" article_char_max=INT
-	"number of images per article" article_images=INT
+	"number of articles per articles" article_cnt=INT
+	"number of words per article" article_char_min=INT "-" article_char_max=INT
+	("number of images per article" article_images=INT)?
 	"number of columns" columns_cnt=INT
 	"font size" font_size=FontSize;
 
+// Nutzer kann auswählen, ob die Schriftgröße klein, medium und groß sein soll. Größe sollte 
+// abhängig vom gewählten Format festgelegt. 
 FontSize returns EString:
 	{EString} "small"  | 
 	{EString} "medium" | 
@@ -38,7 +40,7 @@ Format returns EString:
 	{EString} "DIN A1" |
 	{EString} "DIN A0";
 
-Date: // TODO: validation checks to ensure that date inputs have a correct range
+Date: 
 	"{" day=INT '-' month=INT '-' year=INT "}";
 
 Language returns EString:

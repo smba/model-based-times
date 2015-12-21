@@ -80,6 +80,11 @@ public class NplAdapterFactory extends AdapterFactoryImpl
         return createDeclarationAdapter();
       }
       @Override
+      public Adapter caseEString(EString object)
+      {
+        return createEStringAdapter();
+      }
+      @Override
       public Adapter caseDate(Date object)
       {
         return createDateAdapter();
@@ -88,6 +93,16 @@ public class NplAdapterFactory extends AdapterFactoryImpl
       public Adapter casePrice(Price object)
       {
         return createPriceAdapter();
+      }
+      @Override
+      public Adapter caseTopic(Topic object)
+      {
+        return createTopicAdapter();
+      }
+      @Override
+      public Adapter caseTopicTag(TopicTag object)
+      {
+        return createTopicTagAdapter();
       }
       @Override
       public Adapter caseFeedlinks(Feedlinks object)
@@ -137,6 +152,21 @@ public class NplAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.EString <em>EString</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.EString
+   * @generated
+   */
+  public Adapter createEStringAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Date <em>Date</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -162,6 +192,36 @@ public class NplAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPriceAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic <em>Topic</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic
+   * @generated
+   */
+  public Adapter createTopicAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.TopicTag <em>Topic Tag</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.TopicTag
+   * @generated
+   */
+  public Adapter createTopicTagAdapter()
   {
     return null;
   }
