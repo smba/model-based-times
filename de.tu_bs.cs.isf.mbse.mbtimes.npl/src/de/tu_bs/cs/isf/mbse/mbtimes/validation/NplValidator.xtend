@@ -38,6 +38,9 @@ class NplValidator extends AbstractNplValidator {
 		}
 	}
 
+	/**
+	 * This constraint checks whether the date specified by day, month and year is valid.
+	 */
 	@Check
 	def checkDate(Date date) {
 		var int[] days30 = #[4,6,9,11];
@@ -62,7 +65,54 @@ class NplValidator extends AbstractNplValidator {
 			
 		}
 	}
-
+	
+	/**
+	 * newspaper: // stefan name darf max. size 20 sein
+	 */
+	@Check
+	def checkNewspaperDeclarationLength(Declaration declaration) {
+		if (declaration.name.length > 20) {
+			error("A newspaper declaration name must not be longer than 20 characters.", NplPackage.Literals.DECLARATION__NAME)
+		}
+	}
+	
+	/**
+	 * topics: //stefan anzahl an topics: 1 bis 12
+	 */
+	 @Check
+	 def checkNumberOfTopics(Declaration declaration) {
+	 	if (declaration.topics.empty) {
+	 		error("Please specify at least one topic!", NplPackage.Literals.DECLARATION__TOPICS)
+	 	} else if (declaration.topics.size > 12) {
+	 		error("Please do not specify more than twelve topics!", NplPackage.Literals.DECLARATION__TOPICS)
+	 	}
+	 } 
+	 
+	 /**
+	  * number of words? >0 //stefan
+	  */
+	 @Check
+	 def checkNumberOfWords(Declaration declaration) {
+	 	if (declaration.articleCharMin < 0) {
+	 		error("The minimum number of words could not be smaller than 1", NplPackage.Literals.DECLARATION__ARTICLE_CHAR_MIN)
+	 	}
+	 	if (declaration.articleCharMin > declaration.articleCharMax) {
+	 		error("Please re-consider your maximum and minimum values.", NplPackage.Literals.DECLARATION__ARTICLE_CHAR_MAX)
+	 	}
+	 }
+	 
+	/**
+	 * number of columns? >0, max 5. 
+	 */
+	 @Check
+	 def checkNumberOfColumns(Declaration declaration) {
+	 	if (declaration.columnsCnt < 1 || declaration.columnsCnt > 5) {
+	 		error("Please pick a number from 1 to 5!", NplPackage.Literals.DECLARATION__COLUMNS_CNT)
+	 	}
+	 	if (declaration.columnsCnt > 3) {
+	 		warning("This has not beed tested yet.", NplPackage.Literals.DECLARATION__COLUMNS_CNT)
+	 	}
+	 }
 
 //  public static val INVALID_NAME = 'invalidName'
 //
