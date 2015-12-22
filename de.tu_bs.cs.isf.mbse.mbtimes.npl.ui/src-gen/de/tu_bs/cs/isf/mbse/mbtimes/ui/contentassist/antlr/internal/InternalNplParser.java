@@ -3839,31 +3839,31 @@ public class InternalNplParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Declaration__Group__27__Impl"
-    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:1343:1: rule__Declaration__Group__27__Impl : ( ( rule__Declaration__Article_char_maxAssignment_27 ) ) ;
+    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:1343:1: rule__Declaration__Group__27__Impl : ( ( rule__Declaration__ArticleCharMaxAssignment_27 ) ) ;
     public final void rule__Declaration__Group__27__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:1347:1: ( ( ( rule__Declaration__Article_char_maxAssignment_27 ) ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:1348:1: ( ( rule__Declaration__Article_char_maxAssignment_27 ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:1347:1: ( ( ( rule__Declaration__ArticleCharMaxAssignment_27 ) ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:1348:1: ( ( rule__Declaration__ArticleCharMaxAssignment_27 ) )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:1348:1: ( ( rule__Declaration__Article_char_maxAssignment_27 ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:1349:1: ( rule__Declaration__Article_char_maxAssignment_27 )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:1348:1: ( ( rule__Declaration__ArticleCharMaxAssignment_27 ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:1349:1: ( rule__Declaration__ArticleCharMaxAssignment_27 )
             {
-             before(grammarAccess.getDeclarationAccess().getArticle_char_maxAssignment_27()); 
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:1350:1: ( rule__Declaration__Article_char_maxAssignment_27 )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:1350:2: rule__Declaration__Article_char_maxAssignment_27
+             before(grammarAccess.getDeclarationAccess().getArticleCharMaxAssignment_27()); 
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:1350:1: ( rule__Declaration__ArticleCharMaxAssignment_27 )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:1350:2: rule__Declaration__ArticleCharMaxAssignment_27
             {
-            pushFollow(FOLLOW_rule__Declaration__Article_char_maxAssignment_27_in_rule__Declaration__Group__27__Impl2778);
-            rule__Declaration__Article_char_maxAssignment_27();
+            pushFollow(FOLLOW_rule__Declaration__ArticleCharMaxAssignment_27_in_rule__Declaration__Group__27__Impl2778);
+            rule__Declaration__ArticleCharMaxAssignment_27();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getDeclarationAccess().getArticle_char_maxAssignment_27()); 
+             after(grammarAccess.getDeclarationAccess().getArticleCharMaxAssignment_27()); 
 
             }
 
@@ -9672,9 +9672,9 @@ public class InternalNplParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Declaration__ArticleCharMinAssignment_25"
 
 
-    // $ANTLR start "rule__Declaration__Article_char_maxAssignment_27"
-    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:3819:1: rule__Declaration__Article_char_maxAssignment_27 : ( RULE_INT ) ;
-    public final void rule__Declaration__Article_char_maxAssignment_27() throws RecognitionException {
+    // $ANTLR start "rule__Declaration__ArticleCharMaxAssignment_27"
+    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:3819:1: rule__Declaration__ArticleCharMaxAssignment_27 : ( RULE_INT ) ;
+    public final void rule__Declaration__ArticleCharMaxAssignment_27() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -9685,9 +9685,9 @@ public class InternalNplParser extends AbstractInternalContentAssistParser {
             // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:3824:1: ( RULE_INT )
             // ../de.tu_bs.cs.isf.mbse.mbtimes.npl.ui/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/ui/contentassist/antlr/internal/InternalNpl.g:3825:1: RULE_INT
             {
-             before(grammarAccess.getDeclarationAccess().getArticle_char_maxINTTerminalRuleCall_27_0()); 
-            match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__Declaration__Article_char_maxAssignment_277552); 
-             after(grammarAccess.getDeclarationAccess().getArticle_char_maxINTTerminalRuleCall_27_0()); 
+             before(grammarAccess.getDeclarationAccess().getArticleCharMaxINTTerminalRuleCall_27_0()); 
+            match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__Declaration__ArticleCharMaxAssignment_277552); 
+             after(grammarAccess.getDeclarationAccess().getArticleCharMaxINTTerminalRuleCall_27_0()); 
 
             }
 
@@ -9706,7 +9706,7 @@ public class InternalNplParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Declaration__Article_char_maxAssignment_27"
+    // $ANTLR end "rule__Declaration__ArticleCharMaxAssignment_27"
 
 
     // $ANTLR start "rule__Declaration__ImagesCntAssignment_28_1"
@@ -10383,7 +10383,7 @@ public class InternalNplParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_23_in_rule__Declaration__Group__26__Impl2717 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Declaration__Group__27__Impl_in_rule__Declaration__Group__272748 = new BitSet(new long[]{0x0000000041000000L});
     public static final BitSet FOLLOW_rule__Declaration__Group__28_in_rule__Declaration__Group__272751 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Declaration__Article_char_maxAssignment_27_in_rule__Declaration__Group__27__Impl2778 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Declaration__ArticleCharMaxAssignment_27_in_rule__Declaration__Group__27__Impl2778 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Declaration__Group__28__Impl_in_rule__Declaration__Group__282808 = new BitSet(new long[]{0x0000000041000000L});
     public static final BitSet FOLLOW_rule__Declaration__Group__29_in_rule__Declaration__Group__282811 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Declaration__Group_28__0_in_rule__Declaration__Group__28__Impl2838 = new BitSet(new long[]{0x0000000000000002L});
@@ -10564,7 +10564,7 @@ public class InternalNplParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_ruleFormat_in_rule__Declaration__FormatAssignment_217459 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_INT_in_rule__Declaration__ArticleCntAssignment_237490 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_INT_in_rule__Declaration__ArticleCharMinAssignment_257521 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_in_rule__Declaration__Article_char_maxAssignment_277552 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_in_rule__Declaration__ArticleCharMaxAssignment_277552 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_INT_in_rule__Declaration__ImagesCntAssignment_28_17583 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_INT_in_rule__Declaration__ColumnsCntAssignment_307614 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleFontSize_in_rule__Declaration__FontSizeAssignment_327645 = new BitSet(new long[]{0x0000000000000002L});

@@ -69,8 +69,8 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cArticleCharMinAssignment_25 = (Assignment)cGroup.eContents().get(25);
 		private final RuleCall cArticleCharMinINTTerminalRuleCall_25_0 = (RuleCall)cArticleCharMinAssignment_25.eContents().get(0);
 		private final Keyword cHyphenMinusKeyword_26 = (Keyword)cGroup.eContents().get(26);
-		private final Assignment cArticle_char_maxAssignment_27 = (Assignment)cGroup.eContents().get(27);
-		private final RuleCall cArticle_char_maxINTTerminalRuleCall_27_0 = (RuleCall)cArticle_char_maxAssignment_27.eContents().get(0);
+		private final Assignment cArticleCharMaxAssignment_27 = (Assignment)cGroup.eContents().get(27);
+		private final RuleCall cArticleCharMaxINTTerminalRuleCall_27_0 = (RuleCall)cArticleCharMaxAssignment_27.eContents().get(0);
 		private final Group cGroup_28 = (Group)cGroup.eContents().get(28);
 		private final Keyword cNumberOfImagesPerArticleKeyword_28_0 = (Keyword)cGroup_28.eContents().get(0);
 		private final Assignment cImagesCntAssignment_28_1 = (Assignment)cGroup_28.eContents().get(1);
@@ -87,15 +87,15 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		//	"newspaper" name=ID "{" "feed links" "{" feedlinks+=Pair (", " pairs+=Pair)* "}" "topics" "{" topics+=Topic
 		//	topics+=Topic* "}" ("date" date=Date)? ("location" location=STRING)? "price" price=Price ("volume" volume=INT)?
 		//	"language" language=Language "format" format=Format "number of articles per topic" articleCnt=INT
-		//	"number of words per article" articleCharMin=INT "-" article_char_max=INT ("number of images per article"
+		//	"number of words per article" articleCharMin=INT "-" articleCharMax=INT ("number of images per article"
 		//	imagesCnt=INT)? "number of columns" columnsCnt=INT "font size" fontSize=FontSize "}";
 		@Override public ParserRule getRule() { return rule; }
 
 		//"newspaper" name=ID "{" "feed links" "{" feedlinks+=Pair (", " pairs+=Pair)* "}" "topics" "{" topics+=Topic
 		//topics+=Topic* "}" ("date" date=Date)? ("location" location=STRING)? "price" price=Price ("volume" volume=INT)?
 		//"language" language=Language "format" format=Format "number of articles per topic" articleCnt=INT
-		//"number of words per article" articleCharMin=INT "-" article_char_max=INT ("number of images per article"
-		//imagesCnt=INT)? "number of columns" columnsCnt=INT "font size" fontSize=FontSize "}"
+		//"number of words per article" articleCharMin=INT "-" articleCharMax=INT ("number of images per article" imagesCnt=INT)?
+		//"number of columns" columnsCnt=INT "font size" fontSize=FontSize "}"
 		public Group getGroup() { return cGroup; }
 
 		//"newspaper"
@@ -242,11 +242,11 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		//"-"
 		public Keyword getHyphenMinusKeyword_26() { return cHyphenMinusKeyword_26; }
 
-		//article_char_max=INT
-		public Assignment getArticle_char_maxAssignment_27() { return cArticle_char_maxAssignment_27; }
+		//articleCharMax=INT
+		public Assignment getArticleCharMaxAssignment_27() { return cArticleCharMaxAssignment_27; }
 
 		//INT
-		public RuleCall getArticle_char_maxINTTerminalRuleCall_27_0() { return cArticle_char_maxINTTerminalRuleCall_27_0; }
+		public RuleCall getArticleCharMaxINTTerminalRuleCall_27_0() { return cArticleCharMaxINTTerminalRuleCall_27_0; }
 
 		//("number of images per article" imagesCnt=INT)?
 		public Group getGroup_28() { return cGroup_28; }
@@ -795,7 +795,7 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 	//	"newspaper" name=ID "{" "feed links" "{" feedlinks+=Pair (", " pairs+=Pair)* "}" "topics" "{" topics+=Topic
 	//	topics+=Topic* "}" ("date" date=Date)? ("location" location=STRING)? "price" price=Price ("volume" volume=INT)?
 	//	"language" language=Language "format" format=Format "number of articles per topic" articleCnt=INT
-	//	"number of words per article" articleCharMin=INT "-" article_char_max=INT ("number of images per article"
+	//	"number of words per article" articleCharMin=INT "-" articleCharMax=INT ("number of images per article"
 	//	imagesCnt=INT)? "number of columns" columnsCnt=INT "font size" fontSize=FontSize "}";
 	public DeclarationElements getDeclarationAccess() {
 		return pDeclaration;

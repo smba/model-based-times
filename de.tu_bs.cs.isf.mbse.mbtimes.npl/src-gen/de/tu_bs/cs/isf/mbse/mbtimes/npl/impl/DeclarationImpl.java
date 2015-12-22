@@ -46,7 +46,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getFormat <em>Format</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getArticleCnt <em>Article Cnt</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getArticleCharMin <em>Article Char Min</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getArticle_char_max <em>Article char max</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getArticleCharMax <em>Article Char Max</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getImagesCnt <em>Images Cnt</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getColumnsCnt <em>Columns Cnt</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getFontSize <em>Font Size</em>}</li>
@@ -227,24 +227,24 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
   protected int articleCharMin = ARTICLE_CHAR_MIN_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getArticle_char_max() <em>Article char max</em>}' attribute.
+   * The default value of the '{@link #getArticleCharMax() <em>Article Char Max</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getArticle_char_max()
+   * @see #getArticleCharMax()
    * @generated
    * @ordered
    */
   protected static final int ARTICLE_CHAR_MAX_EDEFAULT = 0;
 
   /**
-   * The cached value of the '{@link #getArticle_char_max() <em>Article char max</em>}' attribute.
+   * The cached value of the '{@link #getArticleCharMax() <em>Article Char Max</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getArticle_char_max()
+   * @see #getArticleCharMax()
    * @generated
    * @ordered
    */
-  protected int article_char_max = ARTICLE_CHAR_MAX_EDEFAULT;
+  protected int articleCharMax = ARTICLE_CHAR_MAX_EDEFAULT;
 
   /**
    * The default value of the '{@link #getImagesCnt() <em>Images Cnt</em>}' attribute.
@@ -671,9 +671,9 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public int getArticle_char_max()
+  public int getArticleCharMax()
   {
-    return article_char_max;
+    return articleCharMax;
   }
 
   /**
@@ -681,12 +681,12 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setArticle_char_max(int newArticle_char_max)
+  public void setArticleCharMax(int newArticleCharMax)
   {
-    int oldArticle_char_max = article_char_max;
-    article_char_max = newArticle_char_max;
+    int oldArticleCharMax = articleCharMax;
+    articleCharMax = newArticleCharMax;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__ARTICLE_CHAR_MAX, oldArticle_char_max, article_char_max));
+      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__ARTICLE_CHAR_MAX, oldArticleCharMax, articleCharMax));
   }
 
   /**
@@ -848,7 +848,7 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
       case NplPackage.DECLARATION__ARTICLE_CHAR_MIN:
         return getArticleCharMin();
       case NplPackage.DECLARATION__ARTICLE_CHAR_MAX:
-        return getArticle_char_max();
+        return getArticleCharMax();
       case NplPackage.DECLARATION__IMAGES_CNT:
         return getImagesCnt();
       case NplPackage.DECLARATION__COLUMNS_CNT:
@@ -910,7 +910,7 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
         setArticleCharMin((Integer)newValue);
         return;
       case NplPackage.DECLARATION__ARTICLE_CHAR_MAX:
-        setArticle_char_max((Integer)newValue);
+        setArticleCharMax((Integer)newValue);
         return;
       case NplPackage.DECLARATION__IMAGES_CNT:
         setImagesCnt((Integer)newValue);
@@ -972,7 +972,7 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
         setArticleCharMin(ARTICLE_CHAR_MIN_EDEFAULT);
         return;
       case NplPackage.DECLARATION__ARTICLE_CHAR_MAX:
-        setArticle_char_max(ARTICLE_CHAR_MAX_EDEFAULT);
+        setArticleCharMax(ARTICLE_CHAR_MAX_EDEFAULT);
         return;
       case NplPackage.DECLARATION__IMAGES_CNT:
         setImagesCnt(IMAGES_CNT_EDEFAULT);
@@ -1022,7 +1022,7 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
       case NplPackage.DECLARATION__ARTICLE_CHAR_MIN:
         return articleCharMin != ARTICLE_CHAR_MIN_EDEFAULT;
       case NplPackage.DECLARATION__ARTICLE_CHAR_MAX:
-        return article_char_max != ARTICLE_CHAR_MAX_EDEFAULT;
+        return articleCharMax != ARTICLE_CHAR_MAX_EDEFAULT;
       case NplPackage.DECLARATION__IMAGES_CNT:
         return imagesCnt != IMAGES_CNT_EDEFAULT;
       case NplPackage.DECLARATION__COLUMNS_CNT:
@@ -1054,8 +1054,8 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
     result.append(articleCnt);
     result.append(", articleCharMin: ");
     result.append(articleCharMin);
-    result.append(", article_char_max: ");
-    result.append(article_char_max);
+    result.append(", articleCharMax: ");
+    result.append(articleCharMax);
     result.append(", imagesCnt: ");
     result.append(imagesCnt);
     result.append(", columnsCnt: ");

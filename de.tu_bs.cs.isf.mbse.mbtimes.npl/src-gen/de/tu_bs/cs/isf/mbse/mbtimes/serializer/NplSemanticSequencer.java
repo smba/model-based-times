@@ -107,7 +107,7 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         format=Format 
 	 *         articleCnt=INT 
 	 *         articleCharMin=INT 
-	 *         article_char_max=INT 
+	 *         articleCharMax=INT 
 	 *         imagesCnt=INT? 
 	 *         columnsCnt=INT 
 	 *         fontSize=FontSize

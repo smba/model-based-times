@@ -23,7 +23,7 @@ Declaration:
 	"language" language=Language
 	"format" format=Format
 	"number of articles per topic" articleCnt=INT
-	"number of words per article" articleCharMin=INT "-" article_char_max=INT
+	"number of words per article" articleCharMin=INT "-" articleCharMax=INT
 	("number of images per article" imagesCnt=INT)?
 	"number of columns" columnsCnt=INT
 	"font size" fontSize=FontSize

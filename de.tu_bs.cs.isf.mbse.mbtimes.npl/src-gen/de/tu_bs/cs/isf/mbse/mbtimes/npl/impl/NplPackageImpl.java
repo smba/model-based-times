@@ -274,7 +274,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDeclaration_Article_char_max()
+  public EAttribute getDeclaration_ArticleCharMax()
   {
     return (EAttribute)declarationEClass.getEStructuralFeatures().get(12);
   }
@@ -584,7 +584,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
     initEReference(getDeclaration_Format(), this.getEString(), null, "format", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDeclaration_ArticleCnt(), ecorePackage.getEInt(), "articleCnt", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDeclaration_ArticleCharMin(), ecorePackage.getEInt(), "articleCharMin", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDeclaration_Article_char_max(), ecorePackage.getEInt(), "article_char_max", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDeclaration_ArticleCharMax(), ecorePackage.getEInt(), "articleCharMax", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDeclaration_ImagesCnt(), ecorePackage.getEInt(), "imagesCnt", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDeclaration_ColumnsCnt(), ecorePackage.getEInt(), "columnsCnt", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDeclaration_FontSize(), this.getEString(), null, "fontSize", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

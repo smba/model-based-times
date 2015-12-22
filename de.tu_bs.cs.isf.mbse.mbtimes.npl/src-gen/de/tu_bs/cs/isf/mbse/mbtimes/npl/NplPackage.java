@@ -175,7 +175,7 @@ public interface NplPackage extends EPackage
   int DECLARATION__ARTICLE_CHAR_MIN = 11;
 
   /**
-   * The feature id for the '<em><b>Article char max</b></em>' attribute.
+   * The feature id for the '<em><b>Article Char Max</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -567,15 +567,15 @@ public interface NplPackage extends EPackage
   EAttribute getDeclaration_ArticleCharMin();
 
   /**
-   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_char_max <em>Article char max</em>}'.
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleCharMax <em>Article Char Max</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Article char max</em>'.
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_char_max()
+   * @return the meta object for the attribute '<em>Article Char Max</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleCharMax()
    * @see #getDeclaration()
    * @generated
    */
-  EAttribute getDeclaration_Article_char_max();
+  EAttribute getDeclaration_ArticleCharMax();
 
   /**
    * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getImagesCnt <em>Images Cnt</em>}'.
@@ -910,12 +910,12 @@ public interface NplPackage extends EPackage
     EAttribute DECLARATION__ARTICLE_CHAR_MIN = eINSTANCE.getDeclaration_ArticleCharMin();
 
     /**
-     * The meta object literal for the '<em><b>Article char max</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Article Char Max</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DECLARATION__ARTICLE_CHAR_MAX = eINSTANCE.getDeclaration_Article_char_max();
+    EAttribute DECLARATION__ARTICLE_CHAR_MAX = eINSTANCE.getDeclaration_ArticleCharMax();
 
     /**
      * The meta object literal for the '<em><b>Images Cnt</b></em>' attribute feature.

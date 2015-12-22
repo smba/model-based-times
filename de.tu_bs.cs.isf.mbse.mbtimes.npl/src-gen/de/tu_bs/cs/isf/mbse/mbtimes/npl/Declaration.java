@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFormat <em>Format</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleCnt <em>Article Cnt</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleCharMin <em>Article Char Min</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_char_max <em>Article char max</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleCharMax <em>Article Char Max</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getImagesCnt <em>Images Cnt</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getColumnsCnt <em>Columns Cnt</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFontSize <em>Font Size</em>}</li>
@@ -322,30 +322,30 @@ public interface Declaration extends EObject
   void setArticleCharMin(int value);
 
   /**
-   * Returns the value of the '<em><b>Article char max</b></em>' attribute.
+   * Returns the value of the '<em><b>Article Char Max</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Article char max</em>' attribute isn't clear,
+   * If the meaning of the '<em>Article Char Max</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Article char max</em>' attribute.
-   * @see #setArticle_char_max(int)
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_Article_char_max()
+   * @return the value of the '<em>Article Char Max</em>' attribute.
+   * @see #setArticleCharMax(int)
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_ArticleCharMax()
    * @model
    * @generated
    */
-  int getArticle_char_max();
+  int getArticleCharMax();
 
   /**
-   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_char_max <em>Article char max</em>}' attribute.
+   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleCharMax <em>Article Char Max</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Article char max</em>' attribute.
-   * @see #getArticle_char_max()
+   * @param value the new value of the '<em>Article Char Max</em>' attribute.
+   * @see #getArticleCharMax()
    * @generated
    */
-  void setArticle_char_max(int value);
+  void setArticleCharMax(int value);
 
   /**
    * Returns the value of the '<em><b>Images Cnt</b></em>' attribute.

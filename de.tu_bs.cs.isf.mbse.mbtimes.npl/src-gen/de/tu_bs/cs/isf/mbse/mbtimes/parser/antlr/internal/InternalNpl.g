@@ -385,9 +385,9 @@ ruleDeclaration returns [EObject current=null]
     }
 (
 (
-		lv_article_char_max_31_0=RULE_INT
+		lv_articleCharMax_31_0=RULE_INT
 		{
-			newLeafNode(lv_article_char_max_31_0, grammarAccess.getDeclarationAccess().getArticle_char_maxINTTerminalRuleCall_27_0()); 
+			newLeafNode(lv_articleCharMax_31_0, grammarAccess.getDeclarationAccess().getArticleCharMaxINTTerminalRuleCall_27_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -395,8 +395,8 @@ ruleDeclaration returns [EObject current=null]
 	        }
        		setWithLastConsumed(
        			$current, 
-       			"article_char_max",
-        		lv_article_char_max_31_0, 
+       			"articleCharMax",
+        		lv_articleCharMax_31_0, 
         		"INT");
 	    }
 
