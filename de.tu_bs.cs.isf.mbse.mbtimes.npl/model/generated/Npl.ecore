@@ -3,8 +3,10 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="npl" nsURI="http://www.tu_bs.de/cs/isf/mbse/mbtimes/Npl" nsPrefix="npl">
   <eClassifiers xsi:type="ecore:EClass" name="Declaration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="feedlinks" eType="#//Feedlinks"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="feedlinks" upperBound="-1"
+        eType="#//Pair" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pairs" upperBound="-1"
+        eType="#//Pair" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="topics" upperBound="-1"
         eType="#//Topic" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="date" eType="#//Date" containment="true"/>
@@ -42,10 +44,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TopicTag">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Feedlinks">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pairs" upperBound="-1"
-        eType="#//Pair" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Pair">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

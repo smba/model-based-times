@@ -5,8 +5,8 @@ package de.tu_bs.cs.isf.mbse.mbtimes.npl.impl;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Date;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.EString;
-import de.tu_bs.cs.isf.mbse.mbtimes.npl.Feedlinks;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage;
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.Pair;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Price;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic;
 
@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getFeedlinks <em>Feedlinks</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getPairs <em>Pairs</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getTopics <em>Topics</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getDate <em>Date</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getLocation <em>Location</em>}</li>
@@ -76,14 +77,24 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getFeedlinks() <em>Feedlinks</em>}' containment reference.
+   * The cached value of the '{@link #getFeedlinks() <em>Feedlinks</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getFeedlinks()
    * @generated
    * @ordered
    */
-  protected Feedlinks feedlinks;
+  protected EList<Pair> feedlinks;
+
+  /**
+   * The cached value of the '{@link #getPairs() <em>Pairs</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPairs()
+   * @generated
+   * @ordered
+   */
+  protected EList<Pair> pairs;
 
   /**
    * The cached value of the '{@link #getTopics() <em>Topics</em>}' containment reference list.
@@ -334,8 +345,12 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public Feedlinks getFeedlinks()
+  public EList<Pair> getFeedlinks()
   {
+    if (feedlinks == null)
+    {
+      feedlinks = new EObjectContainmentEList<Pair>(Pair.class, this, NplPackage.DECLARATION__FEEDLINKS);
+    }
     return feedlinks;
   }
 
@@ -344,37 +359,13 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetFeedlinks(Feedlinks newFeedlinks, NotificationChain msgs)
+  public EList<Pair> getPairs()
   {
-    Feedlinks oldFeedlinks = feedlinks;
-    feedlinks = newFeedlinks;
-    if (eNotificationRequired())
+    if (pairs == null)
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__FEEDLINKS, oldFeedlinks, newFeedlinks);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
+      pairs = new EObjectContainmentEList<Pair>(Pair.class, this, NplPackage.DECLARATION__PAIRS);
     }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setFeedlinks(Feedlinks newFeedlinks)
-  {
-    if (newFeedlinks != feedlinks)
-    {
-      NotificationChain msgs = null;
-      if (feedlinks != null)
-        msgs = ((InternalEObject)feedlinks).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NplPackage.DECLARATION__FEEDLINKS, null, msgs);
-      if (newFeedlinks != null)
-        msgs = ((InternalEObject)newFeedlinks).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NplPackage.DECLARATION__FEEDLINKS, null, msgs);
-      msgs = basicSetFeedlinks(newFeedlinks, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__FEEDLINKS, newFeedlinks, newFeedlinks));
+    return pairs;
   }
 
   /**
@@ -803,7 +794,9 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
     switch (featureID)
     {
       case NplPackage.DECLARATION__FEEDLINKS:
-        return basicSetFeedlinks(null, msgs);
+        return ((InternalEList<?>)getFeedlinks()).basicRemove(otherEnd, msgs);
+      case NplPackage.DECLARATION__PAIRS:
+        return ((InternalEList<?>)getPairs()).basicRemove(otherEnd, msgs);
       case NplPackage.DECLARATION__TOPICS:
         return ((InternalEList<?>)getTopics()).basicRemove(otherEnd, msgs);
       case NplPackage.DECLARATION__DATE:
@@ -834,6 +827,8 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
         return getName();
       case NplPackage.DECLARATION__FEEDLINKS:
         return getFeedlinks();
+      case NplPackage.DECLARATION__PAIRS:
+        return getPairs();
       case NplPackage.DECLARATION__TOPICS:
         return getTopics();
       case NplPackage.DECLARATION__DATE:
@@ -879,7 +874,12 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
         setName((String)newValue);
         return;
       case NplPackage.DECLARATION__FEEDLINKS:
-        setFeedlinks((Feedlinks)newValue);
+        getFeedlinks().clear();
+        getFeedlinks().addAll((Collection<? extends Pair>)newValue);
+        return;
+      case NplPackage.DECLARATION__PAIRS:
+        getPairs().clear();
+        getPairs().addAll((Collection<? extends Pair>)newValue);
         return;
       case NplPackage.DECLARATION__TOPICS:
         getTopics().clear();
@@ -939,7 +939,10 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
         setName(NAME_EDEFAULT);
         return;
       case NplPackage.DECLARATION__FEEDLINKS:
-        setFeedlinks((Feedlinks)null);
+        getFeedlinks().clear();
+        return;
+      case NplPackage.DECLARATION__PAIRS:
+        getPairs().clear();
         return;
       case NplPackage.DECLARATION__TOPICS:
         getTopics().clear();
@@ -997,7 +1000,9 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
       case NplPackage.DECLARATION__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case NplPackage.DECLARATION__FEEDLINKS:
-        return feedlinks != null;
+        return feedlinks != null && !feedlinks.isEmpty();
+      case NplPackage.DECLARATION__PAIRS:
+        return pairs != null && !pairs.isEmpty();
       case NplPackage.DECLARATION__TOPICS:
         return topics != null && !topics.isEmpty();
       case NplPackage.DECLARATION__DATE:

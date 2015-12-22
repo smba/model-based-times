@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getName <em>Name</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFeedlinks <em>Feedlinks</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getPairs <em>Pairs</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getTopics <em>Topics</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getDate <em>Date</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getLocation <em>Location</em>}</li>
@@ -65,30 +66,36 @@ public interface Declaration extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Feedlinks</b></em>' containment reference.
+   * Returns the value of the '<em><b>Feedlinks</b></em>' containment reference list.
+   * The list contents are of type {@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Pair}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Feedlinks</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Feedlinks</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Feedlinks</em>' containment reference.
-   * @see #setFeedlinks(Feedlinks)
+   * @return the value of the '<em>Feedlinks</em>' containment reference list.
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_Feedlinks()
    * @model containment="true"
    * @generated
    */
-  Feedlinks getFeedlinks();
+  EList<Pair> getFeedlinks();
 
   /**
-   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFeedlinks <em>Feedlinks</em>}' containment reference.
+   * Returns the value of the '<em><b>Pairs</b></em>' containment reference list.
+   * The list contents are of type {@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Pair}.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Pairs</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Feedlinks</em>' containment reference.
-   * @see #getFeedlinks()
+   * @return the value of the '<em>Pairs</em>' containment reference list.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_Pairs()
+   * @model containment="true"
    * @generated
    */
-  void setFeedlinks(Feedlinks value);
+  EList<Pair> getPairs();
 
   /**
    * Returns the value of the '<em><b>Topics</b></em>' containment reference list.

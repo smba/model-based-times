@@ -5,7 +5,6 @@ package de.tu_bs.cs.isf.mbse.mbtimes.npl.impl;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Date;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.EString;
-import de.tu_bs.cs.isf.mbse.mbtimes.npl.Feedlinks;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.NplFactory;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Pair;
@@ -69,13 +68,6 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * @generated
    */
   private EClass topicTagEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass feedlinksEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -182,7 +174,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDeclaration_Topics()
+  public EReference getDeclaration_Pairs()
   {
     return (EReference)declarationEClass.getEStructuralFeatures().get(2);
   }
@@ -192,7 +184,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDeclaration_Date()
+  public EReference getDeclaration_Topics()
   {
     return (EReference)declarationEClass.getEStructuralFeatures().get(3);
   }
@@ -202,9 +194,19 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getDeclaration_Date()
+  {
+    return (EReference)declarationEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EAttribute getDeclaration_Location()
   {
-    return (EAttribute)declarationEClass.getEStructuralFeatures().get(4);
+    return (EAttribute)declarationEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -214,7 +216,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    */
   public EReference getDeclaration_Price()
   {
-    return (EReference)declarationEClass.getEStructuralFeatures().get(5);
+    return (EReference)declarationEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -224,7 +226,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    */
   public EAttribute getDeclaration_Volume()
   {
-    return (EAttribute)declarationEClass.getEStructuralFeatures().get(6);
+    return (EAttribute)declarationEClass.getEStructuralFeatures().get(7);
   }
 
   /**
@@ -234,7 +236,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    */
   public EReference getDeclaration_Language()
   {
-    return (EReference)declarationEClass.getEStructuralFeatures().get(7);
+    return (EReference)declarationEClass.getEStructuralFeatures().get(8);
   }
 
   /**
@@ -244,7 +246,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    */
   public EReference getDeclaration_Format()
   {
-    return (EReference)declarationEClass.getEStructuralFeatures().get(8);
+    return (EReference)declarationEClass.getEStructuralFeatures().get(9);
   }
 
   /**
@@ -254,7 +256,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    */
   public EAttribute getDeclaration_Article_cnt()
   {
-    return (EAttribute)declarationEClass.getEStructuralFeatures().get(9);
+    return (EAttribute)declarationEClass.getEStructuralFeatures().get(10);
   }
 
   /**
@@ -264,7 +266,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    */
   public EAttribute getDeclaration_Article_char_min()
   {
-    return (EAttribute)declarationEClass.getEStructuralFeatures().get(10);
+    return (EAttribute)declarationEClass.getEStructuralFeatures().get(11);
   }
 
   /**
@@ -274,7 +276,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    */
   public EAttribute getDeclaration_Article_char_max()
   {
-    return (EAttribute)declarationEClass.getEStructuralFeatures().get(11);
+    return (EAttribute)declarationEClass.getEStructuralFeatures().get(12);
   }
 
   /**
@@ -284,7 +286,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    */
   public EAttribute getDeclaration_Article_images()
   {
-    return (EAttribute)declarationEClass.getEStructuralFeatures().get(12);
+    return (EAttribute)declarationEClass.getEStructuralFeatures().get(13);
   }
 
   /**
@@ -294,7 +296,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    */
   public EAttribute getDeclaration_Columns_cnt()
   {
-    return (EAttribute)declarationEClass.getEStructuralFeatures().get(13);
+    return (EAttribute)declarationEClass.getEStructuralFeatures().get(14);
   }
 
   /**
@@ -304,7 +306,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    */
   public EReference getDeclaration_Font_size()
   {
-    return (EReference)declarationEClass.getEStructuralFeatures().get(14);
+    return (EReference)declarationEClass.getEStructuralFeatures().get(15);
   }
 
   /**
@@ -442,26 +444,6 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getFeedlinks()
-  {
-    return feedlinksEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getFeedlinks_Pairs()
-  {
-    return (EReference)feedlinksEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getPair()
   {
     return pairEClass;
@@ -520,6 +502,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
     declarationEClass = createEClass(DECLARATION);
     createEAttribute(declarationEClass, DECLARATION__NAME);
     createEReference(declarationEClass, DECLARATION__FEEDLINKS);
+    createEReference(declarationEClass, DECLARATION__PAIRS);
     createEReference(declarationEClass, DECLARATION__TOPICS);
     createEReference(declarationEClass, DECLARATION__DATE);
     createEAttribute(declarationEClass, DECLARATION__LOCATION);
@@ -551,9 +534,6 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
 
     topicTagEClass = createEClass(TOPIC_TAG);
     createEAttribute(topicTagEClass, TOPIC_TAG__VALUE);
-
-    feedlinksEClass = createEClass(FEEDLINKS);
-    createEReference(feedlinksEClass, FEEDLINKS__PAIRS);
 
     pairEClass = createEClass(PAIR);
     createEAttribute(pairEClass, PAIR__KEY);
@@ -593,7 +573,8 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
     // Initialize classes and features; add operations and parameters
     initEClass(declarationEClass, Declaration.class, "Declaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDeclaration_Feedlinks(), this.getFeedlinks(), null, "feedlinks", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDeclaration_Feedlinks(), this.getPair(), null, "feedlinks", null, 0, -1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDeclaration_Pairs(), this.getPair(), null, "pairs", null, 0, -1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDeclaration_Topics(), this.getTopic(), null, "topics", null, 0, -1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDeclaration_Date(), this.getDate(), null, "date", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDeclaration_Location(), ecorePackage.getEString(), "location", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -625,9 +606,6 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
 
     initEClass(topicTagEClass, TopicTag.class, "TopicTag", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTopicTag_Value(), ecorePackage.getEString(), "value", null, 0, 1, TopicTag.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(feedlinksEClass, Feedlinks.class, "Feedlinks", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getFeedlinks_Pairs(), this.getPair(), null, "pairs", null, 0, -1, Feedlinks.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pairEClass, Pair.class, "Pair", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPair_Key(), ecorePackage.getEString(), "key", null, 0, 1, Pair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

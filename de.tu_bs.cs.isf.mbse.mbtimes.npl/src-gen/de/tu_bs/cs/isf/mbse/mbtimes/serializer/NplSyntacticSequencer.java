@@ -61,7 +61,7 @@ public class NplSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	/**
 	 * Ambiguous syntax:
-	 *     'Euro' | 'Dollar'
+	 *     'Euro [€]' | 'Dollar [$]'
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) (rule start)

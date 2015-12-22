@@ -21,14 +21,13 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalNplParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'newspaper'", "'feed link'", "'topics'", "'{'", "'}'", "'date'", "'location'", "'price'", "'volume'", "'language'", "'format'", "'number of articles per topic'", "'number of words per article'", "'-'", "'number of images per article'", "'number of columns'", "'font size'", "'small'", "'medium'", "'large'", "'DIN A6'", "'DIN A5'", "'DIN A4'", "'DIN A3'", "'DIN A2'", "'DIN A1'", "'DIN A0'", "'English'", "'German'", "'Euro'", "'Dollar'", "'topic'", "', '"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_INT", "RULE_PREIS", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'newspaper'", "'{'", "'feed links'", "', '", "'}'", "'topics'", "'date'", "'location'", "'price'", "'volume'", "'language'", "'format'", "'number of articles per topic'", "'number of words per article'", "'-'", "'number of images per article'", "'number of columns'", "'font size'", "'small'", "'medium'", "'large'", "'DIN A6'", "'DIN A5'", "'DIN A4'", "'DIN A3'", "'DIN A2'", "'DIN A1'", "'DIN A0'", "'English'", "'German'", "'Euro [\\u20AC]'", "'Dollar [$]'", "'topic'", "':'"
     };
     public static final int T__19=19;
     public static final int T__15=15;
     public static final int T__16=16;
     public static final int T__17=17;
     public static final int T__18=18;
-    public static final int T__11=11;
     public static final int T__12=12;
     public static final int T__13=13;
     public static final int T__14=14;
@@ -39,14 +38,15 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
     public static final int RULE_INT=6;
     public static final int T__29=29;
     public static final int T__22=22;
-    public static final int RULE_ML_COMMENT=7;
+    public static final int RULE_ML_COMMENT=8;
     public static final int T__23=23;
     public static final int T__24=24;
+    public static final int RULE_PREIS=7;
     public static final int T__25=25;
     public static final int T__20=20;
     public static final int T__21=21;
     public static final int RULE_STRING=5;
-    public static final int RULE_SL_COMMENT=8;
+    public static final int RULE_SL_COMMENT=9;
     public static final int T__37=37;
     public static final int T__38=38;
     public static final int T__39=39;
@@ -58,8 +58,10 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
     public static final int T__30=30;
     public static final int T__31=31;
     public static final int T__32=32;
-    public static final int RULE_WS=9;
-    public static final int RULE_ANY_OTHER=10;
+    public static final int RULE_WS=10;
+    public static final int RULE_ANY_OTHER=11;
+    public static final int T__44=44;
+    public static final int T__45=45;
     public static final int T__40=40;
     public static final int T__41=41;
     public static final int T__42=42;
@@ -140,62 +142,69 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDeclaration"
-    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:76:1: ruleDeclaration returns [EObject current=null] : (otherlv_0= 'newspaper' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'feed link' ( (lv_feedlinks_3_0= ruleFeedlinks ) ) otherlv_4= 'topics' otherlv_5= '{' ( (lv_topics_6_0= ruleTopic ) ) ( (lv_topics_7_0= ruleTopic ) )* otherlv_8= '}' (otherlv_9= 'date' ( (lv_date_10_0= ruleDate ) ) )? (otherlv_11= 'location' ( (lv_location_12_0= RULE_STRING ) ) )? otherlv_13= 'price' ( (lv_price_14_0= rulePrice ) ) (otherlv_15= 'volume' ( (lv_volume_16_0= RULE_INT ) ) )? otherlv_17= 'language' ( (lv_language_18_0= ruleLanguage ) ) otherlv_19= 'format' ( (lv_format_20_0= ruleFormat ) ) otherlv_21= 'number of articles per topic' ( (lv_article_cnt_22_0= RULE_INT ) ) otherlv_23= 'number of words per article' ( (lv_article_char_min_24_0= RULE_INT ) ) otherlv_25= '-' ( (lv_article_char_max_26_0= RULE_INT ) ) (otherlv_27= 'number of images per article' ( (lv_article_images_28_0= RULE_INT ) ) )? otherlv_29= 'number of columns' ( (lv_columns_cnt_30_0= RULE_INT ) ) otherlv_31= 'font size' ( (lv_font_size_32_0= ruleFontSize ) ) ) ;
+    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:76:1: ruleDeclaration returns [EObject current=null] : (otherlv_0= 'newspaper' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' otherlv_3= 'feed links' otherlv_4= '{' ( (lv_feedlinks_5_0= rulePair ) ) (otherlv_6= ', ' ( (lv_pairs_7_0= rulePair ) ) )* otherlv_8= '}' otherlv_9= 'topics' otherlv_10= '{' ( (lv_topics_11_0= ruleTopic ) ) ( (lv_topics_12_0= ruleTopic ) )* otherlv_13= '}' (otherlv_14= 'date' ( (lv_date_15_0= ruleDate ) ) )? (otherlv_16= 'location' ( (lv_location_17_0= RULE_STRING ) ) )? otherlv_18= 'price' ( (lv_price_19_0= rulePrice ) ) (otherlv_20= 'volume' ( (lv_volume_21_0= RULE_INT ) ) )? otherlv_22= 'language' ( (lv_language_23_0= ruleLanguage ) ) otherlv_24= 'format' ( (lv_format_25_0= ruleFormat ) ) otherlv_26= 'number of articles per topic' ( (lv_article_cnt_27_0= RULE_INT ) ) otherlv_28= 'number of words per article' ( (lv_article_char_min_29_0= RULE_INT ) ) otherlv_30= '-' ( (lv_article_char_max_31_0= RULE_INT ) ) (otherlv_32= 'number of images per article' ( (lv_article_images_33_0= RULE_INT ) ) )? otherlv_34= 'number of columns' ( (lv_columns_cnt_35_0= RULE_INT ) ) otherlv_36= 'font size' ( (lv_font_size_37_0= ruleFontSize ) ) otherlv_38= '}' ) ;
     public final EObject ruleDeclaration() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
         Token lv_name_1_0=null;
         Token otherlv_2=null;
+        Token otherlv_3=null;
         Token otherlv_4=null;
-        Token otherlv_5=null;
+        Token otherlv_6=null;
         Token otherlv_8=null;
         Token otherlv_9=null;
-        Token otherlv_11=null;
-        Token lv_location_12_0=null;
+        Token otherlv_10=null;
         Token otherlv_13=null;
-        Token otherlv_15=null;
-        Token lv_volume_16_0=null;
-        Token otherlv_17=null;
-        Token otherlv_19=null;
-        Token otherlv_21=null;
-        Token lv_article_cnt_22_0=null;
-        Token otherlv_23=null;
-        Token lv_article_char_min_24_0=null;
-        Token otherlv_25=null;
-        Token lv_article_char_max_26_0=null;
-        Token otherlv_27=null;
-        Token lv_article_images_28_0=null;
-        Token otherlv_29=null;
-        Token lv_columns_cnt_30_0=null;
-        Token otherlv_31=null;
-        EObject lv_feedlinks_3_0 = null;
+        Token otherlv_14=null;
+        Token otherlv_16=null;
+        Token lv_location_17_0=null;
+        Token otherlv_18=null;
+        Token otherlv_20=null;
+        Token lv_volume_21_0=null;
+        Token otherlv_22=null;
+        Token otherlv_24=null;
+        Token otherlv_26=null;
+        Token lv_article_cnt_27_0=null;
+        Token otherlv_28=null;
+        Token lv_article_char_min_29_0=null;
+        Token otherlv_30=null;
+        Token lv_article_char_max_31_0=null;
+        Token otherlv_32=null;
+        Token lv_article_images_33_0=null;
+        Token otherlv_34=null;
+        Token lv_columns_cnt_35_0=null;
+        Token otherlv_36=null;
+        Token otherlv_38=null;
+        EObject lv_feedlinks_5_0 = null;
 
-        EObject lv_topics_6_0 = null;
+        EObject lv_pairs_7_0 = null;
 
-        EObject lv_topics_7_0 = null;
+        EObject lv_topics_11_0 = null;
 
-        EObject lv_date_10_0 = null;
+        EObject lv_topics_12_0 = null;
 
-        EObject lv_price_14_0 = null;
+        EObject lv_date_15_0 = null;
 
-        EObject lv_language_18_0 = null;
+        EObject lv_price_19_0 = null;
 
-        EObject lv_format_20_0 = null;
+        EObject lv_language_23_0 = null;
 
-        EObject lv_font_size_32_0 = null;
+        EObject lv_format_25_0 = null;
+
+        EObject lv_font_size_37_0 = null;
 
 
          enterRule(); 
             
         try {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:79:28: ( (otherlv_0= 'newspaper' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'feed link' ( (lv_feedlinks_3_0= ruleFeedlinks ) ) otherlv_4= 'topics' otherlv_5= '{' ( (lv_topics_6_0= ruleTopic ) ) ( (lv_topics_7_0= ruleTopic ) )* otherlv_8= '}' (otherlv_9= 'date' ( (lv_date_10_0= ruleDate ) ) )? (otherlv_11= 'location' ( (lv_location_12_0= RULE_STRING ) ) )? otherlv_13= 'price' ( (lv_price_14_0= rulePrice ) ) (otherlv_15= 'volume' ( (lv_volume_16_0= RULE_INT ) ) )? otherlv_17= 'language' ( (lv_language_18_0= ruleLanguage ) ) otherlv_19= 'format' ( (lv_format_20_0= ruleFormat ) ) otherlv_21= 'number of articles per topic' ( (lv_article_cnt_22_0= RULE_INT ) ) otherlv_23= 'number of words per article' ( (lv_article_char_min_24_0= RULE_INT ) ) otherlv_25= '-' ( (lv_article_char_max_26_0= RULE_INT ) ) (otherlv_27= 'number of images per article' ( (lv_article_images_28_0= RULE_INT ) ) )? otherlv_29= 'number of columns' ( (lv_columns_cnt_30_0= RULE_INT ) ) otherlv_31= 'font size' ( (lv_font_size_32_0= ruleFontSize ) ) ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:80:1: (otherlv_0= 'newspaper' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'feed link' ( (lv_feedlinks_3_0= ruleFeedlinks ) ) otherlv_4= 'topics' otherlv_5= '{' ( (lv_topics_6_0= ruleTopic ) ) ( (lv_topics_7_0= ruleTopic ) )* otherlv_8= '}' (otherlv_9= 'date' ( (lv_date_10_0= ruleDate ) ) )? (otherlv_11= 'location' ( (lv_location_12_0= RULE_STRING ) ) )? otherlv_13= 'price' ( (lv_price_14_0= rulePrice ) ) (otherlv_15= 'volume' ( (lv_volume_16_0= RULE_INT ) ) )? otherlv_17= 'language' ( (lv_language_18_0= ruleLanguage ) ) otherlv_19= 'format' ( (lv_format_20_0= ruleFormat ) ) otherlv_21= 'number of articles per topic' ( (lv_article_cnt_22_0= RULE_INT ) ) otherlv_23= 'number of words per article' ( (lv_article_char_min_24_0= RULE_INT ) ) otherlv_25= '-' ( (lv_article_char_max_26_0= RULE_INT ) ) (otherlv_27= 'number of images per article' ( (lv_article_images_28_0= RULE_INT ) ) )? otherlv_29= 'number of columns' ( (lv_columns_cnt_30_0= RULE_INT ) ) otherlv_31= 'font size' ( (lv_font_size_32_0= ruleFontSize ) ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:79:28: ( (otherlv_0= 'newspaper' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' otherlv_3= 'feed links' otherlv_4= '{' ( (lv_feedlinks_5_0= rulePair ) ) (otherlv_6= ', ' ( (lv_pairs_7_0= rulePair ) ) )* otherlv_8= '}' otherlv_9= 'topics' otherlv_10= '{' ( (lv_topics_11_0= ruleTopic ) ) ( (lv_topics_12_0= ruleTopic ) )* otherlv_13= '}' (otherlv_14= 'date' ( (lv_date_15_0= ruleDate ) ) )? (otherlv_16= 'location' ( (lv_location_17_0= RULE_STRING ) ) )? otherlv_18= 'price' ( (lv_price_19_0= rulePrice ) ) (otherlv_20= 'volume' ( (lv_volume_21_0= RULE_INT ) ) )? otherlv_22= 'language' ( (lv_language_23_0= ruleLanguage ) ) otherlv_24= 'format' ( (lv_format_25_0= ruleFormat ) ) otherlv_26= 'number of articles per topic' ( (lv_article_cnt_27_0= RULE_INT ) ) otherlv_28= 'number of words per article' ( (lv_article_char_min_29_0= RULE_INT ) ) otherlv_30= '-' ( (lv_article_char_max_31_0= RULE_INT ) ) (otherlv_32= 'number of images per article' ( (lv_article_images_33_0= RULE_INT ) ) )? otherlv_34= 'number of columns' ( (lv_columns_cnt_35_0= RULE_INT ) ) otherlv_36= 'font size' ( (lv_font_size_37_0= ruleFontSize ) ) otherlv_38= '}' ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:80:1: (otherlv_0= 'newspaper' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' otherlv_3= 'feed links' otherlv_4= '{' ( (lv_feedlinks_5_0= rulePair ) ) (otherlv_6= ', ' ( (lv_pairs_7_0= rulePair ) ) )* otherlv_8= '}' otherlv_9= 'topics' otherlv_10= '{' ( (lv_topics_11_0= ruleTopic ) ) ( (lv_topics_12_0= ruleTopic ) )* otherlv_13= '}' (otherlv_14= 'date' ( (lv_date_15_0= ruleDate ) ) )? (otherlv_16= 'location' ( (lv_location_17_0= RULE_STRING ) ) )? otherlv_18= 'price' ( (lv_price_19_0= rulePrice ) ) (otherlv_20= 'volume' ( (lv_volume_21_0= RULE_INT ) ) )? otherlv_22= 'language' ( (lv_language_23_0= ruleLanguage ) ) otherlv_24= 'format' ( (lv_format_25_0= ruleFormat ) ) otherlv_26= 'number of articles per topic' ( (lv_article_cnt_27_0= RULE_INT ) ) otherlv_28= 'number of words per article' ( (lv_article_char_min_29_0= RULE_INT ) ) otherlv_30= '-' ( (lv_article_char_max_31_0= RULE_INT ) ) (otherlv_32= 'number of images per article' ( (lv_article_images_33_0= RULE_INT ) ) )? otherlv_34= 'number of columns' ( (lv_columns_cnt_35_0= RULE_INT ) ) otherlv_36= 'font size' ( (lv_font_size_37_0= ruleFontSize ) ) otherlv_38= '}' )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:80:1: (otherlv_0= 'newspaper' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'feed link' ( (lv_feedlinks_3_0= ruleFeedlinks ) ) otherlv_4= 'topics' otherlv_5= '{' ( (lv_topics_6_0= ruleTopic ) ) ( (lv_topics_7_0= ruleTopic ) )* otherlv_8= '}' (otherlv_9= 'date' ( (lv_date_10_0= ruleDate ) ) )? (otherlv_11= 'location' ( (lv_location_12_0= RULE_STRING ) ) )? otherlv_13= 'price' ( (lv_price_14_0= rulePrice ) ) (otherlv_15= 'volume' ( (lv_volume_16_0= RULE_INT ) ) )? otherlv_17= 'language' ( (lv_language_18_0= ruleLanguage ) ) otherlv_19= 'format' ( (lv_format_20_0= ruleFormat ) ) otherlv_21= 'number of articles per topic' ( (lv_article_cnt_22_0= RULE_INT ) ) otherlv_23= 'number of words per article' ( (lv_article_char_min_24_0= RULE_INT ) ) otherlv_25= '-' ( (lv_article_char_max_26_0= RULE_INT ) ) (otherlv_27= 'number of images per article' ( (lv_article_images_28_0= RULE_INT ) ) )? otherlv_29= 'number of columns' ( (lv_columns_cnt_30_0= RULE_INT ) ) otherlv_31= 'font size' ( (lv_font_size_32_0= ruleFontSize ) ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:80:3: otherlv_0= 'newspaper' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'feed link' ( (lv_feedlinks_3_0= ruleFeedlinks ) ) otherlv_4= 'topics' otherlv_5= '{' ( (lv_topics_6_0= ruleTopic ) ) ( (lv_topics_7_0= ruleTopic ) )* otherlv_8= '}' (otherlv_9= 'date' ( (lv_date_10_0= ruleDate ) ) )? (otherlv_11= 'location' ( (lv_location_12_0= RULE_STRING ) ) )? otherlv_13= 'price' ( (lv_price_14_0= rulePrice ) ) (otherlv_15= 'volume' ( (lv_volume_16_0= RULE_INT ) ) )? otherlv_17= 'language' ( (lv_language_18_0= ruleLanguage ) ) otherlv_19= 'format' ( (lv_format_20_0= ruleFormat ) ) otherlv_21= 'number of articles per topic' ( (lv_article_cnt_22_0= RULE_INT ) ) otherlv_23= 'number of words per article' ( (lv_article_char_min_24_0= RULE_INT ) ) otherlv_25= '-' ( (lv_article_char_max_26_0= RULE_INT ) ) (otherlv_27= 'number of images per article' ( (lv_article_images_28_0= RULE_INT ) ) )? otherlv_29= 'number of columns' ( (lv_columns_cnt_30_0= RULE_INT ) ) otherlv_31= 'font size' ( (lv_font_size_32_0= ruleFontSize ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:80:1: (otherlv_0= 'newspaper' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' otherlv_3= 'feed links' otherlv_4= '{' ( (lv_feedlinks_5_0= rulePair ) ) (otherlv_6= ', ' ( (lv_pairs_7_0= rulePair ) ) )* otherlv_8= '}' otherlv_9= 'topics' otherlv_10= '{' ( (lv_topics_11_0= ruleTopic ) ) ( (lv_topics_12_0= ruleTopic ) )* otherlv_13= '}' (otherlv_14= 'date' ( (lv_date_15_0= ruleDate ) ) )? (otherlv_16= 'location' ( (lv_location_17_0= RULE_STRING ) ) )? otherlv_18= 'price' ( (lv_price_19_0= rulePrice ) ) (otherlv_20= 'volume' ( (lv_volume_21_0= RULE_INT ) ) )? otherlv_22= 'language' ( (lv_language_23_0= ruleLanguage ) ) otherlv_24= 'format' ( (lv_format_25_0= ruleFormat ) ) otherlv_26= 'number of articles per topic' ( (lv_article_cnt_27_0= RULE_INT ) ) otherlv_28= 'number of words per article' ( (lv_article_char_min_29_0= RULE_INT ) ) otherlv_30= '-' ( (lv_article_char_max_31_0= RULE_INT ) ) (otherlv_32= 'number of images per article' ( (lv_article_images_33_0= RULE_INT ) ) )? otherlv_34= 'number of columns' ( (lv_columns_cnt_35_0= RULE_INT ) ) otherlv_36= 'font size' ( (lv_font_size_37_0= ruleFontSize ) ) otherlv_38= '}' )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:80:3: otherlv_0= 'newspaper' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' otherlv_3= 'feed links' otherlv_4= '{' ( (lv_feedlinks_5_0= rulePair ) ) (otherlv_6= ', ' ( (lv_pairs_7_0= rulePair ) ) )* otherlv_8= '}' otherlv_9= 'topics' otherlv_10= '{' ( (lv_topics_11_0= ruleTopic ) ) ( (lv_topics_12_0= ruleTopic ) )* otherlv_13= '}' (otherlv_14= 'date' ( (lv_date_15_0= ruleDate ) ) )? (otherlv_16= 'location' ( (lv_location_17_0= RULE_STRING ) ) )? otherlv_18= 'price' ( (lv_price_19_0= rulePrice ) ) (otherlv_20= 'volume' ( (lv_volume_21_0= RULE_INT ) ) )? otherlv_22= 'language' ( (lv_language_23_0= ruleLanguage ) ) otherlv_24= 'format' ( (lv_format_25_0= ruleFormat ) ) otherlv_26= 'number of articles per topic' ( (lv_article_cnt_27_0= RULE_INT ) ) otherlv_28= 'number of words per article' ( (lv_article_char_min_29_0= RULE_INT ) ) otherlv_30= '-' ( (lv_article_char_max_31_0= RULE_INT ) ) (otherlv_32= 'number of images per article' ( (lv_article_images_33_0= RULE_INT ) ) )? otherlv_34= 'number of columns' ( (lv_columns_cnt_35_0= RULE_INT ) ) otherlv_36= 'font size' ( (lv_font_size_37_0= ruleFontSize ) ) otherlv_38= '}'
             {
-            otherlv_0=(Token)match(input,11,FOLLOW_11_in_ruleDeclaration122); 
+            otherlv_0=(Token)match(input,12,FOLLOW_12_in_ruleDeclaration122); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getDeclarationAccess().getNewspaperKeyword_0());
                 
@@ -225,60 +234,29 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,12,FOLLOW_12_in_ruleDeclaration156); 
+            otherlv_2=(Token)match(input,13,FOLLOW_13_in_ruleDeclaration156); 
 
-                	newLeafNode(otherlv_2, grammarAccess.getDeclarationAccess().getFeedLinkKeyword_2());
+                	newLeafNode(otherlv_2, grammarAccess.getDeclarationAccess().getLeftCurlyBracketKeyword_2());
                 
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:106:1: ( (lv_feedlinks_3_0= ruleFeedlinks ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:107:1: (lv_feedlinks_3_0= ruleFeedlinks )
+            otherlv_3=(Token)match(input,14,FOLLOW_14_in_ruleDeclaration168); 
+
+                	newLeafNode(otherlv_3, grammarAccess.getDeclarationAccess().getFeedLinksKeyword_3());
+                
+            otherlv_4=(Token)match(input,13,FOLLOW_13_in_ruleDeclaration180); 
+
+                	newLeafNode(otherlv_4, grammarAccess.getDeclarationAccess().getLeftCurlyBracketKeyword_4());
+                
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:114:1: ( (lv_feedlinks_5_0= rulePair ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:115:1: (lv_feedlinks_5_0= rulePair )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:107:1: (lv_feedlinks_3_0= ruleFeedlinks )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:108:3: lv_feedlinks_3_0= ruleFeedlinks
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:115:1: (lv_feedlinks_5_0= rulePair )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:116:3: lv_feedlinks_5_0= rulePair
             {
              
-            	        newCompositeNode(grammarAccess.getDeclarationAccess().getFeedlinksFeedlinksParserRuleCall_3_0()); 
+            	        newCompositeNode(grammarAccess.getDeclarationAccess().getFeedlinksPairParserRuleCall_5_0()); 
             	    
-            pushFollow(FOLLOW_ruleFeedlinks_in_ruleDeclaration177);
-            lv_feedlinks_3_0=ruleFeedlinks();
-
-            state._fsp--;
-
-
-            	        if (current==null) {
-            	            current = createModelElementForParent(grammarAccess.getDeclarationRule());
-            	        }
-                   		set(
-                   			current, 
-                   			"feedlinks",
-                    		lv_feedlinks_3_0, 
-                    		"Feedlinks");
-            	        afterParserOrEnumRuleCall();
-            	    
-
-            }
-
-
-            }
-
-            otherlv_4=(Token)match(input,13,FOLLOW_13_in_ruleDeclaration189); 
-
-                	newLeafNode(otherlv_4, grammarAccess.getDeclarationAccess().getTopicsKeyword_4());
-                
-            otherlv_5=(Token)match(input,14,FOLLOW_14_in_ruleDeclaration201); 
-
-                	newLeafNode(otherlv_5, grammarAccess.getDeclarationAccess().getLeftCurlyBracketKeyword_5());
-                
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:132:1: ( (lv_topics_6_0= ruleTopic ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:133:1: (lv_topics_6_0= ruleTopic )
-            {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:133:1: (lv_topics_6_0= ruleTopic )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:134:3: lv_topics_6_0= ruleTopic
-            {
-             
-            	        newCompositeNode(grammarAccess.getDeclarationAccess().getTopicsTopicParserRuleCall_6_0()); 
-            	    
-            pushFollow(FOLLOW_ruleTopic_in_ruleDeclaration222);
-            lv_topics_6_0=ruleTopic();
+            pushFollow(FOLLOW_rulePair_in_ruleDeclaration201);
+            lv_feedlinks_5_0=rulePair();
 
             state._fsp--;
 
@@ -288,9 +266,9 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	        }
                    		add(
                    			current, 
-                   			"topics",
-                    		lv_topics_6_0, 
-                    		"Topic");
+                   			"feedlinks",
+                    		lv_feedlinks_5_0, 
+                    		"Pair");
             	        afterParserOrEnumRuleCall();
             	    
 
@@ -299,29 +277,36 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:150:2: ( (lv_topics_7_0= ruleTopic ) )*
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:132:2: (otherlv_6= ', ' ( (lv_pairs_7_0= rulePair ) ) )*
             loop1:
             do {
                 int alt1=2;
                 int LA1_0 = input.LA(1);
 
-                if ( (LA1_0==42) ) {
+                if ( (LA1_0==15) ) {
                     alt1=1;
                 }
 
 
                 switch (alt1) {
             	case 1 :
-            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:151:1: (lv_topics_7_0= ruleTopic )
+            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:132:4: otherlv_6= ', ' ( (lv_pairs_7_0= rulePair ) )
             	    {
-            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:151:1: (lv_topics_7_0= ruleTopic )
-            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:152:3: lv_topics_7_0= ruleTopic
+            	    otherlv_6=(Token)match(input,15,FOLLOW_15_in_ruleDeclaration214); 
+
+            	        	newLeafNode(otherlv_6, grammarAccess.getDeclarationAccess().getCommaSpaceKeyword_6_0());
+            	        
+            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:136:1: ( (lv_pairs_7_0= rulePair ) )
+            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:137:1: (lv_pairs_7_0= rulePair )
+            	    {
+            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:137:1: (lv_pairs_7_0= rulePair )
+            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:138:3: lv_pairs_7_0= rulePair
             	    {
             	     
-            	    	        newCompositeNode(grammarAccess.getDeclarationAccess().getTopicsTopicParserRuleCall_7_0()); 
+            	    	        newCompositeNode(grammarAccess.getDeclarationAccess().getPairsPairParserRuleCall_6_1_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleTopic_in_ruleDeclaration243);
-            	    lv_topics_7_0=ruleTopic();
+            	    pushFollow(FOLLOW_rulePair_in_ruleDeclaration235);
+            	    lv_pairs_7_0=rulePair();
 
             	    state._fsp--;
 
@@ -331,11 +316,14 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	    	        }
             	           		add(
             	           			current, 
-            	           			"topics",
-            	            		lv_topics_7_0, 
-            	            		"Topic");
+            	           			"pairs",
+            	            		lv_pairs_7_0, 
+            	            		"Pair");
             	    	        afterParserOrEnumRuleCall();
             	    	    
+
+            	    }
+
 
             	    }
 
@@ -348,36 +336,128 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            otherlv_8=(Token)match(input,15,FOLLOW_15_in_ruleDeclaration256); 
+            otherlv_8=(Token)match(input,16,FOLLOW_16_in_ruleDeclaration249); 
 
-                	newLeafNode(otherlv_8, grammarAccess.getDeclarationAccess().getRightCurlyBracketKeyword_8());
+                	newLeafNode(otherlv_8, grammarAccess.getDeclarationAccess().getRightCurlyBracketKeyword_7());
                 
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:172:1: (otherlv_9= 'date' ( (lv_date_10_0= ruleDate ) ) )?
-            int alt2=2;
-            int LA2_0 = input.LA(1);
+            otherlv_9=(Token)match(input,17,FOLLOW_17_in_ruleDeclaration261); 
 
-            if ( (LA2_0==16) ) {
-                alt2=1;
+                	newLeafNode(otherlv_9, grammarAccess.getDeclarationAccess().getTopicsKeyword_8());
+                
+            otherlv_10=(Token)match(input,13,FOLLOW_13_in_ruleDeclaration273); 
+
+                	newLeafNode(otherlv_10, grammarAccess.getDeclarationAccess().getLeftCurlyBracketKeyword_9());
+                
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:166:1: ( (lv_topics_11_0= ruleTopic ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:167:1: (lv_topics_11_0= ruleTopic )
+            {
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:167:1: (lv_topics_11_0= ruleTopic )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:168:3: lv_topics_11_0= ruleTopic
+            {
+             
+            	        newCompositeNode(grammarAccess.getDeclarationAccess().getTopicsTopicParserRuleCall_10_0()); 
+            	    
+            pushFollow(FOLLOW_ruleTopic_in_ruleDeclaration294);
+            lv_topics_11_0=ruleTopic();
+
+            state._fsp--;
+
+
+            	        if (current==null) {
+            	            current = createModelElementForParent(grammarAccess.getDeclarationRule());
+            	        }
+                   		add(
+                   			current, 
+                   			"topics",
+                    		lv_topics_11_0, 
+                    		"Topic");
+            	        afterParserOrEnumRuleCall();
+            	    
+
             }
-            switch (alt2) {
-                case 1 :
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:172:3: otherlv_9= 'date' ( (lv_date_10_0= ruleDate ) )
-                    {
-                    otherlv_9=(Token)match(input,16,FOLLOW_16_in_ruleDeclaration269); 
 
-                        	newLeafNode(otherlv_9, grammarAccess.getDeclarationAccess().getDateKeyword_9_0());
-                        
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:176:1: ( (lv_date_10_0= ruleDate ) )
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:177:1: (lv_date_10_0= ruleDate )
+
+            }
+
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:184:2: ( (lv_topics_12_0= ruleTopic ) )*
+            loop2:
+            do {
+                int alt2=2;
+                int LA2_0 = input.LA(1);
+
+                if ( (LA2_0==44) ) {
+                    alt2=1;
+                }
+
+
+                switch (alt2) {
+            	case 1 :
+            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:185:1: (lv_topics_12_0= ruleTopic )
+            	    {
+            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:185:1: (lv_topics_12_0= ruleTopic )
+            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:186:3: lv_topics_12_0= ruleTopic
+            	    {
+            	     
+            	    	        newCompositeNode(grammarAccess.getDeclarationAccess().getTopicsTopicParserRuleCall_11_0()); 
+            	    	    
+            	    pushFollow(FOLLOW_ruleTopic_in_ruleDeclaration315);
+            	    lv_topics_12_0=ruleTopic();
+
+            	    state._fsp--;
+
+
+            	    	        if (current==null) {
+            	    	            current = createModelElementForParent(grammarAccess.getDeclarationRule());
+            	    	        }
+            	           		add(
+            	           			current, 
+            	           			"topics",
+            	            		lv_topics_12_0, 
+            	            		"Topic");
+            	    	        afterParserOrEnumRuleCall();
+            	    	    
+
+            	    }
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop2;
+                }
+            } while (true);
+
+            otherlv_13=(Token)match(input,16,FOLLOW_16_in_ruleDeclaration328); 
+
+                	newLeafNode(otherlv_13, grammarAccess.getDeclarationAccess().getRightCurlyBracketKeyword_12());
+                
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:206:1: (otherlv_14= 'date' ( (lv_date_15_0= ruleDate ) ) )?
+            int alt3=2;
+            int LA3_0 = input.LA(1);
+
+            if ( (LA3_0==18) ) {
+                alt3=1;
+            }
+            switch (alt3) {
+                case 1 :
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:206:3: otherlv_14= 'date' ( (lv_date_15_0= ruleDate ) )
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:177:1: (lv_date_10_0= ruleDate )
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:178:3: lv_date_10_0= ruleDate
+                    otherlv_14=(Token)match(input,18,FOLLOW_18_in_ruleDeclaration341); 
+
+                        	newLeafNode(otherlv_14, grammarAccess.getDeclarationAccess().getDateKeyword_13_0());
+                        
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:210:1: ( (lv_date_15_0= ruleDate ) )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:211:1: (lv_date_15_0= ruleDate )
+                    {
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:211:1: (lv_date_15_0= ruleDate )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:212:3: lv_date_15_0= ruleDate
                     {
                      
-                    	        newCompositeNode(grammarAccess.getDeclarationAccess().getDateDateParserRuleCall_9_1_0()); 
+                    	        newCompositeNode(grammarAccess.getDeclarationAccess().getDateDateParserRuleCall_13_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleDate_in_ruleDeclaration290);
-                    lv_date_10_0=ruleDate();
+                    pushFollow(FOLLOW_ruleDate_in_ruleDeclaration362);
+                    lv_date_15_0=ruleDate();
 
                     state._fsp--;
 
@@ -388,7 +468,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                            		set(
                            			current, 
                            			"date",
-                            		lv_date_10_0, 
+                            		lv_date_15_0, 
                             		"Date");
                     	        afterParserOrEnumRuleCall();
                     	    
@@ -404,30 +484,30 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:194:4: (otherlv_11= 'location' ( (lv_location_12_0= RULE_STRING ) ) )?
-            int alt3=2;
-            int LA3_0 = input.LA(1);
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:228:4: (otherlv_16= 'location' ( (lv_location_17_0= RULE_STRING ) ) )?
+            int alt4=2;
+            int LA4_0 = input.LA(1);
 
-            if ( (LA3_0==17) ) {
-                alt3=1;
+            if ( (LA4_0==19) ) {
+                alt4=1;
             }
-            switch (alt3) {
+            switch (alt4) {
                 case 1 :
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:194:6: otherlv_11= 'location' ( (lv_location_12_0= RULE_STRING ) )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:228:6: otherlv_16= 'location' ( (lv_location_17_0= RULE_STRING ) )
                     {
-                    otherlv_11=(Token)match(input,17,FOLLOW_17_in_ruleDeclaration305); 
+                    otherlv_16=(Token)match(input,19,FOLLOW_19_in_ruleDeclaration377); 
 
-                        	newLeafNode(otherlv_11, grammarAccess.getDeclarationAccess().getLocationKeyword_10_0());
+                        	newLeafNode(otherlv_16, grammarAccess.getDeclarationAccess().getLocationKeyword_14_0());
                         
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:198:1: ( (lv_location_12_0= RULE_STRING ) )
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:199:1: (lv_location_12_0= RULE_STRING )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:232:1: ( (lv_location_17_0= RULE_STRING ) )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:233:1: (lv_location_17_0= RULE_STRING )
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:199:1: (lv_location_12_0= RULE_STRING )
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:200:3: lv_location_12_0= RULE_STRING
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:233:1: (lv_location_17_0= RULE_STRING )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:234:3: lv_location_17_0= RULE_STRING
                     {
-                    lv_location_12_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleDeclaration322); 
+                    lv_location_17_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleDeclaration394); 
 
-                    			newLeafNode(lv_location_12_0, grammarAccess.getDeclarationAccess().getLocationSTRINGTerminalRuleCall_10_1_0()); 
+                    			newLeafNode(lv_location_17_0, grammarAccess.getDeclarationAccess().getLocationSTRINGTerminalRuleCall_14_1_0()); 
                     		
 
                     	        if (current==null) {
@@ -436,7 +516,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                            		setWithLastConsumed(
                            			current, 
                            			"location",
-                            		lv_location_12_0, 
+                            		lv_location_17_0, 
                             		"STRING");
                     	    
 
@@ -451,21 +531,21 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_13=(Token)match(input,18,FOLLOW_18_in_ruleDeclaration341); 
+            otherlv_18=(Token)match(input,20,FOLLOW_20_in_ruleDeclaration413); 
 
-                	newLeafNode(otherlv_13, grammarAccess.getDeclarationAccess().getPriceKeyword_11());
+                	newLeafNode(otherlv_18, grammarAccess.getDeclarationAccess().getPriceKeyword_15());
                 
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:220:1: ( (lv_price_14_0= rulePrice ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:221:1: (lv_price_14_0= rulePrice )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:254:1: ( (lv_price_19_0= rulePrice ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:255:1: (lv_price_19_0= rulePrice )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:221:1: (lv_price_14_0= rulePrice )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:222:3: lv_price_14_0= rulePrice
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:255:1: (lv_price_19_0= rulePrice )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:256:3: lv_price_19_0= rulePrice
             {
              
-            	        newCompositeNode(grammarAccess.getDeclarationAccess().getPricePriceParserRuleCall_12_0()); 
+            	        newCompositeNode(grammarAccess.getDeclarationAccess().getPricePriceParserRuleCall_16_0()); 
             	    
-            pushFollow(FOLLOW_rulePrice_in_ruleDeclaration362);
-            lv_price_14_0=rulePrice();
+            pushFollow(FOLLOW_rulePrice_in_ruleDeclaration434);
+            lv_price_19_0=rulePrice();
 
             state._fsp--;
 
@@ -476,7 +556,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                    		set(
                    			current, 
                    			"price",
-                    		lv_price_14_0, 
+                    		lv_price_19_0, 
                     		"Price");
             	        afterParserOrEnumRuleCall();
             	    
@@ -486,30 +566,30 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:238:2: (otherlv_15= 'volume' ( (lv_volume_16_0= RULE_INT ) ) )?
-            int alt4=2;
-            int LA4_0 = input.LA(1);
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:272:2: (otherlv_20= 'volume' ( (lv_volume_21_0= RULE_INT ) ) )?
+            int alt5=2;
+            int LA5_0 = input.LA(1);
 
-            if ( (LA4_0==19) ) {
-                alt4=1;
+            if ( (LA5_0==21) ) {
+                alt5=1;
             }
-            switch (alt4) {
+            switch (alt5) {
                 case 1 :
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:238:4: otherlv_15= 'volume' ( (lv_volume_16_0= RULE_INT ) )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:272:4: otherlv_20= 'volume' ( (lv_volume_21_0= RULE_INT ) )
                     {
-                    otherlv_15=(Token)match(input,19,FOLLOW_19_in_ruleDeclaration375); 
+                    otherlv_20=(Token)match(input,21,FOLLOW_21_in_ruleDeclaration447); 
 
-                        	newLeafNode(otherlv_15, grammarAccess.getDeclarationAccess().getVolumeKeyword_13_0());
+                        	newLeafNode(otherlv_20, grammarAccess.getDeclarationAccess().getVolumeKeyword_17_0());
                         
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:242:1: ( (lv_volume_16_0= RULE_INT ) )
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:243:1: (lv_volume_16_0= RULE_INT )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:276:1: ( (lv_volume_21_0= RULE_INT ) )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:277:1: (lv_volume_21_0= RULE_INT )
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:243:1: (lv_volume_16_0= RULE_INT )
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:244:3: lv_volume_16_0= RULE_INT
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:277:1: (lv_volume_21_0= RULE_INT )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:278:3: lv_volume_21_0= RULE_INT
                     {
-                    lv_volume_16_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleDeclaration392); 
+                    lv_volume_21_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleDeclaration464); 
 
-                    			newLeafNode(lv_volume_16_0, grammarAccess.getDeclarationAccess().getVolumeINTTerminalRuleCall_13_1_0()); 
+                    			newLeafNode(lv_volume_21_0, grammarAccess.getDeclarationAccess().getVolumeINTTerminalRuleCall_17_1_0()); 
                     		
 
                     	        if (current==null) {
@@ -518,7 +598,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                            		setWithLastConsumed(
                            			current, 
                            			"volume",
-                            		lv_volume_16_0, 
+                            		lv_volume_21_0, 
                             		"INT");
                     	    
 
@@ -533,21 +613,21 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_17=(Token)match(input,20,FOLLOW_20_in_ruleDeclaration411); 
+            otherlv_22=(Token)match(input,22,FOLLOW_22_in_ruleDeclaration483); 
 
-                	newLeafNode(otherlv_17, grammarAccess.getDeclarationAccess().getLanguageKeyword_14());
+                	newLeafNode(otherlv_22, grammarAccess.getDeclarationAccess().getLanguageKeyword_18());
                 
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:264:1: ( (lv_language_18_0= ruleLanguage ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:265:1: (lv_language_18_0= ruleLanguage )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:298:1: ( (lv_language_23_0= ruleLanguage ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:299:1: (lv_language_23_0= ruleLanguage )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:265:1: (lv_language_18_0= ruleLanguage )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:266:3: lv_language_18_0= ruleLanguage
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:299:1: (lv_language_23_0= ruleLanguage )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:300:3: lv_language_23_0= ruleLanguage
             {
              
-            	        newCompositeNode(grammarAccess.getDeclarationAccess().getLanguageLanguageParserRuleCall_15_0()); 
+            	        newCompositeNode(grammarAccess.getDeclarationAccess().getLanguageLanguageParserRuleCall_19_0()); 
             	    
-            pushFollow(FOLLOW_ruleLanguage_in_ruleDeclaration432);
-            lv_language_18_0=ruleLanguage();
+            pushFollow(FOLLOW_ruleLanguage_in_ruleDeclaration504);
+            lv_language_23_0=ruleLanguage();
 
             state._fsp--;
 
@@ -558,7 +638,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                    		set(
                    			current, 
                    			"language",
-                    		lv_language_18_0, 
+                    		lv_language_23_0, 
                     		"Language");
             	        afterParserOrEnumRuleCall();
             	    
@@ -568,21 +648,21 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_19=(Token)match(input,21,FOLLOW_21_in_ruleDeclaration444); 
+            otherlv_24=(Token)match(input,23,FOLLOW_23_in_ruleDeclaration516); 
 
-                	newLeafNode(otherlv_19, grammarAccess.getDeclarationAccess().getFormatKeyword_16());
+                	newLeafNode(otherlv_24, grammarAccess.getDeclarationAccess().getFormatKeyword_20());
                 
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:286:1: ( (lv_format_20_0= ruleFormat ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:287:1: (lv_format_20_0= ruleFormat )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:320:1: ( (lv_format_25_0= ruleFormat ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:321:1: (lv_format_25_0= ruleFormat )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:287:1: (lv_format_20_0= ruleFormat )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:288:3: lv_format_20_0= ruleFormat
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:321:1: (lv_format_25_0= ruleFormat )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:322:3: lv_format_25_0= ruleFormat
             {
              
-            	        newCompositeNode(grammarAccess.getDeclarationAccess().getFormatFormatParserRuleCall_17_0()); 
+            	        newCompositeNode(grammarAccess.getDeclarationAccess().getFormatFormatParserRuleCall_21_0()); 
             	    
-            pushFollow(FOLLOW_ruleFormat_in_ruleDeclaration465);
-            lv_format_20_0=ruleFormat();
+            pushFollow(FOLLOW_ruleFormat_in_ruleDeclaration537);
+            lv_format_25_0=ruleFormat();
 
             state._fsp--;
 
@@ -593,7 +673,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                    		set(
                    			current, 
                    			"format",
-                    		lv_format_20_0, 
+                    		lv_format_25_0, 
                     		"Format");
             	        afterParserOrEnumRuleCall();
             	    
@@ -603,19 +683,19 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_21=(Token)match(input,22,FOLLOW_22_in_ruleDeclaration477); 
+            otherlv_26=(Token)match(input,24,FOLLOW_24_in_ruleDeclaration549); 
 
-                	newLeafNode(otherlv_21, grammarAccess.getDeclarationAccess().getNumberOfArticlesPerTopicKeyword_18());
+                	newLeafNode(otherlv_26, grammarAccess.getDeclarationAccess().getNumberOfArticlesPerTopicKeyword_22());
                 
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:308:1: ( (lv_article_cnt_22_0= RULE_INT ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:309:1: (lv_article_cnt_22_0= RULE_INT )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:342:1: ( (lv_article_cnt_27_0= RULE_INT ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:343:1: (lv_article_cnt_27_0= RULE_INT )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:309:1: (lv_article_cnt_22_0= RULE_INT )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:310:3: lv_article_cnt_22_0= RULE_INT
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:343:1: (lv_article_cnt_27_0= RULE_INT )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:344:3: lv_article_cnt_27_0= RULE_INT
             {
-            lv_article_cnt_22_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleDeclaration494); 
+            lv_article_cnt_27_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleDeclaration566); 
 
-            			newLeafNode(lv_article_cnt_22_0, grammarAccess.getDeclarationAccess().getArticle_cntINTTerminalRuleCall_19_0()); 
+            			newLeafNode(lv_article_cnt_27_0, grammarAccess.getDeclarationAccess().getArticle_cntINTTerminalRuleCall_23_0()); 
             		
 
             	        if (current==null) {
@@ -624,7 +704,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                    		setWithLastConsumed(
                    			current, 
                    			"article_cnt",
-                    		lv_article_cnt_22_0, 
+                    		lv_article_cnt_27_0, 
                     		"INT");
             	    
 
@@ -633,19 +713,19 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_23=(Token)match(input,23,FOLLOW_23_in_ruleDeclaration511); 
+            otherlv_28=(Token)match(input,25,FOLLOW_25_in_ruleDeclaration583); 
 
-                	newLeafNode(otherlv_23, grammarAccess.getDeclarationAccess().getNumberOfWordsPerArticleKeyword_20());
+                	newLeafNode(otherlv_28, grammarAccess.getDeclarationAccess().getNumberOfWordsPerArticleKeyword_24());
                 
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:330:1: ( (lv_article_char_min_24_0= RULE_INT ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:331:1: (lv_article_char_min_24_0= RULE_INT )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:364:1: ( (lv_article_char_min_29_0= RULE_INT ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:365:1: (lv_article_char_min_29_0= RULE_INT )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:331:1: (lv_article_char_min_24_0= RULE_INT )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:332:3: lv_article_char_min_24_0= RULE_INT
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:365:1: (lv_article_char_min_29_0= RULE_INT )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:366:3: lv_article_char_min_29_0= RULE_INT
             {
-            lv_article_char_min_24_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleDeclaration528); 
+            lv_article_char_min_29_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleDeclaration600); 
 
-            			newLeafNode(lv_article_char_min_24_0, grammarAccess.getDeclarationAccess().getArticle_char_minINTTerminalRuleCall_21_0()); 
+            			newLeafNode(lv_article_char_min_29_0, grammarAccess.getDeclarationAccess().getArticle_char_minINTTerminalRuleCall_25_0()); 
             		
 
             	        if (current==null) {
@@ -654,7 +734,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                    		setWithLastConsumed(
                    			current, 
                    			"article_char_min",
-                    		lv_article_char_min_24_0, 
+                    		lv_article_char_min_29_0, 
                     		"INT");
             	    
 
@@ -663,19 +743,19 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_25=(Token)match(input,24,FOLLOW_24_in_ruleDeclaration545); 
+            otherlv_30=(Token)match(input,26,FOLLOW_26_in_ruleDeclaration617); 
 
-                	newLeafNode(otherlv_25, grammarAccess.getDeclarationAccess().getHyphenMinusKeyword_22());
+                	newLeafNode(otherlv_30, grammarAccess.getDeclarationAccess().getHyphenMinusKeyword_26());
                 
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:352:1: ( (lv_article_char_max_26_0= RULE_INT ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:353:1: (lv_article_char_max_26_0= RULE_INT )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:386:1: ( (lv_article_char_max_31_0= RULE_INT ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:387:1: (lv_article_char_max_31_0= RULE_INT )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:353:1: (lv_article_char_max_26_0= RULE_INT )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:354:3: lv_article_char_max_26_0= RULE_INT
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:387:1: (lv_article_char_max_31_0= RULE_INT )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:388:3: lv_article_char_max_31_0= RULE_INT
             {
-            lv_article_char_max_26_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleDeclaration562); 
+            lv_article_char_max_31_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleDeclaration634); 
 
-            			newLeafNode(lv_article_char_max_26_0, grammarAccess.getDeclarationAccess().getArticle_char_maxINTTerminalRuleCall_23_0()); 
+            			newLeafNode(lv_article_char_max_31_0, grammarAccess.getDeclarationAccess().getArticle_char_maxINTTerminalRuleCall_27_0()); 
             		
 
             	        if (current==null) {
@@ -684,7 +764,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                    		setWithLastConsumed(
                    			current, 
                    			"article_char_max",
-                    		lv_article_char_max_26_0, 
+                    		lv_article_char_max_31_0, 
                     		"INT");
             	    
 
@@ -693,30 +773,30 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:370:2: (otherlv_27= 'number of images per article' ( (lv_article_images_28_0= RULE_INT ) ) )?
-            int alt5=2;
-            int LA5_0 = input.LA(1);
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:404:2: (otherlv_32= 'number of images per article' ( (lv_article_images_33_0= RULE_INT ) ) )?
+            int alt6=2;
+            int LA6_0 = input.LA(1);
 
-            if ( (LA5_0==25) ) {
-                alt5=1;
+            if ( (LA6_0==27) ) {
+                alt6=1;
             }
-            switch (alt5) {
+            switch (alt6) {
                 case 1 :
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:370:4: otherlv_27= 'number of images per article' ( (lv_article_images_28_0= RULE_INT ) )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:404:4: otherlv_32= 'number of images per article' ( (lv_article_images_33_0= RULE_INT ) )
                     {
-                    otherlv_27=(Token)match(input,25,FOLLOW_25_in_ruleDeclaration580); 
+                    otherlv_32=(Token)match(input,27,FOLLOW_27_in_ruleDeclaration652); 
 
-                        	newLeafNode(otherlv_27, grammarAccess.getDeclarationAccess().getNumberOfImagesPerArticleKeyword_24_0());
+                        	newLeafNode(otherlv_32, grammarAccess.getDeclarationAccess().getNumberOfImagesPerArticleKeyword_28_0());
                         
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:374:1: ( (lv_article_images_28_0= RULE_INT ) )
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:375:1: (lv_article_images_28_0= RULE_INT )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:408:1: ( (lv_article_images_33_0= RULE_INT ) )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:409:1: (lv_article_images_33_0= RULE_INT )
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:375:1: (lv_article_images_28_0= RULE_INT )
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:376:3: lv_article_images_28_0= RULE_INT
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:409:1: (lv_article_images_33_0= RULE_INT )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:410:3: lv_article_images_33_0= RULE_INT
                     {
-                    lv_article_images_28_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleDeclaration597); 
+                    lv_article_images_33_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleDeclaration669); 
 
-                    			newLeafNode(lv_article_images_28_0, grammarAccess.getDeclarationAccess().getArticle_imagesINTTerminalRuleCall_24_1_0()); 
+                    			newLeafNode(lv_article_images_33_0, grammarAccess.getDeclarationAccess().getArticle_imagesINTTerminalRuleCall_28_1_0()); 
                     		
 
                     	        if (current==null) {
@@ -725,7 +805,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                            		setWithLastConsumed(
                            			current, 
                            			"article_images",
-                            		lv_article_images_28_0, 
+                            		lv_article_images_33_0, 
                             		"INT");
                     	    
 
@@ -740,19 +820,19 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_29=(Token)match(input,26,FOLLOW_26_in_ruleDeclaration616); 
+            otherlv_34=(Token)match(input,28,FOLLOW_28_in_ruleDeclaration688); 
 
-                	newLeafNode(otherlv_29, grammarAccess.getDeclarationAccess().getNumberOfColumnsKeyword_25());
+                	newLeafNode(otherlv_34, grammarAccess.getDeclarationAccess().getNumberOfColumnsKeyword_29());
                 
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:396:1: ( (lv_columns_cnt_30_0= RULE_INT ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:397:1: (lv_columns_cnt_30_0= RULE_INT )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:430:1: ( (lv_columns_cnt_35_0= RULE_INT ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:431:1: (lv_columns_cnt_35_0= RULE_INT )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:397:1: (lv_columns_cnt_30_0= RULE_INT )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:398:3: lv_columns_cnt_30_0= RULE_INT
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:431:1: (lv_columns_cnt_35_0= RULE_INT )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:432:3: lv_columns_cnt_35_0= RULE_INT
             {
-            lv_columns_cnt_30_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleDeclaration633); 
+            lv_columns_cnt_35_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleDeclaration705); 
 
-            			newLeafNode(lv_columns_cnt_30_0, grammarAccess.getDeclarationAccess().getColumns_cntINTTerminalRuleCall_26_0()); 
+            			newLeafNode(lv_columns_cnt_35_0, grammarAccess.getDeclarationAccess().getColumns_cntINTTerminalRuleCall_30_0()); 
             		
 
             	        if (current==null) {
@@ -761,7 +841,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                    		setWithLastConsumed(
                    			current, 
                    			"columns_cnt",
-                    		lv_columns_cnt_30_0, 
+                    		lv_columns_cnt_35_0, 
                     		"INT");
             	    
 
@@ -770,21 +850,21 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_31=(Token)match(input,27,FOLLOW_27_in_ruleDeclaration650); 
+            otherlv_36=(Token)match(input,29,FOLLOW_29_in_ruleDeclaration722); 
 
-                	newLeafNode(otherlv_31, grammarAccess.getDeclarationAccess().getFontSizeKeyword_27());
+                	newLeafNode(otherlv_36, grammarAccess.getDeclarationAccess().getFontSizeKeyword_31());
                 
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:418:1: ( (lv_font_size_32_0= ruleFontSize ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:419:1: (lv_font_size_32_0= ruleFontSize )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:452:1: ( (lv_font_size_37_0= ruleFontSize ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:453:1: (lv_font_size_37_0= ruleFontSize )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:419:1: (lv_font_size_32_0= ruleFontSize )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:420:3: lv_font_size_32_0= ruleFontSize
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:453:1: (lv_font_size_37_0= ruleFontSize )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:454:3: lv_font_size_37_0= ruleFontSize
             {
              
-            	        newCompositeNode(grammarAccess.getDeclarationAccess().getFont_sizeFontSizeParserRuleCall_28_0()); 
+            	        newCompositeNode(grammarAccess.getDeclarationAccess().getFont_sizeFontSizeParserRuleCall_32_0()); 
             	    
-            pushFollow(FOLLOW_ruleFontSize_in_ruleDeclaration671);
-            lv_font_size_32_0=ruleFontSize();
+            pushFollow(FOLLOW_ruleFontSize_in_ruleDeclaration743);
+            lv_font_size_37_0=ruleFontSize();
 
             state._fsp--;
 
@@ -795,7 +875,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                    		set(
                    			current, 
                    			"font_size",
-                    		lv_font_size_32_0, 
+                    		lv_font_size_37_0, 
                     		"FontSize");
             	        afterParserOrEnumRuleCall();
             	    
@@ -805,6 +885,10 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
+            otherlv_38=(Token)match(input,16,FOLLOW_16_in_ruleDeclaration755); 
+
+                	newLeafNode(otherlv_38, grammarAccess.getDeclarationAccess().getRightCurlyBracketKeyword_33());
+                
 
             }
 
@@ -826,7 +910,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFontSize"
-    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:444:1: entryRuleFontSize returns [EObject current=null] : iv_ruleFontSize= ruleFontSize EOF ;
+    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:482:1: entryRuleFontSize returns [EObject current=null] : iv_ruleFontSize= ruleFontSize EOF ;
     public final EObject entryRuleFontSize() throws RecognitionException {
         EObject current = null;
 
@@ -834,17 +918,17 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:445:2: (iv_ruleFontSize= ruleFontSize EOF )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:446:2: iv_ruleFontSize= ruleFontSize EOF
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:483:2: (iv_ruleFontSize= ruleFontSize EOF )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:484:2: iv_ruleFontSize= ruleFontSize EOF
             {
              newCompositeNode(grammarAccess.getFontSizeRule()); 
-            pushFollow(FOLLOW_ruleFontSize_in_entryRuleFontSize707);
+            pushFollow(FOLLOW_ruleFontSize_in_entryRuleFontSize791);
             iv_ruleFontSize=ruleFontSize();
 
             state._fsp--;
 
              current =iv_ruleFontSize; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleFontSize717); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleFontSize801); 
 
             }
 
@@ -862,7 +946,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFontSize"
-    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:453:1: ruleFontSize returns [EObject current=null] : ( ( () otherlv_1= 'small' ) | ( () otherlv_3= 'medium' ) | ( () otherlv_5= 'large' ) ) ;
+    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:491:1: ruleFontSize returns [EObject current=null] : ( ( () otherlv_1= 'small' ) | ( () otherlv_3= 'medium' ) | ( () otherlv_5= 'large' ) ) ;
     public final EObject ruleFontSize() throws RecognitionException {
         EObject current = null;
 
@@ -873,43 +957,43 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:456:28: ( ( ( () otherlv_1= 'small' ) | ( () otherlv_3= 'medium' ) | ( () otherlv_5= 'large' ) ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:457:1: ( ( () otherlv_1= 'small' ) | ( () otherlv_3= 'medium' ) | ( () otherlv_5= 'large' ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:494:28: ( ( ( () otherlv_1= 'small' ) | ( () otherlv_3= 'medium' ) | ( () otherlv_5= 'large' ) ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:495:1: ( ( () otherlv_1= 'small' ) | ( () otherlv_3= 'medium' ) | ( () otherlv_5= 'large' ) )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:457:1: ( ( () otherlv_1= 'small' ) | ( () otherlv_3= 'medium' ) | ( () otherlv_5= 'large' ) )
-            int alt6=3;
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:495:1: ( ( () otherlv_1= 'small' ) | ( () otherlv_3= 'medium' ) | ( () otherlv_5= 'large' ) )
+            int alt7=3;
             switch ( input.LA(1) ) {
-            case 28:
-                {
-                alt6=1;
-                }
-                break;
-            case 29:
-                {
-                alt6=2;
-                }
-                break;
             case 30:
                 {
-                alt6=3;
+                alt7=1;
+                }
+                break;
+            case 31:
+                {
+                alt7=2;
+                }
+                break;
+            case 32:
+                {
+                alt7=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 6, 0, input);
+                    new NoViableAltException("", 7, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt6) {
+            switch (alt7) {
                 case 1 :
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:457:2: ( () otherlv_1= 'small' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:495:2: ( () otherlv_1= 'small' )
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:457:2: ( () otherlv_1= 'small' )
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:457:3: () otherlv_1= 'small'
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:495:2: ( () otherlv_1= 'small' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:495:3: () otherlv_1= 'small'
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:457:3: ()
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:458:5: 
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:495:3: ()
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:496:5: 
                     {
 
                             current = forceCreateModelElement(
@@ -919,7 +1003,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_1=(Token)match(input,28,FOLLOW_28_in_ruleFontSize764); 
+                    otherlv_1=(Token)match(input,30,FOLLOW_30_in_ruleFontSize848); 
 
                         	newLeafNode(otherlv_1, grammarAccess.getFontSizeAccess().getSmallKeyword_0_1());
                         
@@ -930,13 +1014,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:468:6: ( () otherlv_3= 'medium' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:506:6: ( () otherlv_3= 'medium' )
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:468:6: ( () otherlv_3= 'medium' )
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:468:7: () otherlv_3= 'medium'
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:506:6: ( () otherlv_3= 'medium' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:506:7: () otherlv_3= 'medium'
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:468:7: ()
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:469:5: 
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:506:7: ()
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:507:5: 
                     {
 
                             current = forceCreateModelElement(
@@ -946,7 +1030,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_3=(Token)match(input,29,FOLLOW_29_in_ruleFontSize793); 
+                    otherlv_3=(Token)match(input,31,FOLLOW_31_in_ruleFontSize877); 
 
                         	newLeafNode(otherlv_3, grammarAccess.getFontSizeAccess().getMediumKeyword_1_1());
                         
@@ -957,13 +1041,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:479:6: ( () otherlv_5= 'large' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:517:6: ( () otherlv_5= 'large' )
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:479:6: ( () otherlv_5= 'large' )
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:479:7: () otherlv_5= 'large'
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:517:6: ( () otherlv_5= 'large' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:517:7: () otherlv_5= 'large'
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:479:7: ()
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:480:5: 
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:517:7: ()
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:518:5: 
                     {
 
                             current = forceCreateModelElement(
@@ -973,7 +1057,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_5=(Token)match(input,30,FOLLOW_30_in_ruleFontSize822); 
+                    otherlv_5=(Token)match(input,32,FOLLOW_32_in_ruleFontSize906); 
 
                         	newLeafNode(otherlv_5, grammarAccess.getFontSizeAccess().getLargeKeyword_2_1());
                         
@@ -1004,7 +1088,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFormat"
-    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:497:1: entryRuleFormat returns [EObject current=null] : iv_ruleFormat= ruleFormat EOF ;
+    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:535:1: entryRuleFormat returns [EObject current=null] : iv_ruleFormat= ruleFormat EOF ;
     public final EObject entryRuleFormat() throws RecognitionException {
         EObject current = null;
 
@@ -1012,17 +1096,17 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:498:2: (iv_ruleFormat= ruleFormat EOF )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:499:2: iv_ruleFormat= ruleFormat EOF
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:536:2: (iv_ruleFormat= ruleFormat EOF )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:537:2: iv_ruleFormat= ruleFormat EOF
             {
              newCompositeNode(grammarAccess.getFormatRule()); 
-            pushFollow(FOLLOW_ruleFormat_in_entryRuleFormat859);
+            pushFollow(FOLLOW_ruleFormat_in_entryRuleFormat943);
             iv_ruleFormat=ruleFormat();
 
             state._fsp--;
 
              current =iv_ruleFormat; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleFormat869); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleFormat953); 
 
             }
 
@@ -1040,7 +1124,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFormat"
-    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:506:1: ruleFormat returns [EObject current=null] : ( ( () otherlv_1= 'DIN A6' ) | ( () otherlv_3= 'DIN A5' ) | ( () otherlv_5= 'DIN A4' ) | ( () otherlv_7= 'DIN A3' ) | ( () otherlv_9= 'DIN A2' ) | ( () otherlv_11= 'DIN A1' ) | ( () otherlv_13= 'DIN A0' ) ) ;
+    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:544:1: ruleFormat returns [EObject current=null] : ( ( () otherlv_1= 'DIN A6' ) | ( () otherlv_3= 'DIN A5' ) | ( () otherlv_5= 'DIN A4' ) | ( () otherlv_7= 'DIN A3' ) | ( () otherlv_9= 'DIN A2' ) | ( () otherlv_11= 'DIN A1' ) | ( () otherlv_13= 'DIN A0' ) ) ;
     public final EObject ruleFormat() throws RecognitionException {
         EObject current = null;
 
@@ -1055,63 +1139,63 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:509:28: ( ( ( () otherlv_1= 'DIN A6' ) | ( () otherlv_3= 'DIN A5' ) | ( () otherlv_5= 'DIN A4' ) | ( () otherlv_7= 'DIN A3' ) | ( () otherlv_9= 'DIN A2' ) | ( () otherlv_11= 'DIN A1' ) | ( () otherlv_13= 'DIN A0' ) ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:510:1: ( ( () otherlv_1= 'DIN A6' ) | ( () otherlv_3= 'DIN A5' ) | ( () otherlv_5= 'DIN A4' ) | ( () otherlv_7= 'DIN A3' ) | ( () otherlv_9= 'DIN A2' ) | ( () otherlv_11= 'DIN A1' ) | ( () otherlv_13= 'DIN A0' ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:547:28: ( ( ( () otherlv_1= 'DIN A6' ) | ( () otherlv_3= 'DIN A5' ) | ( () otherlv_5= 'DIN A4' ) | ( () otherlv_7= 'DIN A3' ) | ( () otherlv_9= 'DIN A2' ) | ( () otherlv_11= 'DIN A1' ) | ( () otherlv_13= 'DIN A0' ) ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:548:1: ( ( () otherlv_1= 'DIN A6' ) | ( () otherlv_3= 'DIN A5' ) | ( () otherlv_5= 'DIN A4' ) | ( () otherlv_7= 'DIN A3' ) | ( () otherlv_9= 'DIN A2' ) | ( () otherlv_11= 'DIN A1' ) | ( () otherlv_13= 'DIN A0' ) )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:510:1: ( ( () otherlv_1= 'DIN A6' ) | ( () otherlv_3= 'DIN A5' ) | ( () otherlv_5= 'DIN A4' ) | ( () otherlv_7= 'DIN A3' ) | ( () otherlv_9= 'DIN A2' ) | ( () otherlv_11= 'DIN A1' ) | ( () otherlv_13= 'DIN A0' ) )
-            int alt7=7;
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:548:1: ( ( () otherlv_1= 'DIN A6' ) | ( () otherlv_3= 'DIN A5' ) | ( () otherlv_5= 'DIN A4' ) | ( () otherlv_7= 'DIN A3' ) | ( () otherlv_9= 'DIN A2' ) | ( () otherlv_11= 'DIN A1' ) | ( () otherlv_13= 'DIN A0' ) )
+            int alt8=7;
             switch ( input.LA(1) ) {
-            case 31:
-                {
-                alt7=1;
-                }
-                break;
-            case 32:
-                {
-                alt7=2;
-                }
-                break;
             case 33:
                 {
-                alt7=3;
+                alt8=1;
                 }
                 break;
             case 34:
                 {
-                alt7=4;
+                alt8=2;
                 }
                 break;
             case 35:
                 {
-                alt7=5;
+                alt8=3;
                 }
                 break;
             case 36:
                 {
-                alt7=6;
+                alt8=4;
                 }
                 break;
             case 37:
                 {
-                alt7=7;
+                alt8=5;
+                }
+                break;
+            case 38:
+                {
+                alt8=6;
+                }
+                break;
+            case 39:
+                {
+                alt8=7;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 7, 0, input);
+                    new NoViableAltException("", 8, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt7) {
+            switch (alt8) {
                 case 1 :
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:510:2: ( () otherlv_1= 'DIN A6' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:548:2: ( () otherlv_1= 'DIN A6' )
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:510:2: ( () otherlv_1= 'DIN A6' )
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:510:3: () otherlv_1= 'DIN A6'
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:548:2: ( () otherlv_1= 'DIN A6' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:548:3: () otherlv_1= 'DIN A6'
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:510:3: ()
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:511:5: 
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:548:3: ()
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:549:5: 
                     {
 
                             current = forceCreateModelElement(
@@ -1121,7 +1205,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_1=(Token)match(input,31,FOLLOW_31_in_ruleFormat916); 
+                    otherlv_1=(Token)match(input,33,FOLLOW_33_in_ruleFormat1000); 
 
                         	newLeafNode(otherlv_1, grammarAccess.getFormatAccess().getDINA6Keyword_0_1());
                         
@@ -1132,13 +1216,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:521:6: ( () otherlv_3= 'DIN A5' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:559:6: ( () otherlv_3= 'DIN A5' )
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:521:6: ( () otherlv_3= 'DIN A5' )
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:521:7: () otherlv_3= 'DIN A5'
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:559:6: ( () otherlv_3= 'DIN A5' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:559:7: () otherlv_3= 'DIN A5'
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:521:7: ()
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:522:5: 
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:559:7: ()
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:560:5: 
                     {
 
                             current = forceCreateModelElement(
@@ -1148,7 +1232,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_3=(Token)match(input,32,FOLLOW_32_in_ruleFormat945); 
+                    otherlv_3=(Token)match(input,34,FOLLOW_34_in_ruleFormat1029); 
 
                         	newLeafNode(otherlv_3, grammarAccess.getFormatAccess().getDINA5Keyword_1_1());
                         
@@ -1159,13 +1243,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:532:6: ( () otherlv_5= 'DIN A4' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:570:6: ( () otherlv_5= 'DIN A4' )
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:532:6: ( () otherlv_5= 'DIN A4' )
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:532:7: () otherlv_5= 'DIN A4'
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:570:6: ( () otherlv_5= 'DIN A4' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:570:7: () otherlv_5= 'DIN A4'
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:532:7: ()
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:533:5: 
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:570:7: ()
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:571:5: 
                     {
 
                             current = forceCreateModelElement(
@@ -1175,7 +1259,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_5=(Token)match(input,33,FOLLOW_33_in_ruleFormat974); 
+                    otherlv_5=(Token)match(input,35,FOLLOW_35_in_ruleFormat1058); 
 
                         	newLeafNode(otherlv_5, grammarAccess.getFormatAccess().getDINA4Keyword_2_1());
                         
@@ -1186,13 +1270,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:543:6: ( () otherlv_7= 'DIN A3' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:581:6: ( () otherlv_7= 'DIN A3' )
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:543:6: ( () otherlv_7= 'DIN A3' )
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:543:7: () otherlv_7= 'DIN A3'
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:581:6: ( () otherlv_7= 'DIN A3' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:581:7: () otherlv_7= 'DIN A3'
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:543:7: ()
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:544:5: 
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:581:7: ()
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:582:5: 
                     {
 
                             current = forceCreateModelElement(
@@ -1202,7 +1286,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_7=(Token)match(input,34,FOLLOW_34_in_ruleFormat1003); 
+                    otherlv_7=(Token)match(input,36,FOLLOW_36_in_ruleFormat1087); 
 
                         	newLeafNode(otherlv_7, grammarAccess.getFormatAccess().getDINA3Keyword_3_1());
                         
@@ -1213,13 +1297,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:554:6: ( () otherlv_9= 'DIN A2' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:592:6: ( () otherlv_9= 'DIN A2' )
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:554:6: ( () otherlv_9= 'DIN A2' )
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:554:7: () otherlv_9= 'DIN A2'
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:592:6: ( () otherlv_9= 'DIN A2' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:592:7: () otherlv_9= 'DIN A2'
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:554:7: ()
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:555:5: 
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:592:7: ()
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:593:5: 
                     {
 
                             current = forceCreateModelElement(
@@ -1229,7 +1313,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_9=(Token)match(input,35,FOLLOW_35_in_ruleFormat1032); 
+                    otherlv_9=(Token)match(input,37,FOLLOW_37_in_ruleFormat1116); 
 
                         	newLeafNode(otherlv_9, grammarAccess.getFormatAccess().getDINA2Keyword_4_1());
                         
@@ -1240,13 +1324,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:565:6: ( () otherlv_11= 'DIN A1' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:603:6: ( () otherlv_11= 'DIN A1' )
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:565:6: ( () otherlv_11= 'DIN A1' )
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:565:7: () otherlv_11= 'DIN A1'
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:603:6: ( () otherlv_11= 'DIN A1' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:603:7: () otherlv_11= 'DIN A1'
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:565:7: ()
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:566:5: 
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:603:7: ()
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:604:5: 
                     {
 
                             current = forceCreateModelElement(
@@ -1256,7 +1340,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_11=(Token)match(input,36,FOLLOW_36_in_ruleFormat1061); 
+                    otherlv_11=(Token)match(input,38,FOLLOW_38_in_ruleFormat1145); 
 
                         	newLeafNode(otherlv_11, grammarAccess.getFormatAccess().getDINA1Keyword_5_1());
                         
@@ -1267,13 +1351,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:576:6: ( () otherlv_13= 'DIN A0' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:614:6: ( () otherlv_13= 'DIN A0' )
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:576:6: ( () otherlv_13= 'DIN A0' )
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:576:7: () otherlv_13= 'DIN A0'
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:614:6: ( () otherlv_13= 'DIN A0' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:614:7: () otherlv_13= 'DIN A0'
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:576:7: ()
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:577:5: 
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:614:7: ()
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:615:5: 
                     {
 
                             current = forceCreateModelElement(
@@ -1283,7 +1367,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_13=(Token)match(input,37,FOLLOW_37_in_ruleFormat1090); 
+                    otherlv_13=(Token)match(input,39,FOLLOW_39_in_ruleFormat1174); 
 
                         	newLeafNode(otherlv_13, grammarAccess.getFormatAccess().getDINA0Keyword_6_1());
                         
@@ -1314,7 +1398,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleDate"
-    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:594:1: entryRuleDate returns [EObject current=null] : iv_ruleDate= ruleDate EOF ;
+    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:632:1: entryRuleDate returns [EObject current=null] : iv_ruleDate= ruleDate EOF ;
     public final EObject entryRuleDate() throws RecognitionException {
         EObject current = null;
 
@@ -1322,17 +1406,17 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:595:2: (iv_ruleDate= ruleDate EOF )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:596:2: iv_ruleDate= ruleDate EOF
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:633:2: (iv_ruleDate= ruleDate EOF )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:634:2: iv_ruleDate= ruleDate EOF
             {
              newCompositeNode(grammarAccess.getDateRule()); 
-            pushFollow(FOLLOW_ruleDate_in_entryRuleDate1127);
+            pushFollow(FOLLOW_ruleDate_in_entryRuleDate1211);
             iv_ruleDate=ruleDate();
 
             state._fsp--;
 
              current =iv_ruleDate; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleDate1137); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleDate1221); 
 
             }
 
@@ -1350,7 +1434,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDate"
-    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:603:1: ruleDate returns [EObject current=null] : (otherlv_0= '{' ( (lv_day_1_0= RULE_INT ) ) otherlv_2= '-' ( (lv_month_3_0= RULE_INT ) ) otherlv_4= '-' ( (lv_year_5_0= RULE_INT ) ) otherlv_6= '}' ) ;
+    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:641:1: ruleDate returns [EObject current=null] : (otherlv_0= '{' ( (lv_day_1_0= RULE_INT ) ) otherlv_2= '-' ( (lv_month_3_0= RULE_INT ) ) otherlv_4= '-' ( (lv_year_5_0= RULE_INT ) ) otherlv_6= '}' ) ;
     public final EObject ruleDate() throws RecognitionException {
         EObject current = null;
 
@@ -1365,23 +1449,23 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:606:28: ( (otherlv_0= '{' ( (lv_day_1_0= RULE_INT ) ) otherlv_2= '-' ( (lv_month_3_0= RULE_INT ) ) otherlv_4= '-' ( (lv_year_5_0= RULE_INT ) ) otherlv_6= '}' ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:607:1: (otherlv_0= '{' ( (lv_day_1_0= RULE_INT ) ) otherlv_2= '-' ( (lv_month_3_0= RULE_INT ) ) otherlv_4= '-' ( (lv_year_5_0= RULE_INT ) ) otherlv_6= '}' )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:644:28: ( (otherlv_0= '{' ( (lv_day_1_0= RULE_INT ) ) otherlv_2= '-' ( (lv_month_3_0= RULE_INT ) ) otherlv_4= '-' ( (lv_year_5_0= RULE_INT ) ) otherlv_6= '}' ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:645:1: (otherlv_0= '{' ( (lv_day_1_0= RULE_INT ) ) otherlv_2= '-' ( (lv_month_3_0= RULE_INT ) ) otherlv_4= '-' ( (lv_year_5_0= RULE_INT ) ) otherlv_6= '}' )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:607:1: (otherlv_0= '{' ( (lv_day_1_0= RULE_INT ) ) otherlv_2= '-' ( (lv_month_3_0= RULE_INT ) ) otherlv_4= '-' ( (lv_year_5_0= RULE_INT ) ) otherlv_6= '}' )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:607:3: otherlv_0= '{' ( (lv_day_1_0= RULE_INT ) ) otherlv_2= '-' ( (lv_month_3_0= RULE_INT ) ) otherlv_4= '-' ( (lv_year_5_0= RULE_INT ) ) otherlv_6= '}'
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:645:1: (otherlv_0= '{' ( (lv_day_1_0= RULE_INT ) ) otherlv_2= '-' ( (lv_month_3_0= RULE_INT ) ) otherlv_4= '-' ( (lv_year_5_0= RULE_INT ) ) otherlv_6= '}' )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:645:3: otherlv_0= '{' ( (lv_day_1_0= RULE_INT ) ) otherlv_2= '-' ( (lv_month_3_0= RULE_INT ) ) otherlv_4= '-' ( (lv_year_5_0= RULE_INT ) ) otherlv_6= '}'
             {
-            otherlv_0=(Token)match(input,14,FOLLOW_14_in_ruleDate1174); 
+            otherlv_0=(Token)match(input,13,FOLLOW_13_in_ruleDate1258); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getDateAccess().getLeftCurlyBracketKeyword_0());
                 
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:611:1: ( (lv_day_1_0= RULE_INT ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:612:1: (lv_day_1_0= RULE_INT )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:649:1: ( (lv_day_1_0= RULE_INT ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:650:1: (lv_day_1_0= RULE_INT )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:612:1: (lv_day_1_0= RULE_INT )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:613:3: lv_day_1_0= RULE_INT
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:650:1: (lv_day_1_0= RULE_INT )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:651:3: lv_day_1_0= RULE_INT
             {
-            lv_day_1_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleDate1191); 
+            lv_day_1_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleDate1275); 
 
             			newLeafNode(lv_day_1_0, grammarAccess.getDateAccess().getDayINTTerminalRuleCall_1_0()); 
             		
@@ -1401,17 +1485,17 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,24,FOLLOW_24_in_ruleDate1208); 
+            otherlv_2=(Token)match(input,26,FOLLOW_26_in_ruleDate1292); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getDateAccess().getHyphenMinusKeyword_2());
                 
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:633:1: ( (lv_month_3_0= RULE_INT ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:634:1: (lv_month_3_0= RULE_INT )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:671:1: ( (lv_month_3_0= RULE_INT ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:672:1: (lv_month_3_0= RULE_INT )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:634:1: (lv_month_3_0= RULE_INT )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:635:3: lv_month_3_0= RULE_INT
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:672:1: (lv_month_3_0= RULE_INT )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:673:3: lv_month_3_0= RULE_INT
             {
-            lv_month_3_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleDate1225); 
+            lv_month_3_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleDate1309); 
 
             			newLeafNode(lv_month_3_0, grammarAccess.getDateAccess().getMonthINTTerminalRuleCall_3_0()); 
             		
@@ -1431,17 +1515,17 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,24,FOLLOW_24_in_ruleDate1242); 
+            otherlv_4=(Token)match(input,26,FOLLOW_26_in_ruleDate1326); 
 
                 	newLeafNode(otherlv_4, grammarAccess.getDateAccess().getHyphenMinusKeyword_4());
                 
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:655:1: ( (lv_year_5_0= RULE_INT ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:656:1: (lv_year_5_0= RULE_INT )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:693:1: ( (lv_year_5_0= RULE_INT ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:694:1: (lv_year_5_0= RULE_INT )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:656:1: (lv_year_5_0= RULE_INT )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:657:3: lv_year_5_0= RULE_INT
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:694:1: (lv_year_5_0= RULE_INT )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:695:3: lv_year_5_0= RULE_INT
             {
-            lv_year_5_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleDate1259); 
+            lv_year_5_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleDate1343); 
 
             			newLeafNode(lv_year_5_0, grammarAccess.getDateAccess().getYearINTTerminalRuleCall_5_0()); 
             		
@@ -1461,7 +1545,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_6=(Token)match(input,15,FOLLOW_15_in_ruleDate1276); 
+            otherlv_6=(Token)match(input,16,FOLLOW_16_in_ruleDate1360); 
 
                 	newLeafNode(otherlv_6, grammarAccess.getDateAccess().getRightCurlyBracketKeyword_6());
                 
@@ -1486,7 +1570,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLanguage"
-    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:685:1: entryRuleLanguage returns [EObject current=null] : iv_ruleLanguage= ruleLanguage EOF ;
+    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:723:1: entryRuleLanguage returns [EObject current=null] : iv_ruleLanguage= ruleLanguage EOF ;
     public final EObject entryRuleLanguage() throws RecognitionException {
         EObject current = null;
 
@@ -1494,17 +1578,17 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:686:2: (iv_ruleLanguage= ruleLanguage EOF )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:687:2: iv_ruleLanguage= ruleLanguage EOF
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:724:2: (iv_ruleLanguage= ruleLanguage EOF )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:725:2: iv_ruleLanguage= ruleLanguage EOF
             {
              newCompositeNode(grammarAccess.getLanguageRule()); 
-            pushFollow(FOLLOW_ruleLanguage_in_entryRuleLanguage1312);
+            pushFollow(FOLLOW_ruleLanguage_in_entryRuleLanguage1396);
             iv_ruleLanguage=ruleLanguage();
 
             state._fsp--;
 
              current =iv_ruleLanguage; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleLanguage1322); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleLanguage1406); 
 
             }
 
@@ -1522,7 +1606,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLanguage"
-    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:694:1: ruleLanguage returns [EObject current=null] : ( ( () otherlv_1= 'English' ) | ( () otherlv_3= 'German' ) ) ;
+    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:732:1: ruleLanguage returns [EObject current=null] : ( ( () otherlv_1= 'English' ) | ( () otherlv_3= 'German' ) ) ;
     public final EObject ruleLanguage() throws RecognitionException {
         EObject current = null;
 
@@ -1532,34 +1616,34 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:697:28: ( ( ( () otherlv_1= 'English' ) | ( () otherlv_3= 'German' ) ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:698:1: ( ( () otherlv_1= 'English' ) | ( () otherlv_3= 'German' ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:735:28: ( ( ( () otherlv_1= 'English' ) | ( () otherlv_3= 'German' ) ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:736:1: ( ( () otherlv_1= 'English' ) | ( () otherlv_3= 'German' ) )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:698:1: ( ( () otherlv_1= 'English' ) | ( () otherlv_3= 'German' ) )
-            int alt8=2;
-            int LA8_0 = input.LA(1);
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:736:1: ( ( () otherlv_1= 'English' ) | ( () otherlv_3= 'German' ) )
+            int alt9=2;
+            int LA9_0 = input.LA(1);
 
-            if ( (LA8_0==38) ) {
-                alt8=1;
+            if ( (LA9_0==40) ) {
+                alt9=1;
             }
-            else if ( (LA8_0==39) ) {
-                alt8=2;
+            else if ( (LA9_0==41) ) {
+                alt9=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 8, 0, input);
+                    new NoViableAltException("", 9, 0, input);
 
                 throw nvae;
             }
-            switch (alt8) {
+            switch (alt9) {
                 case 1 :
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:698:2: ( () otherlv_1= 'English' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:736:2: ( () otherlv_1= 'English' )
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:698:2: ( () otherlv_1= 'English' )
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:698:3: () otherlv_1= 'English'
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:736:2: ( () otherlv_1= 'English' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:736:3: () otherlv_1= 'English'
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:698:3: ()
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:699:5: 
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:736:3: ()
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:737:5: 
                     {
 
                             current = forceCreateModelElement(
@@ -1569,7 +1653,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_1=(Token)match(input,38,FOLLOW_38_in_ruleLanguage1369); 
+                    otherlv_1=(Token)match(input,40,FOLLOW_40_in_ruleLanguage1453); 
 
                         	newLeafNode(otherlv_1, grammarAccess.getLanguageAccess().getEnglishKeyword_0_1());
                         
@@ -1580,13 +1664,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:709:6: ( () otherlv_3= 'German' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:747:6: ( () otherlv_3= 'German' )
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:709:6: ( () otherlv_3= 'German' )
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:709:7: () otherlv_3= 'German'
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:747:6: ( () otherlv_3= 'German' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:747:7: () otherlv_3= 'German'
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:709:7: ()
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:710:5: 
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:747:7: ()
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:748:5: 
                     {
 
                             current = forceCreateModelElement(
@@ -1596,7 +1680,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_3=(Token)match(input,39,FOLLOW_39_in_ruleLanguage1398); 
+                    otherlv_3=(Token)match(input,41,FOLLOW_41_in_ruleLanguage1482); 
 
                         	newLeafNode(otherlv_3, grammarAccess.getLanguageAccess().getGermanKeyword_1_1());
                         
@@ -1627,7 +1711,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePrice"
-    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:727:1: entryRulePrice returns [EObject current=null] : iv_rulePrice= rulePrice EOF ;
+    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:765:1: entryRulePrice returns [EObject current=null] : iv_rulePrice= rulePrice EOF ;
     public final EObject entryRulePrice() throws RecognitionException {
         EObject current = null;
 
@@ -1635,17 +1719,17 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:728:2: (iv_rulePrice= rulePrice EOF )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:729:2: iv_rulePrice= rulePrice EOF
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:766:2: (iv_rulePrice= rulePrice EOF )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:767:2: iv_rulePrice= rulePrice EOF
             {
              newCompositeNode(grammarAccess.getPriceRule()); 
-            pushFollow(FOLLOW_rulePrice_in_entryRulePrice1435);
+            pushFollow(FOLLOW_rulePrice_in_entryRulePrice1519);
             iv_rulePrice=rulePrice();
 
             state._fsp--;
 
              current =iv_rulePrice; 
-            match(input,EOF,FOLLOW_EOF_in_entryRulePrice1445); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulePrice1529); 
 
             }
 
@@ -1663,7 +1747,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePrice"
-    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:736:1: rulePrice returns [EObject current=null] : (otherlv_0= '{' ( (lv_value_1_0= RULE_STRING ) ) ( (lv_currency_2_0= ruleCurrency ) ) otherlv_3= '}' ) ;
+    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:774:1: rulePrice returns [EObject current=null] : (otherlv_0= '{' ( (lv_value_1_0= RULE_PREIS ) ) ( (lv_currency_2_0= ruleCurrency ) ) otherlv_3= '}' ) ;
     public final EObject rulePrice() throws RecognitionException {
         EObject current = null;
 
@@ -1676,25 +1760,25 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:739:28: ( (otherlv_0= '{' ( (lv_value_1_0= RULE_STRING ) ) ( (lv_currency_2_0= ruleCurrency ) ) otherlv_3= '}' ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:740:1: (otherlv_0= '{' ( (lv_value_1_0= RULE_STRING ) ) ( (lv_currency_2_0= ruleCurrency ) ) otherlv_3= '}' )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:777:28: ( (otherlv_0= '{' ( (lv_value_1_0= RULE_PREIS ) ) ( (lv_currency_2_0= ruleCurrency ) ) otherlv_3= '}' ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:778:1: (otherlv_0= '{' ( (lv_value_1_0= RULE_PREIS ) ) ( (lv_currency_2_0= ruleCurrency ) ) otherlv_3= '}' )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:740:1: (otherlv_0= '{' ( (lv_value_1_0= RULE_STRING ) ) ( (lv_currency_2_0= ruleCurrency ) ) otherlv_3= '}' )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:740:3: otherlv_0= '{' ( (lv_value_1_0= RULE_STRING ) ) ( (lv_currency_2_0= ruleCurrency ) ) otherlv_3= '}'
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:778:1: (otherlv_0= '{' ( (lv_value_1_0= RULE_PREIS ) ) ( (lv_currency_2_0= ruleCurrency ) ) otherlv_3= '}' )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:778:3: otherlv_0= '{' ( (lv_value_1_0= RULE_PREIS ) ) ( (lv_currency_2_0= ruleCurrency ) ) otherlv_3= '}'
             {
-            otherlv_0=(Token)match(input,14,FOLLOW_14_in_rulePrice1482); 
+            otherlv_0=(Token)match(input,13,FOLLOW_13_in_rulePrice1566); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getPriceAccess().getLeftCurlyBracketKeyword_0());
                 
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:744:1: ( (lv_value_1_0= RULE_STRING ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:745:1: (lv_value_1_0= RULE_STRING )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:782:1: ( (lv_value_1_0= RULE_PREIS ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:783:1: (lv_value_1_0= RULE_PREIS )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:745:1: (lv_value_1_0= RULE_STRING )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:746:3: lv_value_1_0= RULE_STRING
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:783:1: (lv_value_1_0= RULE_PREIS )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:784:3: lv_value_1_0= RULE_PREIS
             {
-            lv_value_1_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rulePrice1499); 
+            lv_value_1_0=(Token)match(input,RULE_PREIS,FOLLOW_RULE_PREIS_in_rulePrice1583); 
 
-            			newLeafNode(lv_value_1_0, grammarAccess.getPriceAccess().getValueSTRINGTerminalRuleCall_1_0()); 
+            			newLeafNode(lv_value_1_0, grammarAccess.getPriceAccess().getValuePREISTerminalRuleCall_1_0()); 
             		
 
             	        if (current==null) {
@@ -1704,7 +1788,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                    			current, 
                    			"value",
                     		lv_value_1_0, 
-                    		"STRING");
+                    		"PREIS");
             	    
 
             }
@@ -1712,16 +1796,16 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:762:2: ( (lv_currency_2_0= ruleCurrency ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:763:1: (lv_currency_2_0= ruleCurrency )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:800:2: ( (lv_currency_2_0= ruleCurrency ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:801:1: (lv_currency_2_0= ruleCurrency )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:763:1: (lv_currency_2_0= ruleCurrency )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:764:3: lv_currency_2_0= ruleCurrency
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:801:1: (lv_currency_2_0= ruleCurrency )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:802:3: lv_currency_2_0= ruleCurrency
             {
              
             	        newCompositeNode(grammarAccess.getPriceAccess().getCurrencyCurrencyParserRuleCall_2_0()); 
             	    
-            pushFollow(FOLLOW_ruleCurrency_in_rulePrice1525);
+            pushFollow(FOLLOW_ruleCurrency_in_rulePrice1609);
             lv_currency_2_0=ruleCurrency();
 
             state._fsp--;
@@ -1743,7 +1827,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,15,FOLLOW_15_in_rulePrice1537); 
+            otherlv_3=(Token)match(input,16,FOLLOW_16_in_rulePrice1621); 
 
                 	newLeafNode(otherlv_3, grammarAccess.getPriceAccess().getRightCurlyBracketKeyword_3());
                 
@@ -1768,7 +1852,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleCurrency"
-    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:792:1: entryRuleCurrency returns [EObject current=null] : iv_ruleCurrency= ruleCurrency EOF ;
+    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:830:1: entryRuleCurrency returns [EObject current=null] : iv_ruleCurrency= ruleCurrency EOF ;
     public final EObject entryRuleCurrency() throws RecognitionException {
         EObject current = null;
 
@@ -1776,17 +1860,17 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:793:2: (iv_ruleCurrency= ruleCurrency EOF )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:794:2: iv_ruleCurrency= ruleCurrency EOF
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:831:2: (iv_ruleCurrency= ruleCurrency EOF )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:832:2: iv_ruleCurrency= ruleCurrency EOF
             {
              newCompositeNode(grammarAccess.getCurrencyRule()); 
-            pushFollow(FOLLOW_ruleCurrency_in_entryRuleCurrency1573);
+            pushFollow(FOLLOW_ruleCurrency_in_entryRuleCurrency1657);
             iv_ruleCurrency=ruleCurrency();
 
             state._fsp--;
 
              current =iv_ruleCurrency; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleCurrency1583); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleCurrency1667); 
 
             }
 
@@ -1804,7 +1888,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCurrency"
-    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:801:1: ruleCurrency returns [EObject current=null] : ( ( () otherlv_1= 'Euro' ) | ( () otherlv_3= 'Dollar' ) ) ;
+    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:839:1: ruleCurrency returns [EObject current=null] : ( ( () otherlv_1= 'Euro [\\u20AC]' ) | ( () otherlv_3= 'Dollar [$]' ) ) ;
     public final EObject ruleCurrency() throws RecognitionException {
         EObject current = null;
 
@@ -1814,34 +1898,34 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:804:28: ( ( ( () otherlv_1= 'Euro' ) | ( () otherlv_3= 'Dollar' ) ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:805:1: ( ( () otherlv_1= 'Euro' ) | ( () otherlv_3= 'Dollar' ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:842:28: ( ( ( () otherlv_1= 'Euro [\\u20AC]' ) | ( () otherlv_3= 'Dollar [$]' ) ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:843:1: ( ( () otherlv_1= 'Euro [\\u20AC]' ) | ( () otherlv_3= 'Dollar [$]' ) )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:805:1: ( ( () otherlv_1= 'Euro' ) | ( () otherlv_3= 'Dollar' ) )
-            int alt9=2;
-            int LA9_0 = input.LA(1);
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:843:1: ( ( () otherlv_1= 'Euro [\\u20AC]' ) | ( () otherlv_3= 'Dollar [$]' ) )
+            int alt10=2;
+            int LA10_0 = input.LA(1);
 
-            if ( (LA9_0==40) ) {
-                alt9=1;
+            if ( (LA10_0==42) ) {
+                alt10=1;
             }
-            else if ( (LA9_0==41) ) {
-                alt9=2;
+            else if ( (LA10_0==43) ) {
+                alt10=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 9, 0, input);
+                    new NoViableAltException("", 10, 0, input);
 
                 throw nvae;
             }
-            switch (alt9) {
+            switch (alt10) {
                 case 1 :
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:805:2: ( () otherlv_1= 'Euro' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:843:2: ( () otherlv_1= 'Euro [\\u20AC]' )
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:805:2: ( () otherlv_1= 'Euro' )
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:805:3: () otherlv_1= 'Euro'
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:843:2: ( () otherlv_1= 'Euro [\\u20AC]' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:843:3: () otherlv_1= 'Euro [\\u20AC]'
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:805:3: ()
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:806:5: 
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:843:3: ()
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:844:5: 
                     {
 
                             current = forceCreateModelElement(
@@ -1851,7 +1935,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_1=(Token)match(input,40,FOLLOW_40_in_ruleCurrency1630); 
+                    otherlv_1=(Token)match(input,42,FOLLOW_42_in_ruleCurrency1714); 
 
                         	newLeafNode(otherlv_1, grammarAccess.getCurrencyAccess().getEuroKeyword_0_1());
                         
@@ -1862,13 +1946,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:816:6: ( () otherlv_3= 'Dollar' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:854:6: ( () otherlv_3= 'Dollar [$]' )
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:816:6: ( () otherlv_3= 'Dollar' )
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:816:7: () otherlv_3= 'Dollar'
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:854:6: ( () otherlv_3= 'Dollar [$]' )
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:854:7: () otherlv_3= 'Dollar [$]'
                     {
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:816:7: ()
-                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:817:5: 
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:854:7: ()
+                    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:855:5: 
                     {
 
                             current = forceCreateModelElement(
@@ -1878,7 +1962,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_3=(Token)match(input,41,FOLLOW_41_in_ruleCurrency1659); 
+                    otherlv_3=(Token)match(input,43,FOLLOW_43_in_ruleCurrency1743); 
 
                         	newLeafNode(otherlv_3, grammarAccess.getCurrencyAccess().getDollarKeyword_1_1());
                         
@@ -1909,7 +1993,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleTopic"
-    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:834:1: entryRuleTopic returns [EObject current=null] : iv_ruleTopic= ruleTopic EOF ;
+    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:872:1: entryRuleTopic returns [EObject current=null] : iv_ruleTopic= ruleTopic EOF ;
     public final EObject entryRuleTopic() throws RecognitionException {
         EObject current = null;
 
@@ -1917,17 +2001,17 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:835:2: (iv_ruleTopic= ruleTopic EOF )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:836:2: iv_ruleTopic= ruleTopic EOF
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:873:2: (iv_ruleTopic= ruleTopic EOF )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:874:2: iv_ruleTopic= ruleTopic EOF
             {
              newCompositeNode(grammarAccess.getTopicRule()); 
-            pushFollow(FOLLOW_ruleTopic_in_entryRuleTopic1696);
+            pushFollow(FOLLOW_ruleTopic_in_entryRuleTopic1780);
             iv_ruleTopic=ruleTopic();
 
             state._fsp--;
 
              current =iv_ruleTopic; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleTopic1706); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleTopic1790); 
 
             }
 
@@ -1945,7 +2029,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTopic"
-    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:843:1: ruleTopic returns [EObject current=null] : (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= ruleTopicTag ) ) (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )* otherlv_6= '}' ) ;
+    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:881:1: ruleTopic returns [EObject current=null] : (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= ruleTopicTag ) ) (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )* otherlv_6= '}' ) ;
     public final EObject ruleTopic() throws RecognitionException {
         EObject current = null;
 
@@ -1962,23 +2046,23 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:846:28: ( (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= ruleTopicTag ) ) (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )* otherlv_6= '}' ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:847:1: (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= ruleTopicTag ) ) (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )* otherlv_6= '}' )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:884:28: ( (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= ruleTopicTag ) ) (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )* otherlv_6= '}' ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:885:1: (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= ruleTopicTag ) ) (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )* otherlv_6= '}' )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:847:1: (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= ruleTopicTag ) ) (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )* otherlv_6= '}' )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:847:3: otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= ruleTopicTag ) ) (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )* otherlv_6= '}'
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:885:1: (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= ruleTopicTag ) ) (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )* otherlv_6= '}' )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:885:3: otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= ruleTopicTag ) ) (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )* otherlv_6= '}'
             {
-            otherlv_0=(Token)match(input,42,FOLLOW_42_in_ruleTopic1743); 
+            otherlv_0=(Token)match(input,44,FOLLOW_44_in_ruleTopic1827); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getTopicAccess().getTopicKeyword_0());
                 
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:851:1: ( (lv_name_1_0= RULE_ID ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:852:1: (lv_name_1_0= RULE_ID )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:889:1: ( (lv_name_1_0= RULE_ID ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:890:1: (lv_name_1_0= RULE_ID )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:852:1: (lv_name_1_0= RULE_ID )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:853:3: lv_name_1_0= RULE_ID
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:890:1: (lv_name_1_0= RULE_ID )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:891:3: lv_name_1_0= RULE_ID
             {
-            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleTopic1760); 
+            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleTopic1844); 
 
             			newLeafNode(lv_name_1_0, grammarAccess.getTopicAccess().getNameIDTerminalRuleCall_1_0()); 
             		
@@ -1998,20 +2082,20 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,14,FOLLOW_14_in_ruleTopic1777); 
+            otherlv_2=(Token)match(input,13,FOLLOW_13_in_ruleTopic1861); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getTopicAccess().getLeftCurlyBracketKeyword_2());
                 
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:873:1: ( (lv_tags_3_0= ruleTopicTag ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:874:1: (lv_tags_3_0= ruleTopicTag )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:911:1: ( (lv_tags_3_0= ruleTopicTag ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:912:1: (lv_tags_3_0= ruleTopicTag )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:874:1: (lv_tags_3_0= ruleTopicTag )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:875:3: lv_tags_3_0= ruleTopicTag
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:912:1: (lv_tags_3_0= ruleTopicTag )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:913:3: lv_tags_3_0= ruleTopicTag
             {
              
             	        newCompositeNode(grammarAccess.getTopicAccess().getTagsTopicTagParserRuleCall_3_0()); 
             	    
-            pushFollow(FOLLOW_ruleTopicTag_in_ruleTopic1798);
+            pushFollow(FOLLOW_ruleTopicTag_in_ruleTopic1882);
             lv_tags_3_0=ruleTopicTag();
 
             state._fsp--;
@@ -2033,35 +2117,35 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:891:2: (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )*
-            loop10:
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:929:2: (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )*
+            loop11:
             do {
-                int alt10=2;
-                int LA10_0 = input.LA(1);
+                int alt11=2;
+                int LA11_0 = input.LA(1);
 
-                if ( (LA10_0==43) ) {
-                    alt10=1;
+                if ( (LA11_0==15) ) {
+                    alt11=1;
                 }
 
 
-                switch (alt10) {
+                switch (alt11) {
             	case 1 :
-            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:891:4: otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) )
+            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:929:4: otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) )
             	    {
-            	    otherlv_4=(Token)match(input,43,FOLLOW_43_in_ruleTopic1811); 
+            	    otherlv_4=(Token)match(input,15,FOLLOW_15_in_ruleTopic1895); 
 
             	        	newLeafNode(otherlv_4, grammarAccess.getTopicAccess().getCommaSpaceKeyword_4_0());
             	        
-            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:895:1: ( (lv_tags_5_0= ruleTopicTag ) )
-            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:896:1: (lv_tags_5_0= ruleTopicTag )
+            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:933:1: ( (lv_tags_5_0= ruleTopicTag ) )
+            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:934:1: (lv_tags_5_0= ruleTopicTag )
             	    {
-            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:896:1: (lv_tags_5_0= ruleTopicTag )
-            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:897:3: lv_tags_5_0= ruleTopicTag
+            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:934:1: (lv_tags_5_0= ruleTopicTag )
+            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:935:3: lv_tags_5_0= ruleTopicTag
             	    {
             	     
             	    	        newCompositeNode(grammarAccess.getTopicAccess().getTagsTopicTagParserRuleCall_4_1_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleTopicTag_in_ruleTopic1832);
+            	    pushFollow(FOLLOW_ruleTopicTag_in_ruleTopic1916);
             	    lv_tags_5_0=ruleTopicTag();
 
             	    state._fsp--;
@@ -2088,11 +2172,11 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop10;
+            	    break loop11;
                 }
             } while (true);
 
-            otherlv_6=(Token)match(input,15,FOLLOW_15_in_ruleTopic1846); 
+            otherlv_6=(Token)match(input,16,FOLLOW_16_in_ruleTopic1930); 
 
                 	newLeafNode(otherlv_6, grammarAccess.getTopicAccess().getRightCurlyBracketKeyword_5());
                 
@@ -2117,7 +2201,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleTopicTag"
-    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:925:1: entryRuleTopicTag returns [EObject current=null] : iv_ruleTopicTag= ruleTopicTag EOF ;
+    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:963:1: entryRuleTopicTag returns [EObject current=null] : iv_ruleTopicTag= ruleTopicTag EOF ;
     public final EObject entryRuleTopicTag() throws RecognitionException {
         EObject current = null;
 
@@ -2125,17 +2209,17 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:926:2: (iv_ruleTopicTag= ruleTopicTag EOF )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:927:2: iv_ruleTopicTag= ruleTopicTag EOF
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:964:2: (iv_ruleTopicTag= ruleTopicTag EOF )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:965:2: iv_ruleTopicTag= ruleTopicTag EOF
             {
              newCompositeNode(grammarAccess.getTopicTagRule()); 
-            pushFollow(FOLLOW_ruleTopicTag_in_entryRuleTopicTag1882);
+            pushFollow(FOLLOW_ruleTopicTag_in_entryRuleTopicTag1966);
             iv_ruleTopicTag=ruleTopicTag();
 
             state._fsp--;
 
              current =iv_ruleTopicTag; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleTopicTag1892); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleTopicTag1976); 
 
             }
 
@@ -2153,7 +2237,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTopicTag"
-    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:934:1: ruleTopicTag returns [EObject current=null] : ( (lv_value_0_0= RULE_STRING ) ) ;
+    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:972:1: ruleTopicTag returns [EObject current=null] : ( (lv_value_0_0= RULE_STRING ) ) ;
     public final EObject ruleTopicTag() throws RecognitionException {
         EObject current = null;
 
@@ -2162,16 +2246,16 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:937:28: ( ( (lv_value_0_0= RULE_STRING ) ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:938:1: ( (lv_value_0_0= RULE_STRING ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:975:28: ( ( (lv_value_0_0= RULE_STRING ) ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:976:1: ( (lv_value_0_0= RULE_STRING ) )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:938:1: ( (lv_value_0_0= RULE_STRING ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:939:1: (lv_value_0_0= RULE_STRING )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:976:1: ( (lv_value_0_0= RULE_STRING ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:977:1: (lv_value_0_0= RULE_STRING )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:939:1: (lv_value_0_0= RULE_STRING )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:940:3: lv_value_0_0= RULE_STRING
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:977:1: (lv_value_0_0= RULE_STRING )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:978:3: lv_value_0_0= RULE_STRING
             {
-            lv_value_0_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleTopicTag1933); 
+            lv_value_0_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleTopicTag2017); 
 
             			newLeafNode(lv_value_0_0, grammarAccess.getTopicTagAccess().getValueSTRINGTerminalRuleCall_0()); 
             		
@@ -2208,184 +2292,8 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleTopicTag"
 
 
-    // $ANTLR start "entryRuleFeedlinks"
-    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:964:1: entryRuleFeedlinks returns [EObject current=null] : iv_ruleFeedlinks= ruleFeedlinks EOF ;
-    public final EObject entryRuleFeedlinks() throws RecognitionException {
-        EObject current = null;
-
-        EObject iv_ruleFeedlinks = null;
-
-
-        try {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:965:2: (iv_ruleFeedlinks= ruleFeedlinks EOF )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:966:2: iv_ruleFeedlinks= ruleFeedlinks EOF
-            {
-             newCompositeNode(grammarAccess.getFeedlinksRule()); 
-            pushFollow(FOLLOW_ruleFeedlinks_in_entryRuleFeedlinks1973);
-            iv_ruleFeedlinks=ruleFeedlinks();
-
-            state._fsp--;
-
-             current =iv_ruleFeedlinks; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleFeedlinks1983); 
-
-            }
-
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "entryRuleFeedlinks"
-
-
-    // $ANTLR start "ruleFeedlinks"
-    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:973:1: ruleFeedlinks returns [EObject current=null] : (otherlv_0= '{' ( (lv_pairs_1_0= rulePair ) ) (otherlv_2= ', ' ( (lv_pairs_3_0= rulePair ) ) )* otherlv_4= '}' ) ;
-    public final EObject ruleFeedlinks() throws RecognitionException {
-        EObject current = null;
-
-        Token otherlv_0=null;
-        Token otherlv_2=null;
-        Token otherlv_4=null;
-        EObject lv_pairs_1_0 = null;
-
-        EObject lv_pairs_3_0 = null;
-
-
-         enterRule(); 
-            
-        try {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:976:28: ( (otherlv_0= '{' ( (lv_pairs_1_0= rulePair ) ) (otherlv_2= ', ' ( (lv_pairs_3_0= rulePair ) ) )* otherlv_4= '}' ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:977:1: (otherlv_0= '{' ( (lv_pairs_1_0= rulePair ) ) (otherlv_2= ', ' ( (lv_pairs_3_0= rulePair ) ) )* otherlv_4= '}' )
-            {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:977:1: (otherlv_0= '{' ( (lv_pairs_1_0= rulePair ) ) (otherlv_2= ', ' ( (lv_pairs_3_0= rulePair ) ) )* otherlv_4= '}' )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:977:3: otherlv_0= '{' ( (lv_pairs_1_0= rulePair ) ) (otherlv_2= ', ' ( (lv_pairs_3_0= rulePair ) ) )* otherlv_4= '}'
-            {
-            otherlv_0=(Token)match(input,14,FOLLOW_14_in_ruleFeedlinks2020); 
-
-                	newLeafNode(otherlv_0, grammarAccess.getFeedlinksAccess().getLeftCurlyBracketKeyword_0());
-                
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:981:1: ( (lv_pairs_1_0= rulePair ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:982:1: (lv_pairs_1_0= rulePair )
-            {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:982:1: (lv_pairs_1_0= rulePair )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:983:3: lv_pairs_1_0= rulePair
-            {
-             
-            	        newCompositeNode(grammarAccess.getFeedlinksAccess().getPairsPairParserRuleCall_1_0()); 
-            	    
-            pushFollow(FOLLOW_rulePair_in_ruleFeedlinks2041);
-            lv_pairs_1_0=rulePair();
-
-            state._fsp--;
-
-
-            	        if (current==null) {
-            	            current = createModelElementForParent(grammarAccess.getFeedlinksRule());
-            	        }
-                   		add(
-                   			current, 
-                   			"pairs",
-                    		lv_pairs_1_0, 
-                    		"Pair");
-            	        afterParserOrEnumRuleCall();
-            	    
-
-            }
-
-
-            }
-
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:999:2: (otherlv_2= ', ' ( (lv_pairs_3_0= rulePair ) ) )*
-            loop11:
-            do {
-                int alt11=2;
-                int LA11_0 = input.LA(1);
-
-                if ( (LA11_0==43) ) {
-                    alt11=1;
-                }
-
-
-                switch (alt11) {
-            	case 1 :
-            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:999:4: otherlv_2= ', ' ( (lv_pairs_3_0= rulePair ) )
-            	    {
-            	    otherlv_2=(Token)match(input,43,FOLLOW_43_in_ruleFeedlinks2054); 
-
-            	        	newLeafNode(otherlv_2, grammarAccess.getFeedlinksAccess().getCommaSpaceKeyword_2_0());
-            	        
-            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1003:1: ( (lv_pairs_3_0= rulePair ) )
-            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1004:1: (lv_pairs_3_0= rulePair )
-            	    {
-            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1004:1: (lv_pairs_3_0= rulePair )
-            	    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1005:3: lv_pairs_3_0= rulePair
-            	    {
-            	     
-            	    	        newCompositeNode(grammarAccess.getFeedlinksAccess().getPairsPairParserRuleCall_2_1_0()); 
-            	    	    
-            	    pushFollow(FOLLOW_rulePair_in_ruleFeedlinks2075);
-            	    lv_pairs_3_0=rulePair();
-
-            	    state._fsp--;
-
-
-            	    	        if (current==null) {
-            	    	            current = createModelElementForParent(grammarAccess.getFeedlinksRule());
-            	    	        }
-            	           		add(
-            	           			current, 
-            	           			"pairs",
-            	            		lv_pairs_3_0, 
-            	            		"Pair");
-            	    	        afterParserOrEnumRuleCall();
-            	    	    
-
-            	    }
-
-
-            	    }
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop11;
-                }
-            } while (true);
-
-            otherlv_4=(Token)match(input,15,FOLLOW_15_in_ruleFeedlinks2089); 
-
-                	newLeafNode(otherlv_4, grammarAccess.getFeedlinksAccess().getRightCurlyBracketKeyword_3());
-                
-
-            }
-
-
-            }
-
-             leaveRule(); 
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "ruleFeedlinks"
-
-
     // $ANTLR start "entryRulePair"
-    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1033:1: entryRulePair returns [EObject current=null] : iv_rulePair= rulePair EOF ;
+    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1002:1: entryRulePair returns [EObject current=null] : iv_rulePair= rulePair EOF ;
     public final EObject entryRulePair() throws RecognitionException {
         EObject current = null;
 
@@ -2393,17 +2301,17 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1034:2: (iv_rulePair= rulePair EOF )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1035:2: iv_rulePair= rulePair EOF
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1003:2: (iv_rulePair= rulePair EOF )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1004:2: iv_rulePair= rulePair EOF
             {
              newCompositeNode(grammarAccess.getPairRule()); 
-            pushFollow(FOLLOW_rulePair_in_entryRulePair2125);
+            pushFollow(FOLLOW_rulePair_in_entryRulePair2057);
             iv_rulePair=rulePair();
 
             state._fsp--;
 
              current =iv_rulePair; 
-            match(input,EOF,FOLLOW_EOF_in_entryRulePair2135); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulePair2067); 
 
             }
 
@@ -2421,37 +2329,32 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePair"
-    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1042:1: rulePair returns [EObject current=null] : (otherlv_0= '{' ( (lv_key_1_0= RULE_ID ) ) ( (lv_value_2_0= RULE_STRING ) ) otherlv_3= '}' ) ;
+    // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1011:1: rulePair returns [EObject current=null] : ( ( (lv_key_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_value_2_0= RULE_STRING ) ) ) ;
     public final EObject rulePair() throws RecognitionException {
         EObject current = null;
 
-        Token otherlv_0=null;
-        Token lv_key_1_0=null;
+        Token lv_key_0_0=null;
+        Token otherlv_1=null;
         Token lv_value_2_0=null;
-        Token otherlv_3=null;
 
          enterRule(); 
             
         try {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1045:28: ( (otherlv_0= '{' ( (lv_key_1_0= RULE_ID ) ) ( (lv_value_2_0= RULE_STRING ) ) otherlv_3= '}' ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1046:1: (otherlv_0= '{' ( (lv_key_1_0= RULE_ID ) ) ( (lv_value_2_0= RULE_STRING ) ) otherlv_3= '}' )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1014:28: ( ( ( (lv_key_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_value_2_0= RULE_STRING ) ) ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1015:1: ( ( (lv_key_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_value_2_0= RULE_STRING ) ) )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1046:1: (otherlv_0= '{' ( (lv_key_1_0= RULE_ID ) ) ( (lv_value_2_0= RULE_STRING ) ) otherlv_3= '}' )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1046:3: otherlv_0= '{' ( (lv_key_1_0= RULE_ID ) ) ( (lv_value_2_0= RULE_STRING ) ) otherlv_3= '}'
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1015:1: ( ( (lv_key_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_value_2_0= RULE_STRING ) ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1015:2: ( (lv_key_0_0= RULE_ID ) ) otherlv_1= ':' ( (lv_value_2_0= RULE_STRING ) )
             {
-            otherlv_0=(Token)match(input,14,FOLLOW_14_in_rulePair2172); 
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1015:2: ( (lv_key_0_0= RULE_ID ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1016:1: (lv_key_0_0= RULE_ID )
+            {
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1016:1: (lv_key_0_0= RULE_ID )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1017:3: lv_key_0_0= RULE_ID
+            {
+            lv_key_0_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePair2109); 
 
-                	newLeafNode(otherlv_0, grammarAccess.getPairAccess().getLeftCurlyBracketKeyword_0());
-                
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1050:1: ( (lv_key_1_0= RULE_ID ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1051:1: (lv_key_1_0= RULE_ID )
-            {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1051:1: (lv_key_1_0= RULE_ID )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1052:3: lv_key_1_0= RULE_ID
-            {
-            lv_key_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePair2189); 
-
-            			newLeafNode(lv_key_1_0, grammarAccess.getPairAccess().getKeyIDTerminalRuleCall_1_0()); 
+            			newLeafNode(lv_key_0_0, grammarAccess.getPairAccess().getKeyIDTerminalRuleCall_0_0()); 
             		
 
             	        if (current==null) {
@@ -2460,7 +2363,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                    		setWithLastConsumed(
                    			current, 
                    			"key",
-                    		lv_key_1_0, 
+                    		lv_key_0_0, 
                     		"ID");
             	    
 
@@ -2469,13 +2372,17 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1068:2: ( (lv_value_2_0= RULE_STRING ) )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1069:1: (lv_value_2_0= RULE_STRING )
+            otherlv_1=(Token)match(input,45,FOLLOW_45_in_rulePair2126); 
+
+                	newLeafNode(otherlv_1, grammarAccess.getPairAccess().getColonKeyword_1());
+                
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1037:1: ( (lv_value_2_0= RULE_STRING ) )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1038:1: (lv_value_2_0= RULE_STRING )
             {
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1069:1: (lv_value_2_0= RULE_STRING )
-            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1070:3: lv_value_2_0= RULE_STRING
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1038:1: (lv_value_2_0= RULE_STRING )
+            // ../de.tu_bs.cs.isf.mbse.mbtimes.npl/src-gen/de/tu_bs/cs/isf/mbse/mbtimes/parser/antlr/internal/InternalNpl.g:1039:3: lv_value_2_0= RULE_STRING
             {
-            lv_value_2_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rulePair2211); 
+            lv_value_2_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rulePair2143); 
 
             			newLeafNode(lv_value_2_0, grammarAccess.getPairAccess().getValueSTRINGTerminalRuleCall_2_0()); 
             		
@@ -2495,10 +2402,6 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,15,FOLLOW_15_in_rulePair2228); 
-
-                	newLeafNode(otherlv_3, grammarAccess.getPairAccess().getRightCurlyBracketKeyword_3());
-                
 
             }
 
@@ -2525,100 +2428,98 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
     public static final BitSet FOLLOW_ruleDeclaration_in_entryRuleDeclaration75 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleDeclaration85 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_11_in_ruleDeclaration122 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleDeclaration139 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_12_in_ruleDeclaration156 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_ruleFeedlinks_in_ruleDeclaration177 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleDeclaration189 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_14_in_ruleDeclaration201 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_ruleTopic_in_ruleDeclaration222 = new BitSet(new long[]{0x0000040000008000L});
-    public static final BitSet FOLLOW_ruleTopic_in_ruleDeclaration243 = new BitSet(new long[]{0x0000040000008000L});
-    public static final BitSet FOLLOW_15_in_ruleDeclaration256 = new BitSet(new long[]{0x0000000000070000L});
-    public static final BitSet FOLLOW_16_in_ruleDeclaration269 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_ruleDate_in_ruleDeclaration290 = new BitSet(new long[]{0x0000000000060000L});
-    public static final BitSet FOLLOW_17_in_ruleDeclaration305 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleDeclaration322 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleDeclaration341 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_rulePrice_in_ruleDeclaration362 = new BitSet(new long[]{0x0000000000180000L});
-    public static final BitSet FOLLOW_19_in_ruleDeclaration375 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleDeclaration392 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_20_in_ruleDeclaration411 = new BitSet(new long[]{0x000000C000000000L});
-    public static final BitSet FOLLOW_ruleLanguage_in_ruleDeclaration432 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_ruleDeclaration444 = new BitSet(new long[]{0x0000003F80000000L});
-    public static final BitSet FOLLOW_ruleFormat_in_ruleDeclaration465 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_22_in_ruleDeclaration477 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleDeclaration494 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_ruleDeclaration511 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleDeclaration528 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_24_in_ruleDeclaration545 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleDeclaration562 = new BitSet(new long[]{0x0000000006000000L});
-    public static final BitSet FOLLOW_25_in_ruleDeclaration580 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleDeclaration597 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_ruleDeclaration616 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleDeclaration633 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_ruleDeclaration650 = new BitSet(new long[]{0x0000000070000000L});
-    public static final BitSet FOLLOW_ruleFontSize_in_ruleDeclaration671 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFontSize_in_entryRuleFontSize707 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleFontSize717 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_ruleFontSize764 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_ruleFontSize793 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_ruleFontSize822 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFormat_in_entryRuleFormat859 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleFormat869 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_ruleFormat916 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_ruleFormat945 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_ruleFormat974 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_ruleFormat1003 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_ruleFormat1032 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_ruleFormat1061 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_ruleFormat1090 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDate_in_entryRuleDate1127 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleDate1137 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_ruleDate1174 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleDate1191 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_24_in_ruleDate1208 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleDate1225 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_24_in_ruleDate1242 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleDate1259 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_15_in_ruleDate1276 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLanguage_in_entryRuleLanguage1312 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleLanguage1322 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_ruleLanguage1369 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_ruleLanguage1398 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePrice_in_entryRulePrice1435 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePrice1445 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_rulePrice1482 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rulePrice1499 = new BitSet(new long[]{0x0000030000000000L});
-    public static final BitSet FOLLOW_ruleCurrency_in_rulePrice1525 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_15_in_rulePrice1537 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCurrency_in_entryRuleCurrency1573 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleCurrency1583 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_ruleCurrency1630 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_41_in_ruleCurrency1659 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTopic_in_entryRuleTopic1696 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleTopic1706 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_42_in_ruleTopic1743 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleTopic1760 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_14_in_ruleTopic1777 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_ruleTopicTag_in_ruleTopic1798 = new BitSet(new long[]{0x0000080000008000L});
-    public static final BitSet FOLLOW_43_in_ruleTopic1811 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_ruleTopicTag_in_ruleTopic1832 = new BitSet(new long[]{0x0000080000008000L});
-    public static final BitSet FOLLOW_15_in_ruleTopic1846 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTopicTag_in_entryRuleTopicTag1882 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleTopicTag1892 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleTopicTag1933 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFeedlinks_in_entryRuleFeedlinks1973 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleFeedlinks1983 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_ruleFeedlinks2020 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_rulePair_in_ruleFeedlinks2041 = new BitSet(new long[]{0x0000080000008000L});
-    public static final BitSet FOLLOW_43_in_ruleFeedlinks2054 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_rulePair_in_ruleFeedlinks2075 = new BitSet(new long[]{0x0000080000008000L});
-    public static final BitSet FOLLOW_15_in_ruleFeedlinks2089 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePair_in_entryRulePair2125 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePair2135 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_rulePair2172 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_rulePair2189 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rulePair2211 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_15_in_rulePair2228 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_12_in_ruleDeclaration122 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleDeclaration139 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_13_in_ruleDeclaration156 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_14_in_ruleDeclaration168 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_13_in_ruleDeclaration180 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rulePair_in_ruleDeclaration201 = new BitSet(new long[]{0x0000000000018000L});
+    public static final BitSet FOLLOW_15_in_ruleDeclaration214 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rulePair_in_ruleDeclaration235 = new BitSet(new long[]{0x0000000000018000L});
+    public static final BitSet FOLLOW_16_in_ruleDeclaration249 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_ruleDeclaration261 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_13_in_ruleDeclaration273 = new BitSet(new long[]{0x0000100000000000L});
+    public static final BitSet FOLLOW_ruleTopic_in_ruleDeclaration294 = new BitSet(new long[]{0x0000100000010000L});
+    public static final BitSet FOLLOW_ruleTopic_in_ruleDeclaration315 = new BitSet(new long[]{0x0000100000010000L});
+    public static final BitSet FOLLOW_16_in_ruleDeclaration328 = new BitSet(new long[]{0x00000000001C0000L});
+    public static final BitSet FOLLOW_18_in_ruleDeclaration341 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_ruleDate_in_ruleDeclaration362 = new BitSet(new long[]{0x0000000000180000L});
+    public static final BitSet FOLLOW_19_in_ruleDeclaration377 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleDeclaration394 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_20_in_ruleDeclaration413 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_rulePrice_in_ruleDeclaration434 = new BitSet(new long[]{0x0000000000600000L});
+    public static final BitSet FOLLOW_21_in_ruleDeclaration447 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleDeclaration464 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_22_in_ruleDeclaration483 = new BitSet(new long[]{0x0000030000000000L});
+    public static final BitSet FOLLOW_ruleLanguage_in_ruleDeclaration504 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_ruleDeclaration516 = new BitSet(new long[]{0x000000FE00000000L});
+    public static final BitSet FOLLOW_ruleFormat_in_ruleDeclaration537 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_24_in_ruleDeclaration549 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleDeclaration566 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_25_in_ruleDeclaration583 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleDeclaration600 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_ruleDeclaration617 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleDeclaration634 = new BitSet(new long[]{0x0000000018000000L});
+    public static final BitSet FOLLOW_27_in_ruleDeclaration652 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleDeclaration669 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_ruleDeclaration688 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleDeclaration705 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_29_in_ruleDeclaration722 = new BitSet(new long[]{0x00000001C0000000L});
+    public static final BitSet FOLLOW_ruleFontSize_in_ruleDeclaration743 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_ruleDeclaration755 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFontSize_in_entryRuleFontSize791 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleFontSize801 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_ruleFontSize848 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_ruleFontSize877 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_32_in_ruleFontSize906 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFormat_in_entryRuleFormat943 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleFormat953 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_ruleFormat1000 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_ruleFormat1029 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_ruleFormat1058 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_ruleFormat1087 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_ruleFormat1116 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_ruleFormat1145 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_ruleFormat1174 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDate_in_entryRuleDate1211 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleDate1221 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_ruleDate1258 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleDate1275 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_ruleDate1292 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleDate1309 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_ruleDate1326 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleDate1343 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_ruleDate1360 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLanguage_in_entryRuleLanguage1396 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleLanguage1406 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_ruleLanguage1453 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_41_in_ruleLanguage1482 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePrice_in_entryRulePrice1519 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulePrice1529 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_rulePrice1566 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_RULE_PREIS_in_rulePrice1583 = new BitSet(new long[]{0x00000C0000000000L});
+    public static final BitSet FOLLOW_ruleCurrency_in_rulePrice1609 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_rulePrice1621 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCurrency_in_entryRuleCurrency1657 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleCurrency1667 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_42_in_ruleCurrency1714 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_43_in_ruleCurrency1743 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTopic_in_entryRuleTopic1780 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleTopic1790 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_44_in_ruleTopic1827 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleTopic1844 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_13_in_ruleTopic1861 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_ruleTopicTag_in_ruleTopic1882 = new BitSet(new long[]{0x0000000000018000L});
+    public static final BitSet FOLLOW_15_in_ruleTopic1895 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_ruleTopicTag_in_ruleTopic1916 = new BitSet(new long[]{0x0000000000018000L});
+    public static final BitSet FOLLOW_16_in_ruleTopic1930 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTopicTag_in_entryRuleTopicTag1966 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleTopicTag1976 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleTopicTag2017 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePair_in_entryRulePair2057 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulePair2067 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rulePair2109 = new BitSet(new long[]{0x0000200000000000L});
+    public static final BitSet FOLLOW_45_in_rulePair2126 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rulePair2143 = new BitSet(new long[]{0x0000000000000002L});
 
 }

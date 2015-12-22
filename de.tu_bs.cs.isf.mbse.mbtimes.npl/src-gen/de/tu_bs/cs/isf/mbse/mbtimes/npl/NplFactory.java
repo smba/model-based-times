@@ -77,15 +77,6 @@ public interface NplFactory extends EFactory
   TopicTag createTopicTag();
 
   /**
-   * Returns a new object of class '<em>Feedlinks</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Feedlinks</em>'.
-   * @generated
-   */
-  Feedlinks createFeedlinks();
-
-  /**
    * Returns a new object of class '<em>Pair</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

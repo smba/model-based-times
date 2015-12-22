@@ -8,7 +8,6 @@ import com.google.inject.Provider;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Date;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.EString;
-import de.tu_bs.cs.isf.mbse.mbtimes.npl.Feedlinks;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Pair;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Price;
@@ -44,9 +43,6 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case NplPackage.ESTRING:
 				sequence_Currency_FontSize_Format_Language(context, (EString) semanticObject); 
-				return; 
-			case NplPackage.FEEDLINKS:
-				sequence_Feedlinks(context, (Feedlinks) semanticObject); 
 				return; 
 			case NplPackage.PAIR:
 				sequence_Pair(context, (Pair) semanticObject); 
@@ -99,7 +95,8 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         name=ID 
-	 *         feedlinks=Feedlinks 
+	 *         feedlinks+=Pair 
+	 *         pairs+=Pair* 
 	 *         topics+=Topic 
 	 *         topics+=Topic* 
 	 *         date=Date? 
@@ -123,15 +120,6 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (pairs+=Pair pairs+=Pair*)
-	 */
-	protected void sequence_Feedlinks(EObject context, Feedlinks semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     (key=ID value=STRING)
 	 */
 	protected void sequence_Pair(EObject context, Pair semanticObject) {
@@ -143,7 +131,7 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPairAccess().getKeyIDTerminalRuleCall_1_0(), semanticObject.getKey());
+		feeder.accept(grammarAccess.getPairAccess().getKeyIDTerminalRuleCall_0_0(), semanticObject.getKey());
 		feeder.accept(grammarAccess.getPairAccess().getValueSTRINGTerminalRuleCall_2_0(), semanticObject.getValue());
 		feeder.finish();
 	}
@@ -151,7 +139,7 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (value=STRING currency=Currency)
+	 *     (value=PREIS currency=Currency)
 	 */
 	protected void sequence_Price(EObject context, Price semanticObject) {
 		if(errorAcceptor != null) {
@@ -162,7 +150,7 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPriceAccess().getValueSTRINGTerminalRuleCall_1_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getPriceAccess().getValuePREISTerminalRuleCall_1_0(), semanticObject.getValue());
 		feeder.accept(grammarAccess.getPriceAccess().getCurrencyCurrencyParserRuleCall_2_0(), semanticObject.getCurrency());
 		feeder.finish();
 	}

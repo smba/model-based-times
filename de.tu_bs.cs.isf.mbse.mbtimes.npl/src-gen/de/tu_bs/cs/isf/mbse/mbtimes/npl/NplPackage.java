@@ -76,7 +76,7 @@ public interface NplPackage extends EPackage
   int DECLARATION__NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Feedlinks</b></em>' containment reference.
+   * The feature id for the '<em><b>Feedlinks</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -85,13 +85,22 @@ public interface NplPackage extends EPackage
   int DECLARATION__FEEDLINKS = 1;
 
   /**
+   * The feature id for the '<em><b>Pairs</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECLARATION__PAIRS = 2;
+
+  /**
    * The feature id for the '<em><b>Topics</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DECLARATION__TOPICS = 2;
+  int DECLARATION__TOPICS = 3;
 
   /**
    * The feature id for the '<em><b>Date</b></em>' containment reference.
@@ -100,7 +109,7 @@ public interface NplPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DECLARATION__DATE = 3;
+  int DECLARATION__DATE = 4;
 
   /**
    * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -109,7 +118,7 @@ public interface NplPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DECLARATION__LOCATION = 4;
+  int DECLARATION__LOCATION = 5;
 
   /**
    * The feature id for the '<em><b>Price</b></em>' containment reference.
@@ -118,7 +127,7 @@ public interface NplPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DECLARATION__PRICE = 5;
+  int DECLARATION__PRICE = 6;
 
   /**
    * The feature id for the '<em><b>Volume</b></em>' attribute.
@@ -127,7 +136,7 @@ public interface NplPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DECLARATION__VOLUME = 6;
+  int DECLARATION__VOLUME = 7;
 
   /**
    * The feature id for the '<em><b>Language</b></em>' containment reference.
@@ -136,7 +145,7 @@ public interface NplPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DECLARATION__LANGUAGE = 7;
+  int DECLARATION__LANGUAGE = 8;
 
   /**
    * The feature id for the '<em><b>Format</b></em>' containment reference.
@@ -145,7 +154,7 @@ public interface NplPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DECLARATION__FORMAT = 8;
+  int DECLARATION__FORMAT = 9;
 
   /**
    * The feature id for the '<em><b>Article cnt</b></em>' attribute.
@@ -154,7 +163,7 @@ public interface NplPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DECLARATION__ARTICLE_CNT = 9;
+  int DECLARATION__ARTICLE_CNT = 10;
 
   /**
    * The feature id for the '<em><b>Article char min</b></em>' attribute.
@@ -163,7 +172,7 @@ public interface NplPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DECLARATION__ARTICLE_CHAR_MIN = 10;
+  int DECLARATION__ARTICLE_CHAR_MIN = 11;
 
   /**
    * The feature id for the '<em><b>Article char max</b></em>' attribute.
@@ -172,7 +181,7 @@ public interface NplPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DECLARATION__ARTICLE_CHAR_MAX = 11;
+  int DECLARATION__ARTICLE_CHAR_MAX = 12;
 
   /**
    * The feature id for the '<em><b>Article images</b></em>' attribute.
@@ -181,7 +190,7 @@ public interface NplPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DECLARATION__ARTICLE_IMAGES = 12;
+  int DECLARATION__ARTICLE_IMAGES = 13;
 
   /**
    * The feature id for the '<em><b>Columns cnt</b></em>' attribute.
@@ -190,7 +199,7 @@ public interface NplPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DECLARATION__COLUMNS_CNT = 13;
+  int DECLARATION__COLUMNS_CNT = 14;
 
   /**
    * The feature id for the '<em><b>Font size</b></em>' containment reference.
@@ -199,7 +208,7 @@ public interface NplPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DECLARATION__FONT_SIZE = 14;
+  int DECLARATION__FONT_SIZE = 15;
 
   /**
    * The number of structural features of the '<em>Declaration</em>' class.
@@ -208,7 +217,7 @@ public interface NplPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DECLARATION_FEATURE_COUNT = 15;
+  int DECLARATION_FEATURE_COUNT = 16;
 
   /**
    * The meta object id for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.EStringImpl <em>EString</em>}' class.
@@ -378,34 +387,6 @@ public interface NplPackage extends EPackage
   int TOPIC_TAG_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.FeedlinksImpl <em>Feedlinks</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.FeedlinksImpl
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getFeedlinks()
-   * @generated
-   */
-  int FEEDLINKS = 6;
-
-  /**
-   * The feature id for the '<em><b>Pairs</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FEEDLINKS__PAIRS = 0;
-
-  /**
-   * The number of structural features of the '<em>Feedlinks</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FEEDLINKS_FEATURE_COUNT = 1;
-
-  /**
    * The meta object id for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.PairImpl <em>Pair</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -413,7 +394,7 @@ public interface NplPackage extends EPackage
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getPair()
    * @generated
    */
-  int PAIR = 7;
+  int PAIR = 6;
 
   /**
    * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -465,15 +446,26 @@ public interface NplPackage extends EPackage
   EAttribute getDeclaration_Name();
 
   /**
-   * Returns the meta object for the containment reference '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFeedlinks <em>Feedlinks</em>}'.
+   * Returns the meta object for the containment reference list '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFeedlinks <em>Feedlinks</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Feedlinks</em>'.
+   * @return the meta object for the containment reference list '<em>Feedlinks</em>'.
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFeedlinks()
    * @see #getDeclaration()
    * @generated
    */
   EReference getDeclaration_Feedlinks();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getPairs <em>Pairs</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Pairs</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getPairs()
+   * @see #getDeclaration()
+   * @generated
+   */
+  EReference getDeclaration_Pairs();
 
   /**
    * Returns the meta object for the containment reference list '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getTopics <em>Topics</em>}'.
@@ -757,27 +749,6 @@ public interface NplPackage extends EPackage
   EAttribute getTopicTag_Value();
 
   /**
-   * Returns the meta object for class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Feedlinks <em>Feedlinks</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Feedlinks</em>'.
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Feedlinks
-   * @generated
-   */
-  EClass getFeedlinks();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Feedlinks#getPairs <em>Pairs</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Pairs</em>'.
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Feedlinks#getPairs()
-   * @see #getFeedlinks()
-   * @generated
-   */
-  EReference getFeedlinks_Pairs();
-
-  /**
    * Returns the meta object for class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Pair <em>Pair</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -851,12 +822,20 @@ public interface NplPackage extends EPackage
     EAttribute DECLARATION__NAME = eINSTANCE.getDeclaration_Name();
 
     /**
-     * The meta object literal for the '<em><b>Feedlinks</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Feedlinks</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference DECLARATION__FEEDLINKS = eINSTANCE.getDeclaration_Feedlinks();
+
+    /**
+     * The meta object literal for the '<em><b>Pairs</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DECLARATION__PAIRS = eINSTANCE.getDeclaration_Pairs();
 
     /**
      * The meta object literal for the '<em><b>Topics</b></em>' containment reference list feature.
@@ -1075,24 +1054,6 @@ public interface NplPackage extends EPackage
      * @generated
      */
     EAttribute TOPIC_TAG__VALUE = eINSTANCE.getTopicTag_Value();
-
-    /**
-     * The meta object literal for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.FeedlinksImpl <em>Feedlinks</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.FeedlinksImpl
-     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getFeedlinks()
-     * @generated
-     */
-    EClass FEEDLINKS = eINSTANCE.getFeedlinks();
-
-    /**
-     * The meta object literal for the '<em><b>Pairs</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference FEEDLINKS__PAIRS = eINSTANCE.getFeedlinks_Pairs();
 
     /**
      * The meta object literal for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.PairImpl <em>Pair</em>}' class.

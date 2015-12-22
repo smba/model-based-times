@@ -70,7 +70,6 @@ public class NplFactoryImpl extends EFactoryImpl implements NplFactory
       case NplPackage.PRICE: return createPrice();
       case NplPackage.TOPIC: return createTopic();
       case NplPackage.TOPIC_TAG: return createTopicTag();
-      case NplPackage.FEEDLINKS: return createFeedlinks();
       case NplPackage.PAIR: return createPair();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -141,17 +140,6 @@ public class NplFactoryImpl extends EFactoryImpl implements NplFactory
   {
     TopicTagImpl topicTag = new TopicTagImpl();
     return topicTag;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Feedlinks createFeedlinks()
-  {
-    FeedlinksImpl feedlinks = new FeedlinksImpl();
-    return feedlinks;
   }
 
   /**
