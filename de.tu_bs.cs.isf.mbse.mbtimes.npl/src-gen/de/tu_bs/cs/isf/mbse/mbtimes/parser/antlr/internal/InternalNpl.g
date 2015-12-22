@@ -341,9 +341,9 @@ ruleDeclaration returns [EObject current=null]
     }
 (
 (
-		lv_article_cnt_27_0=RULE_INT
+		lv_articleCnt_27_0=RULE_INT
 		{
-			newLeafNode(lv_article_cnt_27_0, grammarAccess.getDeclarationAccess().getArticle_cntINTTerminalRuleCall_23_0()); 
+			newLeafNode(lv_articleCnt_27_0, grammarAccess.getDeclarationAccess().getArticleCntINTTerminalRuleCall_23_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -351,8 +351,8 @@ ruleDeclaration returns [EObject current=null]
 	        }
        		setWithLastConsumed(
        			$current, 
-       			"article_cnt",
-        		lv_article_cnt_27_0, 
+       			"articleCnt",
+        		lv_articleCnt_27_0, 
         		"INT");
 	    }
 
@@ -363,9 +363,9 @@ ruleDeclaration returns [EObject current=null]
     }
 (
 (
-		lv_article_char_min_29_0=RULE_INT
+		lv_articleCharMin_29_0=RULE_INT
 		{
-			newLeafNode(lv_article_char_min_29_0, grammarAccess.getDeclarationAccess().getArticle_char_minINTTerminalRuleCall_25_0()); 
+			newLeafNode(lv_articleCharMin_29_0, grammarAccess.getDeclarationAccess().getArticleCharMinINTTerminalRuleCall_25_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -373,8 +373,8 @@ ruleDeclaration returns [EObject current=null]
 	        }
        		setWithLastConsumed(
        			$current, 
-       			"article_char_min",
-        		lv_article_char_min_29_0, 
+       			"articleCharMin",
+        		lv_articleCharMin_29_0, 
         		"INT");
 	    }
 
@@ -407,9 +407,9 @@ ruleDeclaration returns [EObject current=null]
     }
 (
 (
-		lv_article_images_33_0=RULE_INT
+		lv_imagesCnt_33_0=RULE_INT
 		{
-			newLeafNode(lv_article_images_33_0, grammarAccess.getDeclarationAccess().getArticle_imagesINTTerminalRuleCall_28_1_0()); 
+			newLeafNode(lv_imagesCnt_33_0, grammarAccess.getDeclarationAccess().getImagesCntINTTerminalRuleCall_28_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -417,8 +417,8 @@ ruleDeclaration returns [EObject current=null]
 	        }
        		setWithLastConsumed(
        			$current, 
-       			"article_images",
-        		lv_article_images_33_0, 
+       			"imagesCnt",
+        		lv_imagesCnt_33_0, 
         		"INT");
 	    }
 
@@ -429,9 +429,9 @@ ruleDeclaration returns [EObject current=null]
     }
 (
 (
-		lv_columns_cnt_35_0=RULE_INT
+		lv_columnsCnt_35_0=RULE_INT
 		{
-			newLeafNode(lv_columns_cnt_35_0, grammarAccess.getDeclarationAccess().getColumns_cntINTTerminalRuleCall_30_0()); 
+			newLeafNode(lv_columnsCnt_35_0, grammarAccess.getDeclarationAccess().getColumnsCntINTTerminalRuleCall_30_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -439,8 +439,8 @@ ruleDeclaration returns [EObject current=null]
 	        }
        		setWithLastConsumed(
        			$current, 
-       			"columns_cnt",
-        		lv_columns_cnt_35_0, 
+       			"columnsCnt",
+        		lv_columnsCnt_35_0, 
         		"INT");
 	    }
 
@@ -452,16 +452,16 @@ ruleDeclaration returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDeclarationAccess().getFont_sizeFontSizeParserRuleCall_32_0()); 
+	        newCompositeNode(grammarAccess.getDeclarationAccess().getFontSizeFontSizeParserRuleCall_32_0()); 
 	    }
-		lv_font_size_37_0=ruleFontSize		{
+		lv_fontSize_37_0=ruleFontSize		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDeclarationRule());
 	        }
        		set(
        			$current, 
-       			"font_size",
-        		lv_font_size_37_0, 
+       			"fontSize",
+        		lv_fontSize_37_0, 
         		"FontSize");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -781,19 +781,19 @@ rulePrice returns [EObject current=null]
     }
 (
 (
-		lv_value_1_0=RULE_PREIS
-		{
-			newLeafNode(lv_value_1_0, grammarAccess.getPriceAccess().getValuePREISTerminalRuleCall_1_0()); 
-		}
-		{
+		{ 
+	        newCompositeNode(grammarAccess.getPriceAccess().getValueValueParserRuleCall_1_0()); 
+	    }
+		lv_value_1_0=ruleValue		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPriceRule());
+	            $current = createModelElementForParent(grammarAccess.getPriceRule());
 	        }
-       		setWithLastConsumed(
+       		set(
        			$current, 
        			"value",
         		lv_value_1_0, 
-        		"PREIS");
+        		"Value");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
@@ -821,6 +821,54 @@ rulePrice returns [EObject current=null]
     }
 )
 ;
+
+
+
+
+
+// Entry rule entryRuleValue
+entryRuleValue returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getValueRule()); } 
+	 iv_ruleValue=ruleValue 
+	 { $current=$iv_ruleValue.current.getText(); }  
+	 EOF 
+;
+
+// Rule Value
+ruleValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(    this_INT_0=RULE_INT    {
+		$current.merge(this_INT_0);
+    }
+
+    { 
+    newLeafNode(this_INT_0, grammarAccess.getValueAccess().getINTTerminalRuleCall_0()); 
+    }
+(
+	kw='.' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getValueAccess().getFullStopKeyword_1_0()); 
+    }
+
+    |
+	kw=',' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getValueAccess().getCommaKeyword_1_1()); 
+    }
+)    this_INT_3=RULE_INT    {
+		$current.merge(this_INT_3);
+    }
+
+    { 
+    newLeafNode(this_INT_3, grammarAccess.getValueAccess().getINTTerminalRuleCall_2()); 
+    }
+)
+    ;
 
 
 
@@ -1058,8 +1106,6 @@ rulePair returns [EObject current=null]
 
 
 
-
-RULE_PREIS : ('0'..'9')+ (','|'.')* ('0'..'9')*;
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

@@ -25,12 +25,12 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getVolume <em>Volume</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getLanguage <em>Language</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFormat <em>Format</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_cnt <em>Article cnt</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_char_min <em>Article char min</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleCnt <em>Article Cnt</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleCharMin <em>Article Char Min</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_char_max <em>Article char max</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_images <em>Article images</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getColumns_cnt <em>Columns cnt</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFont_size <em>Font size</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getImagesCnt <em>Images Cnt</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getColumnsCnt <em>Columns Cnt</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFontSize <em>Font Size</em>}</li>
  * </ul>
  *
  * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration()
@@ -270,56 +270,56 @@ public interface Declaration extends EObject
   void setFormat(EString value);
 
   /**
-   * Returns the value of the '<em><b>Article cnt</b></em>' attribute.
+   * Returns the value of the '<em><b>Article Cnt</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Article cnt</em>' attribute isn't clear,
+   * If the meaning of the '<em>Article Cnt</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Article cnt</em>' attribute.
-   * @see #setArticle_cnt(int)
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_Article_cnt()
+   * @return the value of the '<em>Article Cnt</em>' attribute.
+   * @see #setArticleCnt(int)
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_ArticleCnt()
    * @model
    * @generated
    */
-  int getArticle_cnt();
+  int getArticleCnt();
 
   /**
-   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_cnt <em>Article cnt</em>}' attribute.
+   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleCnt <em>Article Cnt</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Article cnt</em>' attribute.
-   * @see #getArticle_cnt()
+   * @param value the new value of the '<em>Article Cnt</em>' attribute.
+   * @see #getArticleCnt()
    * @generated
    */
-  void setArticle_cnt(int value);
+  void setArticleCnt(int value);
 
   /**
-   * Returns the value of the '<em><b>Article char min</b></em>' attribute.
+   * Returns the value of the '<em><b>Article Char Min</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Article char min</em>' attribute isn't clear,
+   * If the meaning of the '<em>Article Char Min</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Article char min</em>' attribute.
-   * @see #setArticle_char_min(int)
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_Article_char_min()
+   * @return the value of the '<em>Article Char Min</em>' attribute.
+   * @see #setArticleCharMin(int)
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_ArticleCharMin()
    * @model
    * @generated
    */
-  int getArticle_char_min();
+  int getArticleCharMin();
 
   /**
-   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_char_min <em>Article char min</em>}' attribute.
+   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleCharMin <em>Article Char Min</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Article char min</em>' attribute.
-   * @see #getArticle_char_min()
+   * @param value the new value of the '<em>Article Char Min</em>' attribute.
+   * @see #getArticleCharMin()
    * @generated
    */
-  void setArticle_char_min(int value);
+  void setArticleCharMin(int value);
 
   /**
    * Returns the value of the '<em><b>Article char max</b></em>' attribute.
@@ -348,81 +348,81 @@ public interface Declaration extends EObject
   void setArticle_char_max(int value);
 
   /**
-   * Returns the value of the '<em><b>Article images</b></em>' attribute.
+   * Returns the value of the '<em><b>Images Cnt</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Article images</em>' attribute isn't clear,
+   * If the meaning of the '<em>Images Cnt</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Article images</em>' attribute.
-   * @see #setArticle_images(int)
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_Article_images()
+   * @return the value of the '<em>Images Cnt</em>' attribute.
+   * @see #setImagesCnt(int)
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_ImagesCnt()
    * @model
    * @generated
    */
-  int getArticle_images();
+  int getImagesCnt();
 
   /**
-   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_images <em>Article images</em>}' attribute.
+   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getImagesCnt <em>Images Cnt</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Article images</em>' attribute.
-   * @see #getArticle_images()
+   * @param value the new value of the '<em>Images Cnt</em>' attribute.
+   * @see #getImagesCnt()
    * @generated
    */
-  void setArticle_images(int value);
+  void setImagesCnt(int value);
 
   /**
-   * Returns the value of the '<em><b>Columns cnt</b></em>' attribute.
+   * Returns the value of the '<em><b>Columns Cnt</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Columns cnt</em>' attribute isn't clear,
+   * If the meaning of the '<em>Columns Cnt</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Columns cnt</em>' attribute.
-   * @see #setColumns_cnt(int)
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_Columns_cnt()
+   * @return the value of the '<em>Columns Cnt</em>' attribute.
+   * @see #setColumnsCnt(int)
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_ColumnsCnt()
    * @model
    * @generated
    */
-  int getColumns_cnt();
+  int getColumnsCnt();
 
   /**
-   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getColumns_cnt <em>Columns cnt</em>}' attribute.
+   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getColumnsCnt <em>Columns Cnt</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Columns cnt</em>' attribute.
-   * @see #getColumns_cnt()
+   * @param value the new value of the '<em>Columns Cnt</em>' attribute.
+   * @see #getColumnsCnt()
    * @generated
    */
-  void setColumns_cnt(int value);
+  void setColumnsCnt(int value);
 
   /**
-   * Returns the value of the '<em><b>Font size</b></em>' containment reference.
+   * Returns the value of the '<em><b>Font Size</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Font size</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Font Size</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Font size</em>' containment reference.
-   * @see #setFont_size(EString)
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_Font_size()
+   * @return the value of the '<em>Font Size</em>' containment reference.
+   * @see #setFontSize(EString)
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_FontSize()
    * @model containment="true"
    * @generated
    */
-  EString getFont_size();
+  EString getFontSize();
 
   /**
-   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFont_size <em>Font size</em>}' containment reference.
+   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFontSize <em>Font Size</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Font size</em>' containment reference.
-   * @see #getFont_size()
+   * @param value the new value of the '<em>Font Size</em>' containment reference.
+   * @see #getFontSize()
    * @generated
    */
-  void setFont_size(EString value);
+  void setFontSize(EString value);
 
 } // Declaration

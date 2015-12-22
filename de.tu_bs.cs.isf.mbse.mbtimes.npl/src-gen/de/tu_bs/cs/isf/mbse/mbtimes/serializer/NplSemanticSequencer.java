@@ -105,12 +105,12 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         volume=INT? 
 	 *         language=Language 
 	 *         format=Format 
-	 *         article_cnt=INT 
-	 *         article_char_min=INT 
+	 *         articleCnt=INT 
+	 *         articleCharMin=INT 
 	 *         article_char_max=INT 
-	 *         article_images=INT? 
-	 *         columns_cnt=INT 
-	 *         font_size=FontSize
+	 *         imagesCnt=INT? 
+	 *         columnsCnt=INT 
+	 *         fontSize=FontSize
 	 *     )
 	 */
 	protected void sequence_Declaration(EObject context, Declaration semanticObject) {
@@ -139,7 +139,7 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (value=PREIS currency=Currency)
+	 *     (value=Value currency=Currency)
 	 */
 	protected void sequence_Price(EObject context, Price semanticObject) {
 		if(errorAcceptor != null) {
@@ -150,7 +150,7 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPriceAccess().getValuePREISTerminalRuleCall_1_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getPriceAccess().getValueValueParserRuleCall_1_0(), semanticObject.getValue());
 		feeder.accept(grammarAccess.getPriceAccess().getCurrencyCurrencyParserRuleCall_2_0(), semanticObject.getCurrency());
 		feeder.finish();
 	}

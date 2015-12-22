@@ -22,11 +22,11 @@ Declaration:
 	("volume" volume=INT)?
 	"language" language=Language
 	"format" format=Format
-	"number of articles per topic" article_cnt=INT
-	"number of words per article" article_char_min=INT "-" article_char_max=INT
-	("number of images per article" article_images=INT)?
-	"number of columns" columns_cnt=INT
-	"font size" font_size=FontSize
+	"number of articles per topic" articleCnt=INT
+	"number of words per article" articleCharMin=INT "-" article_char_max=INT
+	("number of images per article" imagesCnt=INT)?
+	"number of columns" columnsCnt=INT
+	"font size" fontSize=FontSize
 	
 "}";
 
@@ -55,7 +55,11 @@ Language returns EString:
 	 
 
 Price:
-	"{" value=PREIS currency=Currency "}";
+	"{" value=Value currency=Currency "}";
+
+Value:
+	INT("."|",")INT
+;
 
 Currency returns EString:
 	{EString} "Euro [€]" | 
@@ -73,8 +77,8 @@ Pair:
 	key = ID ":" value = STRING 
 ;
 
-terminal PREIS: 
-	('0'..'9')+(','|'.')*('0'..'9')*
-;
+//terminal PREIS: 
+//	('0'..'9')+(','|'.')*('0'..'9')*
+//;
 
 

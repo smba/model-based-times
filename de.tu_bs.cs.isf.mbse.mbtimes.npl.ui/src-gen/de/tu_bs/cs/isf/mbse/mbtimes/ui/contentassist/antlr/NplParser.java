@@ -40,6 +40,7 @@ public class NplParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFontSizeAccess().getAlternatives(), "rule__FontSize__Alternatives");
 					put(grammarAccess.getFormatAccess().getAlternatives(), "rule__Format__Alternatives");
 					put(grammarAccess.getLanguageAccess().getAlternatives(), "rule__Language__Alternatives");
+					put(grammarAccess.getValueAccess().getAlternatives_1(), "rule__Value__Alternatives_1");
 					put(grammarAccess.getCurrencyAccess().getAlternatives(), "rule__Currency__Alternatives");
 					put(grammarAccess.getDeclarationAccess().getGroup(), "rule__Declaration__Group__0");
 					put(grammarAccess.getDeclarationAccess().getGroup_6(), "rule__Declaration__Group_6__0");
@@ -61,6 +62,7 @@ public class NplParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLanguageAccess().getGroup_0(), "rule__Language__Group_0__0");
 					put(grammarAccess.getLanguageAccess().getGroup_1(), "rule__Language__Group_1__0");
 					put(grammarAccess.getPriceAccess().getGroup(), "rule__Price__Group__0");
+					put(grammarAccess.getValueAccess().getGroup(), "rule__Value__Group__0");
 					put(grammarAccess.getCurrencyAccess().getGroup_0(), "rule__Currency__Group_0__0");
 					put(grammarAccess.getCurrencyAccess().getGroup_1(), "rule__Currency__Group_1__0");
 					put(grammarAccess.getTopicAccess().getGroup(), "rule__Topic__Group__0");
@@ -77,12 +79,12 @@ public class NplParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDeclarationAccess().getVolumeAssignment_17_1(), "rule__Declaration__VolumeAssignment_17_1");
 					put(grammarAccess.getDeclarationAccess().getLanguageAssignment_19(), "rule__Declaration__LanguageAssignment_19");
 					put(grammarAccess.getDeclarationAccess().getFormatAssignment_21(), "rule__Declaration__FormatAssignment_21");
-					put(grammarAccess.getDeclarationAccess().getArticle_cntAssignment_23(), "rule__Declaration__Article_cntAssignment_23");
-					put(grammarAccess.getDeclarationAccess().getArticle_char_minAssignment_25(), "rule__Declaration__Article_char_minAssignment_25");
+					put(grammarAccess.getDeclarationAccess().getArticleCntAssignment_23(), "rule__Declaration__ArticleCntAssignment_23");
+					put(grammarAccess.getDeclarationAccess().getArticleCharMinAssignment_25(), "rule__Declaration__ArticleCharMinAssignment_25");
 					put(grammarAccess.getDeclarationAccess().getArticle_char_maxAssignment_27(), "rule__Declaration__Article_char_maxAssignment_27");
-					put(grammarAccess.getDeclarationAccess().getArticle_imagesAssignment_28_1(), "rule__Declaration__Article_imagesAssignment_28_1");
-					put(grammarAccess.getDeclarationAccess().getColumns_cntAssignment_30(), "rule__Declaration__Columns_cntAssignment_30");
-					put(grammarAccess.getDeclarationAccess().getFont_sizeAssignment_32(), "rule__Declaration__Font_sizeAssignment_32");
+					put(grammarAccess.getDeclarationAccess().getImagesCntAssignment_28_1(), "rule__Declaration__ImagesCntAssignment_28_1");
+					put(grammarAccess.getDeclarationAccess().getColumnsCntAssignment_30(), "rule__Declaration__ColumnsCntAssignment_30");
+					put(grammarAccess.getDeclarationAccess().getFontSizeAssignment_32(), "rule__Declaration__FontSizeAssignment_32");
 					put(grammarAccess.getDateAccess().getDayAssignment_1(), "rule__Date__DayAssignment_1");
 					put(grammarAccess.getDateAccess().getMonthAssignment_3(), "rule__Date__MonthAssignment_3");
 					put(grammarAccess.getDateAccess().getYearAssignment_5(), "rule__Date__YearAssignment_5");

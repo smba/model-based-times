@@ -44,12 +44,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getVolume <em>Volume</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getLanguage <em>Language</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getFormat <em>Format</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getArticle_cnt <em>Article cnt</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getArticle_char_min <em>Article char min</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getArticleCnt <em>Article Cnt</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getArticleCharMin <em>Article Char Min</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getArticle_char_max <em>Article char max</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getArticle_images <em>Article images</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getColumns_cnt <em>Columns cnt</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getFont_size <em>Font size</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getImagesCnt <em>Images Cnt</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getColumnsCnt <em>Columns Cnt</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getFontSize <em>Font Size</em>}</li>
  * </ul>
  *
  * @generated
@@ -187,44 +187,44 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
   protected EString format;
 
   /**
-   * The default value of the '{@link #getArticle_cnt() <em>Article cnt</em>}' attribute.
+   * The default value of the '{@link #getArticleCnt() <em>Article Cnt</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getArticle_cnt()
+   * @see #getArticleCnt()
    * @generated
    * @ordered
    */
   protected static final int ARTICLE_CNT_EDEFAULT = 0;
 
   /**
-   * The cached value of the '{@link #getArticle_cnt() <em>Article cnt</em>}' attribute.
+   * The cached value of the '{@link #getArticleCnt() <em>Article Cnt</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getArticle_cnt()
+   * @see #getArticleCnt()
    * @generated
    * @ordered
    */
-  protected int article_cnt = ARTICLE_CNT_EDEFAULT;
+  protected int articleCnt = ARTICLE_CNT_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getArticle_char_min() <em>Article char min</em>}' attribute.
+   * The default value of the '{@link #getArticleCharMin() <em>Article Char Min</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getArticle_char_min()
+   * @see #getArticleCharMin()
    * @generated
    * @ordered
    */
   protected static final int ARTICLE_CHAR_MIN_EDEFAULT = 0;
 
   /**
-   * The cached value of the '{@link #getArticle_char_min() <em>Article char min</em>}' attribute.
+   * The cached value of the '{@link #getArticleCharMin() <em>Article Char Min</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getArticle_char_min()
+   * @see #getArticleCharMin()
    * @generated
    * @ordered
    */
-  protected int article_char_min = ARTICLE_CHAR_MIN_EDEFAULT;
+  protected int articleCharMin = ARTICLE_CHAR_MIN_EDEFAULT;
 
   /**
    * The default value of the '{@link #getArticle_char_max() <em>Article char max</em>}' attribute.
@@ -247,54 +247,54 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
   protected int article_char_max = ARTICLE_CHAR_MAX_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getArticle_images() <em>Article images</em>}' attribute.
+   * The default value of the '{@link #getImagesCnt() <em>Images Cnt</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getArticle_images()
+   * @see #getImagesCnt()
    * @generated
    * @ordered
    */
-  protected static final int ARTICLE_IMAGES_EDEFAULT = 0;
+  protected static final int IMAGES_CNT_EDEFAULT = 0;
 
   /**
-   * The cached value of the '{@link #getArticle_images() <em>Article images</em>}' attribute.
+   * The cached value of the '{@link #getImagesCnt() <em>Images Cnt</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getArticle_images()
+   * @see #getImagesCnt()
    * @generated
    * @ordered
    */
-  protected int article_images = ARTICLE_IMAGES_EDEFAULT;
+  protected int imagesCnt = IMAGES_CNT_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getColumns_cnt() <em>Columns cnt</em>}' attribute.
+   * The default value of the '{@link #getColumnsCnt() <em>Columns Cnt</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getColumns_cnt()
+   * @see #getColumnsCnt()
    * @generated
    * @ordered
    */
   protected static final int COLUMNS_CNT_EDEFAULT = 0;
 
   /**
-   * The cached value of the '{@link #getColumns_cnt() <em>Columns cnt</em>}' attribute.
+   * The cached value of the '{@link #getColumnsCnt() <em>Columns Cnt</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getColumns_cnt()
+   * @see #getColumnsCnt()
    * @generated
    * @ordered
    */
-  protected int columns_cnt = COLUMNS_CNT_EDEFAULT;
+  protected int columnsCnt = COLUMNS_CNT_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getFont_size() <em>Font size</em>}' containment reference.
+   * The cached value of the '{@link #getFontSize() <em>Font Size</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getFont_size()
+   * @see #getFontSize()
    * @generated
    * @ordered
    */
-  protected EString font_size;
+  protected EString fontSize;
 
   /**
    * <!-- begin-user-doc -->
@@ -625,9 +625,9 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public int getArticle_cnt()
+  public int getArticleCnt()
   {
-    return article_cnt;
+    return articleCnt;
   }
 
   /**
@@ -635,12 +635,12 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setArticle_cnt(int newArticle_cnt)
+  public void setArticleCnt(int newArticleCnt)
   {
-    int oldArticle_cnt = article_cnt;
-    article_cnt = newArticle_cnt;
+    int oldArticleCnt = articleCnt;
+    articleCnt = newArticleCnt;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__ARTICLE_CNT, oldArticle_cnt, article_cnt));
+      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__ARTICLE_CNT, oldArticleCnt, articleCnt));
   }
 
   /**
@@ -648,9 +648,9 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public int getArticle_char_min()
+  public int getArticleCharMin()
   {
-    return article_char_min;
+    return articleCharMin;
   }
 
   /**
@@ -658,12 +658,12 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setArticle_char_min(int newArticle_char_min)
+  public void setArticleCharMin(int newArticleCharMin)
   {
-    int oldArticle_char_min = article_char_min;
-    article_char_min = newArticle_char_min;
+    int oldArticleCharMin = articleCharMin;
+    articleCharMin = newArticleCharMin;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__ARTICLE_CHAR_MIN, oldArticle_char_min, article_char_min));
+      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__ARTICLE_CHAR_MIN, oldArticleCharMin, articleCharMin));
   }
 
   /**
@@ -694,9 +694,9 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public int getArticle_images()
+  public int getImagesCnt()
   {
-    return article_images;
+    return imagesCnt;
   }
 
   /**
@@ -704,12 +704,12 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setArticle_images(int newArticle_images)
+  public void setImagesCnt(int newImagesCnt)
   {
-    int oldArticle_images = article_images;
-    article_images = newArticle_images;
+    int oldImagesCnt = imagesCnt;
+    imagesCnt = newImagesCnt;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__ARTICLE_IMAGES, oldArticle_images, article_images));
+      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__IMAGES_CNT, oldImagesCnt, imagesCnt));
   }
 
   /**
@@ -717,9 +717,9 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public int getColumns_cnt()
+  public int getColumnsCnt()
   {
-    return columns_cnt;
+    return columnsCnt;
   }
 
   /**
@@ -727,12 +727,12 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setColumns_cnt(int newColumns_cnt)
+  public void setColumnsCnt(int newColumnsCnt)
   {
-    int oldColumns_cnt = columns_cnt;
-    columns_cnt = newColumns_cnt;
+    int oldColumnsCnt = columnsCnt;
+    columnsCnt = newColumnsCnt;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__COLUMNS_CNT, oldColumns_cnt, columns_cnt));
+      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__COLUMNS_CNT, oldColumnsCnt, columnsCnt));
   }
 
   /**
@@ -740,9 +740,9 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public EString getFont_size()
+  public EString getFontSize()
   {
-    return font_size;
+    return fontSize;
   }
 
   /**
@@ -750,13 +750,13 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetFont_size(EString newFont_size, NotificationChain msgs)
+  public NotificationChain basicSetFontSize(EString newFontSize, NotificationChain msgs)
   {
-    EString oldFont_size = font_size;
-    font_size = newFont_size;
+    EString oldFontSize = fontSize;
+    fontSize = newFontSize;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__FONT_SIZE, oldFont_size, newFont_size);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__FONT_SIZE, oldFontSize, newFontSize);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -767,20 +767,20 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setFont_size(EString newFont_size)
+  public void setFontSize(EString newFontSize)
   {
-    if (newFont_size != font_size)
+    if (newFontSize != fontSize)
     {
       NotificationChain msgs = null;
-      if (font_size != null)
-        msgs = ((InternalEObject)font_size).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NplPackage.DECLARATION__FONT_SIZE, null, msgs);
-      if (newFont_size != null)
-        msgs = ((InternalEObject)newFont_size).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NplPackage.DECLARATION__FONT_SIZE, null, msgs);
-      msgs = basicSetFont_size(newFont_size, msgs);
+      if (fontSize != null)
+        msgs = ((InternalEObject)fontSize).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NplPackage.DECLARATION__FONT_SIZE, null, msgs);
+      if (newFontSize != null)
+        msgs = ((InternalEObject)newFontSize).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NplPackage.DECLARATION__FONT_SIZE, null, msgs);
+      msgs = basicSetFontSize(newFontSize, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__FONT_SIZE, newFont_size, newFont_size));
+      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__FONT_SIZE, newFontSize, newFontSize));
   }
 
   /**
@@ -808,7 +808,7 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
       case NplPackage.DECLARATION__FORMAT:
         return basicSetFormat(null, msgs);
       case NplPackage.DECLARATION__FONT_SIZE:
-        return basicSetFont_size(null, msgs);
+        return basicSetFontSize(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -844,17 +844,17 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
       case NplPackage.DECLARATION__FORMAT:
         return getFormat();
       case NplPackage.DECLARATION__ARTICLE_CNT:
-        return getArticle_cnt();
+        return getArticleCnt();
       case NplPackage.DECLARATION__ARTICLE_CHAR_MIN:
-        return getArticle_char_min();
+        return getArticleCharMin();
       case NplPackage.DECLARATION__ARTICLE_CHAR_MAX:
         return getArticle_char_max();
-      case NplPackage.DECLARATION__ARTICLE_IMAGES:
-        return getArticle_images();
+      case NplPackage.DECLARATION__IMAGES_CNT:
+        return getImagesCnt();
       case NplPackage.DECLARATION__COLUMNS_CNT:
-        return getColumns_cnt();
+        return getColumnsCnt();
       case NplPackage.DECLARATION__FONT_SIZE:
-        return getFont_size();
+        return getFontSize();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -904,22 +904,22 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
         setFormat((EString)newValue);
         return;
       case NplPackage.DECLARATION__ARTICLE_CNT:
-        setArticle_cnt((Integer)newValue);
+        setArticleCnt((Integer)newValue);
         return;
       case NplPackage.DECLARATION__ARTICLE_CHAR_MIN:
-        setArticle_char_min((Integer)newValue);
+        setArticleCharMin((Integer)newValue);
         return;
       case NplPackage.DECLARATION__ARTICLE_CHAR_MAX:
         setArticle_char_max((Integer)newValue);
         return;
-      case NplPackage.DECLARATION__ARTICLE_IMAGES:
-        setArticle_images((Integer)newValue);
+      case NplPackage.DECLARATION__IMAGES_CNT:
+        setImagesCnt((Integer)newValue);
         return;
       case NplPackage.DECLARATION__COLUMNS_CNT:
-        setColumns_cnt((Integer)newValue);
+        setColumnsCnt((Integer)newValue);
         return;
       case NplPackage.DECLARATION__FONT_SIZE:
-        setFont_size((EString)newValue);
+        setFontSize((EString)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -966,22 +966,22 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
         setFormat((EString)null);
         return;
       case NplPackage.DECLARATION__ARTICLE_CNT:
-        setArticle_cnt(ARTICLE_CNT_EDEFAULT);
+        setArticleCnt(ARTICLE_CNT_EDEFAULT);
         return;
       case NplPackage.DECLARATION__ARTICLE_CHAR_MIN:
-        setArticle_char_min(ARTICLE_CHAR_MIN_EDEFAULT);
+        setArticleCharMin(ARTICLE_CHAR_MIN_EDEFAULT);
         return;
       case NplPackage.DECLARATION__ARTICLE_CHAR_MAX:
         setArticle_char_max(ARTICLE_CHAR_MAX_EDEFAULT);
         return;
-      case NplPackage.DECLARATION__ARTICLE_IMAGES:
-        setArticle_images(ARTICLE_IMAGES_EDEFAULT);
+      case NplPackage.DECLARATION__IMAGES_CNT:
+        setImagesCnt(IMAGES_CNT_EDEFAULT);
         return;
       case NplPackage.DECLARATION__COLUMNS_CNT:
-        setColumns_cnt(COLUMNS_CNT_EDEFAULT);
+        setColumnsCnt(COLUMNS_CNT_EDEFAULT);
         return;
       case NplPackage.DECLARATION__FONT_SIZE:
-        setFont_size((EString)null);
+        setFontSize((EString)null);
         return;
     }
     super.eUnset(featureID);
@@ -1018,17 +1018,17 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
       case NplPackage.DECLARATION__FORMAT:
         return format != null;
       case NplPackage.DECLARATION__ARTICLE_CNT:
-        return article_cnt != ARTICLE_CNT_EDEFAULT;
+        return articleCnt != ARTICLE_CNT_EDEFAULT;
       case NplPackage.DECLARATION__ARTICLE_CHAR_MIN:
-        return article_char_min != ARTICLE_CHAR_MIN_EDEFAULT;
+        return articleCharMin != ARTICLE_CHAR_MIN_EDEFAULT;
       case NplPackage.DECLARATION__ARTICLE_CHAR_MAX:
         return article_char_max != ARTICLE_CHAR_MAX_EDEFAULT;
-      case NplPackage.DECLARATION__ARTICLE_IMAGES:
-        return article_images != ARTICLE_IMAGES_EDEFAULT;
+      case NplPackage.DECLARATION__IMAGES_CNT:
+        return imagesCnt != IMAGES_CNT_EDEFAULT;
       case NplPackage.DECLARATION__COLUMNS_CNT:
-        return columns_cnt != COLUMNS_CNT_EDEFAULT;
+        return columnsCnt != COLUMNS_CNT_EDEFAULT;
       case NplPackage.DECLARATION__FONT_SIZE:
-        return font_size != null;
+        return fontSize != null;
     }
     return super.eIsSet(featureID);
   }
@@ -1050,16 +1050,16 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
     result.append(location);
     result.append(", volume: ");
     result.append(volume);
-    result.append(", article_cnt: ");
-    result.append(article_cnt);
-    result.append(", article_char_min: ");
-    result.append(article_char_min);
+    result.append(", articleCnt: ");
+    result.append(articleCnt);
+    result.append(", articleCharMin: ");
+    result.append(articleCharMin);
     result.append(", article_char_max: ");
     result.append(article_char_max);
-    result.append(", article_images: ");
-    result.append(article_images);
-    result.append(", columns_cnt: ");
-    result.append(columns_cnt);
+    result.append(", imagesCnt: ");
+    result.append(imagesCnt);
+    result.append(", columnsCnt: ");
+    result.append(columnsCnt);
     result.append(')');
     return result.toString();
   }

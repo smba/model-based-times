@@ -157,7 +157,7 @@ public interface NplPackage extends EPackage
   int DECLARATION__FORMAT = 9;
 
   /**
-   * The feature id for the '<em><b>Article cnt</b></em>' attribute.
+   * The feature id for the '<em><b>Article Cnt</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -166,7 +166,7 @@ public interface NplPackage extends EPackage
   int DECLARATION__ARTICLE_CNT = 10;
 
   /**
-   * The feature id for the '<em><b>Article char min</b></em>' attribute.
+   * The feature id for the '<em><b>Article Char Min</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -184,16 +184,16 @@ public interface NplPackage extends EPackage
   int DECLARATION__ARTICLE_CHAR_MAX = 12;
 
   /**
-   * The feature id for the '<em><b>Article images</b></em>' attribute.
+   * The feature id for the '<em><b>Images Cnt</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DECLARATION__ARTICLE_IMAGES = 13;
+  int DECLARATION__IMAGES_CNT = 13;
 
   /**
-   * The feature id for the '<em><b>Columns cnt</b></em>' attribute.
+   * The feature id for the '<em><b>Columns Cnt</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -202,7 +202,7 @@ public interface NplPackage extends EPackage
   int DECLARATION__COLUMNS_CNT = 14;
 
   /**
-   * The feature id for the '<em><b>Font size</b></em>' containment reference.
+   * The feature id for the '<em><b>Font Size</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -545,26 +545,26 @@ public interface NplPackage extends EPackage
   EReference getDeclaration_Format();
 
   /**
-   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_cnt <em>Article cnt</em>}'.
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleCnt <em>Article Cnt</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Article cnt</em>'.
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_cnt()
+   * @return the meta object for the attribute '<em>Article Cnt</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleCnt()
    * @see #getDeclaration()
    * @generated
    */
-  EAttribute getDeclaration_Article_cnt();
+  EAttribute getDeclaration_ArticleCnt();
 
   /**
-   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_char_min <em>Article char min</em>}'.
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleCharMin <em>Article Char Min</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Article char min</em>'.
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_char_min()
+   * @return the meta object for the attribute '<em>Article Char Min</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleCharMin()
    * @see #getDeclaration()
    * @generated
    */
-  EAttribute getDeclaration_Article_char_min();
+  EAttribute getDeclaration_ArticleCharMin();
 
   /**
    * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_char_max <em>Article char max</em>}'.
@@ -578,37 +578,37 @@ public interface NplPackage extends EPackage
   EAttribute getDeclaration_Article_char_max();
 
   /**
-   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_images <em>Article images</em>}'.
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getImagesCnt <em>Images Cnt</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Article images</em>'.
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticle_images()
+   * @return the meta object for the attribute '<em>Images Cnt</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getImagesCnt()
    * @see #getDeclaration()
    * @generated
    */
-  EAttribute getDeclaration_Article_images();
+  EAttribute getDeclaration_ImagesCnt();
 
   /**
-   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getColumns_cnt <em>Columns cnt</em>}'.
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getColumnsCnt <em>Columns Cnt</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Columns cnt</em>'.
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getColumns_cnt()
+   * @return the meta object for the attribute '<em>Columns Cnt</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getColumnsCnt()
    * @see #getDeclaration()
    * @generated
    */
-  EAttribute getDeclaration_Columns_cnt();
+  EAttribute getDeclaration_ColumnsCnt();
 
   /**
-   * Returns the meta object for the containment reference '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFont_size <em>Font size</em>}'.
+   * Returns the meta object for the containment reference '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFontSize <em>Font Size</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Font size</em>'.
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFont_size()
+   * @return the meta object for the containment reference '<em>Font Size</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFontSize()
    * @see #getDeclaration()
    * @generated
    */
-  EReference getDeclaration_Font_size();
+  EReference getDeclaration_FontSize();
 
   /**
    * Returns the meta object for class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.EString <em>EString</em>}'.
@@ -894,20 +894,20 @@ public interface NplPackage extends EPackage
     EReference DECLARATION__FORMAT = eINSTANCE.getDeclaration_Format();
 
     /**
-     * The meta object literal for the '<em><b>Article cnt</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Article Cnt</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DECLARATION__ARTICLE_CNT = eINSTANCE.getDeclaration_Article_cnt();
+    EAttribute DECLARATION__ARTICLE_CNT = eINSTANCE.getDeclaration_ArticleCnt();
 
     /**
-     * The meta object literal for the '<em><b>Article char min</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Article Char Min</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DECLARATION__ARTICLE_CHAR_MIN = eINSTANCE.getDeclaration_Article_char_min();
+    EAttribute DECLARATION__ARTICLE_CHAR_MIN = eINSTANCE.getDeclaration_ArticleCharMin();
 
     /**
      * The meta object literal for the '<em><b>Article char max</b></em>' attribute feature.
@@ -918,28 +918,28 @@ public interface NplPackage extends EPackage
     EAttribute DECLARATION__ARTICLE_CHAR_MAX = eINSTANCE.getDeclaration_Article_char_max();
 
     /**
-     * The meta object literal for the '<em><b>Article images</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Images Cnt</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DECLARATION__ARTICLE_IMAGES = eINSTANCE.getDeclaration_Article_images();
+    EAttribute DECLARATION__IMAGES_CNT = eINSTANCE.getDeclaration_ImagesCnt();
 
     /**
-     * The meta object literal for the '<em><b>Columns cnt</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Columns Cnt</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DECLARATION__COLUMNS_CNT = eINSTANCE.getDeclaration_Columns_cnt();
+    EAttribute DECLARATION__COLUMNS_CNT = eINSTANCE.getDeclaration_ColumnsCnt();
 
     /**
-     * The meta object literal for the '<em><b>Font size</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Font Size</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DECLARATION__FONT_SIZE = eINSTANCE.getDeclaration_Font_size();
+    EReference DECLARATION__FONT_SIZE = eINSTANCE.getDeclaration_FontSize();
 
     /**
      * The meta object literal for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.EStringImpl <em>EString</em>}' class.

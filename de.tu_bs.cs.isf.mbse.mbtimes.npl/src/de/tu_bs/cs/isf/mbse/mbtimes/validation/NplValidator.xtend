@@ -22,7 +22,7 @@ class NplValidator extends AbstractNplValidator {
 	 */
 	@Check
 	def checkNrArticles(Declaration articles) {
-		if (articles.article_cnt < 0 && articles.article_cnt > 5) {
+		if (articles.articleCnt < 1 || articles.articleCnt > 5) {
 			error("Number of articles must be greater than 0 and smaller than 6", NplPackage.Literals.DECLARATION__ARTICLE_CNT)
 		}
 	}
@@ -32,8 +32,8 @@ class NplValidator extends AbstractNplValidator {
 	 */
 	@Check
 	def checkNrImages(Declaration images) {
-		if (images.article_images < 0 && images.article_images > 5) {
-			error("Number of images must be greater than 0 and smaller than 6", NplPackage.Literals.DECLARATION__ARTICLE_IMAGES)
+		if (images.imagesCnt < 1 || images.imagesCnt > 5) {
+			error("Number of images must be greater than 0 and smaller than 6", NplPackage.Literals.DECLARATION__IMAGES_CNT)
 		}
 	}
 
