@@ -6,7 +6,9 @@ package de.tu_bs.cs.isf.mbse.mbtimes.validation
 
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Date
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.ImagesCount
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.Price
 import java.util.Arrays
 import org.eclipse.xtext.validation.Check
 
@@ -64,6 +66,9 @@ class NplValidator extends AbstractNplValidator {
 				error("This month has only 31 days.", NplPackage.Literals.DATE__DAY)
 			}
 			
+			if (date.month == 12 && date.day < 27 && date.day > 23) {
+				warning("Merry Christmas! :)", NplPackage.Literals.DATE__DAY)
+			} 
 		}
 	}
 	
@@ -95,8 +100,8 @@ class NplValidator extends AbstractNplValidator {
 	 * This constraint checks whether the number of images is positive and smaller than 6.
 	 */
 	@Check
-	def checkNrImages(Declaration images) {
-		if (images.imagesCnt < 1 || images.imagesCnt > 5) {
+	def checkNrImages(ImagesCount imgc) {
+		if (imgc.value < 1 || imgc.value > 5) {
 			error("Number of images must be greater than 0 and smaller than 6", NplPackage.Literals.DECLARATION__IMAGES_CNT)
 		}
 	}
@@ -111,6 +116,16 @@ class NplValidator extends AbstractNplValidator {
 	 	}
 	 	if (declaration.columnsCnt > 3) {
 	 		warning("This has not beed tested yet.", NplPackage.Literals.DECLARATION__COLUMNS_CNT)
+	 	}
+	 }
+	 
+	 @Check
+	 def checkPrice(Price price) {
+	 	if (price.value < 0) {
+	 		error("You should pay for the newspaper, not us ;)", NplPackage.Literals.PRICE__VALUE);
+	 	}
+	 	if (Float.toString(price.value).split("\\.").get(1).length() > 2) {
+	 		warning("We only consider two decimal places.", NplPackage.Literals.PRICE__VALUE);
 	 	}
 	 }
 
