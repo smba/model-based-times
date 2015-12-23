@@ -24,11 +24,18 @@ Declaration:
 	"format" format=Format
 	"number of articles per topic" articleCnt=INT
 	"number of words per article" articleWordsMin=INT "-" articleWordsMax=INT
-	("number of images per article" imagesCnt=INT)?
+	("number of images per article" imagesCnt=ImagesCount)?
 	"number of columns" columnsCnt=INT
 	"font size" fontSize=FontSize
 	
 "}";
+
+/**
+ * 
+ */
+ImagesCount:
+	value = INT
+;
 
 // Nutzer kann auswählen, ob die Schriftgröße klein, medium und groß sein soll. Größe sollte 
 // abhängig vom gewählten Format festgelegt. 
