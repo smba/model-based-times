@@ -23,7 +23,7 @@ Declaration:
 	"language" language=Language
 	"format" format=Format
 	"number of articles per topic" articleCnt=INT
-	"number of words per article" articleCharMin=INT "-" articleCharMax=INT
+	"number of words per article" articleWordsMin=INT "-" articleWordsMax=INT
 	("number of images per article" imagesCnt=INT)?
 	"number of columns" columnsCnt=INT
 	"font size" fontSize=FontSize
@@ -74,11 +74,132 @@ TopicTag:
 	value=STRING;
 
 Pair:
-	key = ID ":" value = STRING 
+	key = ID ":" value = URL 
 ;
 
+// URLS are assumed to be of the form "protocol://host[:port][path][query]"
+terminal URL:
+    ('a'..'z')+ '://' // Protocol
+ 
+    ( // Hostname
+        (
+            ('0'..'9')+ '.' ('0'..'9')+ '.' ('0'..'9')+ '.' ('0'..'9')+
+        ) |
+        (
+            ('a'..'z'|'A'..'Z')
+            (
+                'a'..'z'|'A'..'Z'|
+                '0'..'9'|
+                '$'|
+                '-'|
+                '_'|
+                (
+                    '\\'
+                    ('0'..'9'|'a'..'f'|'A'..'F')
+                    ('0'..'9'|'a'..'f'|'A'..'F')
+                ) |
+                (
+                    '%'
+                    ('0'..'9')
+                    ('0'..'9')
+                )
+            )*
+            (
+                '.'
+                ('a'..'z'|'A'..'Z')
+                (
+                    'a'..'z'|'A'..'Z'|
+                    '0'..'9'|
+                    '$'|
+                    '-'|
+                    '_'|
+                    (
+                        '\\'
+                        ('0'..'9'|'a'..'f'|'A'..'F')
+                        ('0'..'9'|'a'..'f'|'A'..'F')
+                    ) |
+                    (
+                        '%'
+                        ('0'..'9')
+                        ('0'..'9')
+                    )
+                )*
+            )*
+        )
+    )
+    (':' ('0'..'9')+)? // Portnumber
+ 
+    ('/' // Path
+        (
+            'a'..'z'|'A'..'Z'|
+            '0'..'9'|
+            '$'|
+            '-'|
+            '_'|
+            '~'|
+            '+'|
+            '.'|
+            (
+                '\\'
+                ('0'..'9'|'a'..'f'|'A'..'F')
+                ('0'..'9'|'a'..'f'|'A'..'F')
+            ) |
+            (
+                '%'
+                ('0'..'9')
+                ('0'..'9')
+            )
+        )*
+    )* 
+ 
+    ('?' // query
+        (
+            'a'..'z'|'A'..'Z'|
+            '0'..'9'|
+            '$'|
+            '-'|
+            '_'|
+            '='|
+            '&'|
+            ';'|
+            (
+                '\\'
+                ('0'..'9'|'a'..'f'|'A'..'F')
+                ('0'..'9'|'a'..'f'|'A'..'F')
+            ) |
+            (
+                '%'
+                ('0'..'9')
+                ('0'..'9')
+            )
+        )+
+ 
+        ('+'
+            (
+                'a'..'z'|'A'..'Z'|
+                '0'..'9'|
+                '$'|
+                '-'|
+                '_'|
+                '='|
+                '&'|
+                ';'|
+                (
+                    '\\'
+                    ('0'..'9'|'a'..'f'|'A'..'F')
+                    ('0'..'9'|'a'..'f'|'A'..'F')
+                ) |
+                (
+                    '%'
+                    ('0'..'9')
+                    ('0'..'9')
+                )
+            )+
+        )*
+    )?; 
+
+
 //terminal PREIS: 
-//	('0'..'9')+(','|'.')*('0'..'9')*
-//;
+//	('0'..'9')+(','|'.')*('0'..'9')*;
 
 

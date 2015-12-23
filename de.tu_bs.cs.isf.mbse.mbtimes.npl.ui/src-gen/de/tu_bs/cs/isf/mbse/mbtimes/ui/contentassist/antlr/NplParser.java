@@ -80,8 +80,8 @@ public class NplParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDeclarationAccess().getLanguageAssignment_19(), "rule__Declaration__LanguageAssignment_19");
 					put(grammarAccess.getDeclarationAccess().getFormatAssignment_21(), "rule__Declaration__FormatAssignment_21");
 					put(grammarAccess.getDeclarationAccess().getArticleCntAssignment_23(), "rule__Declaration__ArticleCntAssignment_23");
-					put(grammarAccess.getDeclarationAccess().getArticleCharMinAssignment_25(), "rule__Declaration__ArticleCharMinAssignment_25");
-					put(grammarAccess.getDeclarationAccess().getArticleCharMaxAssignment_27(), "rule__Declaration__ArticleCharMaxAssignment_27");
+					put(grammarAccess.getDeclarationAccess().getArticleWordsMinAssignment_25(), "rule__Declaration__ArticleWordsMinAssignment_25");
+					put(grammarAccess.getDeclarationAccess().getArticleWordsMaxAssignment_27(), "rule__Declaration__ArticleWordsMaxAssignment_27");
 					put(grammarAccess.getDeclarationAccess().getImagesCntAssignment_28_1(), "rule__Declaration__ImagesCntAssignment_28_1");
 					put(grammarAccess.getDeclarationAccess().getColumnsCntAssignment_30(), "rule__Declaration__ColumnsCntAssignment_30");
 					put(grammarAccess.getDeclarationAccess().getFontSizeAssignment_32(), "rule__Declaration__FontSizeAssignment_32");

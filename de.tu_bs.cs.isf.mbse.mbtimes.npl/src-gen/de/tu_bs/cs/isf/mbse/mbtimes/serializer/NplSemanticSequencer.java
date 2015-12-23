@@ -106,8 +106,8 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         language=Language 
 	 *         format=Format 
 	 *         articleCnt=INT 
-	 *         articleCharMin=INT 
-	 *         articleCharMax=INT 
+	 *         articleWordsMin=INT 
+	 *         articleWordsMax=INT 
 	 *         imagesCnt=INT? 
 	 *         columnsCnt=INT 
 	 *         fontSize=FontSize
@@ -120,7 +120,7 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (key=ID value=STRING)
+	 *     (key=ID value=URL)
 	 */
 	protected void sequence_Pair(EObject context, Pair semanticObject) {
 		if(errorAcceptor != null) {
@@ -132,7 +132,7 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getPairAccess().getKeyIDTerminalRuleCall_0_0(), semanticObject.getKey());
-		feeder.accept(grammarAccess.getPairAccess().getValueSTRINGTerminalRuleCall_2_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getPairAccess().getValueURLTerminalRuleCall_2_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	

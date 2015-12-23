@@ -363,9 +363,9 @@ ruleDeclaration returns [EObject current=null]
     }
 (
 (
-		lv_articleCharMin_29_0=RULE_INT
+		lv_articleWordsMin_29_0=RULE_INT
 		{
-			newLeafNode(lv_articleCharMin_29_0, grammarAccess.getDeclarationAccess().getArticleCharMinINTTerminalRuleCall_25_0()); 
+			newLeafNode(lv_articleWordsMin_29_0, grammarAccess.getDeclarationAccess().getArticleWordsMinINTTerminalRuleCall_25_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -373,8 +373,8 @@ ruleDeclaration returns [EObject current=null]
 	        }
        		setWithLastConsumed(
        			$current, 
-       			"articleCharMin",
-        		lv_articleCharMin_29_0, 
+       			"articleWordsMin",
+        		lv_articleWordsMin_29_0, 
         		"INT");
 	    }
 
@@ -385,9 +385,9 @@ ruleDeclaration returns [EObject current=null]
     }
 (
 (
-		lv_articleCharMax_31_0=RULE_INT
+		lv_articleWordsMax_31_0=RULE_INT
 		{
-			newLeafNode(lv_articleCharMax_31_0, grammarAccess.getDeclarationAccess().getArticleCharMaxINTTerminalRuleCall_27_0()); 
+			newLeafNode(lv_articleWordsMax_31_0, grammarAccess.getDeclarationAccess().getArticleWordsMaxINTTerminalRuleCall_27_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -395,8 +395,8 @@ ruleDeclaration returns [EObject current=null]
 	        }
        		setWithLastConsumed(
        			$current, 
-       			"articleCharMax",
-        		lv_articleCharMax_31_0, 
+       			"articleWordsMax",
+        		lv_articleWordsMax_31_0, 
         		"INT");
 	    }
 
@@ -1084,9 +1084,9 @@ rulePair returns [EObject current=null]
     }
 (
 (
-		lv_value_2_0=RULE_STRING
+		lv_value_2_0=RULE_URL
 		{
-			newLeafNode(lv_value_2_0, grammarAccess.getPairAccess().getValueSTRINGTerminalRuleCall_2_0()); 
+			newLeafNode(lv_value_2_0, grammarAccess.getPairAccess().getValueURLTerminalRuleCall_2_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -1096,7 +1096,7 @@ rulePair returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_2_0, 
-        		"STRING");
+        		"URL");
 	    }
 
 )
@@ -1106,6 +1106,8 @@ rulePair returns [EObject current=null]
 
 
 
+
+RULE_URL : ('a'..'z')+ '://' (('0'..'9')+ '.' ('0'..'9')+ '.' ('0'..'9')+ '.' ('0'..'9')+|('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'0'..'9'|'$'|'-'|'_'|'\\' ('0'..'9'|'a'..'f'|'A'..'F') ('0'..'9'|'a'..'f'|'A'..'F')|'%' '0'..'9' '0'..'9')* ('.' ('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'0'..'9'|'$'|'-'|'_'|'\\' ('0'..'9'|'a'..'f'|'A'..'F') ('0'..'9'|'a'..'f'|'A'..'F')|'%' '0'..'9' '0'..'9')*)*) (':' ('0'..'9')+)? ('/' ('a'..'z'|'A'..'Z'|'0'..'9'|'$'|'-'|'_'|'~'|'+'|'.'|'\\' ('0'..'9'|'a'..'f'|'A'..'F') ('0'..'9'|'a'..'f'|'A'..'F')|'%' '0'..'9' '0'..'9')*)* ('?' ('a'..'z'|'A'..'Z'|'0'..'9'|'$'|'-'|'_'|'='|'&'|';'|'\\' ('0'..'9'|'a'..'f'|'A'..'F') ('0'..'9'|'a'..'f'|'A'..'F')|'%' '0'..'9' '0'..'9')+ ('+' ('a'..'z'|'A'..'Z'|'0'..'9'|'$'|'-'|'_'|'='|'&'|';'|'\\' ('0'..'9'|'a'..'f'|'A'..'F') ('0'..'9'|'a'..'f'|'A'..'F')|'%' '0'..'9' '0'..'9')+)*)?;
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

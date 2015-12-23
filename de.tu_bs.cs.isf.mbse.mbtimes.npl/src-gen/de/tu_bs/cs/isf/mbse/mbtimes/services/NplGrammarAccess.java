@@ -66,11 +66,11 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cArticleCntAssignment_23 = (Assignment)cGroup.eContents().get(23);
 		private final RuleCall cArticleCntINTTerminalRuleCall_23_0 = (RuleCall)cArticleCntAssignment_23.eContents().get(0);
 		private final Keyword cNumberOfWordsPerArticleKeyword_24 = (Keyword)cGroup.eContents().get(24);
-		private final Assignment cArticleCharMinAssignment_25 = (Assignment)cGroup.eContents().get(25);
-		private final RuleCall cArticleCharMinINTTerminalRuleCall_25_0 = (RuleCall)cArticleCharMinAssignment_25.eContents().get(0);
+		private final Assignment cArticleWordsMinAssignment_25 = (Assignment)cGroup.eContents().get(25);
+		private final RuleCall cArticleWordsMinINTTerminalRuleCall_25_0 = (RuleCall)cArticleWordsMinAssignment_25.eContents().get(0);
 		private final Keyword cHyphenMinusKeyword_26 = (Keyword)cGroup.eContents().get(26);
-		private final Assignment cArticleCharMaxAssignment_27 = (Assignment)cGroup.eContents().get(27);
-		private final RuleCall cArticleCharMaxINTTerminalRuleCall_27_0 = (RuleCall)cArticleCharMaxAssignment_27.eContents().get(0);
+		private final Assignment cArticleWordsMaxAssignment_27 = (Assignment)cGroup.eContents().get(27);
+		private final RuleCall cArticleWordsMaxINTTerminalRuleCall_27_0 = (RuleCall)cArticleWordsMaxAssignment_27.eContents().get(0);
 		private final Group cGroup_28 = (Group)cGroup.eContents().get(28);
 		private final Keyword cNumberOfImagesPerArticleKeyword_28_0 = (Keyword)cGroup_28.eContents().get(0);
 		private final Assignment cImagesCntAssignment_28_1 = (Assignment)cGroup_28.eContents().get(1);
@@ -87,15 +87,15 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		//	"newspaper" name=ID "{" "feed links" "{" feedlinks+=Pair (", " pairs+=Pair)* "}" "topics" "{" topics+=Topic
 		//	topics+=Topic* "}" ("date" date=Date)? ("location" location=STRING)? "price" price=Price ("volume" volume=INT)?
 		//	"language" language=Language "format" format=Format "number of articles per topic" articleCnt=INT
-		//	"number of words per article" articleCharMin=INT "-" articleCharMax=INT ("number of images per article"
+		//	"number of words per article" articleWordsMin=INT "-" articleWordsMax=INT ("number of images per article"
 		//	imagesCnt=INT)? "number of columns" columnsCnt=INT "font size" fontSize=FontSize "}";
 		@Override public ParserRule getRule() { return rule; }
 
 		//"newspaper" name=ID "{" "feed links" "{" feedlinks+=Pair (", " pairs+=Pair)* "}" "topics" "{" topics+=Topic
 		//topics+=Topic* "}" ("date" date=Date)? ("location" location=STRING)? "price" price=Price ("volume" volume=INT)?
 		//"language" language=Language "format" format=Format "number of articles per topic" articleCnt=INT
-		//"number of words per article" articleCharMin=INT "-" articleCharMax=INT ("number of images per article" imagesCnt=INT)?
-		//"number of columns" columnsCnt=INT "font size" fontSize=FontSize "}"
+		//"number of words per article" articleWordsMin=INT "-" articleWordsMax=INT ("number of images per article"
+		//imagesCnt=INT)? "number of columns" columnsCnt=INT "font size" fontSize=FontSize "}"
 		public Group getGroup() { return cGroup; }
 
 		//"newspaper"
@@ -233,20 +233,20 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		//"number of words per article"
 		public Keyword getNumberOfWordsPerArticleKeyword_24() { return cNumberOfWordsPerArticleKeyword_24; }
 
-		//articleCharMin=INT
-		public Assignment getArticleCharMinAssignment_25() { return cArticleCharMinAssignment_25; }
+		//articleWordsMin=INT
+		public Assignment getArticleWordsMinAssignment_25() { return cArticleWordsMinAssignment_25; }
 
 		//INT
-		public RuleCall getArticleCharMinINTTerminalRuleCall_25_0() { return cArticleCharMinINTTerminalRuleCall_25_0; }
+		public RuleCall getArticleWordsMinINTTerminalRuleCall_25_0() { return cArticleWordsMinINTTerminalRuleCall_25_0; }
 
 		//"-"
 		public Keyword getHyphenMinusKeyword_26() { return cHyphenMinusKeyword_26; }
 
-		//articleCharMax=INT
-		public Assignment getArticleCharMaxAssignment_27() { return cArticleCharMaxAssignment_27; }
+		//articleWordsMax=INT
+		public Assignment getArticleWordsMaxAssignment_27() { return cArticleWordsMaxAssignment_27; }
 
 		//INT
-		public RuleCall getArticleCharMaxINTTerminalRuleCall_27_0() { return cArticleCharMaxINTTerminalRuleCall_27_0; }
+		public RuleCall getArticleWordsMaxINTTerminalRuleCall_27_0() { return cArticleWordsMaxINTTerminalRuleCall_27_0; }
 
 		//("number of images per article" imagesCnt=INT)?
 		public Group getGroup_28() { return cGroup_28; }
@@ -701,16 +701,13 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cKeyIDTerminalRuleCall_0_0 = (RuleCall)cKeyAssignment_0.eContents().get(0);
 		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cValueSTRINGTerminalRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
+		private final RuleCall cValueURLTerminalRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
 		
-		////terminal PREIS: 
-		////	('0'..'9')+(','|'.')*('0'..'9')*
-		////;
 		//Pair:
-		//	key=ID ":" value=STRING;
+		//	key=ID ":" value=URL;
 		@Override public ParserRule getRule() { return rule; }
 
-		//key=ID ":" value=STRING
+		//key=ID ":" value=URL
 		public Group getGroup() { return cGroup; }
 
 		//key=ID
@@ -722,11 +719,11 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		//":"
 		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
 
-		//value=STRING
+		//value=URL
 		public Assignment getValueAssignment_2() { return cValueAssignment_2; }
 
-		//STRING
-		public RuleCall getValueSTRINGTerminalRuleCall_2_0() { return cValueSTRINGTerminalRuleCall_2_0; }
+		//URL
+		public RuleCall getValueURLTerminalRuleCall_2_0() { return cValueURLTerminalRuleCall_2_0; }
 	}
 	
 	
@@ -741,6 +738,7 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 	private final TopicElements pTopic;
 	private final TopicTagElements pTopicTag;
 	private final PairElements pPair;
+	private final TerminalRule tURL;
 	
 	private final Grammar grammar;
 
@@ -762,6 +760,7 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		this.pTopic = new TopicElements();
 		this.pTopicTag = new TopicTagElements();
 		this.pPair = new PairElements();
+		this.tURL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "URL");
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -795,7 +794,7 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 	//	"newspaper" name=ID "{" "feed links" "{" feedlinks+=Pair (", " pairs+=Pair)* "}" "topics" "{" topics+=Topic
 	//	topics+=Topic* "}" ("date" date=Date)? ("location" location=STRING)? "price" price=Price ("volume" volume=INT)?
 	//	"language" language=Language "format" format=Format "number of articles per topic" articleCnt=INT
-	//	"number of words per article" articleCharMin=INT "-" articleCharMax=INT ("number of images per article"
+	//	"number of words per article" articleWordsMin=INT "-" articleWordsMax=INT ("number of images per article"
 	//	imagesCnt=INT)? "number of columns" columnsCnt=INT "font size" fontSize=FontSize "}";
 	public DeclarationElements getDeclarationAccess() {
 		return pDeclaration;
@@ -898,11 +897,8 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		return getTopicTagAccess().getRule();
 	}
 
-	////terminal PREIS: 
-	////	('0'..'9')+(','|'.')*('0'..'9')*
-	////;
 	//Pair:
-	//	key=ID ":" value=STRING;
+	//	key=ID ":" value=URL;
 	public PairElements getPairAccess() {
 		return pPair;
 	}
@@ -910,6 +906,27 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 	public ParserRule getPairRule() {
 		return getPairAccess().getRule();
 	}
+
+	//// URLS are assumed to be of the form "protocol://host[:port][path][query]"
+	////terminal PREIS: 
+	////	('0'..'9')+(','|'.')*('0'..'9')*;
+	//terminal URL:
+	//	"a".."z"+ // Protocol
+	//	"://" ("0".."9"+ "." "0".."9"+ "." "0".."9"+ "." "0".."9"+ // Hostname
+	//	| ("a".."z" | "A".."Z") ("a".."z" | "A".."Z" | "0".."9" | "$" | "-" | "_" | "\\" ("0".."9" | "a".."f" | "A".."F")
+	//	("0".."9" | "a".."f" | "A".."F") | "%" "0".."9" "0".."9")* ("." ("a".."z" | "A".."Z") ("a".."z" | "A".."Z" | "0".."9"
+	//	| "$" | "-" | "_" | "\\" ("0".."9" | "a".."f" | "A".."F") ("0".."9" | "a".."f" | "A".."F") | "%" "0".."9"
+	//	"0".."9")*)*) (":" "0".."9"+)? // Portnumber
+	//	// Path
+	//	("/" ("a".."z" | "A".."Z" | "0".."9" | "$" | "-" | "_" | "~" | "+" | "." | "\\" ("0".."9" | "a".."f" | "A".."F")
+	//	("0".."9" | "a".."f" | "A".."F") | "%" "0".."9" "0".."9")*)* // query
+	//	("?" ("a".."z" | "A".."Z" | "0".."9" | "$" | "-" | "_" | "=" | "&" | ";" | "\\" ("0".."9" | "a".."f" | "A".."F")
+	//	("0".."9" | "a".."f" | "A".."F") | "%" "0".."9" "0".."9")+ ("+" ("a".."z" | "A".."Z" | "0".."9" | "$" | "-" | "_" |
+	//	"=" | "&" | ";" | "\\" ("0".."9" | "a".."f" | "A".."F") ("0".."9" | "a".."f" | "A".."F") | "%" "0".."9"
+	//	"0".."9")+)*)?;
+	public TerminalRule getURLRule() {
+		return tURL;
+	} 
 
 	//terminal ID:
 	//	"^"? ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;

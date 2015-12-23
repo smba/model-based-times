@@ -26,8 +26,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getLanguage <em>Language</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFormat <em>Format</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleCnt <em>Article Cnt</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleCharMin <em>Article Char Min</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleCharMax <em>Article Char Max</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleWordsMin <em>Article Words Min</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleWordsMax <em>Article Words Max</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getImagesCnt <em>Images Cnt</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getColumnsCnt <em>Columns Cnt</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFontSize <em>Font Size</em>}</li>
@@ -296,56 +296,56 @@ public interface Declaration extends EObject
   void setArticleCnt(int value);
 
   /**
-   * Returns the value of the '<em><b>Article Char Min</b></em>' attribute.
+   * Returns the value of the '<em><b>Article Words Min</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Article Char Min</em>' attribute isn't clear,
+   * If the meaning of the '<em>Article Words Min</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Article Char Min</em>' attribute.
-   * @see #setArticleCharMin(int)
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_ArticleCharMin()
+   * @return the value of the '<em>Article Words Min</em>' attribute.
+   * @see #setArticleWordsMin(int)
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_ArticleWordsMin()
    * @model
    * @generated
    */
-  int getArticleCharMin();
+  int getArticleWordsMin();
 
   /**
-   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleCharMin <em>Article Char Min</em>}' attribute.
+   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleWordsMin <em>Article Words Min</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Article Char Min</em>' attribute.
-   * @see #getArticleCharMin()
+   * @param value the new value of the '<em>Article Words Min</em>' attribute.
+   * @see #getArticleWordsMin()
    * @generated
    */
-  void setArticleCharMin(int value);
+  void setArticleWordsMin(int value);
 
   /**
-   * Returns the value of the '<em><b>Article Char Max</b></em>' attribute.
+   * Returns the value of the '<em><b>Article Words Max</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Article Char Max</em>' attribute isn't clear,
+   * If the meaning of the '<em>Article Words Max</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Article Char Max</em>' attribute.
-   * @see #setArticleCharMax(int)
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_ArticleCharMax()
+   * @return the value of the '<em>Article Words Max</em>' attribute.
+   * @see #setArticleWordsMax(int)
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_ArticleWordsMax()
    * @model
    * @generated
    */
-  int getArticleCharMax();
+  int getArticleWordsMax();
 
   /**
-   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleCharMax <em>Article Char Max</em>}' attribute.
+   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleWordsMax <em>Article Words Max</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Article Char Max</em>' attribute.
-   * @see #getArticleCharMax()
+   * @param value the new value of the '<em>Article Words Max</em>' attribute.
+   * @see #getArticleWordsMax()
    * @generated
    */
-  void setArticleCharMax(int value);
+  void setArticleWordsMax(int value);
 
   /**
    * Returns the value of the '<em><b>Images Cnt</b></em>' attribute.

@@ -166,22 +166,22 @@ public interface NplPackage extends EPackage
   int DECLARATION__ARTICLE_CNT = 10;
 
   /**
-   * The feature id for the '<em><b>Article Char Min</b></em>' attribute.
+   * The feature id for the '<em><b>Article Words Min</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DECLARATION__ARTICLE_CHAR_MIN = 11;
+  int DECLARATION__ARTICLE_WORDS_MIN = 11;
 
   /**
-   * The feature id for the '<em><b>Article Char Max</b></em>' attribute.
+   * The feature id for the '<em><b>Article Words Max</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DECLARATION__ARTICLE_CHAR_MAX = 12;
+  int DECLARATION__ARTICLE_WORDS_MAX = 12;
 
   /**
    * The feature id for the '<em><b>Images Cnt</b></em>' attribute.
@@ -556,26 +556,26 @@ public interface NplPackage extends EPackage
   EAttribute getDeclaration_ArticleCnt();
 
   /**
-   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleCharMin <em>Article Char Min</em>}'.
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleWordsMin <em>Article Words Min</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Article Char Min</em>'.
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleCharMin()
+   * @return the meta object for the attribute '<em>Article Words Min</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleWordsMin()
    * @see #getDeclaration()
    * @generated
    */
-  EAttribute getDeclaration_ArticleCharMin();
+  EAttribute getDeclaration_ArticleWordsMin();
 
   /**
-   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleCharMax <em>Article Char Max</em>}'.
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleWordsMax <em>Article Words Max</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Article Char Max</em>'.
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleCharMax()
+   * @return the meta object for the attribute '<em>Article Words Max</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleWordsMax()
    * @see #getDeclaration()
    * @generated
    */
-  EAttribute getDeclaration_ArticleCharMax();
+  EAttribute getDeclaration_ArticleWordsMax();
 
   /**
    * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getImagesCnt <em>Images Cnt</em>}'.
@@ -902,20 +902,20 @@ public interface NplPackage extends EPackage
     EAttribute DECLARATION__ARTICLE_CNT = eINSTANCE.getDeclaration_ArticleCnt();
 
     /**
-     * The meta object literal for the '<em><b>Article Char Min</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Article Words Min</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DECLARATION__ARTICLE_CHAR_MIN = eINSTANCE.getDeclaration_ArticleCharMin();
+    EAttribute DECLARATION__ARTICLE_WORDS_MIN = eINSTANCE.getDeclaration_ArticleWordsMin();
 
     /**
-     * The meta object literal for the '<em><b>Article Char Max</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Article Words Max</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DECLARATION__ARTICLE_CHAR_MAX = eINSTANCE.getDeclaration_ArticleCharMax();
+    EAttribute DECLARATION__ARTICLE_WORDS_MAX = eINSTANCE.getDeclaration_ArticleWordsMax();
 
     /**
      * The meta object literal for the '<em><b>Images Cnt</b></em>' attribute feature.
