@@ -55,11 +55,7 @@ Language returns EString:
 	 
 
 Price:
-	"{" value=Value currency=Currency "}";
-
-Value:
-	INT("."|",")INT
-;
+	"{" value=Float currency=Currency "}";
 
 Currency returns EString:
 	{EString} "Euro [€]" | 
@@ -198,7 +194,9 @@ terminal URL:
         )*
     )?; 
 
-
+	 
+Float returns ecore::EFloat: INT '.' INT;
+	
 //terminal PREIS: 
 //	('0'..'9')+(','|'.')*('0'..'9')*;
 
