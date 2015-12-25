@@ -32,12 +32,12 @@ public interface Price extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' attribute.
-   * @see #setValue(String)
+   * @see #setValue(float)
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getPrice_Value()
    * @model
    * @generated
    */
-  String getValue();
+  float getValue();
 
   /**
    * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Price#getValue <em>Value</em>}' attribute.
@@ -47,7 +47,7 @@ public interface Price extends EObject
    * @see #getValue()
    * @generated
    */
-  void setValue(String value);
+  void setValue(float value);
 
   /**
    * Returns the value of the '<em><b>Currency</b></em>' containment reference.

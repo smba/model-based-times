@@ -5,6 +5,7 @@ package de.tu_bs.cs.isf.mbse.mbtimes.npl.impl;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Date;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.EString;
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.ImagesCount;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Pair;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Price;
@@ -247,24 +248,14 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
   protected int articleWordsMax = ARTICLE_WORDS_MAX_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getImagesCnt() <em>Images Cnt</em>}' attribute.
+   * The cached value of the '{@link #getImagesCnt() <em>Images Cnt</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getImagesCnt()
    * @generated
    * @ordered
    */
-  protected static final int IMAGES_CNT_EDEFAULT = 0;
-
-  /**
-   * The cached value of the '{@link #getImagesCnt() <em>Images Cnt</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getImagesCnt()
-   * @generated
-   * @ordered
-   */
-  protected int imagesCnt = IMAGES_CNT_EDEFAULT;
+  protected ImagesCount imagesCnt;
 
   /**
    * The default value of the '{@link #getColumnsCnt() <em>Columns Cnt</em>}' attribute.
@@ -694,7 +685,7 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public int getImagesCnt()
+  public ImagesCount getImagesCnt()
   {
     return imagesCnt;
   }
@@ -704,12 +695,37 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setImagesCnt(int newImagesCnt)
+  public NotificationChain basicSetImagesCnt(ImagesCount newImagesCnt, NotificationChain msgs)
   {
-    int oldImagesCnt = imagesCnt;
+    ImagesCount oldImagesCnt = imagesCnt;
     imagesCnt = newImagesCnt;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__IMAGES_CNT, oldImagesCnt, imagesCnt));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__IMAGES_CNT, oldImagesCnt, newImagesCnt);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setImagesCnt(ImagesCount newImagesCnt)
+  {
+    if (newImagesCnt != imagesCnt)
+    {
+      NotificationChain msgs = null;
+      if (imagesCnt != null)
+        msgs = ((InternalEObject)imagesCnt).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NplPackage.DECLARATION__IMAGES_CNT, null, msgs);
+      if (newImagesCnt != null)
+        msgs = ((InternalEObject)newImagesCnt).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NplPackage.DECLARATION__IMAGES_CNT, null, msgs);
+      msgs = basicSetImagesCnt(newImagesCnt, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__IMAGES_CNT, newImagesCnt, newImagesCnt));
   }
 
   /**
@@ -807,6 +823,8 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
         return basicSetLanguage(null, msgs);
       case NplPackage.DECLARATION__FORMAT:
         return basicSetFormat(null, msgs);
+      case NplPackage.DECLARATION__IMAGES_CNT:
+        return basicSetImagesCnt(null, msgs);
       case NplPackage.DECLARATION__FONT_SIZE:
         return basicSetFontSize(null, msgs);
     }
@@ -913,7 +931,7 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
         setArticleWordsMax((Integer)newValue);
         return;
       case NplPackage.DECLARATION__IMAGES_CNT:
-        setImagesCnt((Integer)newValue);
+        setImagesCnt((ImagesCount)newValue);
         return;
       case NplPackage.DECLARATION__COLUMNS_CNT:
         setColumnsCnt((Integer)newValue);
@@ -975,7 +993,7 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
         setArticleWordsMax(ARTICLE_WORDS_MAX_EDEFAULT);
         return;
       case NplPackage.DECLARATION__IMAGES_CNT:
-        setImagesCnt(IMAGES_CNT_EDEFAULT);
+        setImagesCnt((ImagesCount)null);
         return;
       case NplPackage.DECLARATION__COLUMNS_CNT:
         setColumnsCnt(COLUMNS_CNT_EDEFAULT);
@@ -1024,7 +1042,7 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
       case NplPackage.DECLARATION__ARTICLE_WORDS_MAX:
         return articleWordsMax != ARTICLE_WORDS_MAX_EDEFAULT;
       case NplPackage.DECLARATION__IMAGES_CNT:
-        return imagesCnt != IMAGES_CNT_EDEFAULT;
+        return imagesCnt != null;
       case NplPackage.DECLARATION__COLUMNS_CNT:
         return columnsCnt != COLUMNS_CNT_EDEFAULT;
       case NplPackage.DECLARATION__FONT_SIZE:
@@ -1056,8 +1074,6 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
     result.append(articleWordsMin);
     result.append(", articleWordsMax: ");
     result.append(articleWordsMax);
-    result.append(", imagesCnt: ");
-    result.append(imagesCnt);
     result.append(", columnsCnt: ");
     result.append(columnsCnt);
     result.append(')');

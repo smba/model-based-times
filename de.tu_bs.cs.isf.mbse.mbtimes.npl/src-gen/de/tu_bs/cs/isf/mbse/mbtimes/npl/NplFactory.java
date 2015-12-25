@@ -32,6 +32,15 @@ public interface NplFactory extends EFactory
   Declaration createDeclaration();
 
   /**
+   * Returns a new object of class '<em>Images Count</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Images Count</em>'.
+   * @generated
+   */
+  ImagesCount createImagesCount();
+
+  /**
    * Returns a new object of class '<em>EString</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

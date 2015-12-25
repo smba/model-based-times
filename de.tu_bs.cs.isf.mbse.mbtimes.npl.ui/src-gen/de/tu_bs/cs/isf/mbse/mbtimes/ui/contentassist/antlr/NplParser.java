@@ -40,8 +40,8 @@ public class NplParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFontSizeAccess().getAlternatives(), "rule__FontSize__Alternatives");
 					put(grammarAccess.getFormatAccess().getAlternatives(), "rule__Format__Alternatives");
 					put(grammarAccess.getLanguageAccess().getAlternatives(), "rule__Language__Alternatives");
-					put(grammarAccess.getValueAccess().getAlternatives_1(), "rule__Value__Alternatives_1");
 					put(grammarAccess.getCurrencyAccess().getAlternatives(), "rule__Currency__Alternatives");
+					put(grammarAccess.getFloatAccess().getAlternatives_1_0(), "rule__Float__Alternatives_1_0");
 					put(grammarAccess.getDeclarationAccess().getGroup(), "rule__Declaration__Group__0");
 					put(grammarAccess.getDeclarationAccess().getGroup_6(), "rule__Declaration__Group_6__0");
 					put(grammarAccess.getDeclarationAccess().getGroup_13(), "rule__Declaration__Group_13__0");
@@ -62,12 +62,13 @@ public class NplParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLanguageAccess().getGroup_0(), "rule__Language__Group_0__0");
 					put(grammarAccess.getLanguageAccess().getGroup_1(), "rule__Language__Group_1__0");
 					put(grammarAccess.getPriceAccess().getGroup(), "rule__Price__Group__0");
-					put(grammarAccess.getValueAccess().getGroup(), "rule__Value__Group__0");
 					put(grammarAccess.getCurrencyAccess().getGroup_0(), "rule__Currency__Group_0__0");
 					put(grammarAccess.getCurrencyAccess().getGroup_1(), "rule__Currency__Group_1__0");
 					put(grammarAccess.getTopicAccess().getGroup(), "rule__Topic__Group__0");
 					put(grammarAccess.getTopicAccess().getGroup_4(), "rule__Topic__Group_4__0");
 					put(grammarAccess.getPairAccess().getGroup(), "rule__Pair__Group__0");
+					put(grammarAccess.getFloatAccess().getGroup(), "rule__Float__Group__0");
+					put(grammarAccess.getFloatAccess().getGroup_1(), "rule__Float__Group_1__0");
 					put(grammarAccess.getDeclarationAccess().getNameAssignment_1(), "rule__Declaration__NameAssignment_1");
 					put(grammarAccess.getDeclarationAccess().getFeedlinksAssignment_5(), "rule__Declaration__FeedlinksAssignment_5");
 					put(grammarAccess.getDeclarationAccess().getPairsAssignment_6_1(), "rule__Declaration__PairsAssignment_6_1");
@@ -85,6 +86,7 @@ public class NplParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDeclarationAccess().getImagesCntAssignment_28_1(), "rule__Declaration__ImagesCntAssignment_28_1");
 					put(grammarAccess.getDeclarationAccess().getColumnsCntAssignment_30(), "rule__Declaration__ColumnsCntAssignment_30");
 					put(grammarAccess.getDeclarationAccess().getFontSizeAssignment_32(), "rule__Declaration__FontSizeAssignment_32");
+					put(grammarAccess.getImagesCountAccess().getValueAssignment(), "rule__ImagesCount__ValueAssignment");
 					put(grammarAccess.getDateAccess().getDayAssignment_1(), "rule__Date__DayAssignment_1");
 					put(grammarAccess.getDateAccess().getMonthAssignment_3(), "rule__Date__MonthAssignment_3");
 					put(grammarAccess.getDateAccess().getYearAssignment_5(), "rule__Date__YearAssignment_5");

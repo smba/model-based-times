@@ -184,7 +184,7 @@ public interface NplPackage extends EPackage
   int DECLARATION__ARTICLE_WORDS_MAX = 12;
 
   /**
-   * The feature id for the '<em><b>Images Cnt</b></em>' attribute.
+   * The feature id for the '<em><b>Images Cnt</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -220,6 +220,34 @@ public interface NplPackage extends EPackage
   int DECLARATION_FEATURE_COUNT = 16;
 
   /**
+   * The meta object id for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.ImagesCountImpl <em>Images Count</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.ImagesCountImpl
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getImagesCount()
+   * @generated
+   */
+  int IMAGES_COUNT = 1;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMAGES_COUNT__VALUE = 0;
+
+  /**
+   * The number of structural features of the '<em>Images Count</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMAGES_COUNT_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.EStringImpl <em>EString</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -227,7 +255,7 @@ public interface NplPackage extends EPackage
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getEString()
    * @generated
    */
-  int ESTRING = 1;
+  int ESTRING = 2;
 
   /**
    * The number of structural features of the '<em>EString</em>' class.
@@ -246,7 +274,7 @@ public interface NplPackage extends EPackage
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getDate()
    * @generated
    */
-  int DATE = 2;
+  int DATE = 3;
 
   /**
    * The feature id for the '<em><b>Day</b></em>' attribute.
@@ -292,7 +320,7 @@ public interface NplPackage extends EPackage
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getPrice()
    * @generated
    */
-  int PRICE = 3;
+  int PRICE = 4;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -329,7 +357,7 @@ public interface NplPackage extends EPackage
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getTopic()
    * @generated
    */
-  int TOPIC = 4;
+  int TOPIC = 5;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -366,7 +394,7 @@ public interface NplPackage extends EPackage
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getTopicTag()
    * @generated
    */
-  int TOPIC_TAG = 5;
+  int TOPIC_TAG = 6;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -394,7 +422,7 @@ public interface NplPackage extends EPackage
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getPair()
    * @generated
    */
-  int PAIR = 6;
+  int PAIR = 7;
 
   /**
    * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -578,15 +606,15 @@ public interface NplPackage extends EPackage
   EAttribute getDeclaration_ArticleWordsMax();
 
   /**
-   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getImagesCnt <em>Images Cnt</em>}'.
+   * Returns the meta object for the containment reference '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getImagesCnt <em>Images Cnt</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Images Cnt</em>'.
+   * @return the meta object for the containment reference '<em>Images Cnt</em>'.
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getImagesCnt()
    * @see #getDeclaration()
    * @generated
    */
-  EAttribute getDeclaration_ImagesCnt();
+  EReference getDeclaration_ImagesCnt();
 
   /**
    * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getColumnsCnt <em>Columns Cnt</em>}'.
@@ -609,6 +637,27 @@ public interface NplPackage extends EPackage
    * @generated
    */
   EReference getDeclaration_FontSize();
+
+  /**
+   * Returns the meta object for class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.ImagesCount <em>Images Count</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Images Count</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.ImagesCount
+   * @generated
+   */
+  EClass getImagesCount();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.ImagesCount#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.ImagesCount#getValue()
+   * @see #getImagesCount()
+   * @generated
+   */
+  EAttribute getImagesCount_Value();
 
   /**
    * Returns the meta object for class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.EString <em>EString</em>}'.
@@ -918,12 +967,12 @@ public interface NplPackage extends EPackage
     EAttribute DECLARATION__ARTICLE_WORDS_MAX = eINSTANCE.getDeclaration_ArticleWordsMax();
 
     /**
-     * The meta object literal for the '<em><b>Images Cnt</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Images Cnt</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DECLARATION__IMAGES_CNT = eINSTANCE.getDeclaration_ImagesCnt();
+    EReference DECLARATION__IMAGES_CNT = eINSTANCE.getDeclaration_ImagesCnt();
 
     /**
      * The meta object literal for the '<em><b>Columns Cnt</b></em>' attribute feature.
@@ -940,6 +989,24 @@ public interface NplPackage extends EPackage
      * @generated
      */
     EReference DECLARATION__FONT_SIZE = eINSTANCE.getDeclaration_FontSize();
+
+    /**
+     * The meta object literal for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.ImagesCountImpl <em>Images Count</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.ImagesCountImpl
+     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getImagesCount()
+     * @generated
+     */
+    EClass IMAGES_COUNT = eINSTANCE.getImagesCount();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute IMAGES_COUNT__VALUE = eINSTANCE.getImagesCount_Value();
 
     /**
      * The meta object literal for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.EStringImpl <em>EString</em>}' class.

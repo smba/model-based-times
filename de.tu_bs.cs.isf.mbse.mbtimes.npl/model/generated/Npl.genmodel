@@ -21,9 +21,12 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//Declaration/articleCnt"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//Declaration/articleWordsMin"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//Declaration/articleWordsMax"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//Declaration/imagesCnt"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Npl.ecore#//Declaration/imagesCnt"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//Declaration/columnsCnt"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Npl.ecore#//Declaration/fontSize"/>
+    </genClasses>
+    <genClasses ecoreClass="Npl.ecore#//ImagesCount">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//ImagesCount/value"/>
     </genClasses>
     <genClasses ecoreClass="Npl.ecore#//EString"/>
     <genClasses ecoreClass="Npl.ecore#//Date">

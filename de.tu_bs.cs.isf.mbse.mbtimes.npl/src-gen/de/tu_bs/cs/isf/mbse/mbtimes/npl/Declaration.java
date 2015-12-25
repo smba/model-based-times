@@ -348,30 +348,30 @@ public interface Declaration extends EObject
   void setArticleWordsMax(int value);
 
   /**
-   * Returns the value of the '<em><b>Images Cnt</b></em>' attribute.
+   * Returns the value of the '<em><b>Images Cnt</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Images Cnt</em>' attribute isn't clear,
+   * If the meaning of the '<em>Images Cnt</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Images Cnt</em>' attribute.
-   * @see #setImagesCnt(int)
+   * @return the value of the '<em>Images Cnt</em>' containment reference.
+   * @see #setImagesCnt(ImagesCount)
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_ImagesCnt()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  int getImagesCnt();
+  ImagesCount getImagesCnt();
 
   /**
-   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getImagesCnt <em>Images Cnt</em>}' attribute.
+   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getImagesCnt <em>Images Cnt</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Images Cnt</em>' attribute.
+   * @param value the new value of the '<em>Images Cnt</em>' containment reference.
    * @see #getImagesCnt()
    * @generated
    */
-  void setImagesCnt(int value);
+  void setImagesCnt(ImagesCount value);
 
   /**
    * Returns the value of the '<em><b>Columns Cnt</b></em>' attribute.

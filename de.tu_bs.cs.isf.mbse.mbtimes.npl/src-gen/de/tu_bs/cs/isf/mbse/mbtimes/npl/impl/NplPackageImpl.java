@@ -5,6 +5,7 @@ package de.tu_bs.cs.isf.mbse.mbtimes.npl.impl;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Date;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.EString;
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.ImagesCount;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.NplFactory;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Pair;
@@ -33,6 +34,13 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * @generated
    */
   private EClass declarationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass imagesCountEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -284,9 +292,9 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDeclaration_ImagesCnt()
+  public EReference getDeclaration_ImagesCnt()
   {
-    return (EAttribute)declarationEClass.getEStructuralFeatures().get(13);
+    return (EReference)declarationEClass.getEStructuralFeatures().get(13);
   }
 
   /**
@@ -307,6 +315,26 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
   public EReference getDeclaration_FontSize()
   {
     return (EReference)declarationEClass.getEStructuralFeatures().get(15);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getImagesCount()
+  {
+    return imagesCountEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getImagesCount_Value()
+  {
+    return (EAttribute)imagesCountEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -513,9 +541,12 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
     createEAttribute(declarationEClass, DECLARATION__ARTICLE_CNT);
     createEAttribute(declarationEClass, DECLARATION__ARTICLE_WORDS_MIN);
     createEAttribute(declarationEClass, DECLARATION__ARTICLE_WORDS_MAX);
-    createEAttribute(declarationEClass, DECLARATION__IMAGES_CNT);
+    createEReference(declarationEClass, DECLARATION__IMAGES_CNT);
     createEAttribute(declarationEClass, DECLARATION__COLUMNS_CNT);
     createEReference(declarationEClass, DECLARATION__FONT_SIZE);
+
+    imagesCountEClass = createEClass(IMAGES_COUNT);
+    createEAttribute(imagesCountEClass, IMAGES_COUNT__VALUE);
 
     eStringEClass = createEClass(ESTRING);
 
@@ -585,9 +616,12 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
     initEAttribute(getDeclaration_ArticleCnt(), ecorePackage.getEInt(), "articleCnt", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDeclaration_ArticleWordsMin(), ecorePackage.getEInt(), "articleWordsMin", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDeclaration_ArticleWordsMax(), ecorePackage.getEInt(), "articleWordsMax", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDeclaration_ImagesCnt(), ecorePackage.getEInt(), "imagesCnt", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDeclaration_ImagesCnt(), this.getImagesCount(), null, "imagesCnt", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDeclaration_ColumnsCnt(), ecorePackage.getEInt(), "columnsCnt", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDeclaration_FontSize(), this.getEString(), null, "fontSize", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(imagesCountEClass, ImagesCount.class, "ImagesCount", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getImagesCount_Value(), ecorePackage.getEInt(), "value", null, 0, 1, ImagesCount.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(eStringEClass, EString.class, "EString", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -597,7 +631,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
     initEAttribute(getDate_Year(), ecorePackage.getEInt(), "year", null, 0, 1, Date.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(priceEClass, Price.class, "Price", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPrice_Value(), ecorePackage.getEString(), "value", null, 0, 1, Price.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPrice_Value(), ecorePackage.getEFloat(), "value", null, 0, 1, Price.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPrice_Currency(), this.getEString(), null, "currency", null, 0, 1, Price.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(topicEClass, Topic.class, "Topic", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

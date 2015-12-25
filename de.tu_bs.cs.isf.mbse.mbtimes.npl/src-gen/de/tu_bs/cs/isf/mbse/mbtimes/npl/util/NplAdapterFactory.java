@@ -80,6 +80,11 @@ public class NplAdapterFactory extends AdapterFactoryImpl
         return createDeclarationAdapter();
       }
       @Override
+      public Adapter caseImagesCount(ImagesCount object)
+      {
+        return createImagesCountAdapter();
+      }
+      @Override
       public Adapter caseEString(EString object)
       {
         return createEStringAdapter();
@@ -142,6 +147,21 @@ public class NplAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDeclarationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.ImagesCount <em>Images Count</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.ImagesCount
+   * @generated
+   */
+  public Adapter createImagesCountAdapter()
   {
     return null;
   }

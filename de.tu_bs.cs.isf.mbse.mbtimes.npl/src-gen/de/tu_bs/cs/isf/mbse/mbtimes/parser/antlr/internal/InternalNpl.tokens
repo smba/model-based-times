@@ -1,8 +1,8 @@
 ', '=15
-','=43
+','=47
 '-'=26
-'.'=42
-':'=47
+'.'=46
+':'=45
 'DIN A0'=39
 'DIN A1'=38
 'DIN A2'=37
@@ -10,9 +10,9 @@
 'DIN A4'=35
 'DIN A5'=34
 'DIN A6'=33
-'Dollar [$]'=45
+'Dollar [$]'=43
 'English'=40
-'Euro [\u20AC]'=44
+'Euro [\u20AC]'=42
 'German'=41
 'date'=18
 'feed links'=14
@@ -29,7 +29,7 @@
 'number of words per article'=25
 'price'=20
 'small'=30
-'topic'=46
+'topic'=44
 'topics'=17
 'volume'=21
 '{'=13

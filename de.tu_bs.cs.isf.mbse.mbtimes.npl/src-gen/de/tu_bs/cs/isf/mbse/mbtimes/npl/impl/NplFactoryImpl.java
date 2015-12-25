@@ -65,6 +65,7 @@ public class NplFactoryImpl extends EFactoryImpl implements NplFactory
     switch (eClass.getClassifierID())
     {
       case NplPackage.DECLARATION: return createDeclaration();
+      case NplPackage.IMAGES_COUNT: return createImagesCount();
       case NplPackage.ESTRING: return createEString();
       case NplPackage.DATE: return createDate();
       case NplPackage.PRICE: return createPrice();
@@ -85,6 +86,17 @@ public class NplFactoryImpl extends EFactoryImpl implements NplFactory
   {
     DeclarationImpl declaration = new DeclarationImpl();
     return declaration;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ImagesCount createImagesCount()
+  {
+    ImagesCountImpl imagesCount = new ImagesCountImpl();
+    return imagesCount;
   }
 
   /**

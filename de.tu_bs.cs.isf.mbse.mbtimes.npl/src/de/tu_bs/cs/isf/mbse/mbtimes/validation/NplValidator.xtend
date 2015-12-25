@@ -76,8 +76,8 @@ class NplValidator extends AbstractNplValidator {
 	 * This constraint checks whether the number of articles is positive and smaller than 6.
 	 */
 	@Check
-	def checkNrArticles(Declaration articles) {
-		if (articles.articleCnt < 1 || articles.articleCnt > 5) {
+	def checkNrArticles(Declaration declaration) {
+		if (declaration.articleCnt < 1 || declaration.articleCnt > 5) {
 			error("Number of articles must be greater than 0 and smaller than 6", NplPackage.Literals.DECLARATION__ARTICLE_CNT)
 		}
 	}
@@ -88,7 +88,7 @@ class NplValidator extends AbstractNplValidator {
 	  */
 	 @Check
 	 def checkNumberOfWords(Declaration declaration) {
-	 	if (declaration.articleWordsMin < 0) {
+	 	if (declaration.articleWordsMin < 1) {
 	 		error("The minimum number of words could not be smaller than 1", NplPackage.Literals.DECLARATION__ARTICLE_WORDS_MIN)
 	 	}
 	 	if (declaration.articleWordsMin > declaration.articleWordsMax) {
@@ -100,8 +100,8 @@ class NplValidator extends AbstractNplValidator {
 	 * This constraint checks whether the number of images is positive and smaller than 6.
 	 */
 	@Check
-	def checkNrImages(ImagesCount imgc) {
-		if (imgc.value < 1 || imgc.value > 5) {
+	def checkNrImages(Declaration declaration) {
+		if (declaration.imagesCnt.value < 1 || declaration.imagesCnt.value > 5) {
 			error("Number of images must be greater than 0 and smaller than 6", NplPackage.Literals.DECLARATION__IMAGES_CNT)
 		}
 	}
@@ -120,11 +120,11 @@ class NplValidator extends AbstractNplValidator {
 	 }
 	 
 	 @Check
-	 def checkPrice(Price price) {
-	 	if (price.value < 0) {
+	 def checkPrice(Declaration declaration) {
+	 	if (declaration.price.value < 0) {
 	 		error("You should pay for the newspaper, not us ;)", NplPackage.Literals.PRICE__VALUE);
 	 	}
-	 	if (Float.toString(price.value).split("\\.").get(1).length() > 2) {
+	 	if (Float.toString(declaration.price.value).split("\\.").get(1).length() > 2) {
 	 		warning("We only consider two decimal places.", NplPackage.Literals.PRICE__VALUE);
 	 	}
 	 }

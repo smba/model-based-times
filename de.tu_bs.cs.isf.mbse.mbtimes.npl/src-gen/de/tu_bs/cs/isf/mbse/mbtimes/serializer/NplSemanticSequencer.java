@@ -8,6 +8,7 @@ import com.google.inject.Provider;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Date;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.EString;
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.ImagesCount;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Pair;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Price;
@@ -43,6 +44,9 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case NplPackage.ESTRING:
 				sequence_Currency_FontSize_Format_Language(context, (EString) semanticObject); 
+				return; 
+			case NplPackage.IMAGES_COUNT:
+				sequence_ImagesCount(context, (ImagesCount) semanticObject); 
 				return; 
 			case NplPackage.PAIR:
 				sequence_Pair(context, (Pair) semanticObject); 
@@ -108,13 +112,29 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         articleCnt=INT 
 	 *         articleWordsMin=INT 
 	 *         articleWordsMax=INT 
-	 *         imagesCnt=INT? 
+	 *         imagesCnt=ImagesCount? 
 	 *         columnsCnt=INT 
 	 *         fontSize=FontSize
 	 *     )
 	 */
 	protected void sequence_Declaration(EObject context, Declaration semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     value=INT
+	 */
+	protected void sequence_ImagesCount(EObject context, ImagesCount semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, NplPackage.Literals.IMAGES_COUNT__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, NplPackage.Literals.IMAGES_COUNT__VALUE));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getImagesCountAccess().getValueINTTerminalRuleCall_0(), semanticObject.getValue());
+		feeder.finish();
 	}
 	
 	
@@ -139,7 +159,7 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (value=Value currency=Currency)
+	 *     (value=Float currency=Currency)
 	 */
 	protected void sequence_Price(EObject context, Price semanticObject) {
 		if(errorAcceptor != null) {
@@ -150,7 +170,7 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPriceAccess().getValueValueParserRuleCall_1_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getPriceAccess().getValueFloatParserRuleCall_1_0(), semanticObject.getValue());
 		feeder.accept(grammarAccess.getPriceAccess().getCurrencyCurrencyParserRuleCall_2_0(), semanticObject.getCurrency());
 		feeder.finish();
 	}

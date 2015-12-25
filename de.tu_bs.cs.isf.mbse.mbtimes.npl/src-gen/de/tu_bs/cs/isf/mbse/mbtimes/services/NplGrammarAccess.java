@@ -74,7 +74,7 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_28 = (Group)cGroup.eContents().get(28);
 		private final Keyword cNumberOfImagesPerArticleKeyword_28_0 = (Keyword)cGroup_28.eContents().get(0);
 		private final Assignment cImagesCntAssignment_28_1 = (Assignment)cGroup_28.eContents().get(1);
-		private final RuleCall cImagesCntINTTerminalRuleCall_28_1_0 = (RuleCall)cImagesCntAssignment_28_1.eContents().get(0);
+		private final RuleCall cImagesCntImagesCountParserRuleCall_28_1_0 = (RuleCall)cImagesCntAssignment_28_1.eContents().get(0);
 		private final Keyword cNumberOfColumnsKeyword_29 = (Keyword)cGroup.eContents().get(29);
 		private final Assignment cColumnsCntAssignment_30 = (Assignment)cGroup.eContents().get(30);
 		private final RuleCall cColumnsCntINTTerminalRuleCall_30_0 = (RuleCall)cColumnsCntAssignment_30.eContents().get(0);
@@ -88,14 +88,14 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		//	topics+=Topic* "}" ("date" date=Date)? ("location" location=STRING)? "price" price=Price ("volume" volume=INT)?
 		//	"language" language=Language "format" format=Format "number of articles per topic" articleCnt=INT
 		//	"number of words per article" articleWordsMin=INT "-" articleWordsMax=INT ("number of images per article"
-		//	imagesCnt=INT)? "number of columns" columnsCnt=INT "font size" fontSize=FontSize "}";
+		//	imagesCnt=ImagesCount)? "number of columns" columnsCnt=INT "font size" fontSize=FontSize "}";
 		@Override public ParserRule getRule() { return rule; }
 
 		//"newspaper" name=ID "{" "feed links" "{" feedlinks+=Pair (", " pairs+=Pair)* "}" "topics" "{" topics+=Topic
 		//topics+=Topic* "}" ("date" date=Date)? ("location" location=STRING)? "price" price=Price ("volume" volume=INT)?
 		//"language" language=Language "format" format=Format "number of articles per topic" articleCnt=INT
 		//"number of words per article" articleWordsMin=INT "-" articleWordsMax=INT ("number of images per article"
-		//imagesCnt=INT)? "number of columns" columnsCnt=INT "font size" fontSize=FontSize "}"
+		//imagesCnt=ImagesCount)? "number of columns" columnsCnt=INT "font size" fontSize=FontSize "}"
 		public Group getGroup() { return cGroup; }
 
 		//"newspaper"
@@ -248,17 +248,17 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		//INT
 		public RuleCall getArticleWordsMaxINTTerminalRuleCall_27_0() { return cArticleWordsMaxINTTerminalRuleCall_27_0; }
 
-		//("number of images per article" imagesCnt=INT)?
+		//("number of images per article" imagesCnt=ImagesCount)?
 		public Group getGroup_28() { return cGroup_28; }
 
 		//"number of images per article"
 		public Keyword getNumberOfImagesPerArticleKeyword_28_0() { return cNumberOfImagesPerArticleKeyword_28_0; }
 
-		//imagesCnt=INT
+		//imagesCnt=ImagesCount
 		public Assignment getImagesCntAssignment_28_1() { return cImagesCntAssignment_28_1; }
 
-		//INT
-		public RuleCall getImagesCntINTTerminalRuleCall_28_1_0() { return cImagesCntINTTerminalRuleCall_28_1_0; }
+		//ImagesCount
+		public RuleCall getImagesCntImagesCountParserRuleCall_28_1_0() { return cImagesCntImagesCountParserRuleCall_28_1_0; }
 
 		//"number of columns"
 		public Keyword getNumberOfColumnsKeyword_29() { return cNumberOfColumnsKeyword_29; }
@@ -280,6 +280,24 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_33() { return cRightCurlyBracketKeyword_33; }
+	}
+
+	public class ImagesCountElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ImagesCount");
+		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cValueINTTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		
+		/// **
+		// * 
+		// * / ImagesCount:
+		//	value=INT;
+		@Override public ParserRule getRule() { return rule; }
+
+		//value=INT
+		public Assignment getValueAssignment() { return cValueAssignment; }
+
+		//INT
+		public RuleCall getValueINTTerminalRuleCall_0() { return cValueINTTerminalRuleCall_0; }
 	}
 
 	public class FontSizeElements extends AbstractParserRuleElementFinder {
@@ -523,26 +541,26 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cValueValueParserRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
+		private final RuleCall cValueFloatParserRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
 		private final Assignment cCurrencyAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cCurrencyCurrencyParserRuleCall_2_0 = (RuleCall)cCurrencyAssignment_2.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//Price:
-		//	"{" value=Value currency=Currency "}";
+		//	"{" value=Float currency=Currency "}";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"{" value=Value currency=Currency "}"
+		//"{" value=Float currency=Currency "}"
 		public Group getGroup() { return cGroup; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_0() { return cLeftCurlyBracketKeyword_0; }
 
-		//value=Value
+		//value=Float
 		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
 
-		//Value
-		public RuleCall getValueValueParserRuleCall_1_0() { return cValueValueParserRuleCall_1_0; }
+		//Float
+		public RuleCall getValueFloatParserRuleCall_1_0() { return cValueFloatParserRuleCall_1_0; }
 
 		//currency=Currency
 		public Assignment getCurrencyAssignment_2() { return cCurrencyAssignment_2; }
@@ -552,38 +570,6 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
-	}
-
-	public class ValueElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Value");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cINTTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
-		private final Keyword cFullStopKeyword_1_0 = (Keyword)cAlternatives_1.eContents().get(0);
-		private final Keyword cCommaKeyword_1_1 = (Keyword)cAlternatives_1.eContents().get(1);
-		private final RuleCall cINTTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
-		
-		//Value:
-		//	INT ("." | ",") INT;
-		@Override public ParserRule getRule() { return rule; }
-
-		//INT ("." | ",") INT
-		public Group getGroup() { return cGroup; }
-
-		//INT
-		public RuleCall getINTTerminalRuleCall_0() { return cINTTerminalRuleCall_0; }
-
-		//"." | ","
-		public Alternatives getAlternatives_1() { return cAlternatives_1; }
-
-		//"."
-		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
-
-		//","
-		public Keyword getCommaKeyword_1_1() { return cCommaKeyword_1_1; }
-
-		//INT
-		public RuleCall getINTTerminalRuleCall_2() { return cINTTerminalRuleCall_2; }
 	}
 
 	public class CurrencyElements extends AbstractParserRuleElementFinder {
@@ -725,20 +711,62 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		//URL
 		public RuleCall getValueURLTerminalRuleCall_2_0() { return cValueURLTerminalRuleCall_2_0; }
 	}
+
+	public class FloatElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Float");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cINTTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_1_0 = (Alternatives)cGroup_1.eContents().get(0);
+		private final Keyword cFullStopKeyword_1_0_0 = (Keyword)cAlternatives_1_0.eContents().get(0);
+		private final Keyword cCommaKeyword_1_0_1 = (Keyword)cAlternatives_1_0.eContents().get(1);
+		private final RuleCall cINTTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		
+		////terminal PREIS: 
+		////	('0'..'9')+(','|'.')*('0'..'9')*;
+		//Float returns ecore::EFloat:
+		//	INT (("." | ",") INT)?;
+		@Override public ParserRule getRule() { return rule; }
+
+		//INT (("." | ",") INT)? //terminal PREIS: 
+		////	('0'..'9')+(','|'.')*('0'..'9')*;
+		public Group getGroup() { return cGroup; }
+
+		//INT
+		public RuleCall getINTTerminalRuleCall_0() { return cINTTerminalRuleCall_0; }
+
+		//(("." | ",") INT //terminal PREIS: 
+		////	('0'..'9')+(','|'.')*('0'..'9')*;
+		//)?
+		public Group getGroup_1() { return cGroup_1; }
+
+		//"." | ","
+		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
+
+		//"."
+		public Keyword getFullStopKeyword_1_0_0() { return cFullStopKeyword_1_0_0; }
+
+		//","
+		public Keyword getCommaKeyword_1_0_1() { return cCommaKeyword_1_0_1; }
+
+		//INT
+		public RuleCall getINTTerminalRuleCall_1_1() { return cINTTerminalRuleCall_1_1; }
+	}
 	
 	
 	private final DeclarationElements pDeclaration;
+	private final ImagesCountElements pImagesCount;
 	private final FontSizeElements pFontSize;
 	private final FormatElements pFormat;
 	private final DateElements pDate;
 	private final LanguageElements pLanguage;
 	private final PriceElements pPrice;
-	private final ValueElements pValue;
 	private final CurrencyElements pCurrency;
 	private final TopicElements pTopic;
 	private final TopicTagElements pTopicTag;
 	private final PairElements pPair;
 	private final TerminalRule tURL;
+	private final FloatElements pFloat;
 	
 	private final Grammar grammar;
 
@@ -750,17 +778,18 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 		this.pDeclaration = new DeclarationElements();
+		this.pImagesCount = new ImagesCountElements();
 		this.pFontSize = new FontSizeElements();
 		this.pFormat = new FormatElements();
 		this.pDate = new DateElements();
 		this.pLanguage = new LanguageElements();
 		this.pPrice = new PriceElements();
-		this.pValue = new ValueElements();
 		this.pCurrency = new CurrencyElements();
 		this.pTopic = new TopicElements();
 		this.pTopicTag = new TopicTagElements();
 		this.pPair = new PairElements();
 		this.tURL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "URL");
+		this.pFloat = new FloatElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -795,13 +824,25 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 	//	topics+=Topic* "}" ("date" date=Date)? ("location" location=STRING)? "price" price=Price ("volume" volume=INT)?
 	//	"language" language=Language "format" format=Format "number of articles per topic" articleCnt=INT
 	//	"number of words per article" articleWordsMin=INT "-" articleWordsMax=INT ("number of images per article"
-	//	imagesCnt=INT)? "number of columns" columnsCnt=INT "font size" fontSize=FontSize "}";
+	//	imagesCnt=ImagesCount)? "number of columns" columnsCnt=INT "font size" fontSize=FontSize "}";
 	public DeclarationElements getDeclarationAccess() {
 		return pDeclaration;
 	}
 	
 	public ParserRule getDeclarationRule() {
 		return getDeclarationAccess().getRule();
+	}
+
+	/// **
+	// * 
+	// * / ImagesCount:
+	//	value=INT;
+	public ImagesCountElements getImagesCountAccess() {
+		return pImagesCount;
+	}
+	
+	public ParserRule getImagesCountRule() {
+		return getImagesCountAccess().getRule();
 	}
 
 	//// Nutzer kann auswählen, ob die Schriftgröße klein, medium und groß sein soll. Größe sollte 
@@ -848,23 +889,13 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Price:
-	//	"{" value=Value currency=Currency "}";
+	//	"{" value=Float currency=Currency "}";
 	public PriceElements getPriceAccess() {
 		return pPrice;
 	}
 	
 	public ParserRule getPriceRule() {
 		return getPriceAccess().getRule();
-	}
-
-	//Value:
-	//	INT ("." | ",") INT;
-	public ValueElements getValueAccess() {
-		return pValue;
-	}
-	
-	public ParserRule getValueRule() {
-		return getValueAccess().getRule();
 	}
 
 	//Currency returns EString:
@@ -908,8 +939,6 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// URLS are assumed to be of the form "protocol://host[:port][path][query]"
-	////terminal PREIS: 
-	////	('0'..'9')+(','|'.')*('0'..'9')*;
 	//terminal URL:
 	//	"a".."z"+ // Protocol
 	//	"://" ("0".."9"+ "." "0".."9"+ "." "0".."9"+ "." "0".."9"+ // Hostname
@@ -927,6 +956,18 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 	public TerminalRule getURLRule() {
 		return tURL;
 	} 
+
+	////terminal PREIS: 
+	////	('0'..'9')+(','|'.')*('0'..'9')*;
+	//Float returns ecore::EFloat:
+	//	INT (("." | ",") INT)?;
+	public FloatElements getFloatAccess() {
+		return pFloat;
+	}
+	
+	public ParserRule getFloatRule() {
+		return getFloatAccess().getRule();
+	}
 
 	//terminal ID:
 	//	"^"? ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;

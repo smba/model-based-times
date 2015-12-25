@@ -39,7 +39,7 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price
    * @generated
    * @ordered
    */
-  protected static final String VALUE_EDEFAULT = null;
+  protected static final float VALUE_EDEFAULT = 0.0F;
 
   /**
    * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -49,7 +49,7 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price
    * @generated
    * @ordered
    */
-  protected String value = VALUE_EDEFAULT;
+  protected float value = VALUE_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getCurrency() <em>Currency</em>}' containment reference.
@@ -87,7 +87,7 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getValue()
+  public float getValue()
   {
     return value;
   }
@@ -97,9 +97,9 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValue(String newValue)
+  public void setValue(float newValue)
   {
-    String oldValue = value;
+    float oldValue = value;
     value = newValue;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.PRICE__VALUE, oldValue, value));
@@ -198,7 +198,7 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price
     switch (featureID)
     {
       case NplPackage.PRICE__VALUE:
-        setValue((String)newValue);
+        setValue((Float)newValue);
         return;
       case NplPackage.PRICE__CURRENCY:
         setCurrency((EString)newValue);
@@ -238,7 +238,7 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price
     switch (featureID)
     {
       case NplPackage.PRICE__VALUE:
-        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+        return value != VALUE_EDEFAULT;
       case NplPackage.PRICE__CURRENCY:
         return currency != null;
     }
