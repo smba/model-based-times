@@ -1,6 +1,7 @@
 package utilities;
 
 
+import java.util.LinkedList;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
@@ -36,8 +37,17 @@ public class MyRSSFactory {
 	        .createURI("./data/crawled.rss"), true);
 	    // Get the first model element and cast it to the right type, in my
 	    // example everything is hierarchical included in this first node
-	    RSS.Item myWeb = (RSS.Item) resource.getContents().get(3);
-	    System.out.println(myWeb.getTitle());
+	    LinkedList<RSS.Item> rssItems = new LinkedList<RSS.Item>();
+	    for(int i = 0; i < resource.getContents().size(); i++) {
+	    	if(resource.getContents().get(i) instanceof RSS.Item) {
+		    	RSS.Item current = (RSS.Item) resource.getContents().get(i);
+		    	rssItems.add(current);
+		    	 System.out.println(current.getTitle());
+	    	}
+
+	    }
+	    
+	   
 	  }
 
 }
