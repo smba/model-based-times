@@ -115,9 +115,10 @@ public class RSSFeedParser extends AbstractFeedParser {
 				/*
 				 * Try to retrieve the full text
 				 */
+				item.setFulltext("");
 				try {
 					String content = super.getText(new URL(entry.getLink()));
-					//TODO link content to item
+					item.setFulltext(content);
 				} catch (IOException e) {
 					throw new RuntimeException(e);
 				}
@@ -126,6 +127,7 @@ public class RSSFeedParser extends AbstractFeedParser {
 				/*
 				 * Connect channel and item
 				 */
+				//TODO is this actually effective?
 				item.setChannel(channel);
 				
 				for (Object o : entry.getCategories()) {
