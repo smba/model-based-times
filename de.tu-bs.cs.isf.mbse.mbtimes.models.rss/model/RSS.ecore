@@ -27,6 +27,7 @@
         eType="#//Channel"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="author" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="enclosure" eType="#//Enclosure"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fulltext" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Language">
     <eLiterals name="GERMAN"/>

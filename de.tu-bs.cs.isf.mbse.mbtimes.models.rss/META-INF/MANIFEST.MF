@@ -1,8 +1,17 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: de.tu-bs.cs.isf.mbse.mbtimes.models.rss
-Bundle-SymbolicName: de.tu-bs.cs.isf.mbse.mbtimes.models.rss; singleton:=true
+Bundle-Name: %pluginName
+Bundle-SymbolicName: de.tu-bs.cs.isf.mbse.mbtimes.models.rss;singleton:=true
 Bundle-Version: 0.1.0.qualifier
-Require-Bundle: org.eclipse.emf.ecore,
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: RSS,
+ RSS.impl,
+ RSS.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;bundle-version="2.11.1",
  org.eclipse.emf.ecore.xmi.source;bundle-version="2.11.1"
+Bundle-ActivationPolicy: lazy

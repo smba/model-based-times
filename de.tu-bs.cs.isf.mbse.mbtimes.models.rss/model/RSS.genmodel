@@ -32,6 +32,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RSS.ecore#//Item/channel"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RSS.ecore#//Item/author"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RSS.ecore#//Item/enclosure"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RSS.ecore#//Item/fulltext"/>
     </genClasses>
     <genClasses ecoreClass="RSS.ecore#//Category">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RSS.ecore#//Category/category"/>
