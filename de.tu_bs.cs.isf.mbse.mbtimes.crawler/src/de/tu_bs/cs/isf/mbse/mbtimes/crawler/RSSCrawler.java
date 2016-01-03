@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -25,28 +26,27 @@ import RSS.RSSPackage;
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser.RSSFeedParser;
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener.RSSFeedParserListener;
 
-public class RSSCrawler implements RSSFeedParserListener {
+public class RSSCrawler implements Crawler, RSSFeedParserListener {
 
-	//CONSTANTS
+	// CONSTANTS
 	private static final String RSS_TARGET_PATH = "tmp/RssOutput.rss";
-	
-	private static final int THREADPOOL_SIZE = 5;	
-	
+
+	private static final int THREADPOOL_SIZE = 5;
+
 	private RSSFactory rssFactory;
-	//private AtomFactory atomFactory;
-	
+	// private AtomFactory atomFactory;
+
 	private Resource rssResource;
-	//TODO atom
-	
-	public void crawl() {
-		String[] feeds = {"https://www.freitag.de/politik/@@RSS"};
+	// TODO atom
+
+	public void crawl(List<String> feeds) {
 
 		ExecutorService executor = Executors.newFixedThreadPool(THREADPOOL_SIZE);
 
 		for (String feed : feeds) {
-			
-			//TODO ergaenze Atom
-			
+
+			// TODO ergaenze Atom
+
 			Runnable worker = null;
 			try {
 				worker = new RSSFeedParser(this, new URL(feed));
@@ -59,48 +59,46 @@ public class RSSCrawler implements RSSFeedParserListener {
 		while (!executor.isTerminated()) {
 			// wait
 		}
-		
+
 	}
-	
+
 	public RSSCrawler() {
 		/*
 		 * Initialize model etc
 		 */
 		RSSPackage.eINSTANCE.eClass();
-	    this.rssFactory = RSSFactory.eINSTANCE;
-	    System.out.println("crawler"  + rssFactory);
-	    
-	    Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
-	    Map<String, Object> m = reg.getExtensionToFactoryMap();
-	    m.put("rss", new XMIResourceFactoryImpl());
-	    
-	    ResourceSet resSet = new ResourceSetImpl();
-	    
-	    if (!(new File(RSS_TARGET_PATH)).exists()) {
-	    	File f = new File(RSS_TARGET_PATH);
-	    	f.getParentFile().mkdirs(); 
-	    	try {
+		this.rssFactory = RSSFactory.eINSTANCE;
+
+		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
+		Map<String, Object> m = reg.getExtensionToFactoryMap();
+		m.put("rss", new XMIResourceFactoryImpl());
+
+		ResourceSet resSet = new ResourceSetImpl();
+
+		if (!(new File(RSS_TARGET_PATH)).exists()) {
+			File f = new File(RSS_TARGET_PATH);
+			f.getParentFile().mkdirs();
+			try {
 				f.createNewFile();
 			} catch (IOException e) {
 				throw new RuntimeException("Crawler could not create output file " + f.getName() + ".");
 			}
-	    }
-	    this.rssResource = resSet.createResource(URI.createURI(RSS_TARGET_PATH));
+		}
+		this.rssResource = resSet.createResource(URI.createURI(RSS_TARGET_PATH));
 	}
-	
+
+	@Override
 	public RSSFactory getRSSFactory() {
 		return this.rssFactory;
 	}
-	
+
 	@Override
 	public void receiveRSSItem(Item item) {
-		System.out.println("Log: " + "Receiving RSS item");
 		rssResource.getContents().add(item);
 	}
 
 	@Override
 	public void receiveRSSChannel(Channel channel) {
-		System.out.println(rssResource);
 		rssResource.getContents().add(channel);
 	}
 
@@ -119,6 +117,7 @@ public class RSSCrawler implements RSSFeedParserListener {
 		rssResource.getContents().add(image);
 	}
 
+	@Override
 	public void dispose() {
 		try {
 			this.rssResource.save(Collections.EMPTY_MAP);
@@ -126,12 +125,9 @@ public class RSSCrawler implements RSSFeedParserListener {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	public static void main(String[] args) {
-		RSSCrawler c = new RSSCrawler();
-		c.crawl();
-		c.dispose();
+
 	}
 
 }
- 
