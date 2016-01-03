@@ -1,5 +1,6 @@
--- @path Unified=/de.tu-bs.cs.isf.mbse.mbtimes.models.unified/model/unified.ecore
--- @path RSS=/de.tu-bs.cs.isf.mbse.mbtimes.models.rss/model/RSS.ecore
+-- @path Unified=/Users/florian/git/model-based-times/de.tu-bs.cs.isf.mbse.mbtimes.models.unified/model/unified.ecore
+-- @path RSS=/Users/florian/git/model-based-times/de.tu-bs.cs.isf.mbse.mbtimes.models.rss/model/RSS.ecore
+
 module RSS2Unified;
 create OUT: Unified from IN: RSS;
 
@@ -8,20 +9,24 @@ rule Item2Article {
 		s: RSS!Item
 	to	
 		t: Unified!Article (
-			author <- s.author,
+
 			published <- s.pubDate,
 			title <- s.title,
 			subtitle <- s.description,
-			category <- s.categories,
-			newschannel <- s.channel,
-			image <- s.enclosure,
+			link <- s.link,
 			content <- s.fulltext
+			
+			--author <- s.author,
+			--category <- s.categories,
+			--newschannel <- s.channel,
+			--image <- s.enclosure
 		)
 }
 
 rule Channel2NewsChannel {
 	from
-		s: RSS!Channel
+		s: RSS!Channel,
+		q: RSS!Image
 	to
 		t: Unified!NewsChannel (
 			title <- s.title,
@@ -29,7 +34,8 @@ rule Channel2NewsChannel {
 			updated <- s.lastBuild,
 			subtitle <- s.description,
 			editor <- s.managingEditor,
-			category <- s.categories
+			category <- s.categories,
+			icon <- q.url
 		)
 }
 

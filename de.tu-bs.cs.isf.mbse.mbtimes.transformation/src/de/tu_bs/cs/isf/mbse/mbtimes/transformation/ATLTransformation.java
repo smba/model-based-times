@@ -125,5 +125,25 @@ class ATLTransformation {
 		emfModelFactory.unload((EMFModel) sourceModelTransformed);
 		emfModelFactory.unload((EMFReferenceModel) sourceMetamodel);
 	}
+	
+	public static void main(String[] args) {
+		ATLTransformation t = new ATLTransformation();
+		try {
+			t.loadMetamodels("/Users/florian/git/model-based-times/de.tu-bs.cs.isf.mbse.mbtimes.models.rss/model/RSS.ecore", "/Users/florian/git/model-based-times/de.tu-bs.cs.isf.mbse.mbtimes.models.unified/model/unified.ecore");
+		} catch (ATLCoreException e) {
+			// TODO Auto-generated catch block
+			System.out.println("model paths invalid");
+			e.printStackTrace();
+		}
+		try {
+			t.runTransformation("/Users/florian/git/model-based-times/de.tu-bs.cs.isf.mbse.mbtimes.models.rss/data/crawled.rss", "/Users/florian/git/model-based-times/RSS2Unified/RSS2Unified.asm", "/Users/florian/git/model-based-times/de.tu-bs.cs.isf.mbse.mbtimes.models.rss/data/transformedUnified.unified");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ATLCoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }
