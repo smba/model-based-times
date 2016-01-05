@@ -17,6 +17,8 @@ import UnifiedModel.impl.UnifiedModelPackageImpl;
 public class UnifiedFileParser {
 	public static void main(String[] args) {
 		LinkedList<UnifiedModel.Article> unifiedArticles= load();
+		System.out.println();
+		System.out.println(unifiedArticles.get(0).getContent());
 	}
 	
 	public static LinkedList<UnifiedModel.Article> load() {
