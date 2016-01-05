@@ -35,7 +35,7 @@ public class RSSFeedParser extends AbstractFeedParser {
 	public RSSFeedParser(RSSFeedParserListener listener, URL link) {
 		this.listener = listener;
 		this.url = link;
-		initialize();
+		this.factory = listener.getRSSFactory();
 	}
 	
 	@Override
@@ -115,7 +115,6 @@ public class RSSFeedParser extends AbstractFeedParser {
 				/*
 				 * Try to retrieve the full text
 				 */
-				item.setFulltext("");
 				try {
 					String content = super.getText(new URL(entry.getLink()));
 					item.setFulltext(content);
@@ -127,7 +126,6 @@ public class RSSFeedParser extends AbstractFeedParser {
 				/*
 				 * Connect channel and item
 				 */
-				//TODO is this actually effective?
 				item.setChannel(channel);
 				
 				for (Object o : entry.getCategories()) {

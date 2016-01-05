@@ -5,6 +5,7 @@ import RSS.Channel;
 import RSS.Enclosure;
 import RSS.Image;
 import RSS.Item;
+import RSS.RSSFactory;
 
 public interface RSSFeedParserListener extends FeedParserListener {
 	
@@ -17,5 +18,7 @@ public interface RSSFeedParserListener extends FeedParserListener {
 	public void receiveRSSCategory(Category category);
 	
 	public void receiveRSSImage(Image image);
+	
+	public RSSFactory getRSSFactory();
 	
 }
