@@ -46,7 +46,6 @@ public class UnifiedFileParser {
 	    		unifiedArticles.add(current);
 		    	System.out.println(current.getTitle());
 	    	}
-
 	    }
 	    
 	   return unifiedArticles;

@@ -25,8 +25,7 @@ rule Item2Article {
 
 rule Channel2NewsChannel {
 	from
-		s: RSS!Channel,
-		q: RSS!Image
+		s: RSS!Channel
 	to
 		t: Unified!NewsChannel (
 			title <- s.title,
@@ -34,8 +33,19 @@ rule Channel2NewsChannel {
 			updated <- s.lastBuild,
 			subtitle <- s.description,
 			editor <- s.managingEditor,
-			category <- s.categories,
-			icon <- q.url
+			category <- s.categories
+			--icon <- q.url
+			--title <- q.title
+		)
+}
+
+rule Image2NewsChannel {
+	from
+		s: RSS!Image
+	to
+		t: Unified!NewsChannel (
+			icon <- s.url,
+			title <- s.title
 		)
 }
 
@@ -46,14 +56,5 @@ rule Category2Category {
 		t: Unified!Category (
 			label <- s.category,
 			id <- s.domain	
-		)
-}
-
-rule Image2NewschannelIcon {
-	from
-		s: RSS!Image
-	to
-		t: Unified!NewsChannel (
-			icon <- s.url
 		)
 }
