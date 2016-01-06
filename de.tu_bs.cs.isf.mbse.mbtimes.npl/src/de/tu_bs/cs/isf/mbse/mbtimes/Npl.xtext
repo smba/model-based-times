@@ -13,7 +13,7 @@ Declaration:
 	recrawl?="recrawl" "feed links" "{"
 		feedlinks += Pair (", " pairs+=Pair)*
 	"}"
-	"topics" "{"
+	"topics" "{" 
 		topics+=Topic (topics+=Topic)*
 	"}"
 	("date" date=Date)?
