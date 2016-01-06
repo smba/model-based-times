@@ -6,5 +6,4 @@ Bundle-Version: 1.0.0.qualifier
 Export-Package: de.tu_bs.cs.isf.mbse.mbtimes.crawler
 Require-Bundle: de.tu-bs.cs.isf.mbse.mbtimes.models.rss;bundle-version="0.1.0",
  org.eclipse.emf.ecore.xmi,
- org.aspectj.runtime,
  de.tu-bs.cs.isf.mbse.mbtimes.models.atom;bundle-version="0.1.0"
