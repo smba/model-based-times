@@ -11,7 +11,7 @@ generate npl "http://www.tu_bs.de/cs/isf/mbse/mbtimes/Npl"
 Declaration:
 	"newspaper" name=ID "{"
 	recrawl ?= "recrawl" "feed links" "{"
-		feedlinks += Pair (pairs+=Pair)*
+		feedlinks += Pair (feedlinks+=Pair)*
 	"}"
 	"topics" "{" 
 		topics+=Topic (topics+=Topic)*

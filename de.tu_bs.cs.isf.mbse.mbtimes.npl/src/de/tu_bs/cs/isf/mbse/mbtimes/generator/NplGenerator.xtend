@@ -3,9 +3,10 @@
  */
 package de.tu_bs.cs.isf.mbse.mbtimes.generator
 
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration
 import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess
+import org.eclipse.xtext.generator.IGenerator
 
 /**
  * Generates code from your model files on save.
@@ -14,11 +15,20 @@ import org.eclipse.xtext.generator.IFileSystemAccess
  */
 class NplGenerator implements IGenerator {
 	
-	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(typeof(Greeting))
-//				.map[name]
-//				.join(', '))
+	override doGenerate(Resource resource, IFileSystemAccess fsa) {
+		
+		resource.getAllContents.filter(typeof(Declaration)).forEach[declaration|
+			System.err.println(declaration.name)
+			
+			declaration.feedlinks.forEach[fl|
+				System.err.println(fl.type + " feed " + fl.key + " at " + fl.value)
+			]
+			declaration.topics.forEach[t|
+				System.err.println("Topic " + t.name + " with tags " + t.tags)
+			]
+			
+
+		]
+		
 	}
 }
