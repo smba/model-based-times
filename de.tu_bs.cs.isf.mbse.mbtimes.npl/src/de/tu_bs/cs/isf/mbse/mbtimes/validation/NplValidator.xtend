@@ -111,8 +111,8 @@ class NplValidator extends AbstractNplValidator {
 	 */
 	 @Check
 	 def checkNumberOfColumns(Declaration declaration) {
-	 	if (declaration.columnsCnt < 1 || declaration.columnsCnt > 5) {
-	 		error("Please pick a number from 1 to 5!", NplPackage.Literals.DECLARATION__COLUMNS_CNT)
+	 	if (declaration.columnsCnt < 1 || declaration.columnsCnt > 10) {
+	 		error("Please pick a number from 1 to 10!", NplPackage.Literals.DECLARATION__COLUMNS_CNT)
 	 	}
 	 	if (declaration.columnsCnt > 3) {
 	 		warning("This has not beed tested yet.", NplPackage.Literals.DECLARATION__COLUMNS_CNT)
