@@ -10,7 +10,7 @@ generate npl "http://www.tu_bs.de/cs/isf/mbse/mbtimes/Npl"
 
 Declaration:
 	"newspaper" name=ID "{"
-	"feed links" "{"
+	recrawl?="recrawl" "feed links" "{"
 		feedlinks += Pair (", " pairs+=Pair)*
 	"}"
 	"topics" "{"
@@ -18,9 +18,9 @@ Declaration:
 	"}"
 	("date" date=Date)?
 	("location" location=STRING)?
-	"price" price=Price
-	("volume" volume=INT)?
-	"language" language=Language
+	("price" price=Price)?
+	("volume" volume=INT "no." number=INT)?
+	("language" language=Language)?
 	"format" format=Format
 	"number of articles per topic" articleCnt=INT
 	"number of words per article" articleWordsMin=INT "-" articleWordsMax=INT
