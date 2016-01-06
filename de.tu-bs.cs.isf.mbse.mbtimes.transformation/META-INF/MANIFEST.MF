@@ -4,7 +4,7 @@ Bundle-Name: Transformation
 Bundle-SymbolicName: de.tu-bs.cs.isf.mbse.mbtimes.transformation
 Bundle-Version: 1.0.0.qualifier
 Export-Package: .
-Require-Bundle: org.eclipse.m2m.atl.core;bundle-version="3.6.0",
- org.eclipse.m2m.atl.core.emf;bundle-version="3.6.0",
- org.eclipse.m2m.atl.engine.emfvm.launch;bundle-version="3.6.0",
+Require-Bundle: org.eclipse.m2m.atl.core;bundle-version="3.5.0",
+ org.eclipse.m2m.atl.core.emf;bundle-version="3.5.0",
+ org.eclipse.m2m.atl.engine.emfvm.launch;bundle-version="3.5.0",
  de.tu-bs.cs.isf.mbse.mbtimes.models.rss;bundle-version="0.1.0"
