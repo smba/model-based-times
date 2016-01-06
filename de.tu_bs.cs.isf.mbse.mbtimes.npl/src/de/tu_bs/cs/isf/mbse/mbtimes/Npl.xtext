@@ -10,8 +10,8 @@ generate npl "http://www.tu_bs.de/cs/isf/mbse/mbtimes/Npl"
 
 Declaration:
 	"newspaper" name=ID "{"
-	recrawl?="recrawl" "feed links" "{"
-		feedlinks += Pair (", " pairs+=Pair)*
+	recrawl ?= "recrawl" "feed links" "{"
+		feedlinks += Pair (pairs+=Pair)*
 	"}"
 	"topics" "{" 
 		topics+=Topic (topics+=Topic)*
@@ -27,7 +27,6 @@ Declaration:
 	("number of images per article" imagesCnt=ImagesCount)?
 	"number of columns" columnsCnt=INT
 	"font size" fontSize=FontSize
-	
 "}";
 
 /**
@@ -77,7 +76,7 @@ TopicTag:
 	value=STRING;
 
 Pair:
-	type=FeedType key = ID ":" value = URL 
+	type=FeedType key = STRING "<" value = URL ">"
 ;
 
 // URLS are assumed to be of the form "protocol://host[:port][path][query]"
