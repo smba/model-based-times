@@ -38,34 +38,34 @@ ImagesCount:
 
 // Nutzer kann auswählen, ob die Schriftgröße klein, medium und groß sein soll. Größe sollte 
 // abhängig vom gewählten Format festgelegt. 
-FontSize returns EString:
-	{EString} "small"  | 
-	{EString} "medium" | 
-	{EString} "large";
+FontSize:
+	value =  "small"  | 
+	value =  "medium" | 
+	value =  "large";
 
-Format returns EString:
-	{EString} "DIN A6" | 
-	{EString} "DIN A5" | 
-	{EString} "DIN A4" | 
-	{EString} "DIN A3" | 
-	{EString} "DIN A2" | 
-	{EString} "DIN A1" |
-	{EString} "DIN A0";
+Format:
+	value =  "DIN A6" | 
+	value =  "DIN A5" | 
+	value =  "DIN A4" | 
+	value =  "DIN A3" | 
+	value = "DIN A2" | 
+	value = "DIN A1" |
+	value = "DIN A0";
 
 Date: 
 	"{" day=INT '-' month=INT '-' year=INT "}";
 
-Language returns EString:
-	 {EString} "English" | 
-	 {EString} "German";
+Language:
+	 value = "English" | 
+	 value = "German";
 	 
 
 Price:
 	"{" value=Float currency=Currency "}";
 
-Currency returns EString:
-	{EString} "Euro [€]" | 
-	{EString} "Dollar [$]";
+Currency:
+	value = "EUR" | 
+	value = "DOLLAR";
 
 Topic:
 	"topic" name=ID "{"
