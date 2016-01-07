@@ -21,5 +21,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.tu_bs.cs.isf.mbse.mbtimes.ui.quickfix,
  de.tu_bs.cs.isf.mbse.mbtimes.ui.contentassist,
  de.tu_bs.cs.isf.mbse.mbtimes.ui.internal,
- de.tu_bs.cs.isf.mbse.mbtimes.ui.contentassist.antlr
+ de.tu_bs.cs.isf.mbse.mbtimes.ui.contentassist.antlr,
+ de.tu_bs.cs.isf.mbse.mbtimes.ui.contentassist.antlr.internal
 Bundle-Activator: de.tu_bs.cs.isf.mbse.mbtimes.ui.internal.NplActivator

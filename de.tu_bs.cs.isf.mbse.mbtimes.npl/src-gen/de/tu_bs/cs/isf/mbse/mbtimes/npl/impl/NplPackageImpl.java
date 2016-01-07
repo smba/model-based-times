@@ -2,10 +2,13 @@
  */
 package de.tu_bs.cs.isf.mbse.mbtimes.npl.impl;
 
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.Currency;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Date;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration;
-import de.tu_bs.cs.isf.mbse.mbtimes.npl.EString;
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.FontSize;
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.Format;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.ImagesCount;
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.Language;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.NplFactory;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Pair;
@@ -47,7 +50,14 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass eStringEClass = null;
+  private EClass fontSizeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass formatEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -61,7 +71,21 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass languageEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass priceEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass currencyEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -172,9 +196,9 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDeclaration_Feedlinks()
+  public EAttribute getDeclaration_Recrawl()
   {
-    return (EReference)declarationEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)declarationEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -182,7 +206,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDeclaration_Pairs()
+  public EReference getDeclaration_Feedlinks()
   {
     return (EReference)declarationEClass.getEStructuralFeatures().get(2);
   }
@@ -242,9 +266,9 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDeclaration_Language()
+  public EAttribute getDeclaration_Number()
   {
-    return (EReference)declarationEClass.getEStructuralFeatures().get(8);
+    return (EAttribute)declarationEClass.getEStructuralFeatures().get(8);
   }
 
   /**
@@ -252,7 +276,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDeclaration_Format()
+  public EReference getDeclaration_Language()
   {
     return (EReference)declarationEClass.getEStructuralFeatures().get(9);
   }
@@ -262,9 +286,9 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDeclaration_ArticleCnt()
+  public EReference getDeclaration_Format()
   {
-    return (EAttribute)declarationEClass.getEStructuralFeatures().get(10);
+    return (EReference)declarationEClass.getEStructuralFeatures().get(10);
   }
 
   /**
@@ -272,7 +296,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDeclaration_ArticleWordsMin()
+  public EAttribute getDeclaration_ArticleCnt()
   {
     return (EAttribute)declarationEClass.getEStructuralFeatures().get(11);
   }
@@ -282,7 +306,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDeclaration_ArticleWordsMax()
+  public EAttribute getDeclaration_ArticleWordsMin()
   {
     return (EAttribute)declarationEClass.getEStructuralFeatures().get(12);
   }
@@ -292,9 +316,19 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getDeclaration_ArticleWordsMax()
+  {
+    return (EAttribute)declarationEClass.getEStructuralFeatures().get(13);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getDeclaration_ImagesCnt()
   {
-    return (EReference)declarationEClass.getEStructuralFeatures().get(13);
+    return (EReference)declarationEClass.getEStructuralFeatures().get(14);
   }
 
   /**
@@ -304,7 +338,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    */
   public EAttribute getDeclaration_ColumnsCnt()
   {
-    return (EAttribute)declarationEClass.getEStructuralFeatures().get(14);
+    return (EAttribute)declarationEClass.getEStructuralFeatures().get(15);
   }
 
   /**
@@ -314,7 +348,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    */
   public EReference getDeclaration_FontSize()
   {
-    return (EReference)declarationEClass.getEStructuralFeatures().get(15);
+    return (EReference)declarationEClass.getEStructuralFeatures().get(16);
   }
 
   /**
@@ -342,9 +376,39 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getEString()
+  public EClass getFontSize()
   {
-    return eStringEClass;
+    return fontSizeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFontSize_Value()
+  {
+    return (EAttribute)fontSizeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getFormat()
+  {
+    return formatEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFormat_Value()
+  {
+    return (EAttribute)formatEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -392,6 +456,26 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getLanguage()
+  {
+    return languageEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getLanguage_Value()
+  {
+    return (EAttribute)languageEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getPrice()
   {
     return priceEClass;
@@ -415,6 +499,26 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
   public EReference getPrice_Currency()
   {
     return (EReference)priceEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getCurrency()
+  {
+    return currencyEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getCurrency_Value()
+  {
+    return (EAttribute)currencyEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -482,7 +586,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPair_Key()
+  public EAttribute getPair_Type()
   {
     return (EAttribute)pairEClass.getEStructuralFeatures().get(0);
   }
@@ -492,9 +596,19 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPair_Value()
+  public EAttribute getPair_Key()
   {
     return (EAttribute)pairEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPair_Value()
+  {
+    return (EAttribute)pairEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -529,13 +643,14 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
     // Create classes and their features
     declarationEClass = createEClass(DECLARATION);
     createEAttribute(declarationEClass, DECLARATION__NAME);
+    createEAttribute(declarationEClass, DECLARATION__RECRAWL);
     createEReference(declarationEClass, DECLARATION__FEEDLINKS);
-    createEReference(declarationEClass, DECLARATION__PAIRS);
     createEReference(declarationEClass, DECLARATION__TOPICS);
     createEReference(declarationEClass, DECLARATION__DATE);
     createEAttribute(declarationEClass, DECLARATION__LOCATION);
     createEReference(declarationEClass, DECLARATION__PRICE);
     createEAttribute(declarationEClass, DECLARATION__VOLUME);
+    createEAttribute(declarationEClass, DECLARATION__NUMBER);
     createEReference(declarationEClass, DECLARATION__LANGUAGE);
     createEReference(declarationEClass, DECLARATION__FORMAT);
     createEAttribute(declarationEClass, DECLARATION__ARTICLE_CNT);
@@ -548,16 +663,26 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
     imagesCountEClass = createEClass(IMAGES_COUNT);
     createEAttribute(imagesCountEClass, IMAGES_COUNT__VALUE);
 
-    eStringEClass = createEClass(ESTRING);
+    fontSizeEClass = createEClass(FONT_SIZE);
+    createEAttribute(fontSizeEClass, FONT_SIZE__VALUE);
+
+    formatEClass = createEClass(FORMAT);
+    createEAttribute(formatEClass, FORMAT__VALUE);
 
     dateEClass = createEClass(DATE);
     createEAttribute(dateEClass, DATE__DAY);
     createEAttribute(dateEClass, DATE__MONTH);
     createEAttribute(dateEClass, DATE__YEAR);
 
+    languageEClass = createEClass(LANGUAGE);
+    createEAttribute(languageEClass, LANGUAGE__VALUE);
+
     priceEClass = createEClass(PRICE);
     createEAttribute(priceEClass, PRICE__VALUE);
     createEReference(priceEClass, PRICE__CURRENCY);
+
+    currencyEClass = createEClass(CURRENCY);
+    createEAttribute(currencyEClass, CURRENCY__VALUE);
 
     topicEClass = createEClass(TOPIC);
     createEAttribute(topicEClass, TOPIC__NAME);
@@ -567,6 +692,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
     createEAttribute(topicTagEClass, TOPIC_TAG__VALUE);
 
     pairEClass = createEClass(PAIR);
+    createEAttribute(pairEClass, PAIR__TYPE);
     createEAttribute(pairEClass, PAIR__KEY);
     createEAttribute(pairEClass, PAIR__VALUE);
   }
@@ -604,35 +730,46 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
     // Initialize classes and features; add operations and parameters
     initEClass(declarationEClass, Declaration.class, "Declaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDeclaration_Recrawl(), ecorePackage.getEBoolean(), "recrawl", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDeclaration_Feedlinks(), this.getPair(), null, "feedlinks", null, 0, -1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDeclaration_Pairs(), this.getPair(), null, "pairs", null, 0, -1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDeclaration_Topics(), this.getTopic(), null, "topics", null, 0, -1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDeclaration_Date(), this.getDate(), null, "date", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDeclaration_Location(), ecorePackage.getEString(), "location", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDeclaration_Price(), this.getPrice(), null, "price", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDeclaration_Volume(), ecorePackage.getEInt(), "volume", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDeclaration_Language(), this.getEString(), null, "language", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDeclaration_Format(), this.getEString(), null, "format", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDeclaration_Number(), ecorePackage.getEInt(), "number", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDeclaration_Language(), this.getLanguage(), null, "language", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDeclaration_Format(), this.getFormat(), null, "format", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDeclaration_ArticleCnt(), ecorePackage.getEInt(), "articleCnt", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDeclaration_ArticleWordsMin(), ecorePackage.getEInt(), "articleWordsMin", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDeclaration_ArticleWordsMax(), ecorePackage.getEInt(), "articleWordsMax", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDeclaration_ImagesCnt(), this.getImagesCount(), null, "imagesCnt", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDeclaration_ColumnsCnt(), ecorePackage.getEInt(), "columnsCnt", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDeclaration_FontSize(), this.getEString(), null, "fontSize", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDeclaration_FontSize(), this.getFontSize(), null, "fontSize", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(imagesCountEClass, ImagesCount.class, "ImagesCount", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getImagesCount_Value(), ecorePackage.getEInt(), "value", null, 0, 1, ImagesCount.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(eStringEClass, EString.class, "EString", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(fontSizeEClass, FontSize.class, "FontSize", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFontSize_Value(), ecorePackage.getEString(), "value", null, 0, 1, FontSize.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(formatEClass, Format.class, "Format", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFormat_Value(), ecorePackage.getEString(), "value", null, 0, 1, Format.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(dateEClass, Date.class, "Date", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDate_Day(), ecorePackage.getEInt(), "day", null, 0, 1, Date.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDate_Month(), ecorePackage.getEInt(), "month", null, 0, 1, Date.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDate_Year(), ecorePackage.getEInt(), "year", null, 0, 1, Date.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(languageEClass, Language.class, "Language", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getLanguage_Value(), ecorePackage.getEString(), "value", null, 0, 1, Language.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(priceEClass, Price.class, "Price", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPrice_Value(), ecorePackage.getEFloat(), "value", null, 0, 1, Price.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPrice_Currency(), this.getEString(), null, "currency", null, 0, 1, Price.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPrice_Currency(), this.getCurrency(), null, "currency", null, 0, 1, Price.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(currencyEClass, Currency.class, "Currency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getCurrency_Value(), ecorePackage.getEString(), "value", null, 0, 1, Currency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(topicEClass, Topic.class, "Topic", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTopic_Name(), ecorePackage.getEString(), "name", null, 0, 1, Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -642,6 +779,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
     initEAttribute(getTopicTag_Value(), ecorePackage.getEString(), "value", null, 0, 1, TopicTag.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pairEClass, Pair.class, "Pair", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPair_Type(), ecorePackage.getEString(), "type", null, 0, 1, Pair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPair_Key(), ecorePackage.getEString(), "key", null, 0, 1, Pair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPair_Value(), ecorePackage.getEString(), "value", null, 0, 1, Pair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

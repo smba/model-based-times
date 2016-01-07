@@ -86,10 +86,17 @@ public class NplSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case NplPackage.ESTRING:
+      case NplPackage.FONT_SIZE:
       {
-        EString eString = (EString)theEObject;
-        T result = caseEString(eString);
+        FontSize fontSize = (FontSize)theEObject;
+        T result = caseFontSize(fontSize);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case NplPackage.FORMAT:
+      {
+        Format format = (Format)theEObject;
+        T result = caseFormat(format);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -100,10 +107,24 @@ public class NplSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case NplPackage.LANGUAGE:
+      {
+        Language language = (Language)theEObject;
+        T result = caseLanguage(language);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case NplPackage.PRICE:
       {
         Price price = (Price)theEObject;
         T result = casePrice(price);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case NplPackage.CURRENCY:
+      {
+        Currency currency = (Currency)theEObject;
+        T result = caseCurrency(currency);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -165,17 +186,33 @@ public class NplSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>EString</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Font Size</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>EString</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Font Size</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseEString(EString object)
+  public T caseFontSize(FontSize object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Format</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Format</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFormat(Format object)
   {
     return null;
   }
@@ -197,6 +234,22 @@ public class NplSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Language</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Language</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLanguage(Language object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Price</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -208,6 +261,22 @@ public class NplSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePrice(Price object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Currency</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Currency</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCurrency(Currency object)
   {
     return null;
   }

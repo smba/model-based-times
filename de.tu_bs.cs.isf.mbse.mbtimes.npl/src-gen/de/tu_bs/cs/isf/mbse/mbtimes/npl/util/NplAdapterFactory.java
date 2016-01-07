@@ -85,9 +85,14 @@ public class NplAdapterFactory extends AdapterFactoryImpl
         return createImagesCountAdapter();
       }
       @Override
-      public Adapter caseEString(EString object)
+      public Adapter caseFontSize(FontSize object)
       {
-        return createEStringAdapter();
+        return createFontSizeAdapter();
+      }
+      @Override
+      public Adapter caseFormat(Format object)
+      {
+        return createFormatAdapter();
       }
       @Override
       public Adapter caseDate(Date object)
@@ -95,9 +100,19 @@ public class NplAdapterFactory extends AdapterFactoryImpl
         return createDateAdapter();
       }
       @Override
+      public Adapter caseLanguage(Language object)
+      {
+        return createLanguageAdapter();
+      }
+      @Override
       public Adapter casePrice(Price object)
       {
         return createPriceAdapter();
+      }
+      @Override
+      public Adapter caseCurrency(Currency object)
+      {
+        return createCurrencyAdapter();
       }
       @Override
       public Adapter caseTopic(Topic object)
@@ -167,16 +182,31 @@ public class NplAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.EString <em>EString</em>}'.
+   * Creates a new adapter for an object of class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.FontSize <em>Font Size</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.EString
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.FontSize
    * @generated
    */
-  public Adapter createEStringAdapter()
+  public Adapter createFontSizeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Format <em>Format</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Format
+   * @generated
+   */
+  public Adapter createFormatAdapter()
   {
     return null;
   }
@@ -197,6 +227,21 @@ public class NplAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Language <em>Language</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Language
+   * @generated
+   */
+  public Adapter createLanguageAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Price <em>Price</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -207,6 +252,21 @@ public class NplAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPriceAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Currency <em>Currency</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Currency
+   * @generated
+   */
+  public Adapter createCurrencyAdapter()
   {
     return null;
   }

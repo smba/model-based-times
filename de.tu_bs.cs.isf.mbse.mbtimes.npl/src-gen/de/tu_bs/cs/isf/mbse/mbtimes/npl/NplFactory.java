@@ -41,13 +41,22 @@ public interface NplFactory extends EFactory
   ImagesCount createImagesCount();
 
   /**
-   * Returns a new object of class '<em>EString</em>'.
+   * Returns a new object of class '<em>Font Size</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>EString</em>'.
+   * @return a new object of class '<em>Font Size</em>'.
    * @generated
    */
-  EString createEString();
+  FontSize createFontSize();
+
+  /**
+   * Returns a new object of class '<em>Format</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Format</em>'.
+   * @generated
+   */
+  Format createFormat();
 
   /**
    * Returns a new object of class '<em>Date</em>'.
@@ -59,6 +68,15 @@ public interface NplFactory extends EFactory
   Date createDate();
 
   /**
+   * Returns a new object of class '<em>Language</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Language</em>'.
+   * @generated
+   */
+  Language createLanguage();
+
+  /**
    * Returns a new object of class '<em>Price</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -66,6 +84,15 @@ public interface NplFactory extends EFactory
    * @generated
    */
   Price createPrice();
+
+  /**
+   * Returns a new object of class '<em>Currency</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Currency</em>'.
+   * @generated
+   */
+  Currency createCurrency();
 
   /**
    * Returns a new object of class '<em>Topic</em>'.

@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.PairImpl#getType <em>Type</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.PairImpl#getKey <em>Key</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.PairImpl#getValue <em>Value</em>}</li>
  * </ul>
@@ -28,6 +29,26 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  */
 public class PairImpl extends MinimalEObjectImpl.Container implements Pair
 {
+  /**
+   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected static final String TYPE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected String type = TYPE_EDEFAULT;
+
   /**
    * The default value of the '{@link #getKey() <em>Key</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -94,6 +115,29 @@ public class PairImpl extends MinimalEObjectImpl.Container implements Pair
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getType()
+  {
+    return type;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setType(String newType)
+  {
+    String oldType = type;
+    type = newType;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.PAIR__TYPE, oldType, type));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public String getKey()
   {
     return key;
@@ -145,6 +189,8 @@ public class PairImpl extends MinimalEObjectImpl.Container implements Pair
   {
     switch (featureID)
     {
+      case NplPackage.PAIR__TYPE:
+        return getType();
       case NplPackage.PAIR__KEY:
         return getKey();
       case NplPackage.PAIR__VALUE:
@@ -163,6 +209,9 @@ public class PairImpl extends MinimalEObjectImpl.Container implements Pair
   {
     switch (featureID)
     {
+      case NplPackage.PAIR__TYPE:
+        setType((String)newValue);
+        return;
       case NplPackage.PAIR__KEY:
         setKey((String)newValue);
         return;
@@ -183,6 +232,9 @@ public class PairImpl extends MinimalEObjectImpl.Container implements Pair
   {
     switch (featureID)
     {
+      case NplPackage.PAIR__TYPE:
+        setType(TYPE_EDEFAULT);
+        return;
       case NplPackage.PAIR__KEY:
         setKey(KEY_EDEFAULT);
         return;
@@ -203,6 +255,8 @@ public class PairImpl extends MinimalEObjectImpl.Container implements Pair
   {
     switch (featureID)
     {
+      case NplPackage.PAIR__TYPE:
+        return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
       case NplPackage.PAIR__KEY:
         return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
       case NplPackage.PAIR__VALUE:
@@ -222,7 +276,9 @@ public class PairImpl extends MinimalEObjectImpl.Container implements Pair
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (key: ");
+    result.append(" (type: ");
+    result.append(type);
+    result.append(", key: ");
     result.append(key);
     result.append(", value: ");
     result.append(value);

@@ -76,22 +76,22 @@ public interface NplPackage extends EPackage
   int DECLARATION__NAME = 0;
 
   /**
+   * The feature id for the '<em><b>Recrawl</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECLARATION__RECRAWL = 1;
+
+  /**
    * The feature id for the '<em><b>Feedlinks</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DECLARATION__FEEDLINKS = 1;
-
-  /**
-   * The feature id for the '<em><b>Pairs</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DECLARATION__PAIRS = 2;
+  int DECLARATION__FEEDLINKS = 2;
 
   /**
    * The feature id for the '<em><b>Topics</b></em>' containment reference list.
@@ -139,13 +139,22 @@ public interface NplPackage extends EPackage
   int DECLARATION__VOLUME = 7;
 
   /**
+   * The feature id for the '<em><b>Number</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECLARATION__NUMBER = 8;
+
+  /**
    * The feature id for the '<em><b>Language</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DECLARATION__LANGUAGE = 8;
+  int DECLARATION__LANGUAGE = 9;
 
   /**
    * The feature id for the '<em><b>Format</b></em>' containment reference.
@@ -154,7 +163,7 @@ public interface NplPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DECLARATION__FORMAT = 9;
+  int DECLARATION__FORMAT = 10;
 
   /**
    * The feature id for the '<em><b>Article Cnt</b></em>' attribute.
@@ -163,7 +172,7 @@ public interface NplPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DECLARATION__ARTICLE_CNT = 10;
+  int DECLARATION__ARTICLE_CNT = 11;
 
   /**
    * The feature id for the '<em><b>Article Words Min</b></em>' attribute.
@@ -172,7 +181,7 @@ public interface NplPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DECLARATION__ARTICLE_WORDS_MIN = 11;
+  int DECLARATION__ARTICLE_WORDS_MIN = 12;
 
   /**
    * The feature id for the '<em><b>Article Words Max</b></em>' attribute.
@@ -181,7 +190,7 @@ public interface NplPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DECLARATION__ARTICLE_WORDS_MAX = 12;
+  int DECLARATION__ARTICLE_WORDS_MAX = 13;
 
   /**
    * The feature id for the '<em><b>Images Cnt</b></em>' containment reference.
@@ -190,7 +199,7 @@ public interface NplPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DECLARATION__IMAGES_CNT = 13;
+  int DECLARATION__IMAGES_CNT = 14;
 
   /**
    * The feature id for the '<em><b>Columns Cnt</b></em>' attribute.
@@ -199,7 +208,7 @@ public interface NplPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DECLARATION__COLUMNS_CNT = 14;
+  int DECLARATION__COLUMNS_CNT = 15;
 
   /**
    * The feature id for the '<em><b>Font Size</b></em>' containment reference.
@@ -208,7 +217,7 @@ public interface NplPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DECLARATION__FONT_SIZE = 15;
+  int DECLARATION__FONT_SIZE = 16;
 
   /**
    * The number of structural features of the '<em>Declaration</em>' class.
@@ -217,7 +226,7 @@ public interface NplPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DECLARATION_FEATURE_COUNT = 16;
+  int DECLARATION_FEATURE_COUNT = 17;
 
   /**
    * The meta object id for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.ImagesCountImpl <em>Images Count</em>}' class.
@@ -248,23 +257,60 @@ public interface NplPackage extends EPackage
   int IMAGES_COUNT_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.EStringImpl <em>EString</em>}' class.
+   * The meta object id for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.FontSizeImpl <em>Font Size</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.EStringImpl
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getEString()
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.FontSizeImpl
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getFontSize()
    * @generated
    */
-  int ESTRING = 2;
+  int FONT_SIZE = 2;
 
   /**
-   * The number of structural features of the '<em>EString</em>' class.
+   * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ESTRING_FEATURE_COUNT = 0;
+  int FONT_SIZE__VALUE = 0;
+
+  /**
+   * The number of structural features of the '<em>Font Size</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FONT_SIZE_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.FormatImpl <em>Format</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.FormatImpl
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getFormat()
+   * @generated
+   */
+  int FORMAT = 3;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FORMAT__VALUE = 0;
+
+  /**
+   * The number of structural features of the '<em>Format</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FORMAT_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DateImpl <em>Date</em>}' class.
@@ -274,7 +320,7 @@ public interface NplPackage extends EPackage
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getDate()
    * @generated
    */
-  int DATE = 3;
+  int DATE = 4;
 
   /**
    * The feature id for the '<em><b>Day</b></em>' attribute.
@@ -313,6 +359,34 @@ public interface NplPackage extends EPackage
   int DATE_FEATURE_COUNT = 3;
 
   /**
+   * The meta object id for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.LanguageImpl <em>Language</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.LanguageImpl
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getLanguage()
+   * @generated
+   */
+  int LANGUAGE = 5;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LANGUAGE__VALUE = 0;
+
+  /**
+   * The number of structural features of the '<em>Language</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LANGUAGE_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.PriceImpl <em>Price</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -320,7 +394,7 @@ public interface NplPackage extends EPackage
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getPrice()
    * @generated
    */
-  int PRICE = 4;
+  int PRICE = 6;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -350,6 +424,34 @@ public interface NplPackage extends EPackage
   int PRICE_FEATURE_COUNT = 2;
 
   /**
+   * The meta object id for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.CurrencyImpl <em>Currency</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.CurrencyImpl
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getCurrency()
+   * @generated
+   */
+  int CURRENCY = 7;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CURRENCY__VALUE = 0;
+
+  /**
+   * The number of structural features of the '<em>Currency</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CURRENCY_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.TopicImpl <em>Topic</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -357,7 +459,7 @@ public interface NplPackage extends EPackage
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getTopic()
    * @generated
    */
-  int TOPIC = 5;
+  int TOPIC = 8;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -394,7 +496,7 @@ public interface NplPackage extends EPackage
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getTopicTag()
    * @generated
    */
-  int TOPIC_TAG = 6;
+  int TOPIC_TAG = 9;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -422,7 +524,16 @@ public interface NplPackage extends EPackage
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getPair()
    * @generated
    */
-  int PAIR = 7;
+  int PAIR = 10;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PAIR__TYPE = 0;
 
   /**
    * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -431,7 +542,7 @@ public interface NplPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PAIR__KEY = 0;
+  int PAIR__KEY = 1;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -440,7 +551,7 @@ public interface NplPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PAIR__VALUE = 1;
+  int PAIR__VALUE = 2;
 
   /**
    * The number of structural features of the '<em>Pair</em>' class.
@@ -449,7 +560,7 @@ public interface NplPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PAIR_FEATURE_COUNT = 2;
+  int PAIR_FEATURE_COUNT = 3;
 
 
   /**
@@ -474,6 +585,17 @@ public interface NplPackage extends EPackage
   EAttribute getDeclaration_Name();
 
   /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#isRecrawl <em>Recrawl</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Recrawl</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#isRecrawl()
+   * @see #getDeclaration()
+   * @generated
+   */
+  EAttribute getDeclaration_Recrawl();
+
+  /**
    * Returns the meta object for the containment reference list '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFeedlinks <em>Feedlinks</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -483,17 +605,6 @@ public interface NplPackage extends EPackage
    * @generated
    */
   EReference getDeclaration_Feedlinks();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getPairs <em>Pairs</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Pairs</em>'.
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getPairs()
-   * @see #getDeclaration()
-   * @generated
-   */
-  EReference getDeclaration_Pairs();
 
   /**
    * Returns the meta object for the containment reference list '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getTopics <em>Topics</em>}'.
@@ -549,6 +660,17 @@ public interface NplPackage extends EPackage
    * @generated
    */
   EAttribute getDeclaration_Volume();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getNumber <em>Number</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Number</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getNumber()
+   * @see #getDeclaration()
+   * @generated
+   */
+  EAttribute getDeclaration_Number();
 
   /**
    * Returns the meta object for the containment reference '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getLanguage <em>Language</em>}'.
@@ -660,14 +782,46 @@ public interface NplPackage extends EPackage
   EAttribute getImagesCount_Value();
 
   /**
-   * Returns the meta object for class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.EString <em>EString</em>}'.
+   * Returns the meta object for class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.FontSize <em>Font Size</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>EString</em>'.
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.EString
+   * @return the meta object for class '<em>Font Size</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.FontSize
    * @generated
    */
-  EClass getEString();
+  EClass getFontSize();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.FontSize#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.FontSize#getValue()
+   * @see #getFontSize()
+   * @generated
+   */
+  EAttribute getFontSize_Value();
+
+  /**
+   * Returns the meta object for class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Format <em>Format</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Format</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Format
+   * @generated
+   */
+  EClass getFormat();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Format#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Format#getValue()
+   * @see #getFormat()
+   * @generated
+   */
+  EAttribute getFormat_Value();
 
   /**
    * Returns the meta object for class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Date <em>Date</em>}'.
@@ -713,6 +867,27 @@ public interface NplPackage extends EPackage
   EAttribute getDate_Year();
 
   /**
+   * Returns the meta object for class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Language <em>Language</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Language</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Language
+   * @generated
+   */
+  EClass getLanguage();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Language#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Language#getValue()
+   * @see #getLanguage()
+   * @generated
+   */
+  EAttribute getLanguage_Value();
+
+  /**
    * Returns the meta object for class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Price <em>Price</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -743,6 +918,27 @@ public interface NplPackage extends EPackage
    * @generated
    */
   EReference getPrice_Currency();
+
+  /**
+   * Returns the meta object for class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Currency <em>Currency</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Currency</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Currency
+   * @generated
+   */
+  EClass getCurrency();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Currency#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Currency#getValue()
+   * @see #getCurrency()
+   * @generated
+   */
+  EAttribute getCurrency_Value();
 
   /**
    * Returns the meta object for class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic <em>Topic</em>}'.
@@ -808,6 +1004,17 @@ public interface NplPackage extends EPackage
   EClass getPair();
 
   /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Pair#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Type</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Pair#getType()
+   * @see #getPair()
+   * @generated
+   */
+  EAttribute getPair_Type();
+
+  /**
    * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Pair#getKey <em>Key</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -871,20 +1078,20 @@ public interface NplPackage extends EPackage
     EAttribute DECLARATION__NAME = eINSTANCE.getDeclaration_Name();
 
     /**
+     * The meta object literal for the '<em><b>Recrawl</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DECLARATION__RECRAWL = eINSTANCE.getDeclaration_Recrawl();
+
+    /**
      * The meta object literal for the '<em><b>Feedlinks</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference DECLARATION__FEEDLINKS = eINSTANCE.getDeclaration_Feedlinks();
-
-    /**
-     * The meta object literal for the '<em><b>Pairs</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DECLARATION__PAIRS = eINSTANCE.getDeclaration_Pairs();
 
     /**
      * The meta object literal for the '<em><b>Topics</b></em>' containment reference list feature.
@@ -925,6 +1132,14 @@ public interface NplPackage extends EPackage
      * @generated
      */
     EAttribute DECLARATION__VOLUME = eINSTANCE.getDeclaration_Volume();
+
+    /**
+     * The meta object literal for the '<em><b>Number</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DECLARATION__NUMBER = eINSTANCE.getDeclaration_Number();
 
     /**
      * The meta object literal for the '<em><b>Language</b></em>' containment reference feature.
@@ -1009,14 +1224,40 @@ public interface NplPackage extends EPackage
     EAttribute IMAGES_COUNT__VALUE = eINSTANCE.getImagesCount_Value();
 
     /**
-     * The meta object literal for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.EStringImpl <em>EString</em>}' class.
+     * The meta object literal for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.FontSizeImpl <em>Font Size</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.EStringImpl
-     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getEString()
+     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.FontSizeImpl
+     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getFontSize()
      * @generated
      */
-    EClass ESTRING = eINSTANCE.getEString();
+    EClass FONT_SIZE = eINSTANCE.getFontSize();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FONT_SIZE__VALUE = eINSTANCE.getFontSize_Value();
+
+    /**
+     * The meta object literal for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.FormatImpl <em>Format</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.FormatImpl
+     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getFormat()
+     * @generated
+     */
+    EClass FORMAT = eINSTANCE.getFormat();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FORMAT__VALUE = eINSTANCE.getFormat_Value();
 
     /**
      * The meta object literal for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DateImpl <em>Date</em>}' class.
@@ -1053,6 +1294,24 @@ public interface NplPackage extends EPackage
     EAttribute DATE__YEAR = eINSTANCE.getDate_Year();
 
     /**
+     * The meta object literal for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.LanguageImpl <em>Language</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.LanguageImpl
+     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getLanguage()
+     * @generated
+     */
+    EClass LANGUAGE = eINSTANCE.getLanguage();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LANGUAGE__VALUE = eINSTANCE.getLanguage_Value();
+
+    /**
      * The meta object literal for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.PriceImpl <em>Price</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1077,6 +1336,24 @@ public interface NplPackage extends EPackage
      * @generated
      */
     EReference PRICE__CURRENCY = eINSTANCE.getPrice_Currency();
+
+    /**
+     * The meta object literal for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.CurrencyImpl <em>Currency</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.CurrencyImpl
+     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getCurrency()
+     * @generated
+     */
+    EClass CURRENCY = eINSTANCE.getCurrency();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CURRENCY__VALUE = eINSTANCE.getCurrency_Value();
 
     /**
      * The meta object literal for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.TopicImpl <em>Topic</em>}' class.
@@ -1131,6 +1408,14 @@ public interface NplPackage extends EPackage
      * @generated
      */
     EClass PAIR = eINSTANCE.getPair();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PAIR__TYPE = eINSTANCE.getPair_Type();
 
     /**
      * The meta object literal for the '<em><b>Key</b></em>' attribute feature.

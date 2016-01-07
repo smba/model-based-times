@@ -58,12 +58,12 @@ public interface Price extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Currency</em>' containment reference.
-   * @see #setCurrency(EString)
+   * @see #setCurrency(Currency)
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getPrice_Currency()
    * @model containment="true"
    * @generated
    */
-  EString getCurrency();
+  Currency getCurrency();
 
   /**
    * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Price#getCurrency <em>Currency</em>}' containment reference.
@@ -73,6 +73,6 @@ public interface Price extends EObject
    * @see #getCurrency()
    * @generated
    */
-  void setCurrency(EString value);
+  void setCurrency(Currency value);
 
 } // Price

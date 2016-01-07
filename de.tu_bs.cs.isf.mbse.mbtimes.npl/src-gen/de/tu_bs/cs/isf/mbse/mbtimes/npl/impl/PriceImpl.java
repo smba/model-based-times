@@ -2,7 +2,7 @@
  */
 package de.tu_bs.cs.isf.mbse.mbtimes.npl.impl;
 
-import de.tu_bs.cs.isf.mbse.mbtimes.npl.EString;
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.Currency;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Price;
 
@@ -59,7 +59,7 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price
    * @generated
    * @ordered
    */
-  protected EString currency;
+  protected Currency currency;
 
   /**
    * <!-- begin-user-doc -->
@@ -110,7 +110,7 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price
    * <!-- end-user-doc -->
    * @generated
    */
-  public EString getCurrency()
+  public Currency getCurrency()
   {
     return currency;
   }
@@ -120,9 +120,9 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetCurrency(EString newCurrency, NotificationChain msgs)
+  public NotificationChain basicSetCurrency(Currency newCurrency, NotificationChain msgs)
   {
-    EString oldCurrency = currency;
+    Currency oldCurrency = currency;
     currency = newCurrency;
     if (eNotificationRequired())
     {
@@ -137,7 +137,7 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setCurrency(EString newCurrency)
+  public void setCurrency(Currency newCurrency)
   {
     if (newCurrency != currency)
     {
@@ -201,7 +201,7 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price
         setValue((Float)newValue);
         return;
       case NplPackage.PRICE__CURRENCY:
-        setCurrency((EString)newValue);
+        setCurrency((Currency)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -221,7 +221,7 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price
         setValue(VALUE_EDEFAULT);
         return;
       case NplPackage.PRICE__CURRENCY:
-        setCurrency((EString)null);
+        setCurrency((Currency)null);
         return;
     }
     super.eUnset(featureID);

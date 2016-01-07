@@ -93,6 +93,11 @@ public abstract class AbstractNplRuntimeModule extends org.eclipse.xtext.common.
 		return org.eclipse.xtext.parser.antlr.AntlrTokenDefProvider.class;
 	}
 
+	// contributed by org.eclipse.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment
+	public Class<? extends org.eclipse.xtext.parser.antlr.IUnorderedGroupHelper> bindIUnorderedGroupHelper() {
+		return org.eclipse.xtext.parser.antlr.UnorderedGroupHelper.class;
+	}
+
 	// contributed by org.eclipse.xtext.generator.validation.ValidatorFragment
 	@org.eclipse.xtext.service.SingletonBinding(eager=true)	public Class<? extends de.tu_bs.cs.isf.mbse.mbtimes.validation.NplValidator> bindNplValidator() {
 		return de.tu_bs.cs.isf.mbse.mbtimes.validation.NplValidator.class;

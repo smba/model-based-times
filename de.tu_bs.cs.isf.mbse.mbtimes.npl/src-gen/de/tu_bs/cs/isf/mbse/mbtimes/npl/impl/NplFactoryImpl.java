@@ -66,9 +66,12 @@ public class NplFactoryImpl extends EFactoryImpl implements NplFactory
     {
       case NplPackage.DECLARATION: return createDeclaration();
       case NplPackage.IMAGES_COUNT: return createImagesCount();
-      case NplPackage.ESTRING: return createEString();
+      case NplPackage.FONT_SIZE: return createFontSize();
+      case NplPackage.FORMAT: return createFormat();
       case NplPackage.DATE: return createDate();
+      case NplPackage.LANGUAGE: return createLanguage();
       case NplPackage.PRICE: return createPrice();
+      case NplPackage.CURRENCY: return createCurrency();
       case NplPackage.TOPIC: return createTopic();
       case NplPackage.TOPIC_TAG: return createTopicTag();
       case NplPackage.PAIR: return createPair();
@@ -104,10 +107,21 @@ public class NplFactoryImpl extends EFactoryImpl implements NplFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public EString createEString()
+  public FontSize createFontSize()
   {
-    EStringImpl eString = new EStringImpl();
-    return eString;
+    FontSizeImpl fontSize = new FontSizeImpl();
+    return fontSize;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Format createFormat()
+  {
+    FormatImpl format = new FormatImpl();
+    return format;
   }
 
   /**
@@ -126,10 +140,32 @@ public class NplFactoryImpl extends EFactoryImpl implements NplFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public Language createLanguage()
+  {
+    LanguageImpl language = new LanguageImpl();
+    return language;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Price createPrice()
   {
     PriceImpl price = new PriceImpl();
     return price;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Currency createCurrency()
+  {
+    CurrencyImpl currency = new CurrencyImpl();
+    return currency;
   }
 
   /**

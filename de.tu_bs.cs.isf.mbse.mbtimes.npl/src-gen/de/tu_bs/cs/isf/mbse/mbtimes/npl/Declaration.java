@@ -16,13 +16,14 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getName <em>Name</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#isRecrawl <em>Recrawl</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFeedlinks <em>Feedlinks</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getPairs <em>Pairs</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getTopics <em>Topics</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getDate <em>Date</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getLocation <em>Location</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getPrice <em>Price</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getVolume <em>Volume</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getNumber <em>Number</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getLanguage <em>Language</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFormat <em>Format</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getArticleCnt <em>Article Cnt</em>}</li>
@@ -66,6 +67,32 @@ public interface Declaration extends EObject
   void setName(String value);
 
   /**
+   * Returns the value of the '<em><b>Recrawl</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Recrawl</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Recrawl</em>' attribute.
+   * @see #setRecrawl(boolean)
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_Recrawl()
+   * @model
+   * @generated
+   */
+  boolean isRecrawl();
+
+  /**
+   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#isRecrawl <em>Recrawl</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Recrawl</em>' attribute.
+   * @see #isRecrawl()
+   * @generated
+   */
+  void setRecrawl(boolean value);
+
+  /**
    * Returns the value of the '<em><b>Feedlinks</b></em>' containment reference list.
    * The list contents are of type {@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Pair}.
    * <!-- begin-user-doc -->
@@ -80,22 +107,6 @@ public interface Declaration extends EObject
    * @generated
    */
   EList<Pair> getFeedlinks();
-
-  /**
-   * Returns the value of the '<em><b>Pairs</b></em>' containment reference list.
-   * The list contents are of type {@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Pair}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Pairs</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Pairs</em>' containment reference list.
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_Pairs()
-   * @model containment="true"
-   * @generated
-   */
-  EList<Pair> getPairs();
 
   /**
    * Returns the value of the '<em><b>Topics</b></em>' containment reference list.
@@ -218,6 +229,32 @@ public interface Declaration extends EObject
   void setVolume(int value);
 
   /**
+   * Returns the value of the '<em><b>Number</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Number</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Number</em>' attribute.
+   * @see #setNumber(int)
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_Number()
+   * @model
+   * @generated
+   */
+  int getNumber();
+
+  /**
+   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getNumber <em>Number</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Number</em>' attribute.
+   * @see #getNumber()
+   * @generated
+   */
+  void setNumber(int value);
+
+  /**
    * Returns the value of the '<em><b>Language</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
@@ -226,12 +263,12 @@ public interface Declaration extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Language</em>' containment reference.
-   * @see #setLanguage(EString)
+   * @see #setLanguage(Language)
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_Language()
    * @model containment="true"
    * @generated
    */
-  EString getLanguage();
+  Language getLanguage();
 
   /**
    * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getLanguage <em>Language</em>}' containment reference.
@@ -241,7 +278,7 @@ public interface Declaration extends EObject
    * @see #getLanguage()
    * @generated
    */
-  void setLanguage(EString value);
+  void setLanguage(Language value);
 
   /**
    * Returns the value of the '<em><b>Format</b></em>' containment reference.
@@ -252,12 +289,12 @@ public interface Declaration extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Format</em>' containment reference.
-   * @see #setFormat(EString)
+   * @see #setFormat(Format)
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_Format()
    * @model containment="true"
    * @generated
    */
-  EString getFormat();
+  Format getFormat();
 
   /**
    * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFormat <em>Format</em>}' containment reference.
@@ -267,7 +304,7 @@ public interface Declaration extends EObject
    * @see #getFormat()
    * @generated
    */
-  void setFormat(EString value);
+  void setFormat(Format value);
 
   /**
    * Returns the value of the '<em><b>Article Cnt</b></em>' attribute.
@@ -408,12 +445,12 @@ public interface Declaration extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Font Size</em>' containment reference.
-   * @see #setFontSize(EString)
+   * @see #setFontSize(FontSize)
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_FontSize()
    * @model containment="true"
    * @generated
    */
-  EString getFontSize();
+  FontSize getFontSize();
 
   /**
    * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFontSize <em>Font Size</em>}' containment reference.
@@ -423,6 +460,6 @@ public interface Declaration extends EObject
    * @see #getFontSize()
    * @generated
    */
-  void setFontSize(EString value);
+  void setFontSize(FontSize value);
 
 } // Declaration
