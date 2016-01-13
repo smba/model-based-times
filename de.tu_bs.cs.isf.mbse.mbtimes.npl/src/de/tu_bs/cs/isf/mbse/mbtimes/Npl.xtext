@@ -19,7 +19,7 @@ Declaration:
 	("optional: date" date=Date)? &
 	("optional: location" location=STRING)? &
 	("optional: price" price=Price)? &
-	("optional: volume" volume=INT "no." number=INT)? &
+	("optional: volume" volume=INT ("no." number=INT)? )? &
 	("optional: language" language=Language)? &
 	"format" format=Format &
 	"number of articles per topic" articleCnt=INT &
@@ -64,8 +64,12 @@ Price:
 	"{" value=Float currency=Currency "}";
 
 Currency:
-	value = "EUR" | 
-	value = "DOLLAR";
+	value = "Euro" |
+	value = "EUR" |
+	value = "€" |
+	value = "Dollar" |
+	value = "USD" |
+	value = "$";
 
 Topic:
 	"topic" name=ID "{"
