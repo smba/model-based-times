@@ -9,6 +9,12 @@ import java.util.Map
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.nio.file.Path
+import java.nio.file.Paths
+import java.io.File
+import org.eclipse.xtext.generator.IFileSystemAccessExtension2
 
 /**
  * Generates code from your model files on save
@@ -31,11 +37,11 @@ class NplGenerator implements IGenerator {
 			
 		]
 		
-		  for(d: resource.allContents.toIterable.filter(Declaration)) {
+		for(d: resource.allContents.toIterable.filter(Declaration)) {
     		fsa.generateFile(	d.name + ".tex", d.compileLayout)
-  }
-		
+    	}
 	}
+	
 	private def small(int x) {
 		System.err.println(x)
 		val r = (0.00277777777777911 * x**6) + (-0.0583333333333484 * x**5) + (0.486111111111176 * x**4) + (-2.04166666666683 * x**3) + (5.51111111111132 * x**2) + (-15.9000000000001 * x) + 40
@@ -97,12 +103,12 @@ class NplGenerator implements IGenerator {
 		System.err.println(c)
 		val Integer format = Integer.parseInt(c)
 		System.err.println(format)
-		var date = "";
+		var date = "\\longdate";
 		if (d.date == null) {
-			date = "\\today"
+			date += "\\today"
 		} else {
-			date = d.date.day + "." + d.date.month + "." + d.date.year
-		}
+			date += "\\protect\\formatdate{" 
+			date += d.date.day + "}{" + d.date.month + "}{" + d.date.year + "}"}
 		
 		var location = ""
 		if (d.location == null) {
@@ -115,18 +121,39 @@ class NplGenerator implements IGenerator {
 		if (d.price == null) {
 			price = ""
 		} else {
-			price = d.price.value + " " + d.price.currency.value
+			price = String.format("%.2f", d.price.value)
+			if(d.price.currency.value.equals("€")) {
+				price = "\\EUR{" + price + "}"
+			} else if(d.price.currency.value.equals("$")) {
+				price = "\\$" + price
+			} else {
+				price += " " + d.price.currency.value
+			}
+		}
+
+		var volumeAndIssue = ""
+		if(d.volume != 0) {
+			volumeAndIssue = "VOL.\\Roman{volume}"
+		}
+		if(d.number != 0) {
+			volumeAndIssue += "\\ldots "
+			if(d.language != null && d.language.value.equals("German")) {
+				volumeAndIssue += "Nr."
+			} else {
+				volumeAndIssue += "No."
+			}
+			volumeAndIssue += "\\arabic{issue}"
 		}
 		
-		/*
-		var volume = ""
-		if (d.volume == null) {
-			volume = ""
-		} else {
-			price = d.price.value + " " + d.price.currency.value
+		var language = ""
+		if(d.language != null) {
+			if(d.language.value.equals("German")) {
+				language = "\\usepackage[ngerman]{babel}"
+			} else if(d.language.value.equals("English")) {
+				language = "\\usepackage[english]{babel}"
+			}
 		}
-		*
-		*/
+		
 		/*
 		var Double fontSize = 0.0;
 		if (d.fontSize.value.equals("small")) {
@@ -138,13 +165,8 @@ class NplGenerator implements IGenerator {
 		}
 		* 
 		*/
-		//«»
-		'''
-		\newcommand{\textsize}{«fontSizeMap.get(d.fontSize.value).get(format)»pt}
-		\newcommand{\numberColumns}{«d.columnsCnt»}
 		
-		\documentclass[\textsize]{scrartcl}
-		
+		/*
 		%A6 small  8 medium 10 large 12
 		%A5 small  8 medium 10 large 12
 		%A4 small 10 medium 12 large 14
@@ -156,11 +178,19 @@ class NplGenerator implements IGenerator {
 		%small  p(x) = 0,00277777777777911 * x^6 + -0,0583333333333484 * x^5 + 0,486111111111176 * x^4 + -2,04166666666683 * x^3 + 5,51111111111132 * x^2 + -15,9000000000001 * x + 40
 		%medium p(x) = 0,0361111111111134 * x^6 + -0,691666666666697 * x^5 + 5,06944444444462 * x^4 + -17,7083333333339 * x^3 + 30,8944444444452 * x^2 + -33,6000000000004 * x + 48
 		%large  p(x) = -0,019444444444443 * x^6 + 0,341666666666656 * x^5 + -2,23611111111109 * x^4 + 6,62499999999998 * x^3 + -6,74444444444453 * x^2 + -13,9666666666666 * x + 56
+		 */
+		//«»
+		'''
+		\newcommand{\textsize}{«fontSizeMap.get(d.fontSize.value).get(format)»pt}
+		\newcommand{\numberColumns}{«d.columnsCnt»}
+		
+		\documentclass[\textsize]{scrartcl}
 		
 		% Needed packages for this newspaper
 		
 		\usepackage[a«format»paper]{geometry}
-		\usepackage[ngerman]{babel}
+		«language»
+		\usepackage{datetime}
 		\usepackage[T1]{fontenc}    
 		\usepackage[utf8]{inputenc}
 		\usepackage{newspaper}
@@ -170,6 +200,7 @@ class NplGenerator implements IGenerator {
 		\usepackage{calc}
 		\usepackage{wrapfig}
 		\usepackage{picinpar}
+		\usepackage{eurosym}
 		
 		% Change geometry and dimensions
 		
@@ -194,22 +225,31 @@ class NplGenerator implements IGenerator {
 				\vspace*{0.1in}
 				\rule[0pt]{\textwidth}{0.5pt}\\
 				{\small 
-					VOL.\MakeUppercase{\roman{volume}\ldots No.\arabic{issue}} 
+					«volumeAndIssue»
 					\hfill \MakeUppercase{\it\@date} 
-					\hfill \MakeUppercase{\@paperprice}}
+					\hfill \@paperprice}
 				\rule[\textsize/2]{\textwidth}{1.2pt}\\
 			\end{center}
 			\pagestyle{plain}
 		}
 		\makeatother
 		
+		% Redefine \byline for german language
+		
+		\renewcommand\byline[2]{\begin{center} #1 \\%
+		{\footnotesize\bf «IF d.language != null && d.language.value.equals("German")»Von«ELSE»By«ENDIF» 
+		\MakeUppercase{#2}} \\ %
+		\rule[3pt]{0.4\hsize}{0.5pt}\\ \end{center} \par}
+		
 		% Set data for title
 		
-		\date{«date»}
-		\currentvolume{1}
-		\currentissue{2}
-		\SetPaperName{«d.name»}
-		\SetHeaderName{«d.name»}
+		\newdate{newsDate}{«d.date.day»}{«d.date.month»}{«d.date.year»}
+		\date{\protect\dayofweekname{\getdateday{newsDate}}{\getdatemonth{newsDate}}{\getdateyear{newsDate}}, 
+		\getdateday{newsDate}. \monthname[\getdatemonth{newsDate}] \getdateyear{newsDate}}
+		\currentvolume{«d.volume»}
+		\currentissue{«d.number»}
+		\SetPaperName{«d.name.replace('_',' ')»}
+		\SetHeaderName{«d.name.replace('_',' ')»}
 		\SetPaperLocation{«location»}
 		\SetPaperPrice{«price»}
 		
@@ -217,7 +257,9 @@ class NplGenerator implements IGenerator {
 			\maketitle
 			
 			%include topic.tex's
-			
+		    «FOR t:d.topics»
+		    %\include{«t.name».tex}
+			«ENDFOR»
 		\end{document}
 		'''
 	}
