@@ -256,9 +256,15 @@ class NplGenerator implements IGenerator {
 		
 		% Set data for title
 		
+		
+		
+		«IF d.date != null»
 		\newdate{newsDate}{«d.date.day»}{«d.date.month»}{«d.date.year»}
+		«ELSE»
+		\newdate{newsDate}{\number\day}{\number\month}{\number\year}
+		«ENDIF»
 		\date{\protect\dayofweekname{\getdateday{newsDate}}{\getdatemonth{newsDate}}{\getdateyear{newsDate}}, 
-		\getdateday{newsDate}. \monthname[\getdatemonth{newsDate}] \getdateyear{newsDate}}
+				\getdateday{newsDate}. \monthname[\getdatemonth{newsDate}] \getdateyear{newsDate}}
 		\currentvolume{«d.volume»}
 		\currentissue{«d.number»}
 		\SetPaperName{«d.name.replace('_',' ')»}
