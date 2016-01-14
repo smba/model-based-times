@@ -23,25 +23,34 @@ import RSS.RSSPackage;
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser.AtomFeedParser;
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener.AtomFeedParserListener;
 
+/**
+ * Crawler für alle Atom-Feeds.
+ * 
+ * @version 14.01.2016
+ */
 public class AtomCrawler implements Crawler, AtomFeedParserListener {
 
-	// CONSTANTS
-	private static final String ATOM_TARGET_PATH = "tmp/AtomOutput.atom";
-
+	/** Maximale Anzahl an Feeds, welche gleichzeitig gecrawlt wird */
 	private static final int THREADPOOL_SIZE = 5;
 
+	/** Factory, mittels welcher Elemente gemäß der Atom.ecore erstellt werden. */
 	private AtomFactory atomFactory;
 
+	/** Ausgabepfad für die .atom-Datei (XMI) */
+	private static final String ATOM_TARGET_PATH = "tmp/AtomOutput.atom";
+
+	/** Resource, welche in ATOM_TARGET_PATH ge. bzw. überscrieben wird */
 	private Resource atomResource;
 
 	public void crawl(List<String> feeds) {
 
-		// atom feed
-
+		/**
+		 * Thread-Pool, in welchem die Threads für die Feed-Parser operieren.
+		 */
 		ExecutorService executor = Executors.newFixedThreadPool(THREADPOOL_SIZE);
 
+		/** Für jeden Feed wird ein eigener FeedParser gestartet. */
 		for (String feed : feeds) {
-
 			Runnable worker = null;
 			try {
 				worker = new AtomFeedParser(this, new URL(feed));
@@ -54,13 +63,10 @@ public class AtomCrawler implements Crawler, AtomFeedParserListener {
 		while (!executor.isTerminated()) {
 			// wait
 		}
-
 	}
 
 	public AtomCrawler() {
-		/*
-		 * Initialize model etc
-		 */
+
 		RSSPackage.eINSTANCE.eClass();
 		this.atomFactory = AtomFactory.eINSTANCE;
 
@@ -72,10 +78,6 @@ public class AtomCrawler implements Crawler, AtomFeedParserListener {
 		ResourceSet resSet = new ResourceSetImpl();
 
 		this.atomResource = resSet.createResource(URI.createURI(ATOM_TARGET_PATH));
-	}
-
-	public AtomFactory getRSSFactory() {
-		return this.atomFactory;
 	}
 
 	@Override
@@ -111,11 +113,5 @@ public class AtomCrawler implements Crawler, AtomFeedParserListener {
 	@Override
 	public AtomFactory getAtomFactory() {
 		return atomFactory;
-
 	}
-
-	public static void main(String[] args) {
-
-	}
-
 }

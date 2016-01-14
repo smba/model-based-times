@@ -1,16 +1,29 @@
 package de.tu_bs.cs.isf.mbse.mbtimes.crawler;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-/*
- * Verteilt Aufträge auf verschiedene Crawler
+/**
+ * Diese Klasse nimmt Aufträge zum Crawlen entgegen und verteilt diese
+ * entsprechend der Art des Feeds (RSS, Atom) auf einen speziellen Crawler.
+ * Anschließend werden die gesammelten Feedinformationen gebündelt und als
+ * Instanzen gemäß der Metamodelle (RSS, Atom) als XMI-Datei abgespeichert.
+ * 
+ * Noch zum implementieren: 
+ * - TODO ATL-Transformationen von RSS- bzw.
+ * Atom-Instanzen zu Unified-Instanzen, sowie die 
+ * - TODO Zusammenführung der
+ * beiden ausgegebenen Unified-Intanzen zu einer einzigen Instanz
+ * 
+ * @version 14.01.2016
  */
 public class CrawlerDispatcher {
 
+	/** Crawler für Atom-Feeds */
 	private Crawler atomCrawler;
+
+	/** Crawler für RSS-Feeds */
 	private Crawler rssCrawler;
 
 	public CrawlerDispatcher() {
@@ -18,10 +31,28 @@ public class CrawlerDispatcher {
 		rssCrawler = new RSSCrawler();
 	}
 
+	/**
+	 * Diese Methode initialisiert und startet den Crawlvorgang. Übergeben wird
+	 * eine Map von Strings auf Strings, wobei die Feed-URL auf den Typ des
+	 * Feeds (als String), also entweder "RSS" oder "Atom" abgebildet wird. <br
+	 * \><br \>
+	 * 
+	 * Beispiel:<br \> <tt>CrawlerDispatcher cd = new CrawlerDispatcher();<br \>
+	 * Map<String, String> feeds = new HashMap<String, String>();<br \>
+	 * feeds.put("http://www.tseit.de/index/rss", "RSS");
+	 * 
+	 * cd.dispatchAndCrawl(feeds);
+	 * </tt>
+	 * 
+	 * @param feeds
+	 */
 	public void dispatchAndCrawl(Map<String, String> feeds) {
 		List<String> rssFeeds = new LinkedList<String>();
 		List<String> atomFeeds = new LinkedList<String>();
 
+		/*
+		 * Aufteilen der Feeds auf die einzelnen speziellen Crawler
+		 */
 		for (String feed : feeds.keySet()) {
 			switch (feeds.get(feed)) {
 			case "RSS":
@@ -35,23 +66,25 @@ public class CrawlerDispatcher {
 			}
 		}
 
-		// Feed crawlers
+		/*
+		 * Starten der einzelnen Crawler
+		 */
 		this.atomCrawler.crawl(atomFeeds);
 		this.rssCrawler.crawl(rssFeeds);
 
-		// Write stuff
+		/*
+		 * Schreiben der Ausgabe in Dateien
+		 */
 		this.atomCrawler.dispose();
 		this.rssCrawler.dispose();
 
+		/*
+		 * TODO Ausführen der automatisierten M2M-Transformationen (RSS ->
+		 * Unified, Atom -> Unified)
+		 */
+
+		/*
+		 * TODO Zusammenführen der beiden obigen Unified-Instanzen
+		 */
 	}
-
-	public static void main(String[] args) {
-		Map<String, String> feeds = new HashMap<String, String>();
-		feeds.put("http://heise.de.feedsportal.com/c/35207/f/653902/index.rss", "RSS");
-		feeds.put("http://www.heise.de/developer/rss/news-atom.xml", "Atom");
-
-		CrawlerDispatcher cd = new CrawlerDispatcher();
-		cd.dispatchAndCrawl(feeds);
-	}
-
 }

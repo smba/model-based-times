@@ -26,27 +26,36 @@ import RSS.RSSPackage;
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser.RSSFeedParser;
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener.RSSFeedParserListener;
 
+/**
+ * Crawler für alle RSS-Feeds.
+ * 
+ * @version 14.01.2016
+ */
 public class RSSCrawler implements Crawler, RSSFeedParserListener {
 
-	// CONSTANTS
+	/** Ausgabepfad für die .rss-Datei (XMI) */
 	private static final String RSS_TARGET_PATH = "tmp/RssOutput.rss";
 
+	/** Maximale Anzahl an Feeds, welche gleichzeitig gecrawlt wird */
 	private static final int THREADPOOL_SIZE = 5;
 
+	/**
+	 * Factory, mittels welcher Elemente gemäß der RSS.ecore erstellt werden.
+	 */
 	private RSSFactory rssFactory;
-	// private AtomFactory atomFactory;
 
+	/** Resource, welche in RSS_TARGET_PATH ge. bzw. überscrieben wird */
 	private Resource rssResource;
-	// TODO atom
 
 	public void crawl(List<String> feeds) {
 
+		/**
+		 * Thread-Pool, in welchem die Threads für die Feed-Parser operieren.
+		 */
 		ExecutorService executor = Executors.newFixedThreadPool(THREADPOOL_SIZE);
 
+		/** Für jeden Feed wird ein eigener FeedParser gestartet. */
 		for (String feed : feeds) {
-
-			// TODO ergaenze Atom
-
 			Runnable worker = null;
 			try {
 				worker = new RSSFeedParser(this, new URL(feed));
@@ -63,9 +72,6 @@ public class RSSCrawler implements Crawler, RSSFeedParserListener {
 	}
 
 	public RSSCrawler() {
-		/*
-		 * Initialize model etc
-		 */
 		RSSPackage.eINSTANCE.eClass();
 		this.rssFactory = RSSFactory.eINSTANCE;
 
@@ -125,9 +131,4 @@ public class RSSCrawler implements Crawler, RSSFeedParserListener {
 			throw new RuntimeException(e);
 		}
 	}
-
-	public static void main(String[] args) {
-
-	}
-
 }
