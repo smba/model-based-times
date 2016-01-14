@@ -24,7 +24,7 @@ import edu.ucla.sspace.vector.ScaledDoubleVector;
  * @author Stefan Mühlbauer <s.muehlbauer@tu-bs.de>
  *
  */
-class VectorSpaceModel {
+public class VectorSpaceModel {
 
 	private static final SimType SIMILARITY_TYPE = SimType.COSINE;
 
@@ -118,25 +118,10 @@ class VectorSpaceModel {
 		}
 	}
 
-	public DoubleVector getQueryVector(List<String> queryStrings) {
-
-		List<String> queryLowercase = new LinkedList<String>();
-		for (String s : queryStrings) {
-			queryLowercase.add(s.toLowerCase());
-		}
-		queryStrings = queryLowercase;
-
-		final DoubleVector tfVector;
-		final double[] tempTfVector = new double[bagOfWords.size()];
-
-		for (int i = 0; i < bagOfWords.size(); i++) {
-			final double o;
-			o = (queryStrings.contains(bagOfWords.get(i)) ? 1.0 : 0.0);
-			tempTfVector[i] = o;
-		}
-		tfVector = new CompactSparseVector(tempTfVector);
-		return new ScaledDoubleVector(tfVector, 1.0 / tfVector.magnitude());
+	public void testMethod() {
+		
 	}
+
 
 	public Map<Integer, Integer> computeSimilarities(DoubleVector queryV) {
 		Map<Integer, Double> map = new HashMap<Integer, Double>();
@@ -203,5 +188,28 @@ class VectorSpaceModel {
 	public Matrix getDocumentMatrix() {
 		return documentMatrix;
 	}
+
+	public DoubleVector getQueryVector(List<String> queryStrings) {
+
+		List<String> queryLowercase = new LinkedList<String>();
+		for (String s : queryStrings) {
+			queryLowercase.add(s.toLowerCase());
+		}
+		queryStrings = queryLowercase;
+
+		final DoubleVector tfVector;
+		final double[] tempTfVector = new double[bagOfWords.size()];
+
+		for (int i = 0; i < bagOfWords.size(); i++) {
+			final double o;
+			o = (queryStrings.contains(bagOfWords.get(i)) ? 1.0 : 0.0);
+			tempTfVector[i] = o;
+		}
+		tfVector = new CompactSparseVector(tempTfVector);
+		return new ScaledDoubleVector(tfVector, 1.0 / tfVector.magnitude());
+	}
+
+
+	
 
 }
