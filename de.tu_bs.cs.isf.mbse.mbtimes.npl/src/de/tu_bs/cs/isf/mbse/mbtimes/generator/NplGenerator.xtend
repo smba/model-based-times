@@ -212,9 +212,9 @@ class NplGenerator implements IGenerator {
 			-\headheight-\footskip)/2 - 0.75in}
 		\setlength\oddsidemargin{(\paperwidth-\textwidth)/2 - 1in}
 		
+		\makeatletter
 		% Redefine \maketitle. Delete elements do not needed from the newspaper package 
 		
-		\makeatletter
 		\renewcommand{\maketitle}{\thispagestyle{empty}
 			\vspace*{-40pt}
 			\begin{center}
@@ -232,9 +232,22 @@ class NplGenerator implements IGenerator {
 			\end{center}
 			\pagestyle{plain}
 		}
+		
+		% redefine plain page style
+		
+		\renewcommand{\ps@plain}{%
+		\renewcommand\@oddfoot{}% % empty recto footer
+		\let\@evenfoot\@oddfoot % empty verso footer
+		\renewcommand\@evenhead
+		{\parbox{\textwidth}{\vspace*{4pt}
+		{\small «volumeAndIssue»}\hfill\normalfont\textbf{\@headername}\quad\MakeUppercase{\it\@date}\hfill\textrm{\thepage}\\
+		\rule{\textwidth}{0.5pt}
+		\vspace*{12pt}}}%
+		\let\@oddhead\@evenhead}
 		\makeatother
 		
-		% Redefine \byline for german language
+		
+		% Redefine \byline so it is compactible with german language
 		
 		\renewcommand\byline[2]{\begin{center} #1 \\%
 		{\footnotesize\bf «IF d.language != null && d.language.value.equals("German")»Von«ELSE»By«ENDIF» 
