@@ -6,6 +6,16 @@ import java.net.URL;
 import de.l3s.boilerpipe.BoilerpipeProcessingException;
 import de.l3s.boilerpipe.extractors.ArticleExtractor;
 
+/**
+ * Diese Klasse kapselt die Funktionen, die allen Feedparser gemein sind, sprich das Parsen von Volltext (sofern notwendig)
+ * als auch die Auf- und Nachbereitung der geparsten Informationen. Dazu gehören:
+ * 
+ * - Das Erfassen von Volltext auf der Zielseite mittels der Boilerpipe-Bibliothek (de.l3s.boilerpipe)
+ * - TODO Entfernen von (X)HTML-Tags
+ * 
+ * @version 14.01.2016
+ *
+ */
 public abstract class AbstractFeedParser implements FeedParser, Runnable {
 		
 	@Override
@@ -18,7 +28,7 @@ public abstract class AbstractFeedParser implements FeedParser, Runnable {
 	 * @return
 	 * @throws IOException
 	 */
-	protected String getText(URL url) throws IOException {
+	protected final String getText(URL url) throws IOException {
 		String text = "";
 		try {
 			text = ArticleExtractor.getInstance().getText(url);
@@ -26,6 +36,12 @@ public abstract class AbstractFeedParser implements FeedParser, Runnable {
 			throw new IOException(e);
 		}
 		return text;
+	}
+	
+	//TODO Implement tag removal
+	@Deprecated
+	protected final String makePretty(String ugly) {
+		return null;
 	}
 	
 	abstract public void initialize();

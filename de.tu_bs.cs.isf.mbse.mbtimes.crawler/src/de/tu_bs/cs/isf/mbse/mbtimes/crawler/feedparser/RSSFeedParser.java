@@ -2,7 +2,6 @@ package de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
@@ -22,22 +21,25 @@ import RSS.Item;
 import RSS.Language;
 import RSS.RSSFactory;
 import RSS.RSSPackage;
-import de.l3s.boilerpipe.BoilerpipeProcessingException;
-import de.l3s.boilerpipe.extractors.ArticleExtractor;
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener.RSSFeedParserListener;
 
+/**
+ * Parser dedicated to a single RSS feeds.
+ * 
+ * @version 14.01.2016
+ */
 public class RSSFeedParser extends AbstractFeedParser {
 
 	private RSSFeedParserListener listener;
 	private URL url;
 	private RSSFactory factory;
-	
+
 	public RSSFeedParser(RSSFeedParserListener listener, URL link) {
 		this.listener = listener;
 		this.url = link;
 		this.factory = listener.getRSSFactory();
 	}
-	
+
 	@Override
 	public void run() {
 		HttpURLConnection httpcon;
@@ -49,7 +51,7 @@ public class RSSFeedParser extends AbstractFeedParser {
 
 		SyndFeedInput input = new SyndFeedInput();
 		SyndFeed feed;
-		
+
 		try {
 			feed = input.build(new XmlReader(httpcon));
 		} catch (IllegalArgumentException | FeedException | IOException e) {
@@ -60,47 +62,45 @@ public class RSSFeedParser extends AbstractFeedParser {
 		 * Channel [RSS]
 		 */
 		Channel channel = this.factory.createChannel();
-		
+
 		channel.setTitle(feed.getTitle());
 		channel.setDescription(feed.getDescription());
 		channel.setLink(feed.getLink());
-		
-		channel.setLanguage(Language.ENGLISH); //TODO
-		
+
+		channel.setLanguage(Language.ENGLISH); // TODO
+
 		channel.setCopyright(feed.getCopyright());
 		channel.setManagingEditor(feed.getAuthor());
 		channel.setPubDate(feed.getPublishedDate());
-		channel.setLastBuild(feed.getPublishedDate()); //TODO same
-		
+		channel.setLastBuild(feed.getPublishedDate()); // TODO same
+
 		if (feed.getImage() != null) {
-			
+
 			System.out.println(feed.getImage());
-			
+
 			SyndImage feedImage = feed.getImage();
 			Image image = this.factory.createImage();
 			image.setTitle(feedImage.getTitle());
-			image.setUrl(feed.getLink()); //oder URI?
-			
-			//dispose image to listener
+			image.setUrl(feed.getLink()); // oder URI?
+
+			// dispose image to listener
 			this.listener.receiveRSSImage(image);
 		}
-		
-		
-		
+
 		/*
 		 * Dispose channel to listener
 		 */
 		this.listener.receiveRSSChannel(channel);
-		
+
 		List<SyndEntry> entries = feed.getEntries();
 		Iterator<SyndEntry> itEntries = entries.iterator();
-		
+
 		while (itEntries.hasNext()) {
 			Object next = itEntries.next();
 			if (next instanceof SyndEntry) {
-				
+
 				SyndEntry entry = (SyndEntry) next;
-				
+
 				/*
 				 * Item [RSS]
 				 */
@@ -108,10 +108,10 @@ public class RSSFeedParser extends AbstractFeedParser {
 				item.setAuthor(entry.getAuthor());
 				item.setTitle(entry.getTitle());
 				item.setLink(entry.getLink());
-				item.setDescription(entry.getDescription().toString()); //Test
-				item.setGuid(entry.getUri()); //Is this the proper attribute?
+				item.setDescription(entry.getDescription().getValue()); 
+				item.setGuid(entry.getUri());
 				item.setPubDate(entry.getPublishedDate());
-				
+
 				/*
 				 * Try to retrieve the full text
 				 */
@@ -121,36 +121,35 @@ public class RSSFeedParser extends AbstractFeedParser {
 				} catch (IOException e) {
 					throw new RuntimeException(e);
 				}
-				
-				
+
 				/*
 				 * Connect channel and item
 				 */
 				item.setChannel(channel);
-				
+
 				for (Object o : entry.getCategories()) {
-					
+
 					SyndCategory syndCategory = null;
 					if (o instanceof List<?>) {
 						syndCategory = (SyndCategory) o;
-						
+
 						Category category = factory.createCategory();
 						category.setCategory(syndCategory.getName());
 						category.setDomain(syndCategory.getTaxonomyUri());
-						
+
 						/*
-						 * Dispose category 
+						 * Dispose category
 						 */
 						this.listener.receiveRSSCategory(category);
-						
+
 						/*
 						 * Link item to category
 						 */
 						item.getCategories().add(category);
-						
-					}				
+
+					}
 				}
-				
+
 				/*
 				 * Dispose item to listener
 				 */
@@ -165,6 +164,6 @@ public class RSSFeedParser extends AbstractFeedParser {
 		 * Register factory
 		 */
 		RSSPackage.eINSTANCE.eClass();
-	    this.factory = RSSFactory.eINSTANCE;
+		this.factory = RSSFactory.eINSTANCE;
 	}
 }
