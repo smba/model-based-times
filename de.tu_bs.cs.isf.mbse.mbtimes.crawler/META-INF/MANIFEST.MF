@@ -1,9 +1,14 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Crawler
-Bundle-SymbolicName: de.tu_bs.cs.isf.mbse.mbtimes.crawler
+Bundle-SymbolicName: de.tu_bs.cs.isf.mbse.mbtimes.crawler;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Export-Package: de.tu_bs.cs.isf.mbse.mbtimes.crawler
+Export-Package: de.tu_bs.cs.isf.mbse.mbtimes.crawler,
+ de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser,
+ de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener
 Require-Bundle: de.tu-bs.cs.isf.mbse.mbtimes.models.rss;bundle-version="0.1.0",
  org.eclipse.emf.ecore.xmi,
- de.tu-bs.cs.isf.mbse.mbtimes.models.atom;bundle-version="0.1.0"
+ de.tu-bs.cs.isf.mbse.mbtimes.models.atom;bundle-version="0.1.0",
+ org.eclipse.m2m.atl.core;bundle-version="3.6.0",
+ org.eclipse.m2m.atl.core.emf;bundle-version="3.6.0",
+ org.eclipse.m2m.atl.engine.emfvm.launch;bundle-version="3.6.0"
