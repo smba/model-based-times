@@ -3,18 +3,13 @@
  */
 package de.tu_bs.cs.isf.mbse.mbtimes.generator
 
+import de.tu_bs.cs.isf.mbse.mbtimes.crawler.CrawlerDispatcher
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration
 import java.util.HashMap
 import java.util.Map
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.nio.file.Path
-import java.nio.file.Paths
-import java.io.File
-import org.eclipse.xtext.generator.IFileSystemAccessExtension2
 
 /**
  * Generates code from your model files on save
@@ -24,6 +19,12 @@ import org.eclipse.xtext.generator.IFileSystemAccessExtension2
 class NplGenerator implements IGenerator {
 	
 	override doGenerate(Resource resource, IFileSystemAccess fsa) {
+
+		val cd = new CrawlerDispatcher()
+		val feeds = new HashMap<String, String>()
+		feeds.put("http://www.spiegel.de/schlagzeilen/tops/index.rss", "RSS");
+		cd.dispatchAndCrawl(feeds)
+		
 
 		resource.getAllContents.filter(typeof(Declaration)).forEach[declaration|
 			System.err.println(declaration.name)
