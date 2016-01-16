@@ -12,12 +12,14 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/de.tu-bs.cs.isf.mbse.mbtimes.models.atom"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/de.tu-bs.cs.isf.mbse.mbtimes.models.rss"/>
+	<classpathentry kind="lib" path="lib/aspectjrt-1.5.4.jar"/>
+	<classpathentry kind="lib" path="lib/boilerpipe-1.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/jdom-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/nekohtml-1.9.22.jar"/>
+	<classpathentry kind="lib" path="lib/rome-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/xercesImpl-2.11.0.jar"/>
+	<classpathentry kind="lib" path="lib/xml-apis-1.4.01.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
