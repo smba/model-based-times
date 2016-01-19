@@ -92,7 +92,7 @@ class NplValidator extends AbstractNplValidator {
 	 		error("The minimum number of words could not be smaller than 1", NplPackage.Literals.DECLARATION__ARTICLE_WORDS_MIN)
 	 	}
 	 	if (declaration.articleWordsMin > declaration.articleWordsMax) {
-	 		error("Please re-consider your maximum and minimum values.", NplPackage.Literals.DECLARATION__ARTICLE_WORDS_MAX)
+	 		error("The minimum number of words could not be smaller than the maximum number of words", NplPackage.Literals.DECLARATION__ARTICLE_WORDS_MAX)
 	 	}
 	 }
 	 

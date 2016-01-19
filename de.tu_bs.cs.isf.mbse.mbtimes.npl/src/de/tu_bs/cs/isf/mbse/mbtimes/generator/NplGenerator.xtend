@@ -4,6 +4,7 @@
 package de.tu_bs.cs.isf.mbse.mbtimes.generator
 
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.CrawlerDispatcher
+
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration
 import java.util.HashMap
 import java.util.Map

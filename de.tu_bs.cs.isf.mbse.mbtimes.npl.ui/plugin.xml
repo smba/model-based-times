@@ -247,6 +247,7 @@
 	    <persistent value="true"/>
 	</extension>
 
+<!-- this automatically builds -->
    <extension
          point="org.eclipse.xtext.builder.participant">
       <participant
@@ -255,6 +256,37 @@
             >
       </participant>
    </extension>
+    
+    
+    <!-- Setting up a Button to generate the Newspaper -->
+      <extension
+        point="org.eclipse.ui.commands">
+     <command
+           defaultHandler="de.tu_bs.cs.isf.mbse.mbtimes.ui.NplExecutableExtensionFactory: de.tu_bs.cs.isf.mbse.mbtimes.ui.GenerationHandler
+"
+           id="de.tu_bs.cs.isf.mbse.mbtimes.npl.ui.cmdgenerate"
+           name="genBtn">
+     </command>
+  </extension>
+  <extension
+        point="org.eclipse.ui.menus">
+     <menuContribution
+           allPopups="false"
+           locationURI="toolbar:org.eclipse.ui.main.toolbar">
+        <toolbar
+              id="de.tu_bs.cs.isf.mbse.mbtimes.npl.ui.toolbar">
+           <command
+                 commandId="de.tu_bs.cs.isf.mbse.mbtimes.npl.ui.cmdgenerate"
+                 icon="src/de/tu_bs/cs/isf/mbse/mbtimes/ui/icon.png"
+                 style="push"
+                 tooltip="Generate my newspaper">
+           </command>
+        </toolbar>
+     </menuContribution>
+  </extension>
+      <!-- Setting up a Button to generate the Newspaper -->
+      
+  
    <extension
             point="org.eclipse.ui.preferencePages">
         <page
@@ -421,5 +453,6 @@
             type="text">
     </fileTypes>
   </extension>
+
 
 </plugin>
