@@ -1,0 +1,44 @@
+-- @path Unified=/de.tu-bs.cs.isf.mbse.mbtimes.models.unified/model/unified.ecore
+-- @path Atom=/de.tu-bs.cs.isf.mbse.mbtimes.models.atom/model/Atom.ecore
+module Atom2Unified;
+create OUT: Unified from IN: Atom;
+
+rule Entry2Article {
+	from 
+		s: Atom!Entry
+	to
+		t: Unified!Article (
+			published <- s.published,
+			author <- s.authors,
+			title <- s.title,
+			subtitle <- s.summary,
+			category <- s.categories,
+			newschannel <- s.feed
+		)
+}
+
+rule Feed2NewsChannel {
+	from
+		s: Atom!Feed
+	to
+		t: Unified!NewsChannel (
+			title <- s.title,
+			link <- s.link,
+			updated <- s.updated,
+			subtitle <- s.subtitle,
+			editor <- s.authors.first(),
+			category <- s.categories,
+			author <- s.authors
+		)
+}
+
+rule Category2Category {
+	from 
+		s: Atom!Category
+	to
+		t: Unified!Category (
+			label <- s.label,
+			id <- s.term
+		)
+}
+
