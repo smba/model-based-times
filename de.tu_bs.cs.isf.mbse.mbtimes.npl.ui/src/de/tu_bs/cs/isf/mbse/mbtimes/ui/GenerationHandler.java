@@ -26,7 +26,8 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 
 public class GenerationHandler extends AbstractHandler implements IHandler {
-    
+	
+	
     @Inject
     private IGenerator generator;
  
