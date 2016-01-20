@@ -257,12 +257,12 @@
       </participant>
    </extension>
     -->
-    
+ 
     <!-- Setting up a Button to generate the Newspaper -->
       <extension
         point="org.eclipse.ui.commands">
      <command
-           defaultHandler="de.tu_bs.cs.isf.mbse.mbtimes.ui.NplExecutableExtensionFactory:de.tu_bs.cs.isf.mbse.mbtimes.npl.ui.GenerationHandler"
+           defaultHandler="de.tu_bs.cs.isf.mbse.mbtimes.ui.NplExecutableExtensionFactory:GenerationHandler"
            id="de.tu_bs.cs.isf.mbse.mbtimes.npl.ui.cmdgenerate"
            name="genBtn">
      </command>
@@ -284,6 +284,7 @@
      </menuContribution>
   </extension>
       <!-- Setting up a Button to generate the Newspaper -->
+      
       
   
    <extension
