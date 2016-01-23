@@ -3,6 +3,8 @@ package de.tu_bs.cs.isf.mbse.mbtimes.crawler;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Diese Klasse nimmt Aufträge zum Crawlen entgegen und verteilt diese
@@ -10,15 +12,12 @@ import java.util.Map;
  * Anschließend werden die gesammelten Feedinformationen gebündelt und als
  * Instanzen gemäß der Metamodelle (RSS, Atom) als XMI-Datei abgespeichert.
  * 
- * Noch zum implementieren: 
- * - TODO ATL-Transformationen von RSS- bzw.
- * Atom-Instanzen zu Unified-Instanzen, sowie die 
- * - TODO Zusammenführung der
+ * evtl. TODO Zusammenführung der
  * beiden ausgegebenen Unified-Intanzen zu einer einzigen Instanz
  * 
- * @version 14.01.2016
+ * @version 21.01.2016
  */
-public class CrawlerDispatcher {
+public class CrawlerDispatcher extends Observable {
 
 	/** Crawler für Atom-Feeds */
 	private Crawler atomCrawler;
@@ -65,26 +64,26 @@ public class CrawlerDispatcher {
 				break;
 			}
 		}
-
+		/*
 		/*
 		 * Starten der einzelnen Crawler
 		 */
-		this.atomCrawler.crawl(atomFeeds);
-		this.rssCrawler.crawl(rssFeeds);
+		//this.atomCrawler.crawl(atomFeeds);
+		//this.rssCrawler.crawl(rssFeeds);
 
 		/*
 		 * Schreiben der Ausgabe in Dateien
 		 */
-		this.atomCrawler.dispose();
-		this.rssCrawler.dispose();
+		//this.atomCrawler.dispose();
+		//this.rssCrawler.dispose();
 
 		/*
-		 * TODO Ausführen der automatisierten M2M-Transformationen (RSS ->
-		 * Unified, Atom -> Unified)
+		 * Triggern des Ausführens der automatisierten M2M-Transformationen 
+		 * (RSS -> Unified, Atom -> Unified)
 		 */
-
-		/*
-		 * TODO Zusammenführen der beiden obigen Unified-Instanzen
-		 */
+		System.err.println("notify all observers");
+		setChanged();
+		notifyObservers();
+		
 	}
 }

@@ -2,9 +2,14 @@ package de.tu_bs.cs.isf.mbse.mbtimes.crawler.m2m;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.net.URL;
 import java.util.HashMap;
+import java.util.Observable;
+import java.util.Observer;
 
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.m2m.atl.core.ATLCoreException;
 import org.eclipse.m2m.atl.core.IExtractor;
 import org.eclipse.m2m.atl.core.IInjector;
@@ -18,44 +23,65 @@ import org.eclipse.m2m.atl.core.emf.EMFModelFactory;
 import org.eclipse.m2m.atl.core.emf.EMFReferenceModel;
 import org.eclipse.m2m.atl.core.launch.ILauncher;
 import org.eclipse.m2m.atl.engine.emfvm.launch.EMFVMLauncher;
+import org.osgi.framework.Bundle;
 
 /**
  * Diese Klasse automatisiert die Model-to-Model-Transformationen 
  * mit ATL. 
  * 
- * @version 19.01.2016
+ * @version 21.01.2016
  *
  */
-public class Transformator {
+public class Transformator implements Observer {
 
+	private static Transformator instance;
+	
+	private Transformator() {}
+	
+	public static Transformator getInstance() {
+		if (instance == null) {
+			instance = new Transformator();
+		}
+		return instance;
+	}
+	
 	/*
 	 * Pfade zu den Metamodellen
 	 */
+	
+	private static String PREFIX = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
+	
+	static Bundle bundle = Platform.getBundle("de.tu_bs.cs.isf.mbse.mbtimes.crawler");
+	private static int begin = bundle.getLocation().indexOf("/");
+	private static String crawlerPath = bundle.getLocation().substring(begin);
+	
+	
+	
 	private static final String 
-		rssMetaModelPath = "platform:/resource/de.tu-bs.cs.isf.mbse.mbtimes.models.rss/model/RSS.ecore", 
-		atomMetaModelPath = "platform:/resource/de.tu-bs.cs.isf.mbse.mbtimes.models.atom/model/Atom.ecore", 
-		targetMetaModelPath = "platform:/resource/de.tu-bs.cs.isf.mbse.mbtimes.models.unified/model/unified.ecore";
+		rssMetaModelPath = "platform:/plugin/de.tu-bs.cs.isf.mbse.mbtimes.models.rss/model/RSS.ecore", 
+		atomMetaModelPath = "platform:/plugin/de.tu-bs.cs.isf.mbse.mbtimes.models.atom/model/Atom.ecore", 
+		targetMetaModelPath = "platform:/plugin/de.tu-bs.cs.isf.mbse.mbtimes.models.unified/model/unified.ecore";
 
 	/*
 	 * Pfade zu den Ausgangsdaten (Ausgabedaten der Crawler) [.rss/.atom]
 	 */
 	private static final String 
-		rssModelPath = "platform:/resource/de.tu_bs.cs.isf.mbse.mbtimes.crawler/tmp/RssOutput.rss", 
-		atomModelPath = "platform:/resource/de.tu_bs.cs.isf.mbse.mbtimes.crawler/tmp/AtomOutput.atom";
+		rssModelPath = "platform:/plugin/de.tu_bs.cs.isf.mbse.mbtimes.crawler/tmp/RssOutput.rss", 
+		atomModelPath = "platform:/plugin/de.tu_bs.cs.isf.mbse.mbtimes.crawler/tmp/AtomOutput.atom";
 
 	/*
 	 * Pfade zu den Ausgabedaten (Unified), je einer fuer Atom und RSS
 	 */
 	private static final String 
-		rssTargetPath = "platform:/resource/de.tu_bs.cs.isf.mbse.mbtimes.crawler/tmp/unifiedRSS.unified", 
-		atomTargetPath = "platform:/resource/de.tu_bs.cs.isf.mbse.mbtimes.crawler/tmp/unifiedAtom.unified";
+		rssTargetPath = "platform:/plugin/de.tu_bs.cs.isf.mbse.mbtimes.crawler/tmp/unifiedRSS.unified", 
+		atomTargetPath = "platform:/plugin/de.tu_bs.cs.isf.mbse.mbtimes.crawler/tmp/unifiedAtom.unified";
 	
 	/*
 	 * Pfad zu den ATL-Transformationen (kompiliert, also .asm)
 	 */
 	private static final String 
-		rss2unifiedPath = "platform:/resource/de.tu_bs.cs.isf.mbse.mbtimes.crawler/transformations/RSS2Unified.asm",
-		atom2unifiedPath = "platform:/resource/de.tu_bs.cs.isf.mbse.mbtimes.crawler/transformations/Atom2Unified.asm";
+		rss2unifiedPath = crawlerPath + "/transformation/RSS2Unified.asm",
+		atom2unifiedPath = crawlerPath + "/transformation/Atom2Unified.asm";
 
 	/**
 	 * Template fuer ATL-Transformationen.
@@ -67,7 +93,7 @@ public class Transformator {
 	 * @param trafoPath
 	 * @param inName either "Atom" or "RSS"
 	 */
-	private static void transform(String sourceMetaModelPath, String targetMetaModelPath,
+	private void transform(String sourceMetaModelPath, String targetMetaModelPath,
 			String sourceModelPath, String targetModelPath, String trafoPath, String inName) {
 
 		try {
@@ -118,14 +144,21 @@ public class Transformator {
 	/**
 	 * Fuehrt die RSS-To-Unified-Transformation aus
 	 */
-	public static void transformRSStoUnified() {
+	public void transformRSStoUnified() {
 		transform(rssMetaModelPath, targetMetaModelPath, rssModelPath, rssTargetPath, rss2unifiedPath, "RSS");
 	}
 	
 	/**
 	 * Fuehrt die Ato-To-Unified-Transformation aus
 	 */
-	public static void transformAtomToUnified() {
+	public void transformAtomToUnified() {
 		transform(atomMetaModelPath, targetMetaModelPath, atomModelPath, atomTargetPath, atom2unifiedPath, "Atom");
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		System.err.println("Trafo angeworfen");
+		transformAtomToUnified();
+		transformRSStoUnified();
 	}
 }
