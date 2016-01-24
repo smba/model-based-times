@@ -46,17 +46,18 @@ public class Transformator implements Observer {
 	}
 	
 	/*
+	 * Pfad zum Crawler-Bundle
+	 */
+	private static String crawlerBundlePathPrefix;
+	static {
+		Bundle bundle = Platform.getBundle("de.tu_bs.cs.isf.mbse.mbtimes.crawler");
+		int begin = bundle.getLocation().indexOf("/");
+		crawlerBundlePathPrefix = bundle.getLocation().substring(begin);
+	} 
+	
+	/*
 	 * Pfade zu den Metamodellen
 	 */
-	
-	private static String PREFIX = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
-	
-	static Bundle bundle = Platform.getBundle("de.tu_bs.cs.isf.mbse.mbtimes.crawler");
-	private static int begin = bundle.getLocation().indexOf("/");
-	private static String crawlerPath = bundle.getLocation().substring(begin);
-	
-	
-	
 	private static final String 
 		rssMetaModelPath = "platform:/plugin/de.tu-bs.cs.isf.mbse.mbtimes.models.rss/model/RSS.ecore", 
 		atomMetaModelPath = "platform:/plugin/de.tu-bs.cs.isf.mbse.mbtimes.models.atom/model/Atom.ecore", 
@@ -80,8 +81,8 @@ public class Transformator implements Observer {
 	 * Pfad zu den ATL-Transformationen (kompiliert, also .asm)
 	 */
 	private static final String 
-		rss2unifiedPath = crawlerPath + "/transformation/RSS2Unified.asm",
-		atom2unifiedPath = crawlerPath + "/transformation/Atom2Unified.asm";
+		rss2unifiedPath = crawlerBundlePathPrefix + "/transformation/RSS2Unified.asm",
+		atom2unifiedPath = crawlerBundlePathPrefix + "/transformation/Atom2Unified.asm";
 
 	/**
 	 * Template fuer ATL-Transformationen.
