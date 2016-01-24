@@ -23,21 +23,22 @@ class NplGenerator implements IGenerator {
 
 		val cd = new CrawlerDispatcher()
 		val feeds = new HashMap<String, String>()
-		feeds.put("http://www.spiegel.de/schlagzeilen/tops/index.rss", "RSS");
-		cd.dispatchAndCrawl(feeds)
-		
+		//feeds.put("http://www.spiegel.de/schlagzeilen/tops/index.rss", "RSS");
+		//cd.dispatchAndCrawl(feeds)
 
 		resource.getAllContents.filter(typeof(Declaration)).forEach[declaration|
 			System.err.println(declaration.name)
 			
 			declaration.feedlinks.forEach[fl|
-				System.err.println(fl.type + " feed " + fl.key + " at " + fl.value)
+				feeds.put(fl.value,fl.type)
+				//System.err.println(fl.type + " feed " + fl.key + " at " + fl.value)
 			]
 			declaration.topics.forEach[t|
-				System.err.println("Topic " + t.name + " with tags " + t.tags)
+				//System.err.println("Topic " + t.name + " with tags " + t.tags)
 			]
 			
 		]
+		cd.dispatchAndCrawl(feeds)
 		
 		for(d: resource.allContents.toIterable.filter(Declaration)) {
     		fsa.generateFile(	d.name + ".tex", d.compileLayout)
@@ -45,21 +46,15 @@ class NplGenerator implements IGenerator {
 	}
 	
 	private def small(int x) {
-		System.err.println(x)
 		val r = (0.00277777777777911 * x**6) + (-0.0583333333333484 * x**5) + (0.486111111111176 * x**4) + (-2.04166666666683 * x**3) + (5.51111111111132 * x**2) + (-15.9000000000001 * x) + 40
-		System.err.println(r)
 		return r
 	}
 	private def medium(int x) {
-		System.err.println(x)
 		val r = (0.0361111111111134 * x**6) + (-0.691666666666697 * x**5) + (5.06944444444462 * x**4) + (-17.7083333333339 * x**3) + (30.8944444444452 * x**2) + (-33.6000000000004 * x) + 48
-		System.err.println(r)
 		return r
 	}
 	private def large(int x) {
-		System.err.println(x)
 		val r = -0.019444444444443 * x**6 + 0.341666666666656 * x**5 + -2.23611111111109 * x**4 + 6.62499999999998 * x**3 + -6.74444444444453 * x**2 + -13.9666666666666 * x + 56
-		System.err.println(r)
 		return r
 	}
 	
@@ -102,9 +97,7 @@ class NplGenerator implements IGenerator {
 		fontSizeMap.get("large").put(6, 12)
 		
 		val c = d.format.value.charAt(5)+""
-		System.err.println(c)
 		val Integer format = Integer.parseInt(c)
-		System.err.println(format)
 		var date = "\\longdate";
 		if (d.date == null) {
 			date += "\\today"
