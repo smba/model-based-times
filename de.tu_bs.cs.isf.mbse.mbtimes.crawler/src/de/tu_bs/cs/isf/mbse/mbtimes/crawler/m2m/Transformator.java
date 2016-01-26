@@ -1,13 +1,13 @@
 package de.tu_bs.cs.isf.mbse.mbtimes.crawler.m2m;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.net.URL;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.m2m.atl.core.ATLCoreException;
@@ -53,6 +53,19 @@ public class Transformator implements Observer {
 		Bundle bundle = Platform.getBundle("de.tu_bs.cs.isf.mbse.mbtimes.crawler");
 		int begin = bundle.getLocation().indexOf("/");
 		crawlerBundlePathPrefix = bundle.getLocation().substring(begin);
+		System.out.println("dingens" + crawlerBundlePathPrefix);
+		
+		//EventActivator.getInstance().getInjector("de.tu_bs.cs.isf.mbse.mbtimes.crawler").injectMembers(this);
+	
+		String snippet;
+		try {
+			snippet = Transformator.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+			System.err.println(snippet + " +++");
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	} 
 	
 	/*
@@ -74,8 +87,8 @@ public class Transformator implements Observer {
 	 * Pfade zu den Ausgabedaten (Unified), je einer fuer Atom und RSS
 	 */
 	private static final String 
-		rssTargetPath = "platform:/plugin/de.tu_bs.cs.isf.mbse.mbtimes.crawler/tmp/unifiedRSS.unified", 
-		atomTargetPath = "platform:/plugin/de.tu_bs.cs.isf.mbse.mbtimes.crawler/tmp/unifiedAtom.unified";
+		rssTargetPath = "git/model-based-times/de.tu_bs.cs.isf.mbse.mbtimes.crawler/tmp/unifiedRSS.unified", 
+		atomTargetPath = "git/model-based-times/de.tu_bs.cs.isf.mbse.mbtimes.crawler/tmp/unifiedAtom.unified";
 	
 	/*
 	 * Pfad zu den ATL-Transformationen (kompiliert, also .asm)
@@ -125,6 +138,7 @@ public class Transformator implements Observer {
 					new FileInputStream(trafoPath));
 
 			IModel companyModel_Cut = sourceModel;
+			System.out.println(targetModelPath);
 			extractor.extract(targetModel, targetModelPath);
 
 			/*
@@ -146,6 +160,7 @@ public class Transformator implements Observer {
 	 * Fuehrt die RSS-To-Unified-Transformation aus
 	 */
 	public void transformRSStoUnified() {
+		System.out.println("### " + (new File("test")).getAbsolutePath());
 		transform(rssMetaModelPath, targetMetaModelPath, rssModelPath, rssTargetPath, rss2unifiedPath, "RSS");
 	}
 	
@@ -158,7 +173,6 @@ public class Transformator implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		System.err.println("Trafo angeworfen");
 		transformAtomToUnified();
 		transformRSStoUnified();
 	}
