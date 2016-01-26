@@ -27,7 +27,11 @@ import org.osgi.framework.Bundle;
 
 /**
  * Diese Klasse automatisiert die Model-to-Model-Transformationen 
- * mit ATL. 
+ * mit ATL.
+ * 
+ * Die Klasse ist als Singleton implementiert und 
+ * ist Observer des CrawlerDispatchers. Nachdem alle Feeds gecrawlt wurden, 
+ * werden automatisch (siehe Methode update()) die beiden M2M-Transformationen gestartet.
  * 
  * @version 26.01.2016
  *
