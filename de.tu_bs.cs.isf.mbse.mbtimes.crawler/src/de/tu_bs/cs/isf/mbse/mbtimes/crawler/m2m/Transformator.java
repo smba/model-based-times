@@ -29,7 +29,7 @@ import org.osgi.framework.Bundle;
  * Diese Klasse automatisiert die Model-to-Model-Transformationen 
  * mit ATL. 
  * 
- * @version 21.01.2016
+ * @version 26.01.2016
  *
  */
 public class Transformator implements Observer {
@@ -45,27 +45,23 @@ public class Transformator implements Observer {
 		return instance;
 	}
 	
-	/*
-	 * Pfad zum Crawler-Bundle
-	 */
+	/** Pfad vom aktuellen Ausführungspunkt zum Ort des Plugins */
 	private static String crawlerBundlePathPrefix;
+	
+	/** Berechnen des obigen Pfads:
+	 *  Die Idee ist,  dass wir zunächst den absoluten Pfad 
+	 *  zum Plugin von der Wurzel des Dateisystems aus suchen.
+	 *  Dann suchen wir den Ausführungspunkt des Programms, indem 
+	 *  wir eine Dummy-Datei anlegen. Nun schneiden wir den 
+	 *  Pfad zum Ausführungspunkt vom absoluten Pfad zum Plugin ab.
+	 *  */
 	static {
 		Bundle bundle = Platform.getBundle("de.tu_bs.cs.isf.mbse.mbtimes.crawler");
 		int begin = bundle.getLocation().indexOf("/");
 		crawlerBundlePathPrefix = bundle.getLocation().substring(begin);
-		System.out.println("dingens" + crawlerBundlePathPrefix);
-		
-		//EventActivator.getInstance().getInjector("de.tu_bs.cs.isf.mbse.mbtimes.crawler").injectMembers(this);
-	
-		String snippet;
-		try {
-			snippet = Transformator.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
-			System.err.println(snippet + " +++");
-		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		String prefix = (new File("dummy")).getAbsolutePath(); 
+		prefix = prefix.substring(0,  prefix.lastIndexOf('/') + 1); 
+		crawlerBundlePathPrefix = crawlerBundlePathPrefix.substring(prefix.length(), crawlerBundlePathPrefix.length());
 	} 
 	
 	/*
@@ -87,8 +83,8 @@ public class Transformator implements Observer {
 	 * Pfade zu den Ausgabedaten (Unified), je einer fuer Atom und RSS
 	 */
 	private static final String 
-		rssTargetPath = "git/model-based-times/de.tu_bs.cs.isf.mbse.mbtimes.crawler/tmp/unifiedRSS.unified", 
-		atomTargetPath = "git/model-based-times/de.tu_bs.cs.isf.mbse.mbtimes.crawler/tmp/unifiedAtom.unified";
+		rssTargetPath = crawlerBundlePathPrefix + "tmp/unifiedRSS.unified", 
+		atomTargetPath = crawlerBundlePathPrefix + "tmp/unifiedAtom.unified";
 	
 	/*
 	 * Pfad zu den ATL-Transformationen (kompiliert, also .asm)
@@ -138,7 +134,7 @@ public class Transformator implements Observer {
 					new FileInputStream(trafoPath));
 
 			IModel companyModel_Cut = sourceModel;
-			System.out.println(targetModelPath);
+			//System.out.println(targetModelPath);
 			extractor.extract(targetModel, targetModelPath);
 
 			/*
@@ -160,12 +156,11 @@ public class Transformator implements Observer {
 	 * Fuehrt die RSS-To-Unified-Transformation aus
 	 */
 	public void transformRSStoUnified() {
-		System.out.println("### " + (new File("test")).getAbsolutePath());
 		transform(rssMetaModelPath, targetMetaModelPath, rssModelPath, rssTargetPath, rss2unifiedPath, "RSS");
 	}
 	
 	/**
-	 * Fuehrt die Ato-To-Unified-Transformation aus
+	 * Fuehrt die Atom-To-Unified-Transformation aus
 	 */
 	public void transformAtomToUnified() {
 		transform(atomMetaModelPath, targetMetaModelPath, atomModelPath, atomTargetPath, atom2unifiedPath, "Atom");
