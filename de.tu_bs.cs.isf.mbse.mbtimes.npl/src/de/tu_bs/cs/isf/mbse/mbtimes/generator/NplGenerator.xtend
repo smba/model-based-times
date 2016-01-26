@@ -11,6 +11,7 @@ import java.util.Map
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
+import de.tu_bs.cs.isf.mbse.mbtimes.crawler.m2m.Transformator
 
 /**
  * Generates code from your model files on save
@@ -22,6 +23,9 @@ class NplGenerator implements IGenerator {
 	override doGenerate(Resource resource, IFileSystemAccess fsa) {
 
 		val cd = new CrawlerDispatcher()
+		val trafo = Transformator.getInstance();
+		cd.addObserver(trafo);
+		
 		val feeds = new HashMap<String, String>()
 		//feeds.put("http://www.spiegel.de/schlagzeilen/tops/index.rss", "RSS");
 		//cd.dispatchAndCrawl(feeds)

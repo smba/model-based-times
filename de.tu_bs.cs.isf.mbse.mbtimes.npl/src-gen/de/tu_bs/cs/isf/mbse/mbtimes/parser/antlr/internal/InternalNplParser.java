@@ -21,7 +21,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalNplParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_INT", "RULE_URL", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'newspaper'", "'{'", "'recrawl'", "'feed links'", "'}'", "'topics'", "'optional: date'", "'optional: location'", "'optional: price'", "'optional: volume'", "'no.'", "'optional: language'", "'format'", "'number of articles per topic'", "'number of words per article'", "'-'", "'optional: number of images per article'", "'number of columns'", "'font size'", "'small'", "'medium'", "'large'", "'DIN A6'", "'DIN A5'", "'DIN A4'", "'DIN A3'", "'DIN A2'", "'DIN A1'", "'DIN A0'", "'English'", "'German'", "'EUR'", "'DOLLAR'", "'topic'", "', '", "'<'", "'>'", "'.'", "','", "'RSS'", "'Atom'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_INT", "RULE_URL", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'newspaper'", "'{'", "'recrawl'", "'feed links'", "'}'", "'topics'", "'optional: date'", "'optional: location'", "'optional: price'", "'optional: volume'", "'no.'", "'optional: language'", "'format'", "'number of articles per topic'", "'number of words per article'", "'-'", "'optional: number of images per article'", "'number of columns'", "'font size'", "'small'", "'medium'", "'large'", "'DIN A6'", "'DIN A5'", "'DIN A4'", "'DIN A3'", "'DIN A2'", "'DIN A1'", "'DIN A0'", "'English'", "'German'", "'Euro'", "'EUR'", "'\\u20AC'", "'Dollar'", "'USD'", "'$'", "'topic'", "', '", "'<'", "'>'", "'.'", "','", "'RSS'", "'Atom'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -29,11 +29,15 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
     public static final int T__16=16;
     public static final int T__17=17;
     public static final int T__18=18;
+    public static final int T__55=55;
     public static final int T__12=12;
+    public static final int T__56=56;
     public static final int T__13=13;
     public static final int T__14=14;
     public static final int T__51=51;
     public static final int T__52=52;
+    public static final int T__53=53;
+    public static final int T__54=54;
     public static final int RULE_ID=4;
     public static final int T__26=26;
     public static final int T__27=27;
@@ -149,7 +153,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDeclaration"
-    // InternalNpl.g:76:1: ruleDeclaration returns [EObject current=null] : ( ( ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?) ) ) ;
+    // InternalNpl.g:76:1: ruleDeclaration returns [EObject current=null] : ( ( ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?) ) ) ;
     public final EObject ruleDeclaration() throws RecognitionException {
         EObject current = null;
 
@@ -208,28 +212,28 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalNpl.g:79:28: ( ( ( ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?) ) ) )
-            // InternalNpl.g:80:1: ( ( ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?) ) )
+            // InternalNpl.g:79:28: ( ( ( ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?) ) ) )
+            // InternalNpl.g:80:1: ( ( ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?) ) )
             {
-            // InternalNpl.g:80:1: ( ( ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?) ) )
-            // InternalNpl.g:82:1: ( ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?) )
+            // InternalNpl.g:80:1: ( ( ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?) ) )
+            // InternalNpl.g:82:1: ( ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?) )
             {
-            // InternalNpl.g:82:1: ( ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?) )
-            // InternalNpl.g:83:2: ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?)
+            // InternalNpl.g:82:1: ( ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?) )
+            // InternalNpl.g:83:2: ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?)
             {
              
             	  getUnorderedGroupHelper().enter(grammarAccess.getDeclarationAccess().getUnorderedGroup());
             	
-            // InternalNpl.g:86:2: ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?)
-            // InternalNpl.g:87:3: ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?
+            // InternalNpl.g:86:2: ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?)
+            // InternalNpl.g:87:3: ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?
             {
-            // InternalNpl.g:87:3: ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+
-            int cnt3=0;
-            loop3:
+            // InternalNpl.g:87:3: ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+
+            int cnt4=0;
+            loop4:
             do {
-                int alt3=16;
-                alt3 = dfa3.predict(input);
-                switch (alt3) {
+                int alt4=16;
+                alt4 = dfa4.predict(input);
+                switch (alt4) {
             	case 1 :
             	    // InternalNpl.g:89:4: ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) )
             	    {
@@ -397,7 +401,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	        int alt1=2;
             	        int LA1_0 = input.LA(1);
 
-            	        if ( ((LA1_0>=51 && LA1_0<=52)) ) {
+            	        if ( ((LA1_0>=55 && LA1_0<=56)) ) {
             	            alt1=1;
             	        }
 
@@ -531,7 +535,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	        int alt2=2;
             	        int LA2_0 = input.LA(1);
 
-            	        if ( (LA2_0==45) ) {
+            	        if ( (LA2_0==49) ) {
             	            alt2=1;
             	        }
 
@@ -823,28 +827,28 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 7 :
-            	    // InternalNpl.g:364:4: ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) ) ) ) )
+            	    // InternalNpl.g:364:4: ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) )
             	    {
-            	    // InternalNpl.g:364:4: ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) ) ) ) )
-            	    // InternalNpl.g:365:5: {...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) ) ) )
+            	    // InternalNpl.g:364:4: ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) )
+            	    // InternalNpl.g:365:5: {...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) )
             	    {
             	    if ( ! getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 6) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 6)");
             	    }
-            	    // InternalNpl.g:365:106: ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) ) ) )
-            	    // InternalNpl.g:366:6: ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) ) )
+            	    // InternalNpl.g:365:106: ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) )
+            	    // InternalNpl.g:366:6: ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) )
             	    {
             	     
             	    	 				  getUnorderedGroupHelper().select(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 6);
             	    	 				
-            	    // InternalNpl.g:369:6: ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) ) )
-            	    // InternalNpl.g:369:7: {...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )
+            	    // InternalNpl.g:369:6: ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) )
+            	    // InternalNpl.g:369:7: {...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? )
             	    {
             	    if ( !((true)) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "true");
             	    }
-            	    // InternalNpl.g:369:16: (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )
-            	    // InternalNpl.g:369:18: otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) )
+            	    // InternalNpl.g:369:16: (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? )
+            	    // InternalNpl.g:369:18: otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )?
             	    {
             	    otherlv_21=(Token)match(input,21,FOLLOW_12); 
 
@@ -876,33 +880,50 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             	    }
 
-            	    otherlv_23=(Token)match(input,22,FOLLOW_12); 
+            	    // InternalNpl.g:391:2: (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )?
+            	    int alt3=2;
+            	    int LA3_0 = input.LA(1);
 
-            	        	newLeafNode(otherlv_23, grammarAccess.getDeclarationAccess().getNoKeyword_6_2());
-            	        
-            	    // InternalNpl.g:395:1: ( (lv_number_24_0= RULE_INT ) )
-            	    // InternalNpl.g:396:1: (lv_number_24_0= RULE_INT )
-            	    {
-            	    // InternalNpl.g:396:1: (lv_number_24_0= RULE_INT )
-            	    // InternalNpl.g:397:3: lv_number_24_0= RULE_INT
-            	    {
-            	    lv_number_24_0=(Token)match(input,RULE_INT,FOLLOW_5); 
-
-            	    			newLeafNode(lv_number_24_0, grammarAccess.getDeclarationAccess().getNumberINTTerminalRuleCall_6_3_0()); 
-            	    		
-
-            	    	        if (current==null) {
-            	    	            current = createModelElement(grammarAccess.getDeclarationRule());
-            	    	        }
-            	           		setWithLastConsumed(
-            	           			current, 
-            	           			"number",
-            	            		lv_number_24_0, 
-            	            		"org.eclipse.xtext.common.Terminals.INT");
-            	    	    
-
+            	    if ( (LA3_0==22) ) {
+            	        alt3=1;
             	    }
+            	    switch (alt3) {
+            	        case 1 :
+            	            // InternalNpl.g:391:4: otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) )
+            	            {
+            	            otherlv_23=(Token)match(input,22,FOLLOW_12); 
 
+            	                	newLeafNode(otherlv_23, grammarAccess.getDeclarationAccess().getNoKeyword_6_2_0());
+            	                
+            	            // InternalNpl.g:395:1: ( (lv_number_24_0= RULE_INT ) )
+            	            // InternalNpl.g:396:1: (lv_number_24_0= RULE_INT )
+            	            {
+            	            // InternalNpl.g:396:1: (lv_number_24_0= RULE_INT )
+            	            // InternalNpl.g:397:3: lv_number_24_0= RULE_INT
+            	            {
+            	            lv_number_24_0=(Token)match(input,RULE_INT,FOLLOW_5); 
+
+            	            			newLeafNode(lv_number_24_0, grammarAccess.getDeclarationAccess().getNumberINTTerminalRuleCall_6_2_1_0()); 
+            	            		
+
+            	            	        if (current==null) {
+            	            	            current = createModelElement(grammarAccess.getDeclarationRule());
+            	            	        }
+            	                   		setWithLastConsumed(
+            	                   			current, 
+            	                   			"number",
+            	                    		lv_number_24_0, 
+            	                    		"org.eclipse.xtext.common.Terminals.INT");
+            	            	    
+
+            	            }
+
+
+            	            }
+
+
+            	            }
+            	            break;
 
             	    }
 
@@ -1526,12 +1547,12 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    if ( cnt3 >= 1 ) break loop3;
+            	    if ( cnt4 >= 1 ) break loop4;
                         EarlyExitException eee =
-                            new EarlyExitException(3, input);
+                            new EarlyExitException(4, input);
                         throw eee;
                 }
-                cnt3++;
+                cnt4++;
             } while (true);
 
             if ( ! getUnorderedGroupHelper().canLeave(grammarAccess.getDeclarationAccess().getUnorderedGroup()) ) {
@@ -1710,31 +1731,31 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             // InternalNpl.g:764:1: ( ( (lv_value_0_0= 'small' ) ) | ( (lv_value_1_0= 'medium' ) ) | ( (lv_value_2_0= 'large' ) ) )
             {
             // InternalNpl.g:764:1: ( ( (lv_value_0_0= 'small' ) ) | ( (lv_value_1_0= 'medium' ) ) | ( (lv_value_2_0= 'large' ) ) )
-            int alt4=3;
+            int alt5=3;
             switch ( input.LA(1) ) {
             case 31:
                 {
-                alt4=1;
+                alt5=1;
                 }
                 break;
             case 32:
                 {
-                alt4=2;
+                alt5=2;
                 }
                 break;
             case 33:
                 {
-                alt4=3;
+                alt5=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 4, 0, input);
+                    new NoViableAltException("", 5, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt4) {
+            switch (alt5) {
                 case 1 :
                     // InternalNpl.g:764:2: ( (lv_value_0_0= 'small' ) )
                     {
@@ -1895,51 +1916,51 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             // InternalNpl.g:832:1: ( ( (lv_value_0_0= 'DIN A6' ) ) | ( (lv_value_1_0= 'DIN A5' ) ) | ( (lv_value_2_0= 'DIN A4' ) ) | ( (lv_value_3_0= 'DIN A3' ) ) | ( (lv_value_4_0= 'DIN A2' ) ) | ( (lv_value_5_0= 'DIN A1' ) ) | ( (lv_value_6_0= 'DIN A0' ) ) )
             {
             // InternalNpl.g:832:1: ( ( (lv_value_0_0= 'DIN A6' ) ) | ( (lv_value_1_0= 'DIN A5' ) ) | ( (lv_value_2_0= 'DIN A4' ) ) | ( (lv_value_3_0= 'DIN A3' ) ) | ( (lv_value_4_0= 'DIN A2' ) ) | ( (lv_value_5_0= 'DIN A1' ) ) | ( (lv_value_6_0= 'DIN A0' ) ) )
-            int alt5=7;
+            int alt6=7;
             switch ( input.LA(1) ) {
             case 34:
                 {
-                alt5=1;
+                alt6=1;
                 }
                 break;
             case 35:
                 {
-                alt5=2;
+                alt6=2;
                 }
                 break;
             case 36:
                 {
-                alt5=3;
+                alt6=3;
                 }
                 break;
             case 37:
                 {
-                alt5=4;
+                alt6=4;
                 }
                 break;
             case 38:
                 {
-                alt5=5;
+                alt6=5;
                 }
                 break;
             case 39:
                 {
-                alt5=6;
+                alt6=6;
                 }
                 break;
             case 40:
                 {
-                alt5=7;
+                alt6=7;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 5, 0, input);
+                    new NoViableAltException("", 6, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt5) {
+            switch (alt6) {
                 case 1 :
                     // InternalNpl.g:832:2: ( (lv_value_0_0= 'DIN A6' ) )
                     {
@@ -2379,22 +2400,22 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             // InternalNpl.g:1055:1: ( ( (lv_value_0_0= 'English' ) ) | ( (lv_value_1_0= 'German' ) ) )
             {
             // InternalNpl.g:1055:1: ( ( (lv_value_0_0= 'English' ) ) | ( (lv_value_1_0= 'German' ) ) )
-            int alt6=2;
-            int LA6_0 = input.LA(1);
+            int alt7=2;
+            int LA7_0 = input.LA(1);
 
-            if ( (LA6_0==41) ) {
-                alt6=1;
+            if ( (LA7_0==41) ) {
+                alt7=1;
             }
-            else if ( (LA6_0==42) ) {
-                alt6=2;
+            else if ( (LA7_0==42) ) {
+                alt7=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 6, 0, input);
+                    new NoViableAltException("", 7, 0, input);
 
                 throw nvae;
             }
-            switch (alt6) {
+            switch (alt7) {
                 case 1 :
                     // InternalNpl.g:1055:2: ( (lv_value_0_0= 'English' ) )
                     {
@@ -2655,54 +2676,82 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCurrency"
-    // InternalNpl.g:1168:1: ruleCurrency returns [EObject current=null] : ( ( (lv_value_0_0= 'EUR' ) ) | ( (lv_value_1_0= 'DOLLAR' ) ) ) ;
+    // InternalNpl.g:1168:1: ruleCurrency returns [EObject current=null] : ( ( (lv_value_0_0= 'Euro' ) ) | ( (lv_value_1_0= 'EUR' ) ) | ( (lv_value_2_0= '\\u20AC' ) ) | ( (lv_value_3_0= 'Dollar' ) ) | ( (lv_value_4_0= 'USD' ) ) | ( (lv_value_5_0= '$' ) ) ) ;
     public final EObject ruleCurrency() throws RecognitionException {
         EObject current = null;
 
         Token lv_value_0_0=null;
         Token lv_value_1_0=null;
+        Token lv_value_2_0=null;
+        Token lv_value_3_0=null;
+        Token lv_value_4_0=null;
+        Token lv_value_5_0=null;
 
          enterRule(); 
             
         try {
-            // InternalNpl.g:1171:28: ( ( ( (lv_value_0_0= 'EUR' ) ) | ( (lv_value_1_0= 'DOLLAR' ) ) ) )
-            // InternalNpl.g:1172:1: ( ( (lv_value_0_0= 'EUR' ) ) | ( (lv_value_1_0= 'DOLLAR' ) ) )
+            // InternalNpl.g:1171:28: ( ( ( (lv_value_0_0= 'Euro' ) ) | ( (lv_value_1_0= 'EUR' ) ) | ( (lv_value_2_0= '\\u20AC' ) ) | ( (lv_value_3_0= 'Dollar' ) ) | ( (lv_value_4_0= 'USD' ) ) | ( (lv_value_5_0= '$' ) ) ) )
+            // InternalNpl.g:1172:1: ( ( (lv_value_0_0= 'Euro' ) ) | ( (lv_value_1_0= 'EUR' ) ) | ( (lv_value_2_0= '\\u20AC' ) ) | ( (lv_value_3_0= 'Dollar' ) ) | ( (lv_value_4_0= 'USD' ) ) | ( (lv_value_5_0= '$' ) ) )
             {
-            // InternalNpl.g:1172:1: ( ( (lv_value_0_0= 'EUR' ) ) | ( (lv_value_1_0= 'DOLLAR' ) ) )
-            int alt7=2;
-            int LA7_0 = input.LA(1);
-
-            if ( (LA7_0==43) ) {
-                alt7=1;
-            }
-            else if ( (LA7_0==44) ) {
-                alt7=2;
-            }
-            else {
+            // InternalNpl.g:1172:1: ( ( (lv_value_0_0= 'Euro' ) ) | ( (lv_value_1_0= 'EUR' ) ) | ( (lv_value_2_0= '\\u20AC' ) ) | ( (lv_value_3_0= 'Dollar' ) ) | ( (lv_value_4_0= 'USD' ) ) | ( (lv_value_5_0= '$' ) ) )
+            int alt8=6;
+            switch ( input.LA(1) ) {
+            case 43:
+                {
+                alt8=1;
+                }
+                break;
+            case 44:
+                {
+                alt8=2;
+                }
+                break;
+            case 45:
+                {
+                alt8=3;
+                }
+                break;
+            case 46:
+                {
+                alt8=4;
+                }
+                break;
+            case 47:
+                {
+                alt8=5;
+                }
+                break;
+            case 48:
+                {
+                alt8=6;
+                }
+                break;
+            default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 7, 0, input);
+                    new NoViableAltException("", 8, 0, input);
 
                 throw nvae;
             }
-            switch (alt7) {
+
+            switch (alt8) {
                 case 1 :
-                    // InternalNpl.g:1172:2: ( (lv_value_0_0= 'EUR' ) )
+                    // InternalNpl.g:1172:2: ( (lv_value_0_0= 'Euro' ) )
                     {
-                    // InternalNpl.g:1172:2: ( (lv_value_0_0= 'EUR' ) )
-                    // InternalNpl.g:1173:1: (lv_value_0_0= 'EUR' )
+                    // InternalNpl.g:1172:2: ( (lv_value_0_0= 'Euro' ) )
+                    // InternalNpl.g:1173:1: (lv_value_0_0= 'Euro' )
                     {
-                    // InternalNpl.g:1173:1: (lv_value_0_0= 'EUR' )
-                    // InternalNpl.g:1174:3: lv_value_0_0= 'EUR'
+                    // InternalNpl.g:1173:1: (lv_value_0_0= 'Euro' )
+                    // InternalNpl.g:1174:3: lv_value_0_0= 'Euro'
                     {
                     lv_value_0_0=(Token)match(input,43,FOLLOW_2); 
 
-                            newLeafNode(lv_value_0_0, grammarAccess.getCurrencyAccess().getValueEURKeyword_0_0());
+                            newLeafNode(lv_value_0_0, grammarAccess.getCurrencyAccess().getValueEuroKeyword_0_0());
                         
 
                     	        if (current==null) {
                     	            current = createModelElement(grammarAccess.getCurrencyRule());
                     	        }
-                           		setWithLastConsumed(current, "value", lv_value_0_0, "EUR");
+                           		setWithLastConsumed(current, "value", lv_value_0_0, "Euro");
                     	    
 
                     }
@@ -2714,23 +2763,135 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalNpl.g:1188:6: ( (lv_value_1_0= 'DOLLAR' ) )
+                    // InternalNpl.g:1188:6: ( (lv_value_1_0= 'EUR' ) )
                     {
-                    // InternalNpl.g:1188:6: ( (lv_value_1_0= 'DOLLAR' ) )
-                    // InternalNpl.g:1189:1: (lv_value_1_0= 'DOLLAR' )
+                    // InternalNpl.g:1188:6: ( (lv_value_1_0= 'EUR' ) )
+                    // InternalNpl.g:1189:1: (lv_value_1_0= 'EUR' )
                     {
-                    // InternalNpl.g:1189:1: (lv_value_1_0= 'DOLLAR' )
-                    // InternalNpl.g:1190:3: lv_value_1_0= 'DOLLAR'
+                    // InternalNpl.g:1189:1: (lv_value_1_0= 'EUR' )
+                    // InternalNpl.g:1190:3: lv_value_1_0= 'EUR'
                     {
                     lv_value_1_0=(Token)match(input,44,FOLLOW_2); 
 
-                            newLeafNode(lv_value_1_0, grammarAccess.getCurrencyAccess().getValueDOLLARKeyword_1_0());
+                            newLeafNode(lv_value_1_0, grammarAccess.getCurrencyAccess().getValueEURKeyword_1_0());
                         
 
                     	        if (current==null) {
                     	            current = createModelElement(grammarAccess.getCurrencyRule());
                     	        }
-                           		setWithLastConsumed(current, "value", lv_value_1_0, "DOLLAR");
+                           		setWithLastConsumed(current, "value", lv_value_1_0, "EUR");
+                    	    
+
+                    }
+
+
+                    }
+
+
+                    }
+                    break;
+                case 3 :
+                    // InternalNpl.g:1204:6: ( (lv_value_2_0= '\\u20AC' ) )
+                    {
+                    // InternalNpl.g:1204:6: ( (lv_value_2_0= '\\u20AC' ) )
+                    // InternalNpl.g:1205:1: (lv_value_2_0= '\\u20AC' )
+                    {
+                    // InternalNpl.g:1205:1: (lv_value_2_0= '\\u20AC' )
+                    // InternalNpl.g:1206:3: lv_value_2_0= '\\u20AC'
+                    {
+                    lv_value_2_0=(Token)match(input,45,FOLLOW_2); 
+
+                            newLeafNode(lv_value_2_0, grammarAccess.getCurrencyAccess().getValueEuroSignKeyword_2_0());
+                        
+
+                    	        if (current==null) {
+                    	            current = createModelElement(grammarAccess.getCurrencyRule());
+                    	        }
+                           		setWithLastConsumed(current, "value", lv_value_2_0, "\u20AC");
+                    	    
+
+                    }
+
+
+                    }
+
+
+                    }
+                    break;
+                case 4 :
+                    // InternalNpl.g:1220:6: ( (lv_value_3_0= 'Dollar' ) )
+                    {
+                    // InternalNpl.g:1220:6: ( (lv_value_3_0= 'Dollar' ) )
+                    // InternalNpl.g:1221:1: (lv_value_3_0= 'Dollar' )
+                    {
+                    // InternalNpl.g:1221:1: (lv_value_3_0= 'Dollar' )
+                    // InternalNpl.g:1222:3: lv_value_3_0= 'Dollar'
+                    {
+                    lv_value_3_0=(Token)match(input,46,FOLLOW_2); 
+
+                            newLeafNode(lv_value_3_0, grammarAccess.getCurrencyAccess().getValueDollarKeyword_3_0());
+                        
+
+                    	        if (current==null) {
+                    	            current = createModelElement(grammarAccess.getCurrencyRule());
+                    	        }
+                           		setWithLastConsumed(current, "value", lv_value_3_0, "Dollar");
+                    	    
+
+                    }
+
+
+                    }
+
+
+                    }
+                    break;
+                case 5 :
+                    // InternalNpl.g:1236:6: ( (lv_value_4_0= 'USD' ) )
+                    {
+                    // InternalNpl.g:1236:6: ( (lv_value_4_0= 'USD' ) )
+                    // InternalNpl.g:1237:1: (lv_value_4_0= 'USD' )
+                    {
+                    // InternalNpl.g:1237:1: (lv_value_4_0= 'USD' )
+                    // InternalNpl.g:1238:3: lv_value_4_0= 'USD'
+                    {
+                    lv_value_4_0=(Token)match(input,47,FOLLOW_2); 
+
+                            newLeafNode(lv_value_4_0, grammarAccess.getCurrencyAccess().getValueUSDKeyword_4_0());
+                        
+
+                    	        if (current==null) {
+                    	            current = createModelElement(grammarAccess.getCurrencyRule());
+                    	        }
+                           		setWithLastConsumed(current, "value", lv_value_4_0, "USD");
+                    	    
+
+                    }
+
+
+                    }
+
+
+                    }
+                    break;
+                case 6 :
+                    // InternalNpl.g:1252:6: ( (lv_value_5_0= '$' ) )
+                    {
+                    // InternalNpl.g:1252:6: ( (lv_value_5_0= '$' ) )
+                    // InternalNpl.g:1253:1: (lv_value_5_0= '$' )
+                    {
+                    // InternalNpl.g:1253:1: (lv_value_5_0= '$' )
+                    // InternalNpl.g:1254:3: lv_value_5_0= '$'
+                    {
+                    lv_value_5_0=(Token)match(input,48,FOLLOW_2); 
+
+                            newLeafNode(lv_value_5_0, grammarAccess.getCurrencyAccess().getValueDollarSignKeyword_5_0());
+                        
+
+                    	        if (current==null) {
+                    	            current = createModelElement(grammarAccess.getCurrencyRule());
+                    	        }
+                           		setWithLastConsumed(current, "value", lv_value_5_0, "$");
                     	    
 
                     }
@@ -2762,7 +2923,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleTopic"
-    // InternalNpl.g:1211:1: entryRuleTopic returns [EObject current=null] : iv_ruleTopic= ruleTopic EOF ;
+    // InternalNpl.g:1275:1: entryRuleTopic returns [EObject current=null] : iv_ruleTopic= ruleTopic EOF ;
     public final EObject entryRuleTopic() throws RecognitionException {
         EObject current = null;
 
@@ -2770,8 +2931,8 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalNpl.g:1212:2: (iv_ruleTopic= ruleTopic EOF )
-            // InternalNpl.g:1213:2: iv_ruleTopic= ruleTopic EOF
+            // InternalNpl.g:1276:2: (iv_ruleTopic= ruleTopic EOF )
+            // InternalNpl.g:1277:2: iv_ruleTopic= ruleTopic EOF
             {
              newCompositeNode(grammarAccess.getTopicRule()); 
             pushFollow(FOLLOW_1);
@@ -2798,7 +2959,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTopic"
-    // InternalNpl.g:1220:1: ruleTopic returns [EObject current=null] : (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= ruleTopicTag ) ) (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )* otherlv_6= '}' ) ;
+    // InternalNpl.g:1284:1: ruleTopic returns [EObject current=null] : (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= ruleTopicTag ) ) (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )* otherlv_6= '}' ) ;
     public final EObject ruleTopic() throws RecognitionException {
         EObject current = null;
 
@@ -2815,21 +2976,21 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalNpl.g:1223:28: ( (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= ruleTopicTag ) ) (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )* otherlv_6= '}' ) )
-            // InternalNpl.g:1224:1: (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= ruleTopicTag ) ) (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )* otherlv_6= '}' )
+            // InternalNpl.g:1287:28: ( (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= ruleTopicTag ) ) (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )* otherlv_6= '}' ) )
+            // InternalNpl.g:1288:1: (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= ruleTopicTag ) ) (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )* otherlv_6= '}' )
             {
-            // InternalNpl.g:1224:1: (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= ruleTopicTag ) ) (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )* otherlv_6= '}' )
-            // InternalNpl.g:1224:3: otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= ruleTopicTag ) ) (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )* otherlv_6= '}'
+            // InternalNpl.g:1288:1: (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= ruleTopicTag ) ) (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )* otherlv_6= '}' )
+            // InternalNpl.g:1288:3: otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= ruleTopicTag ) ) (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )* otherlv_6= '}'
             {
-            otherlv_0=(Token)match(input,45,FOLLOW_3); 
+            otherlv_0=(Token)match(input,49,FOLLOW_3); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getTopicAccess().getTopicKeyword_0());
                 
-            // InternalNpl.g:1228:1: ( (lv_name_1_0= RULE_ID ) )
-            // InternalNpl.g:1229:1: (lv_name_1_0= RULE_ID )
+            // InternalNpl.g:1292:1: ( (lv_name_1_0= RULE_ID ) )
+            // InternalNpl.g:1293:1: (lv_name_1_0= RULE_ID )
             {
-            // InternalNpl.g:1229:1: (lv_name_1_0= RULE_ID )
-            // InternalNpl.g:1230:3: lv_name_1_0= RULE_ID
+            // InternalNpl.g:1293:1: (lv_name_1_0= RULE_ID )
+            // InternalNpl.g:1294:3: lv_name_1_0= RULE_ID
             {
             lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_4); 
 
@@ -2855,11 +3016,11 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
                 	newLeafNode(otherlv_2, grammarAccess.getTopicAccess().getLeftCurlyBracketKeyword_2());
                 
-            // InternalNpl.g:1250:1: ( (lv_tags_3_0= ruleTopicTag ) )
-            // InternalNpl.g:1251:1: (lv_tags_3_0= ruleTopicTag )
+            // InternalNpl.g:1314:1: ( (lv_tags_3_0= ruleTopicTag ) )
+            // InternalNpl.g:1315:1: (lv_tags_3_0= ruleTopicTag )
             {
-            // InternalNpl.g:1251:1: (lv_tags_3_0= ruleTopicTag )
-            // InternalNpl.g:1252:3: lv_tags_3_0= ruleTopicTag
+            // InternalNpl.g:1315:1: (lv_tags_3_0= ruleTopicTag )
+            // InternalNpl.g:1316:3: lv_tags_3_0= ruleTopicTag
             {
              
             	        newCompositeNode(grammarAccess.getTopicAccess().getTagsTopicTagParserRuleCall_3_0()); 
@@ -2886,30 +3047,30 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalNpl.g:1268:2: (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )*
-            loop8:
+            // InternalNpl.g:1332:2: (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )*
+            loop9:
             do {
-                int alt8=2;
-                int LA8_0 = input.LA(1);
+                int alt9=2;
+                int LA9_0 = input.LA(1);
 
-                if ( (LA8_0==46) ) {
-                    alt8=1;
+                if ( (LA9_0==50) ) {
+                    alt9=1;
                 }
 
 
-                switch (alt8) {
+                switch (alt9) {
             	case 1 :
-            	    // InternalNpl.g:1268:4: otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) )
+            	    // InternalNpl.g:1332:4: otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) )
             	    {
-            	    otherlv_4=(Token)match(input,46,FOLLOW_11); 
+            	    otherlv_4=(Token)match(input,50,FOLLOW_11); 
 
             	        	newLeafNode(otherlv_4, grammarAccess.getTopicAccess().getCommaSpaceKeyword_4_0());
             	        
-            	    // InternalNpl.g:1272:1: ( (lv_tags_5_0= ruleTopicTag ) )
-            	    // InternalNpl.g:1273:1: (lv_tags_5_0= ruleTopicTag )
+            	    // InternalNpl.g:1336:1: ( (lv_tags_5_0= ruleTopicTag ) )
+            	    // InternalNpl.g:1337:1: (lv_tags_5_0= ruleTopicTag )
             	    {
-            	    // InternalNpl.g:1273:1: (lv_tags_5_0= ruleTopicTag )
-            	    // InternalNpl.g:1274:3: lv_tags_5_0= ruleTopicTag
+            	    // InternalNpl.g:1337:1: (lv_tags_5_0= ruleTopicTag )
+            	    // InternalNpl.g:1338:3: lv_tags_5_0= ruleTopicTag
             	    {
             	     
             	    	        newCompositeNode(grammarAccess.getTopicAccess().getTagsTopicTagParserRuleCall_4_1_0()); 
@@ -2941,7 +3102,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop8;
+            	    break loop9;
                 }
             } while (true);
 
@@ -2970,7 +3131,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleTopicTag"
-    // InternalNpl.g:1302:1: entryRuleTopicTag returns [EObject current=null] : iv_ruleTopicTag= ruleTopicTag EOF ;
+    // InternalNpl.g:1366:1: entryRuleTopicTag returns [EObject current=null] : iv_ruleTopicTag= ruleTopicTag EOF ;
     public final EObject entryRuleTopicTag() throws RecognitionException {
         EObject current = null;
 
@@ -2978,8 +3139,8 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalNpl.g:1303:2: (iv_ruleTopicTag= ruleTopicTag EOF )
-            // InternalNpl.g:1304:2: iv_ruleTopicTag= ruleTopicTag EOF
+            // InternalNpl.g:1367:2: (iv_ruleTopicTag= ruleTopicTag EOF )
+            // InternalNpl.g:1368:2: iv_ruleTopicTag= ruleTopicTag EOF
             {
              newCompositeNode(grammarAccess.getTopicTagRule()); 
             pushFollow(FOLLOW_1);
@@ -3006,7 +3167,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTopicTag"
-    // InternalNpl.g:1311:1: ruleTopicTag returns [EObject current=null] : ( (lv_value_0_0= RULE_STRING ) ) ;
+    // InternalNpl.g:1375:1: ruleTopicTag returns [EObject current=null] : ( (lv_value_0_0= RULE_STRING ) ) ;
     public final EObject ruleTopicTag() throws RecognitionException {
         EObject current = null;
 
@@ -3015,14 +3176,14 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalNpl.g:1314:28: ( ( (lv_value_0_0= RULE_STRING ) ) )
-            // InternalNpl.g:1315:1: ( (lv_value_0_0= RULE_STRING ) )
+            // InternalNpl.g:1378:28: ( ( (lv_value_0_0= RULE_STRING ) ) )
+            // InternalNpl.g:1379:1: ( (lv_value_0_0= RULE_STRING ) )
             {
-            // InternalNpl.g:1315:1: ( (lv_value_0_0= RULE_STRING ) )
-            // InternalNpl.g:1316:1: (lv_value_0_0= RULE_STRING )
+            // InternalNpl.g:1379:1: ( (lv_value_0_0= RULE_STRING ) )
+            // InternalNpl.g:1380:1: (lv_value_0_0= RULE_STRING )
             {
-            // InternalNpl.g:1316:1: (lv_value_0_0= RULE_STRING )
-            // InternalNpl.g:1317:3: lv_value_0_0= RULE_STRING
+            // InternalNpl.g:1380:1: (lv_value_0_0= RULE_STRING )
+            // InternalNpl.g:1381:3: lv_value_0_0= RULE_STRING
             {
             lv_value_0_0=(Token)match(input,RULE_STRING,FOLLOW_2); 
 
@@ -3062,7 +3223,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePair"
-    // InternalNpl.g:1341:1: entryRulePair returns [EObject current=null] : iv_rulePair= rulePair EOF ;
+    // InternalNpl.g:1405:1: entryRulePair returns [EObject current=null] : iv_rulePair= rulePair EOF ;
     public final EObject entryRulePair() throws RecognitionException {
         EObject current = null;
 
@@ -3070,8 +3231,8 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalNpl.g:1342:2: (iv_rulePair= rulePair EOF )
-            // InternalNpl.g:1343:2: iv_rulePair= rulePair EOF
+            // InternalNpl.g:1406:2: (iv_rulePair= rulePair EOF )
+            // InternalNpl.g:1407:2: iv_rulePair= rulePair EOF
             {
              newCompositeNode(grammarAccess.getPairRule()); 
             pushFollow(FOLLOW_1);
@@ -3098,7 +3259,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePair"
-    // InternalNpl.g:1350:1: rulePair returns [EObject current=null] : ( ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>' ) ;
+    // InternalNpl.g:1414:1: rulePair returns [EObject current=null] : ( ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>' ) ;
     public final EObject rulePair() throws RecognitionException {
         EObject current = null;
 
@@ -3112,17 +3273,17 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalNpl.g:1353:28: ( ( ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>' ) )
-            // InternalNpl.g:1354:1: ( ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>' )
+            // InternalNpl.g:1417:28: ( ( ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>' ) )
+            // InternalNpl.g:1418:1: ( ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>' )
             {
-            // InternalNpl.g:1354:1: ( ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>' )
-            // InternalNpl.g:1354:2: ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>'
+            // InternalNpl.g:1418:1: ( ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>' )
+            // InternalNpl.g:1418:2: ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>'
             {
-            // InternalNpl.g:1354:2: ( (lv_type_0_0= ruleFeedType ) )
-            // InternalNpl.g:1355:1: (lv_type_0_0= ruleFeedType )
+            // InternalNpl.g:1418:2: ( (lv_type_0_0= ruleFeedType ) )
+            // InternalNpl.g:1419:1: (lv_type_0_0= ruleFeedType )
             {
-            // InternalNpl.g:1355:1: (lv_type_0_0= ruleFeedType )
-            // InternalNpl.g:1356:3: lv_type_0_0= ruleFeedType
+            // InternalNpl.g:1419:1: (lv_type_0_0= ruleFeedType )
+            // InternalNpl.g:1420:3: lv_type_0_0= ruleFeedType
             {
              
             	        newCompositeNode(grammarAccess.getPairAccess().getTypeFeedTypeParserRuleCall_0_0()); 
@@ -3149,11 +3310,11 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalNpl.g:1372:2: ( (lv_key_1_0= RULE_STRING ) )
-            // InternalNpl.g:1373:1: (lv_key_1_0= RULE_STRING )
+            // InternalNpl.g:1436:2: ( (lv_key_1_0= RULE_STRING ) )
+            // InternalNpl.g:1437:1: (lv_key_1_0= RULE_STRING )
             {
-            // InternalNpl.g:1373:1: (lv_key_1_0= RULE_STRING )
-            // InternalNpl.g:1374:3: lv_key_1_0= RULE_STRING
+            // InternalNpl.g:1437:1: (lv_key_1_0= RULE_STRING )
+            // InternalNpl.g:1438:3: lv_key_1_0= RULE_STRING
             {
             lv_key_1_0=(Token)match(input,RULE_STRING,FOLLOW_21); 
 
@@ -3175,15 +3336,15 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,47,FOLLOW_22); 
+            otherlv_2=(Token)match(input,51,FOLLOW_22); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getPairAccess().getLessThanSignKeyword_2());
                 
-            // InternalNpl.g:1394:1: ( (lv_value_3_0= RULE_URL ) )
-            // InternalNpl.g:1395:1: (lv_value_3_0= RULE_URL )
+            // InternalNpl.g:1458:1: ( (lv_value_3_0= RULE_URL ) )
+            // InternalNpl.g:1459:1: (lv_value_3_0= RULE_URL )
             {
-            // InternalNpl.g:1395:1: (lv_value_3_0= RULE_URL )
-            // InternalNpl.g:1396:3: lv_value_3_0= RULE_URL
+            // InternalNpl.g:1459:1: (lv_value_3_0= RULE_URL )
+            // InternalNpl.g:1460:3: lv_value_3_0= RULE_URL
             {
             lv_value_3_0=(Token)match(input,RULE_URL,FOLLOW_23); 
 
@@ -3205,7 +3366,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,48,FOLLOW_2); 
+            otherlv_4=(Token)match(input,52,FOLLOW_2); 
 
                 	newLeafNode(otherlv_4, grammarAccess.getPairAccess().getGreaterThanSignKeyword_4());
                 
@@ -3230,7 +3391,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFloat"
-    // InternalNpl.g:1424:1: entryRuleFloat returns [String current=null] : iv_ruleFloat= ruleFloat EOF ;
+    // InternalNpl.g:1488:1: entryRuleFloat returns [String current=null] : iv_ruleFloat= ruleFloat EOF ;
     public final String entryRuleFloat() throws RecognitionException {
         String current = null;
 
@@ -3238,8 +3399,8 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalNpl.g:1425:2: (iv_ruleFloat= ruleFloat EOF )
-            // InternalNpl.g:1426:2: iv_ruleFloat= ruleFloat EOF
+            // InternalNpl.g:1489:2: (iv_ruleFloat= ruleFloat EOF )
+            // InternalNpl.g:1490:2: iv_ruleFloat= ruleFloat EOF
             {
              newCompositeNode(grammarAccess.getFloatRule()); 
             pushFollow(FOLLOW_1);
@@ -3266,7 +3427,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFloat"
-    // InternalNpl.g:1433:1: ruleFloat returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )? ) ;
+    // InternalNpl.g:1497:1: ruleFloat returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )? ) ;
     public final AntlrDatatypeRuleToken ruleFloat() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -3277,11 +3438,11 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalNpl.g:1436:28: ( (this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )? ) )
-            // InternalNpl.g:1437:1: (this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )? )
+            // InternalNpl.g:1500:28: ( (this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )? ) )
+            // InternalNpl.g:1501:1: (this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )? )
             {
-            // InternalNpl.g:1437:1: (this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )? )
-            // InternalNpl.g:1437:6: this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )?
+            // InternalNpl.g:1501:1: (this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )? )
+            // InternalNpl.g:1501:6: this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )?
             {
             this_INT_0=(Token)match(input,RULE_INT,FOLLOW_24); 
 
@@ -3290,38 +3451,38 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
              
                 newLeafNode(this_INT_0, grammarAccess.getFloatAccess().getINTTerminalRuleCall_0()); 
                 
-            // InternalNpl.g:1444:1: ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )?
-            int alt10=2;
-            int LA10_0 = input.LA(1);
+            // InternalNpl.g:1508:1: ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )?
+            int alt11=2;
+            int LA11_0 = input.LA(1);
 
-            if ( ((LA10_0>=49 && LA10_0<=50)) ) {
-                alt10=1;
+            if ( ((LA11_0>=53 && LA11_0<=54)) ) {
+                alt11=1;
             }
-            switch (alt10) {
+            switch (alt11) {
                 case 1 :
-                    // InternalNpl.g:1444:2: (kw= '.' | kw= ',' ) this_INT_3= RULE_INT
+                    // InternalNpl.g:1508:2: (kw= '.' | kw= ',' ) this_INT_3= RULE_INT
                     {
-                    // InternalNpl.g:1444:2: (kw= '.' | kw= ',' )
-                    int alt9=2;
-                    int LA9_0 = input.LA(1);
+                    // InternalNpl.g:1508:2: (kw= '.' | kw= ',' )
+                    int alt10=2;
+                    int LA10_0 = input.LA(1);
 
-                    if ( (LA9_0==49) ) {
-                        alt9=1;
+                    if ( (LA10_0==53) ) {
+                        alt10=1;
                     }
-                    else if ( (LA9_0==50) ) {
-                        alt9=2;
+                    else if ( (LA10_0==54) ) {
+                        alt10=2;
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("", 9, 0, input);
+                            new NoViableAltException("", 10, 0, input);
 
                         throw nvae;
                     }
-                    switch (alt9) {
+                    switch (alt10) {
                         case 1 :
-                            // InternalNpl.g:1445:2: kw= '.'
+                            // InternalNpl.g:1509:2: kw= '.'
                             {
-                            kw=(Token)match(input,49,FOLLOW_12); 
+                            kw=(Token)match(input,53,FOLLOW_12); 
 
                                     current.merge(kw);
                                     newLeafNode(kw, grammarAccess.getFloatAccess().getFullStopKeyword_1_0_0()); 
@@ -3330,9 +3491,9 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 2 :
-                            // InternalNpl.g:1452:2: kw= ','
+                            // InternalNpl.g:1516:2: kw= ','
                             {
-                            kw=(Token)match(input,50,FOLLOW_12); 
+                            kw=(Token)match(input,54,FOLLOW_12); 
 
                                     current.merge(kw);
                                     newLeafNode(kw, grammarAccess.getFloatAccess().getCommaKeyword_1_0_1()); 
@@ -3377,7 +3538,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFeedType"
-    // InternalNpl.g:1472:1: entryRuleFeedType returns [String current=null] : iv_ruleFeedType= ruleFeedType EOF ;
+    // InternalNpl.g:1536:1: entryRuleFeedType returns [String current=null] : iv_ruleFeedType= ruleFeedType EOF ;
     public final String entryRuleFeedType() throws RecognitionException {
         String current = null;
 
@@ -3385,8 +3546,8 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalNpl.g:1473:2: (iv_ruleFeedType= ruleFeedType EOF )
-            // InternalNpl.g:1474:2: iv_ruleFeedType= ruleFeedType EOF
+            // InternalNpl.g:1537:2: (iv_ruleFeedType= ruleFeedType EOF )
+            // InternalNpl.g:1538:2: iv_ruleFeedType= ruleFeedType EOF
             {
              newCompositeNode(grammarAccess.getFeedTypeRule()); 
             pushFollow(FOLLOW_1);
@@ -3413,7 +3574,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFeedType"
-    // InternalNpl.g:1481:1: ruleFeedType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'RSS' | kw= 'Atom' ) ;
+    // InternalNpl.g:1545:1: ruleFeedType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'RSS' | kw= 'Atom' ) ;
     public final AntlrDatatypeRuleToken ruleFeedType() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -3422,30 +3583,30 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalNpl.g:1484:28: ( (kw= 'RSS' | kw= 'Atom' ) )
-            // InternalNpl.g:1485:1: (kw= 'RSS' | kw= 'Atom' )
+            // InternalNpl.g:1548:28: ( (kw= 'RSS' | kw= 'Atom' ) )
+            // InternalNpl.g:1549:1: (kw= 'RSS' | kw= 'Atom' )
             {
-            // InternalNpl.g:1485:1: (kw= 'RSS' | kw= 'Atom' )
-            int alt11=2;
-            int LA11_0 = input.LA(1);
+            // InternalNpl.g:1549:1: (kw= 'RSS' | kw= 'Atom' )
+            int alt12=2;
+            int LA12_0 = input.LA(1);
 
-            if ( (LA11_0==51) ) {
-                alt11=1;
+            if ( (LA12_0==55) ) {
+                alt12=1;
             }
-            else if ( (LA11_0==52) ) {
-                alt11=2;
+            else if ( (LA12_0==56) ) {
+                alt12=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 11, 0, input);
+                    new NoViableAltException("", 12, 0, input);
 
                 throw nvae;
             }
-            switch (alt11) {
+            switch (alt12) {
                 case 1 :
-                    // InternalNpl.g:1486:2: kw= 'RSS'
+                    // InternalNpl.g:1550:2: kw= 'RSS'
                     {
-                    kw=(Token)match(input,51,FOLLOW_2); 
+                    kw=(Token)match(input,55,FOLLOW_2); 
 
                             current.merge(kw);
                             newLeafNode(kw, grammarAccess.getFeedTypeAccess().getRSSKeyword_0()); 
@@ -3454,9 +3615,9 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalNpl.g:1493:2: kw= 'Atom'
+                    // InternalNpl.g:1557:2: kw= 'Atom'
                     {
-                    kw=(Token)match(input,52,FOLLOW_2); 
+                    kw=(Token)match(input,56,FOLLOW_2); 
 
                             current.merge(kw);
                             newLeafNode(kw, grammarAccess.getFeedTypeAccess().getAtomKeyword_1()); 
@@ -3486,7 +3647,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
     // Delegated rules
 
 
-    protected DFA3 dfa3 = new DFA3(this);
+    protected DFA4 dfa4 = new DFA4(this);
     static final String dfa_1s = "\21\uffff";
     static final String dfa_2s = "\1\1\20\uffff";
     static final String dfa_3s = "\1\14\20\uffff";
@@ -3521,11 +3682,11 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
     static final short[] dfa_6 = DFA.unpackEncodedString(dfa_6s);
     static final short[][] dfa_7 = unpackEncodedStringArray(dfa_7s);
 
-    class DFA3 extends DFA {
+    class DFA4 extends DFA {
 
-        public DFA3(BaseRecognizer recognizer) {
+        public DFA4(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 3;
+            this.decisionNumber = 4;
             this.eot = dfa_1;
             this.eof = dfa_2;
             this.min = dfa_3;
@@ -3535,58 +3696,58 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             this.transition = dfa_7;
         }
         public String getDescription() {
-            return "()+ loopback of 87:3: ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+";
+            return "()+ loopback of 87:3: ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA3_0 = input.LA(1);
+                        int LA4_0 = input.LA(1);
 
                          
-                        int index3_0 = input.index();
+                        int index4_0 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (LA3_0==EOF) ) {s = 1;}
+                        if ( (LA4_0==EOF) ) {s = 1;}
 
-                        else if ( LA3_0 == 12 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 0) ) {s = 2;}
+                        else if ( LA4_0 == 12 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 0) ) {s = 2;}
 
-                        else if ( LA3_0 == 14 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 1) ) {s = 3;}
+                        else if ( LA4_0 == 14 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 1) ) {s = 3;}
 
-                        else if ( LA3_0 == 17 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 2) ) {s = 4;}
+                        else if ( LA4_0 == 17 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 2) ) {s = 4;}
 
-                        else if ( LA3_0 == 18 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 3) ) {s = 5;}
+                        else if ( LA4_0 == 18 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 3) ) {s = 5;}
 
-                        else if ( LA3_0 == 19 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 4) ) {s = 6;}
+                        else if ( LA4_0 == 19 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 4) ) {s = 6;}
 
-                        else if ( LA3_0 == 20 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 5) ) {s = 7;}
+                        else if ( LA4_0 == 20 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 5) ) {s = 7;}
 
-                        else if ( LA3_0 == 21 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 6) ) {s = 8;}
+                        else if ( LA4_0 == 21 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 6) ) {s = 8;}
 
-                        else if ( LA3_0 == 23 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 7) ) {s = 9;}
+                        else if ( LA4_0 == 23 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 7) ) {s = 9;}
 
-                        else if ( LA3_0 == 24 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 8) ) {s = 10;}
+                        else if ( LA4_0 == 24 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 8) ) {s = 10;}
 
-                        else if ( LA3_0 == 25 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 9) ) {s = 11;}
+                        else if ( LA4_0 == 25 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 9) ) {s = 11;}
 
-                        else if ( LA3_0 == 26 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 10) ) {s = 12;}
+                        else if ( LA4_0 == 26 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 10) ) {s = 12;}
 
-                        else if ( LA3_0 == 28 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 11) ) {s = 13;}
+                        else if ( LA4_0 == 28 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 11) ) {s = 13;}
 
-                        else if ( LA3_0 == 29 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 12) ) {s = 14;}
+                        else if ( LA4_0 == 29 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 12) ) {s = 14;}
 
-                        else if ( LA3_0 == 30 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 13) ) {s = 15;}
+                        else if ( LA4_0 == 30 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 13) ) {s = 15;}
 
-                        else if ( LA3_0 == 16 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 14) ) {s = 16;}
+                        else if ( LA4_0 == 16 && getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 14) ) {s = 16;}
 
                          
-                        input.seek(index3_0);
+                        input.seek(index4_0);
                         if ( s>=0 ) return s;
                         break;
             }
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 3, _s, input);
+                new NoViableAltException(getDescription(), 4, _s, input);
             error(nvae);
             throw nvae;
         }
@@ -3599,23 +3760,23 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000077BF5002L});
     public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0018000000000000L});
-    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0018000000010000L});
-    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000200000000000L});
-    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000200000010000L});
+    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0180000000000000L});
+    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0180000000010000L});
+    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0002000000010000L});
     public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000077FF5002L});
     public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000060000000000L});
     public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x000001FC00000000L});
     public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000008000000L});
     public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000380000000L});
     public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000180000000000L});
-    public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000400000010000L});
-    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0001F80000000000L});
+    public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0004000000010000L});
+    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0008000000000000L});
     public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0006000000000002L});
+    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0060000000000002L});
 
 }

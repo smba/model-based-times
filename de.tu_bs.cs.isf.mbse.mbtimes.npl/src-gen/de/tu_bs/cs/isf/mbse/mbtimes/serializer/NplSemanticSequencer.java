@@ -85,7 +85,14 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Currency returns Currency
 	 *
 	 * Constraint:
-	 *     (value='EUR' | value='DOLLAR')
+	 *     (
+	 *         value='Euro' | 
+	 *         value='EUR' | 
+	 *         value='€' | 
+	 *         value='Dollar' | 
+	 *         value='USD' | 
+	 *         value='$'
+	 *     )
 	 */
 	protected void sequence_Currency(ISerializationContext context, Currency semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -134,8 +141,8 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *             columnsCnt=INT | 
 	 *             fontSize=FontSize
 	 *         )? 
+	 *         (volume=INT number=INT?)? 
 	 *         (topics+=Topic topics+=Topic*)? 
-	 *         (volume=INT number=INT)? 
 	 *         (articleWordsMin=INT articleWordsMax=INT)? 
 	 *         (recrawl?='recrawl' feedlinks+=Pair feedlinks+=Pair*)?
 	 *     )+

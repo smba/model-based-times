@@ -280,6 +280,21 @@ public class NplSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     topics+=Topic '}' (ambiguity) 'topics' '{' topics+=Topic
 	 *     topics+=Topic '}' (ambiguity) (rule end)
 	 *     topics+=Topic '}' (ambiguity) recrawl?='recrawl'
+	 *     volume=INT (ambiguity) 'font size' fontSize=FontSize
+	 *     volume=INT (ambiguity) 'format' format=Format
+	 *     volume=INT (ambiguity) 'newspaper' name=ID
+	 *     volume=INT (ambiguity) 'number of articles per topic' articleCnt=INT
+	 *     volume=INT (ambiguity) 'number of columns' columnsCnt=INT
+	 *     volume=INT (ambiguity) 'number of words per article' articleWordsMin=INT
+	 *     volume=INT (ambiguity) 'optional: date' date=Date
+	 *     volume=INT (ambiguity) 'optional: language' language=Language
+	 *     volume=INT (ambiguity) 'optional: location' location=STRING
+	 *     volume=INT (ambiguity) 'optional: number of images per article' imagesCnt=ImagesCount
+	 *     volume=INT (ambiguity) 'optional: price' price=Price
+	 *     volume=INT (ambiguity) 'optional: volume' volume=INT
+	 *     volume=INT (ambiguity) 'topics' '{' topics+=Topic
+	 *     volume=INT (ambiguity) (rule end)
+	 *     volume=INT (ambiguity) recrawl?='recrawl'
 	 */
 	protected void emit_Declaration_RightCurlyBracketKeyword_14_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

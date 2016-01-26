@@ -388,15 +388,15 @@ ruleDeclaration returns [EObject current=null]
 	    }
 
 )
-)	otherlv_23='no.' 
+)(	otherlv_23='no.' 
     {
-    	newLeafNode(otherlv_23, grammarAccess.getDeclarationAccess().getNoKeyword_6_2());
+    	newLeafNode(otherlv_23, grammarAccess.getDeclarationAccess().getNoKeyword_6_2_0());
     }
 (
 (
 		lv_number_24_0=RULE_INT
 		{
-			newLeafNode(lv_number_24_0, grammarAccess.getDeclarationAccess().getNumberINTTerminalRuleCall_6_3_0()); 
+			newLeafNode(lv_number_24_0, grammarAccess.getDeclarationAccess().getNumberINTTerminalRuleCall_6_2_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -410,7 +410,7 @@ ruleDeclaration returns [EObject current=null]
 	    }
 
 )
-)))
+))?))
 					{ 
 	 				  getUnorderedGroupHelper().returnFromSelection(grammarAccess.getDeclarationAccess().getUnorderedGroup());
 	 				}
@@ -1171,32 +1171,96 @@ ruleCurrency returns [EObject current=null]
     @after { leaveRule(); }:
 ((
 (
-		lv_value_0_0=	'EUR' 
+		lv_value_0_0=	'Euro' 
     {
-        newLeafNode(lv_value_0_0, grammarAccess.getCurrencyAccess().getValueEURKeyword_0_0());
+        newLeafNode(lv_value_0_0, grammarAccess.getCurrencyAccess().getValueEuroKeyword_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getCurrencyRule());
 	        }
-       		setWithLastConsumed($current, "value", lv_value_0_0, "EUR");
+       		setWithLastConsumed($current, "value", lv_value_0_0, "Euro");
 	    }
 
 )
 )
     |(
 (
-		lv_value_1_0=	'DOLLAR' 
+		lv_value_1_0=	'EUR' 
     {
-        newLeafNode(lv_value_1_0, grammarAccess.getCurrencyAccess().getValueDOLLARKeyword_1_0());
+        newLeafNode(lv_value_1_0, grammarAccess.getCurrencyAccess().getValueEURKeyword_1_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getCurrencyRule());
 	        }
-       		setWithLastConsumed($current, "value", lv_value_1_0, "DOLLAR");
+       		setWithLastConsumed($current, "value", lv_value_1_0, "EUR");
+	    }
+
+)
+)
+    |(
+(
+		lv_value_2_0=	'\u20AC' 
+    {
+        newLeafNode(lv_value_2_0, grammarAccess.getCurrencyAccess().getValueEuroSignKeyword_2_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getCurrencyRule());
+	        }
+       		setWithLastConsumed($current, "value", lv_value_2_0, "\u20AC");
+	    }
+
+)
+)
+    |(
+(
+		lv_value_3_0=	'Dollar' 
+    {
+        newLeafNode(lv_value_3_0, grammarAccess.getCurrencyAccess().getValueDollarKeyword_3_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getCurrencyRule());
+	        }
+       		setWithLastConsumed($current, "value", lv_value_3_0, "Dollar");
+	    }
+
+)
+)
+    |(
+(
+		lv_value_4_0=	'USD' 
+    {
+        newLeafNode(lv_value_4_0, grammarAccess.getCurrencyAccess().getValueUSDKeyword_4_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getCurrencyRule());
+	        }
+       		setWithLastConsumed($current, "value", lv_value_4_0, "USD");
+	    }
+
+)
+)
+    |(
+(
+		lv_value_5_0=	'$' 
+    {
+        newLeafNode(lv_value_5_0, grammarAccess.getCurrencyAccess().getValueDollarSignKeyword_5_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getCurrencyRule());
+	        }
+       		setWithLastConsumed($current, "value", lv_value_5_0, "\$");
 	    }
 
 )

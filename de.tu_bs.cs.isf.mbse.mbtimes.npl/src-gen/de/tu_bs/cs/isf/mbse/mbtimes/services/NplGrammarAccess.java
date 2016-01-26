@@ -60,9 +60,10 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cOptionalVolumeKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
 		private final Assignment cVolumeAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
 		private final RuleCall cVolumeINTTerminalRuleCall_6_1_0 = (RuleCall)cVolumeAssignment_6_1.eContents().get(0);
-		private final Keyword cNoKeyword_6_2 = (Keyword)cGroup_6.eContents().get(2);
-		private final Assignment cNumberAssignment_6_3 = (Assignment)cGroup_6.eContents().get(3);
-		private final RuleCall cNumberINTTerminalRuleCall_6_3_0 = (RuleCall)cNumberAssignment_6_3.eContents().get(0);
+		private final Group cGroup_6_2 = (Group)cGroup_6.eContents().get(2);
+		private final Keyword cNoKeyword_6_2_0 = (Keyword)cGroup_6_2.eContents().get(0);
+		private final Assignment cNumberAssignment_6_2_1 = (Assignment)cGroup_6_2.eContents().get(1);
+		private final RuleCall cNumberINTTerminalRuleCall_6_2_1_0 = (RuleCall)cNumberAssignment_6_2_1.eContents().get(0);
 		private final Group cGroup_7 = (Group)cUnorderedGroup.eContents().get(7);
 		private final Keyword cOptionalLanguageKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
 		private final Assignment cLanguageAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
@@ -103,7 +104,7 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		//	"topics" "{"
 		//	topics+=Topic topics+=Topic*
 		//	"}" & ("optional: date" date=Date)? & ("optional: location" location=STRING)? & ("optional: price" price=Price)? &
-		//	("optional: volume" volume=INT "no." number=INT)? & ("optional: language" language=Language)? &
+		//	("optional: volume" volume=INT ("no." number=INT)?)? & ("optional: language" language=Language)? &
 		//	"format" format=Format &
 		//	"number of articles per topic" articleCnt=INT &
 		//	"number of words per article" articleWordsMin=INT "-" articleWordsMax=INT & ("optional: number of images per article"
@@ -115,7 +116,7 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"newspaper" name=ID "{" & recrawl?="recrawl" "feed links" "{" feedlinks+=Pair feedlinks+=Pair* "}" & "topics" "{"
 		//topics+=Topic topics+=Topic* "}" & ("optional: date" date=Date)? & ("optional: location" location=STRING)? &
-		//("optional: price" price=Price)? & ("optional: volume" volume=INT "no." number=INT)? & ("optional: language"
+		//("optional: price" price=Price)? & ("optional: volume" volume=INT ("no." number=INT)?)? & ("optional: language"
 		//language=Language)? & "format" format=Format & "number of articles per topic" articleCnt=INT &
 		//"number of words per article" articleWordsMin=INT "-" articleWordsMax=INT & ("optional: number of images per article"
 		//imagesCnt=ImagesCount)? & "number of columns" columnsCnt=INT & "font size" fontSize=FontSize & "}"
@@ -226,7 +227,7 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		//Price
 		public RuleCall getPricePriceParserRuleCall_5_1_0() { return cPricePriceParserRuleCall_5_1_0; }
 
-		//("optional: volume" volume=INT "no." number=INT)?
+		//("optional: volume" volume=INT ("no." number=INT)?)?
 		public Group getGroup_6() { return cGroup_6; }
 
 		//"optional: volume"
@@ -238,14 +239,17 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		//INT
 		public RuleCall getVolumeINTTerminalRuleCall_6_1_0() { return cVolumeINTTerminalRuleCall_6_1_0; }
 
+		//("no." number=INT)?
+		public Group getGroup_6_2() { return cGroup_6_2; }
+
 		//"no."
-		public Keyword getNoKeyword_6_2() { return cNoKeyword_6_2; }
+		public Keyword getNoKeyword_6_2_0() { return cNoKeyword_6_2_0; }
 
 		//number=INT
-		public Assignment getNumberAssignment_6_3() { return cNumberAssignment_6_3; }
+		public Assignment getNumberAssignment_6_2_1() { return cNumberAssignment_6_2_1; }
 
 		//INT
-		public RuleCall getNumberINTTerminalRuleCall_6_3_0() { return cNumberINTTerminalRuleCall_6_3_0; }
+		public RuleCall getNumberINTTerminalRuleCall_6_2_1_0() { return cNumberINTTerminalRuleCall_6_2_1_0; }
 
 		//("optional: language" language=Language)?
 		public Group getGroup_7() { return cGroup_7; }
@@ -588,28 +592,60 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.tu_bs.cs.isf.mbse.mbtimes.Npl.Currency");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Assignment cValueAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final Keyword cValueEURKeyword_0_0 = (Keyword)cValueAssignment_0.eContents().get(0);
+		private final Keyword cValueEuroKeyword_0_0 = (Keyword)cValueAssignment_0.eContents().get(0);
 		private final Assignment cValueAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final Keyword cValueDOLLARKeyword_1_0 = (Keyword)cValueAssignment_1.eContents().get(0);
+		private final Keyword cValueEURKeyword_1_0 = (Keyword)cValueAssignment_1.eContents().get(0);
+		private final Assignment cValueAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
+		private final Keyword cValueEuroSignKeyword_2_0 = (Keyword)cValueAssignment_2.eContents().get(0);
+		private final Assignment cValueAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
+		private final Keyword cValueDollarKeyword_3_0 = (Keyword)cValueAssignment_3.eContents().get(0);
+		private final Assignment cValueAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
+		private final Keyword cValueUSDKeyword_4_0 = (Keyword)cValueAssignment_4.eContents().get(0);
+		private final Assignment cValueAssignment_5 = (Assignment)cAlternatives.eContents().get(5);
+		private final Keyword cValueDollarSignKeyword_5_0 = (Keyword)cValueAssignment_5.eContents().get(0);
 		
 		//Currency:
-		//	value="EUR" | value="DOLLAR";
+		//	value="Euro" | value="EUR" | value="€" | value="Dollar" | value="USD" | value="$";
 		@Override public ParserRule getRule() { return rule; }
 
-		//value="EUR" | value="DOLLAR"
+		//value="Euro" | value="EUR" | value="€" | value="Dollar" | value="USD" | value="$"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//value="EUR"
+		//value="Euro"
 		public Assignment getValueAssignment_0() { return cValueAssignment_0; }
 
-		//"EUR"
-		public Keyword getValueEURKeyword_0_0() { return cValueEURKeyword_0_0; }
+		//"Euro"
+		public Keyword getValueEuroKeyword_0_0() { return cValueEuroKeyword_0_0; }
 
-		//value="DOLLAR"
+		//value="EUR"
 		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
 
-		//"DOLLAR"
-		public Keyword getValueDOLLARKeyword_1_0() { return cValueDOLLARKeyword_1_0; }
+		//"EUR"
+		public Keyword getValueEURKeyword_1_0() { return cValueEURKeyword_1_0; }
+
+		//value="€"
+		public Assignment getValueAssignment_2() { return cValueAssignment_2; }
+
+		//"€"
+		public Keyword getValueEuroSignKeyword_2_0() { return cValueEuroSignKeyword_2_0; }
+
+		//value="Dollar"
+		public Assignment getValueAssignment_3() { return cValueAssignment_3; }
+
+		//"Dollar"
+		public Keyword getValueDollarKeyword_3_0() { return cValueDollarKeyword_3_0; }
+
+		//value="USD"
+		public Assignment getValueAssignment_4() { return cValueAssignment_4; }
+
+		//"USD"
+		public Keyword getValueUSDKeyword_4_0() { return cValueUSDKeyword_4_0; }
+
+		//value="$"
+		public Assignment getValueAssignment_5() { return cValueAssignment_5; }
+
+		//"$"
+		public Keyword getValueDollarSignKeyword_5_0() { return cValueDollarSignKeyword_5_0; }
 	}
 
 	public class TopicElements extends AbstractParserRuleElementFinder {
@@ -862,7 +898,7 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 	//	"topics" "{"
 	//	topics+=Topic topics+=Topic*
 	//	"}" & ("optional: date" date=Date)? & ("optional: location" location=STRING)? & ("optional: price" price=Price)? &
-	//	("optional: volume" volume=INT "no." number=INT)? & ("optional: language" language=Language)? &
+	//	("optional: volume" volume=INT ("no." number=INT)?)? & ("optional: language" language=Language)? &
 	//	"format" format=Format &
 	//	"number of articles per topic" articleCnt=INT &
 	//	"number of words per article" articleWordsMin=INT "-" articleWordsMax=INT & ("optional: number of images per article"
@@ -943,7 +979,7 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Currency:
-	//	value="EUR" | value="DOLLAR";
+	//	value="Euro" | value="EUR" | value="€" | value="Dollar" | value="USD" | value="$";
 	public CurrencyElements getCurrencyAccess() {
 		return pCurrency;
 	}
