@@ -14,7 +14,8 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.antlr.runtime,
  org.eclipse.xtext.common.types,
  org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional,
- de.tu_bs.cs.isf.mbse.mbtimes.crawler;bundle-version="1.0.0"
+ de.tu_bs.cs.isf.mbse.mbtimes.crawler;bundle-version="1.0.0",
+ de.tu-bs.cs.isf.mbse.mbtimes.models.unified;bundle-version="0.1.0"
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.tu_bs.cs.isf.mbse.mbtimes,
@@ -29,4 +30,8 @@ Export-Package: de.tu_bs.cs.isf.mbse.mbtimes,
  de.tu_bs.cs.isf.mbse.mbtimes.scoping,
  de.tu_bs.cs.isf.mbse.mbtimes.generator,
  de.tu_bs.cs.isf.mbse.mbtimes.formatting
+Bundle-ClassPath: lib/commons-lang3-3.4.jar,
+ lib/sspace-2.0.jar,
+ lib/trove4j-3.0.2.jar,
+ .
 
