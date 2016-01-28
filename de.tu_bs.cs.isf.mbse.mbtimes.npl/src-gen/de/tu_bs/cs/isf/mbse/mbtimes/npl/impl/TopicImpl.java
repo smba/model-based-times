@@ -4,23 +4,19 @@ package de.tu_bs.cs.isf.mbse.mbtimes.npl.impl;
 
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic;
-import de.tu_bs.cs.isf.mbse.mbtimes.npl.TopicTag;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,14 +55,14 @@ public class TopicImpl extends MinimalEObjectImpl.Container implements Topic
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getTags() <em>Tags</em>}' containment reference list.
+   * The cached value of the '{@link #getTags() <em>Tags</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getTags()
    * @generated
    * @ordered
    */
-  protected EList<TopicTag> tags;
+  protected EList<String> tags;
 
   /**
    * <!-- begin-user-doc -->
@@ -117,29 +113,13 @@ public class TopicImpl extends MinimalEObjectImpl.Container implements Topic
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<TopicTag> getTags()
+  public EList<String> getTags()
   {
     if (tags == null)
     {
-      tags = new EObjectContainmentEList<TopicTag>(TopicTag.class, this, NplPackage.TOPIC__TAGS);
+      tags = new EDataTypeEList<String>(String.class, this, NplPackage.TOPIC__TAGS);
     }
     return tags;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case NplPackage.TOPIC__TAGS:
-        return ((InternalEList<?>)getTags()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -176,7 +156,7 @@ public class TopicImpl extends MinimalEObjectImpl.Container implements Topic
         return;
       case NplPackage.TOPIC__TAGS:
         getTags().clear();
-        getTags().addAll((Collection<? extends TopicTag>)newValue);
+        getTags().addAll((Collection<? extends String>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -233,6 +213,8 @@ public class TopicImpl extends MinimalEObjectImpl.Container implements Topic
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
+    result.append(", tags: ");
+    result.append(tags);
     result.append(')');
     return result.toString();
   }

@@ -52,10 +52,7 @@
     </genClasses>
     <genClasses ecoreClass="Npl.ecore#//Topic">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//Topic/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Npl.ecore#//Topic/tags"/>
-    </genClasses>
-    <genClasses ecoreClass="Npl.ecore#//TopicTag">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//TopicTag/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//Topic/tags"/>
     </genClasses>
     <genClasses ecoreClass="Npl.ecore#//Pair">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Npl.ecore#//Pair/type"/>

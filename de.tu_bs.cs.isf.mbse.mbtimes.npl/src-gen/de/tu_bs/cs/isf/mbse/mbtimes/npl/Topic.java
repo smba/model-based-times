@@ -52,19 +52,19 @@ public interface Topic extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Tags</b></em>' containment reference list.
-   * The list contents are of type {@link de.tu_bs.cs.isf.mbse.mbtimes.npl.TopicTag}.
+   * Returns the value of the '<em><b>Tags</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Tags</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Tags</em>' attribute list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Tags</em>' containment reference list.
+   * @return the value of the '<em>Tags</em>' attribute list.
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getTopic_Tags()
-   * @model containment="true"
+   * @model unique="false"
    * @generated
    */
-  EList<TopicTag> getTags();
+  EList<String> getTags();
 
 } // Topic

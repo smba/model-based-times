@@ -1,20 +1,32 @@
-package utilities;
+package de.tu_bs.cs.isf.mbse.mbtimes.crawler.unifiedParser;
 
+import java.io.File;
 import java.util.LinkedList;
 import java.util.Map;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 //import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.osgi.framework.Bundle;
 
-import UnifiedModel.Article;
 import UnifiedModel.UnifiedModelPackage;
-import UnifiedModel.impl.UnifiedModelPackageImpl;
 
 public class UnifiedFileParser {
+	
+	public static String crawlerBundlePathPrefix;
+	static {
+		Bundle bundle = Platform.getBundle("de.tu_bs.cs.isf.mbse.mbtimes.crawler");
+		int begin = bundle.getLocation().indexOf("/");
+		crawlerBundlePathPrefix = bundle.getLocation().substring(begin);
+		String prefix = (new File("dummy")).getAbsolutePath(); 
+		prefix = prefix.substring(0,  prefix.lastIndexOf('/') + 1); 
+		crawlerBundlePathPrefix = crawlerBundlePathPrefix.substring(prefix.length(), crawlerBundlePathPrefix.length());
+	} 
+	
 	public static void main(String[] args) {
 		LinkedList<UnifiedModel.Article> unifiedArticles= load();
 		System.out.println();
@@ -34,9 +46,14 @@ public class UnifiedFileParser {
 	    // Obtain a new resource set
 	    ResourceSet resSet = new ResourceSetImpl();
 
+	    System.err.println((new File(".")).getAbsolutePath());
+	    
 	    // Get the resource
 	    Resource resource = resSet.getResource(URI
-	        .createURI("./data/transformedUnified.unified"), true);
+	        .createURI(crawlerBundlePathPrefix + "tmp/unifiedRSS.unified"), true);
+	    
+	    
+	    
 	    // Get the first model element and cast it to the right type, in my
 	    // example everything is hierarchical included in this first node
 	    LinkedList<UnifiedModel.Article> unifiedArticles = new LinkedList<UnifiedModel.Article>();

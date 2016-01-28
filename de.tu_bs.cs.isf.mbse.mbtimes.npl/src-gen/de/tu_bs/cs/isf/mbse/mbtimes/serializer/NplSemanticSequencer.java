@@ -15,7 +15,6 @@ import de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Pair;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Price;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic;
-import de.tu_bs.cs.isf.mbse.mbtimes.npl.TopicTag;
 import de.tu_bs.cs.isf.mbse.mbtimes.services.NplGrammarAccess;
 import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
@@ -71,9 +70,6 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case NplPackage.TOPIC:
 				sequence_Topic(context, (Topic) semanticObject); 
-				return; 
-			case NplPackage.TOPIC_TAG:
-				sequence_TopicTag(context, (TopicTag) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -261,28 +257,10 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     TopicTag returns TopicTag
-	 *
-	 * Constraint:
-	 *     value=STRING
-	 */
-	protected void sequence_TopicTag(ISerializationContext context, TopicTag semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, NplPackage.Literals.TOPIC_TAG__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, NplPackage.Literals.TOPIC_TAG__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTopicTagAccess().getValueSTRINGTerminalRuleCall_0(), semanticObject.getValue());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Topic returns Topic
 	 *
 	 * Constraint:
-	 *     (name=ID tags+=TopicTag tags+=TopicTag*)
+	 *     (name=ID tags+=STRING tags+=STRING*)
 	 */
 	protected void sequence_Topic(ISerializationContext context, Topic semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

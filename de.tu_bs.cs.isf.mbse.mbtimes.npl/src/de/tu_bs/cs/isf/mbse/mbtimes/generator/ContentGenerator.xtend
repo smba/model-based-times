@@ -2,6 +2,7 @@ package de.tu_bs.cs.isf.mbse.mbtimes.generator
 
 import UnifiedModel.Article
 import UnifiedModel.UnifiedModelPackage
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.vsm.VectorSpaceModel
 import java.util.ArrayList
 import java.util.LinkedList
 import java.util.List
@@ -9,8 +10,7 @@ import java.util.StringTokenizer
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
-import utilities.UnifiedFileParser
-import de.tu_bs.cs.isf.mbse.mbtimes.npl.vsm.VectorSpaceModel
+import de.tu_bs.cs.isf.mbse.mbtimes.crawler.unifiedParser.UnifiedFileParser
 
 class ContentGenerator {
 
@@ -18,7 +18,7 @@ class ContentGenerator {
   	static val String[] specialChars = #['\\','{','}','%','^','_','&','#','~','�','�','�'," . ", " , "]
   	static val String[] changedChars = #["\\textbackslash","\\{","\\}","\\%","\\textasciicircum","\\_","\\&","\\#","\\textasciitilde","$^\\circ$","\\pounds","", ". ", ", "]
  
-	def MyCodeGenerator() {
+	def ContentGenerator() {
 		
 	}
   def static void main(String[] args) {
@@ -102,21 +102,21 @@ class ContentGenerator {
   	
   	'''
   		
-  		�IF authors.length() > 0 && it.title != null && newschannel.length() > 0�
-       	\byline{\it\Large �title�}{�authors�, �newschannel�}
-        �ELSEIF it.title != null && newschannel.length() > 0�
-        \byline{\it\Large �title�}{�newschannel�}
-        �ELSEIF authors.length() > 0 && it.title != null�
-        \byline{\it\Large �title�}{�authors�}
-        �ELSEIF it.title != null�
-        \headline{\it\Large �title�}
-        �ELSE�
+  		«IF authors.length() > 0 && it.title != null && newschannel.length() > 0»
+       	\byline{\it\Large «title»}{«authors», «newschannel»}
+        «ELSEIF it.title != null && newschannel.length() > 0»
+        \byline{\it\Large «title»}{«newschannel»}
+        «ELSEIF authors.length() > 0 && it.title != null»
+        \byline{\it\Large «title»}{«authors»}
+        «ELSEIF it.title != null»
+        \headline{\it\Large «title»}
+        «ELSE»
         \headline{\it\Large N.N.}
-        �ENDIF�
+        «ENDIF»
 		{\bfseries
-		\noindent �subtitle�
+		\noindent «subtitle»
 		} \medskip\newline
-		�content�
+		«content»
 		
         \closearticle 
   	'''

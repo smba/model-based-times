@@ -50,6 +50,7 @@ public class NplParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDeclarationAccess().getGroup_4(), "rule__Declaration__Group_4__0");
 					put(grammarAccess.getDeclarationAccess().getGroup_5(), "rule__Declaration__Group_5__0");
 					put(grammarAccess.getDeclarationAccess().getGroup_6(), "rule__Declaration__Group_6__0");
+					put(grammarAccess.getDeclarationAccess().getGroup_6_2(), "rule__Declaration__Group_6_2__0");
 					put(grammarAccess.getDeclarationAccess().getGroup_7(), "rule__Declaration__Group_7__0");
 					put(grammarAccess.getDeclarationAccess().getGroup_8(), "rule__Declaration__Group_8__0");
 					put(grammarAccess.getDeclarationAccess().getGroup_9(), "rule__Declaration__Group_9__0");
@@ -74,7 +75,7 @@ public class NplParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDeclarationAccess().getLocationAssignment_4_1(), "rule__Declaration__LocationAssignment_4_1");
 					put(grammarAccess.getDeclarationAccess().getPriceAssignment_5_1(), "rule__Declaration__PriceAssignment_5_1");
 					put(grammarAccess.getDeclarationAccess().getVolumeAssignment_6_1(), "rule__Declaration__VolumeAssignment_6_1");
-					put(grammarAccess.getDeclarationAccess().getNumberAssignment_6_3(), "rule__Declaration__NumberAssignment_6_3");
+					put(grammarAccess.getDeclarationAccess().getNumberAssignment_6_2_1(), "rule__Declaration__NumberAssignment_6_2_1");
 					put(grammarAccess.getDeclarationAccess().getLanguageAssignment_7_1(), "rule__Declaration__LanguageAssignment_7_1");
 					put(grammarAccess.getDeclarationAccess().getFormatAssignment_8_1(), "rule__Declaration__FormatAssignment_8_1");
 					put(grammarAccess.getDeclarationAccess().getArticleCntAssignment_9_1(), "rule__Declaration__ArticleCntAssignment_9_1");
@@ -103,10 +104,13 @@ public class NplParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPriceAccess().getCurrencyAssignment_2(), "rule__Price__CurrencyAssignment_2");
 					put(grammarAccess.getCurrencyAccess().getValueAssignment_0(), "rule__Currency__ValueAssignment_0");
 					put(grammarAccess.getCurrencyAccess().getValueAssignment_1(), "rule__Currency__ValueAssignment_1");
+					put(grammarAccess.getCurrencyAccess().getValueAssignment_2(), "rule__Currency__ValueAssignment_2");
+					put(grammarAccess.getCurrencyAccess().getValueAssignment_3(), "rule__Currency__ValueAssignment_3");
+					put(grammarAccess.getCurrencyAccess().getValueAssignment_4(), "rule__Currency__ValueAssignment_4");
+					put(grammarAccess.getCurrencyAccess().getValueAssignment_5(), "rule__Currency__ValueAssignment_5");
 					put(grammarAccess.getTopicAccess().getNameAssignment_1(), "rule__Topic__NameAssignment_1");
 					put(grammarAccess.getTopicAccess().getTagsAssignment_3(), "rule__Topic__TagsAssignment_3");
 					put(grammarAccess.getTopicAccess().getTagsAssignment_4_1(), "rule__Topic__TagsAssignment_4_1");
-					put(grammarAccess.getTopicTagAccess().getValueAssignment(), "rule__TopicTag__ValueAssignment");
 					put(grammarAccess.getPairAccess().getTypeAssignment_0(), "rule__Pair__TypeAssignment_0");
 					put(grammarAccess.getPairAccess().getKeyAssignment_1(), "rule__Pair__KeyAssignment_1");
 					put(grammarAccess.getPairAccess().getValueAssignment_3(), "rule__Pair__ValueAssignment_3");

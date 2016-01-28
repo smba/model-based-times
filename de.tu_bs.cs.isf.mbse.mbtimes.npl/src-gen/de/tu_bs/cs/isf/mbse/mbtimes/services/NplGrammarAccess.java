@@ -656,20 +656,20 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cTagsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cTagsTopicTagParserRuleCall_3_0 = (RuleCall)cTagsAssignment_3.eContents().get(0);
+		private final RuleCall cTagsSTRINGTerminalRuleCall_3_0 = (RuleCall)cTagsAssignment_3.eContents().get(0);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
 		private final Keyword cCommaSpaceKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
 		private final Assignment cTagsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cTagsTopicTagParserRuleCall_4_1_0 = (RuleCall)cTagsAssignment_4_1.eContents().get(0);
+		private final RuleCall cTagsSTRINGTerminalRuleCall_4_1_0 = (RuleCall)cTagsAssignment_4_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Topic:
 		//	"topic" name=ID "{"
-		//	tags+=TopicTag (", " tags+=TopicTag)*
+		//	tags+=STRING (", " tags+=STRING)*
 		//	"}";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"topic" name=ID "{" tags+=TopicTag (", " tags+=TopicTag)* "}"
+		//"topic" name=ID "{" tags+=STRING (", " tags+=STRING)* "}"
 		public Group getGroup() { return cGroup; }
 
 		//"topic"
@@ -684,42 +684,26 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 
-		//tags+=TopicTag
+		//tags+=STRING
 		public Assignment getTagsAssignment_3() { return cTagsAssignment_3; }
 
-		//TopicTag
-		public RuleCall getTagsTopicTagParserRuleCall_3_0() { return cTagsTopicTagParserRuleCall_3_0; }
+		//STRING
+		public RuleCall getTagsSTRINGTerminalRuleCall_3_0() { return cTagsSTRINGTerminalRuleCall_3_0; }
 
-		//(", " tags+=TopicTag)*
+		//(", " tags+=STRING)*
 		public Group getGroup_4() { return cGroup_4; }
 
 		//", "
 		public Keyword getCommaSpaceKeyword_4_0() { return cCommaSpaceKeyword_4_0; }
 
-		//tags+=TopicTag
+		//tags+=STRING
 		public Assignment getTagsAssignment_4_1() { return cTagsAssignment_4_1; }
 
-		//TopicTag
-		public RuleCall getTagsTopicTagParserRuleCall_4_1_0() { return cTagsTopicTagParserRuleCall_4_1_0; }
+		//STRING
+		public RuleCall getTagsSTRINGTerminalRuleCall_4_1_0() { return cTagsSTRINGTerminalRuleCall_4_1_0; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
-	}
-
-	public class TopicTagElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.tu_bs.cs.isf.mbse.mbtimes.Npl.TopicTag");
-		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValueSTRINGTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
-		
-		//TopicTag:
-		//	value=STRING;
-		@Override public ParserRule getRule() { return rule; }
-
-		//value=STRING
-		public Assignment getValueAssignment() { return cValueAssignment; }
-
-		//STRING
-		public RuleCall getValueSTRINGTerminalRuleCall_0() { return cValueSTRINGTerminalRuleCall_0; }
 	}
 
 	public class PairElements extends AbstractParserRuleElementFinder {
@@ -833,7 +817,6 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 	private final PriceElements pPrice;
 	private final CurrencyElements pCurrency;
 	private final TopicElements pTopic;
-	private final TopicTagElements pTopicTag;
 	private final PairElements pPair;
 	private final TerminalRule tURL;
 	private final FloatElements pFloat;
@@ -857,7 +840,6 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		this.pPrice = new PriceElements();
 		this.pCurrency = new CurrencyElements();
 		this.pTopic = new TopicElements();
-		this.pTopicTag = new TopicTagElements();
 		this.pPair = new PairElements();
 		this.tURL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "de.tu_bs.cs.isf.mbse.mbtimes.Npl.URL");
 		this.pFloat = new FloatElements();
@@ -990,7 +972,7 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 
 	//Topic:
 	//	"topic" name=ID "{"
-	//	tags+=TopicTag (", " tags+=TopicTag)*
+	//	tags+=STRING (", " tags+=STRING)*
 	//	"}";
 	public TopicElements getTopicAccess() {
 		return pTopic;
@@ -998,16 +980,6 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getTopicRule() {
 		return getTopicAccess().getRule();
-	}
-
-	//TopicTag:
-	//	value=STRING;
-	public TopicTagElements getTopicTagAccess() {
-		return pTopicTag;
-	}
-	
-	public ParserRule getTopicTagRule() {
-		return getTopicTagAccess().getRule();
 	}
 
 	//Pair:

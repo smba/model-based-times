@@ -1,4 +1,4 @@
-package de.tu_bs.cs.isf.mbse.topic;
+package de.tu_bs.cs.isf.mbse.mbtimes.npl.vsm;
 
 import java.util.ArrayList;
 import java.util.HashMap;

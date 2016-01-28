@@ -104,15 +104,6 @@ public interface NplFactory extends EFactory
   Topic createTopic();
 
   /**
-   * Returns a new object of class '<em>Topic Tag</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Topic Tag</em>'.
-   * @generated
-   */
-  TopicTag createTopicTag();
-
-  /**
    * Returns a new object of class '<em>Pair</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

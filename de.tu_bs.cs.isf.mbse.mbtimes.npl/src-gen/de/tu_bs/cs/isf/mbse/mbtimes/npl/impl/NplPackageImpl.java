@@ -14,7 +14,6 @@ import de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Pair;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Price;
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic;
-import de.tu_bs.cs.isf.mbse.mbtimes.npl.TopicTag;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -93,13 +92,6 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * @generated
    */
   private EClass topicEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass topicTagEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -546,29 +538,9 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getTopic_Tags()
+  public EAttribute getTopic_Tags()
   {
-    return (EReference)topicEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getTopicTag()
-  {
-    return topicTagEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getTopicTag_Value()
-  {
-    return (EAttribute)topicTagEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)topicEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -686,10 +658,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
 
     topicEClass = createEClass(TOPIC);
     createEAttribute(topicEClass, TOPIC__NAME);
-    createEReference(topicEClass, TOPIC__TAGS);
-
-    topicTagEClass = createEClass(TOPIC_TAG);
-    createEAttribute(topicTagEClass, TOPIC_TAG__VALUE);
+    createEAttribute(topicEClass, TOPIC__TAGS);
 
     pairEClass = createEClass(PAIR);
     createEAttribute(pairEClass, PAIR__TYPE);
@@ -773,10 +742,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
 
     initEClass(topicEClass, Topic.class, "Topic", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTopic_Name(), ecorePackage.getEString(), "name", null, 0, 1, Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getTopic_Tags(), this.getTopicTag(), null, "tags", null, 0, -1, Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(topicTagEClass, TopicTag.class, "TopicTag", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getTopicTag_Value(), ecorePackage.getEString(), "value", null, 0, 1, TopicTag.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTopic_Tags(), ecorePackage.getEString(), "tags", null, 0, -1, Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pairEClass, Pair.class, "Pair", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPair_Type(), ecorePackage.getEString(), "type", null, 0, 1, Pair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

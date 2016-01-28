@@ -7,10 +7,18 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: UnifiedModel,
- UnifiedModel.impl,
- UnifiedModel.util,
- utilities
+Export-Package: UnifiedModel;uses:="org.eclipse.emf.ecore,org.eclipse.emf.common.util",
+ UnifiedModel.impl;
+  uses:="org.eclipse.emf.ecore,
+   org.eclipse.emf.ecore.impl,
+   org.eclipse.emf.common.util,
+   UnifiedModel",
+ UnifiedModel.util;
+  uses:="org.eclipse.emf.ecore,
+   org.eclipse.emf.common.notify,
+   org.eclipse.emf.common.notify.impl,
+   org.eclipse.emf.ecore.util,
+   UnifiedModel"
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy

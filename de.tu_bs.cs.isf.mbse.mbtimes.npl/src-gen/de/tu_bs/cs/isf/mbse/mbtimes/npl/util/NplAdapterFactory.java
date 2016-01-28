@@ -120,11 +120,6 @@ public class NplAdapterFactory extends AdapterFactoryImpl
         return createTopicAdapter();
       }
       @Override
-      public Adapter caseTopicTag(TopicTag object)
-      {
-        return createTopicTagAdapter();
-      }
-      @Override
       public Adapter casePair(Pair object)
       {
         return createPairAdapter();
@@ -282,21 +277,6 @@ public class NplAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createTopicAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.TopicTag <em>Topic Tag</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.TopicTag
-   * @generated
-   */
-  public Adapter createTopicTagAdapter()
   {
     return null;
   }

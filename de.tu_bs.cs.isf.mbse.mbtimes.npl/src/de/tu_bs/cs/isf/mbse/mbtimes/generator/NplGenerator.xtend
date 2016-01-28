@@ -4,14 +4,15 @@
 package de.tu_bs.cs.isf.mbse.mbtimes.generator
 
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.CrawlerDispatcher
-
+import de.tu_bs.cs.isf.mbse.mbtimes.crawler.m2m.Transformator
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic
 import java.util.HashMap
+import java.util.LinkedList
 import java.util.Map
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
-import de.tu_bs.cs.isf.mbse.mbtimes.crawler.m2m.Transformator
 
 /**
  * Generates code from your model files on save
@@ -22,6 +23,7 @@ class NplGenerator implements IGenerator {
 	
 	override doGenerate(Resource resource, IFileSystemAccess fsa) {
 
+		
 		val cd = new CrawlerDispatcher()
 		val trafo = Transformator.getInstance();
 		cd.addObserver(trafo);
@@ -43,6 +45,12 @@ class NplGenerator implements IGenerator {
 			
 		]
 		cd.dispatchAndCrawl(feeds)
+		
+		/* Compiling topics */
+		resource.allContents.filter(typeof(Topic)).forEach[topic|
+			val topicText = ContentGenerator.compileTopic(topic.tags, topic.name)
+			fsa.generateFile(topic.name + ".tex", topicText)
+		]
 		
 		for(d: resource.allContents.toIterable.filter(Declaration)) {
     		fsa.generateFile(	d.name + ".tex", d.compileLayout)
@@ -276,7 +284,7 @@ class NplGenerator implements IGenerator {
 			
 			%include topic.tex's
 		    «FOR t:d.topics»
-		    %\include{«t.name».tex}
+		    	\include{«t.name».tex}
 			«ENDFOR»
 		\end{document}
 		'''

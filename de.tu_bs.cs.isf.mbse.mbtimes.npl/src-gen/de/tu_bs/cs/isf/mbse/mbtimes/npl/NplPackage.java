@@ -471,7 +471,7 @@ public interface NplPackage extends EPackage
   int TOPIC__NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Tags</b></em>' containment reference list.
+   * The feature id for the '<em><b>Tags</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -489,34 +489,6 @@ public interface NplPackage extends EPackage
   int TOPIC_FEATURE_COUNT = 2;
 
   /**
-   * The meta object id for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.TopicTagImpl <em>Topic Tag</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.TopicTagImpl
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getTopicTag()
-   * @generated
-   */
-  int TOPIC_TAG = 9;
-
-  /**
-   * The feature id for the '<em><b>Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TOPIC_TAG__VALUE = 0;
-
-  /**
-   * The number of structural features of the '<em>Topic Tag</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TOPIC_TAG_FEATURE_COUNT = 1;
-
-  /**
    * The meta object id for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.PairImpl <em>Pair</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -524,7 +496,7 @@ public interface NplPackage extends EPackage
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getPair()
    * @generated
    */
-  int PAIR = 10;
+  int PAIR = 9;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -962,36 +934,15 @@ public interface NplPackage extends EPackage
   EAttribute getTopic_Name();
 
   /**
-   * Returns the meta object for the containment reference list '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic#getTags <em>Tags</em>}'.
+   * Returns the meta object for the attribute list '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic#getTags <em>Tags</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Tags</em>'.
+   * @return the meta object for the attribute list '<em>Tags</em>'.
    * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic#getTags()
    * @see #getTopic()
    * @generated
    */
-  EReference getTopic_Tags();
-
-  /**
-   * Returns the meta object for class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.TopicTag <em>Topic Tag</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Topic Tag</em>'.
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.TopicTag
-   * @generated
-   */
-  EClass getTopicTag();
-
-  /**
-   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.TopicTag#getValue <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Value</em>'.
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.TopicTag#getValue()
-   * @see #getTopicTag()
-   * @generated
-   */
-  EAttribute getTopicTag_Value();
+  EAttribute getTopic_Tags();
 
   /**
    * Returns the meta object for class '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Pair <em>Pair</em>}'.
@@ -1374,30 +1325,12 @@ public interface NplPackage extends EPackage
     EAttribute TOPIC__NAME = eINSTANCE.getTopic_Name();
 
     /**
-     * The meta object literal for the '<em><b>Tags</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Tags</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference TOPIC__TAGS = eINSTANCE.getTopic_Tags();
-
-    /**
-     * The meta object literal for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.TopicTagImpl <em>Topic Tag</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.TopicTagImpl
-     * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.NplPackageImpl#getTopicTag()
-     * @generated
-     */
-    EClass TOPIC_TAG = eINSTANCE.getTopicTag();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TOPIC_TAG__VALUE = eINSTANCE.getTopicTag_Value();
+    EAttribute TOPIC__TAGS = eINSTANCE.getTopic_Tags();
 
     /**
      * The meta object literal for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.PairImpl <em>Pair</em>}' class.

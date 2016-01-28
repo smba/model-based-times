@@ -2959,28 +2959,26 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTopic"
-    // InternalNpl.g:1284:1: ruleTopic returns [EObject current=null] : (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= ruleTopicTag ) ) (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )* otherlv_6= '}' ) ;
+    // InternalNpl.g:1284:1: ruleTopic returns [EObject current=null] : (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= RULE_STRING ) ) (otherlv_4= ', ' ( (lv_tags_5_0= RULE_STRING ) ) )* otherlv_6= '}' ) ;
     public final EObject ruleTopic() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
         Token lv_name_1_0=null;
         Token otherlv_2=null;
+        Token lv_tags_3_0=null;
         Token otherlv_4=null;
+        Token lv_tags_5_0=null;
         Token otherlv_6=null;
-        EObject lv_tags_3_0 = null;
-
-        EObject lv_tags_5_0 = null;
-
 
          enterRule(); 
             
         try {
-            // InternalNpl.g:1287:28: ( (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= ruleTopicTag ) ) (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )* otherlv_6= '}' ) )
-            // InternalNpl.g:1288:1: (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= ruleTopicTag ) ) (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )* otherlv_6= '}' )
+            // InternalNpl.g:1287:28: ( (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= RULE_STRING ) ) (otherlv_4= ', ' ( (lv_tags_5_0= RULE_STRING ) ) )* otherlv_6= '}' ) )
+            // InternalNpl.g:1288:1: (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= RULE_STRING ) ) (otherlv_4= ', ' ( (lv_tags_5_0= RULE_STRING ) ) )* otherlv_6= '}' )
             {
-            // InternalNpl.g:1288:1: (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= ruleTopicTag ) ) (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )* otherlv_6= '}' )
-            // InternalNpl.g:1288:3: otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= ruleTopicTag ) ) (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )* otherlv_6= '}'
+            // InternalNpl.g:1288:1: (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= RULE_STRING ) ) (otherlv_4= ', ' ( (lv_tags_5_0= RULE_STRING ) ) )* otherlv_6= '}' )
+            // InternalNpl.g:1288:3: otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= RULE_STRING ) ) (otherlv_4= ', ' ( (lv_tags_5_0= RULE_STRING ) ) )* otherlv_6= '}'
             {
             otherlv_0=(Token)match(input,49,FOLLOW_3); 
 
@@ -3016,30 +3014,25 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
                 	newLeafNode(otherlv_2, grammarAccess.getTopicAccess().getLeftCurlyBracketKeyword_2());
                 
-            // InternalNpl.g:1314:1: ( (lv_tags_3_0= ruleTopicTag ) )
-            // InternalNpl.g:1315:1: (lv_tags_3_0= ruleTopicTag )
+            // InternalNpl.g:1314:1: ( (lv_tags_3_0= RULE_STRING ) )
+            // InternalNpl.g:1315:1: (lv_tags_3_0= RULE_STRING )
             {
-            // InternalNpl.g:1315:1: (lv_tags_3_0= ruleTopicTag )
-            // InternalNpl.g:1316:3: lv_tags_3_0= ruleTopicTag
+            // InternalNpl.g:1315:1: (lv_tags_3_0= RULE_STRING )
+            // InternalNpl.g:1316:3: lv_tags_3_0= RULE_STRING
             {
-             
-            	        newCompositeNode(grammarAccess.getTopicAccess().getTagsTopicTagParserRuleCall_3_0()); 
-            	    
-            pushFollow(FOLLOW_20);
-            lv_tags_3_0=ruleTopicTag();
+            lv_tags_3_0=(Token)match(input,RULE_STRING,FOLLOW_20); 
 
-            state._fsp--;
-
+            			newLeafNode(lv_tags_3_0, grammarAccess.getTopicAccess().getTagsSTRINGTerminalRuleCall_3_0()); 
+            		
 
             	        if (current==null) {
-            	            current = createModelElementForParent(grammarAccess.getTopicRule());
+            	            current = createModelElement(grammarAccess.getTopicRule());
             	        }
-                   		add(
+                   		addWithLastConsumed(
                    			current, 
                    			"tags",
                     		lv_tags_3_0, 
-                    		"de.tu_bs.cs.isf.mbse.mbtimes.Npl.TopicTag");
-            	        afterParserOrEnumRuleCall();
+                    		"org.eclipse.xtext.common.Terminals.STRING");
             	    
 
             }
@@ -3047,7 +3040,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalNpl.g:1332:2: (otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) ) )*
+            // InternalNpl.g:1332:2: (otherlv_4= ', ' ( (lv_tags_5_0= RULE_STRING ) ) )*
             loop9:
             do {
                 int alt9=2;
@@ -3060,36 +3053,31 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
                 switch (alt9) {
             	case 1 :
-            	    // InternalNpl.g:1332:4: otherlv_4= ', ' ( (lv_tags_5_0= ruleTopicTag ) )
+            	    // InternalNpl.g:1332:4: otherlv_4= ', ' ( (lv_tags_5_0= RULE_STRING ) )
             	    {
             	    otherlv_4=(Token)match(input,50,FOLLOW_11); 
 
             	        	newLeafNode(otherlv_4, grammarAccess.getTopicAccess().getCommaSpaceKeyword_4_0());
             	        
-            	    // InternalNpl.g:1336:1: ( (lv_tags_5_0= ruleTopicTag ) )
-            	    // InternalNpl.g:1337:1: (lv_tags_5_0= ruleTopicTag )
+            	    // InternalNpl.g:1336:1: ( (lv_tags_5_0= RULE_STRING ) )
+            	    // InternalNpl.g:1337:1: (lv_tags_5_0= RULE_STRING )
             	    {
-            	    // InternalNpl.g:1337:1: (lv_tags_5_0= ruleTopicTag )
-            	    // InternalNpl.g:1338:3: lv_tags_5_0= ruleTopicTag
+            	    // InternalNpl.g:1337:1: (lv_tags_5_0= RULE_STRING )
+            	    // InternalNpl.g:1338:3: lv_tags_5_0= RULE_STRING
             	    {
-            	     
-            	    	        newCompositeNode(grammarAccess.getTopicAccess().getTagsTopicTagParserRuleCall_4_1_0()); 
-            	    	    
-            	    pushFollow(FOLLOW_20);
-            	    lv_tags_5_0=ruleTopicTag();
+            	    lv_tags_5_0=(Token)match(input,RULE_STRING,FOLLOW_20); 
 
-            	    state._fsp--;
-
+            	    			newLeafNode(lv_tags_5_0, grammarAccess.getTopicAccess().getTagsSTRINGTerminalRuleCall_4_1_0()); 
+            	    		
 
             	    	        if (current==null) {
-            	    	            current = createModelElementForParent(grammarAccess.getTopicRule());
+            	    	            current = createModelElement(grammarAccess.getTopicRule());
             	    	        }
-            	           		add(
+            	           		addWithLastConsumed(
             	           			current, 
             	           			"tags",
             	            		lv_tags_5_0, 
-            	            		"de.tu_bs.cs.isf.mbse.mbtimes.Npl.TopicTag");
-            	    	        afterParserOrEnumRuleCall();
+            	            		"org.eclipse.xtext.common.Terminals.STRING");
             	    	    
 
             	    }
@@ -3130,100 +3118,8 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleTopic"
 
 
-    // $ANTLR start "entryRuleTopicTag"
-    // InternalNpl.g:1366:1: entryRuleTopicTag returns [EObject current=null] : iv_ruleTopicTag= ruleTopicTag EOF ;
-    public final EObject entryRuleTopicTag() throws RecognitionException {
-        EObject current = null;
-
-        EObject iv_ruleTopicTag = null;
-
-
-        try {
-            // InternalNpl.g:1367:2: (iv_ruleTopicTag= ruleTopicTag EOF )
-            // InternalNpl.g:1368:2: iv_ruleTopicTag= ruleTopicTag EOF
-            {
-             newCompositeNode(grammarAccess.getTopicTagRule()); 
-            pushFollow(FOLLOW_1);
-            iv_ruleTopicTag=ruleTopicTag();
-
-            state._fsp--;
-
-             current =iv_ruleTopicTag; 
-            match(input,EOF,FOLLOW_2); 
-
-            }
-
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "entryRuleTopicTag"
-
-
-    // $ANTLR start "ruleTopicTag"
-    // InternalNpl.g:1375:1: ruleTopicTag returns [EObject current=null] : ( (lv_value_0_0= RULE_STRING ) ) ;
-    public final EObject ruleTopicTag() throws RecognitionException {
-        EObject current = null;
-
-        Token lv_value_0_0=null;
-
-         enterRule(); 
-            
-        try {
-            // InternalNpl.g:1378:28: ( ( (lv_value_0_0= RULE_STRING ) ) )
-            // InternalNpl.g:1379:1: ( (lv_value_0_0= RULE_STRING ) )
-            {
-            // InternalNpl.g:1379:1: ( (lv_value_0_0= RULE_STRING ) )
-            // InternalNpl.g:1380:1: (lv_value_0_0= RULE_STRING )
-            {
-            // InternalNpl.g:1380:1: (lv_value_0_0= RULE_STRING )
-            // InternalNpl.g:1381:3: lv_value_0_0= RULE_STRING
-            {
-            lv_value_0_0=(Token)match(input,RULE_STRING,FOLLOW_2); 
-
-            			newLeafNode(lv_value_0_0, grammarAccess.getTopicTagAccess().getValueSTRINGTerminalRuleCall_0()); 
-            		
-
-            	        if (current==null) {
-            	            current = createModelElement(grammarAccess.getTopicTagRule());
-            	        }
-                   		setWithLastConsumed(
-                   			current, 
-                   			"value",
-                    		lv_value_0_0, 
-                    		"org.eclipse.xtext.common.Terminals.STRING");
-            	    
-
-            }
-
-
-            }
-
-
-            }
-
-             leaveRule(); 
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "ruleTopicTag"
-
-
     // $ANTLR start "entryRulePair"
-    // InternalNpl.g:1405:1: entryRulePair returns [EObject current=null] : iv_rulePair= rulePair EOF ;
+    // InternalNpl.g:1366:1: entryRulePair returns [EObject current=null] : iv_rulePair= rulePair EOF ;
     public final EObject entryRulePair() throws RecognitionException {
         EObject current = null;
 
@@ -3231,8 +3127,8 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalNpl.g:1406:2: (iv_rulePair= rulePair EOF )
-            // InternalNpl.g:1407:2: iv_rulePair= rulePair EOF
+            // InternalNpl.g:1367:2: (iv_rulePair= rulePair EOF )
+            // InternalNpl.g:1368:2: iv_rulePair= rulePair EOF
             {
              newCompositeNode(grammarAccess.getPairRule()); 
             pushFollow(FOLLOW_1);
@@ -3259,7 +3155,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePair"
-    // InternalNpl.g:1414:1: rulePair returns [EObject current=null] : ( ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>' ) ;
+    // InternalNpl.g:1375:1: rulePair returns [EObject current=null] : ( ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>' ) ;
     public final EObject rulePair() throws RecognitionException {
         EObject current = null;
 
@@ -3273,17 +3169,17 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalNpl.g:1417:28: ( ( ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>' ) )
-            // InternalNpl.g:1418:1: ( ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>' )
+            // InternalNpl.g:1378:28: ( ( ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>' ) )
+            // InternalNpl.g:1379:1: ( ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>' )
             {
-            // InternalNpl.g:1418:1: ( ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>' )
-            // InternalNpl.g:1418:2: ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>'
+            // InternalNpl.g:1379:1: ( ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>' )
+            // InternalNpl.g:1379:2: ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>'
             {
-            // InternalNpl.g:1418:2: ( (lv_type_0_0= ruleFeedType ) )
-            // InternalNpl.g:1419:1: (lv_type_0_0= ruleFeedType )
+            // InternalNpl.g:1379:2: ( (lv_type_0_0= ruleFeedType ) )
+            // InternalNpl.g:1380:1: (lv_type_0_0= ruleFeedType )
             {
-            // InternalNpl.g:1419:1: (lv_type_0_0= ruleFeedType )
-            // InternalNpl.g:1420:3: lv_type_0_0= ruleFeedType
+            // InternalNpl.g:1380:1: (lv_type_0_0= ruleFeedType )
+            // InternalNpl.g:1381:3: lv_type_0_0= ruleFeedType
             {
              
             	        newCompositeNode(grammarAccess.getPairAccess().getTypeFeedTypeParserRuleCall_0_0()); 
@@ -3310,11 +3206,11 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalNpl.g:1436:2: ( (lv_key_1_0= RULE_STRING ) )
-            // InternalNpl.g:1437:1: (lv_key_1_0= RULE_STRING )
+            // InternalNpl.g:1397:2: ( (lv_key_1_0= RULE_STRING ) )
+            // InternalNpl.g:1398:1: (lv_key_1_0= RULE_STRING )
             {
-            // InternalNpl.g:1437:1: (lv_key_1_0= RULE_STRING )
-            // InternalNpl.g:1438:3: lv_key_1_0= RULE_STRING
+            // InternalNpl.g:1398:1: (lv_key_1_0= RULE_STRING )
+            // InternalNpl.g:1399:3: lv_key_1_0= RULE_STRING
             {
             lv_key_1_0=(Token)match(input,RULE_STRING,FOLLOW_21); 
 
@@ -3340,11 +3236,11 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
                 	newLeafNode(otherlv_2, grammarAccess.getPairAccess().getLessThanSignKeyword_2());
                 
-            // InternalNpl.g:1458:1: ( (lv_value_3_0= RULE_URL ) )
-            // InternalNpl.g:1459:1: (lv_value_3_0= RULE_URL )
+            // InternalNpl.g:1419:1: ( (lv_value_3_0= RULE_URL ) )
+            // InternalNpl.g:1420:1: (lv_value_3_0= RULE_URL )
             {
-            // InternalNpl.g:1459:1: (lv_value_3_0= RULE_URL )
-            // InternalNpl.g:1460:3: lv_value_3_0= RULE_URL
+            // InternalNpl.g:1420:1: (lv_value_3_0= RULE_URL )
+            // InternalNpl.g:1421:3: lv_value_3_0= RULE_URL
             {
             lv_value_3_0=(Token)match(input,RULE_URL,FOLLOW_23); 
 
@@ -3391,7 +3287,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFloat"
-    // InternalNpl.g:1488:1: entryRuleFloat returns [String current=null] : iv_ruleFloat= ruleFloat EOF ;
+    // InternalNpl.g:1449:1: entryRuleFloat returns [String current=null] : iv_ruleFloat= ruleFloat EOF ;
     public final String entryRuleFloat() throws RecognitionException {
         String current = null;
 
@@ -3399,8 +3295,8 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalNpl.g:1489:2: (iv_ruleFloat= ruleFloat EOF )
-            // InternalNpl.g:1490:2: iv_ruleFloat= ruleFloat EOF
+            // InternalNpl.g:1450:2: (iv_ruleFloat= ruleFloat EOF )
+            // InternalNpl.g:1451:2: iv_ruleFloat= ruleFloat EOF
             {
              newCompositeNode(grammarAccess.getFloatRule()); 
             pushFollow(FOLLOW_1);
@@ -3427,7 +3323,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFloat"
-    // InternalNpl.g:1497:1: ruleFloat returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )? ) ;
+    // InternalNpl.g:1458:1: ruleFloat returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )? ) ;
     public final AntlrDatatypeRuleToken ruleFloat() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -3438,11 +3334,11 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalNpl.g:1500:28: ( (this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )? ) )
-            // InternalNpl.g:1501:1: (this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )? )
+            // InternalNpl.g:1461:28: ( (this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )? ) )
+            // InternalNpl.g:1462:1: (this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )? )
             {
-            // InternalNpl.g:1501:1: (this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )? )
-            // InternalNpl.g:1501:6: this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )?
+            // InternalNpl.g:1462:1: (this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )? )
+            // InternalNpl.g:1462:6: this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )?
             {
             this_INT_0=(Token)match(input,RULE_INT,FOLLOW_24); 
 
@@ -3451,7 +3347,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
              
                 newLeafNode(this_INT_0, grammarAccess.getFloatAccess().getINTTerminalRuleCall_0()); 
                 
-            // InternalNpl.g:1508:1: ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )?
+            // InternalNpl.g:1469:1: ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -3460,9 +3356,9 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             }
             switch (alt11) {
                 case 1 :
-                    // InternalNpl.g:1508:2: (kw= '.' | kw= ',' ) this_INT_3= RULE_INT
+                    // InternalNpl.g:1469:2: (kw= '.' | kw= ',' ) this_INT_3= RULE_INT
                     {
-                    // InternalNpl.g:1508:2: (kw= '.' | kw= ',' )
+                    // InternalNpl.g:1469:2: (kw= '.' | kw= ',' )
                     int alt10=2;
                     int LA10_0 = input.LA(1);
 
@@ -3480,7 +3376,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt10) {
                         case 1 :
-                            // InternalNpl.g:1509:2: kw= '.'
+                            // InternalNpl.g:1470:2: kw= '.'
                             {
                             kw=(Token)match(input,53,FOLLOW_12); 
 
@@ -3491,7 +3387,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 2 :
-                            // InternalNpl.g:1516:2: kw= ','
+                            // InternalNpl.g:1477:2: kw= ','
                             {
                             kw=(Token)match(input,54,FOLLOW_12); 
 
@@ -3538,7 +3434,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFeedType"
-    // InternalNpl.g:1536:1: entryRuleFeedType returns [String current=null] : iv_ruleFeedType= ruleFeedType EOF ;
+    // InternalNpl.g:1497:1: entryRuleFeedType returns [String current=null] : iv_ruleFeedType= ruleFeedType EOF ;
     public final String entryRuleFeedType() throws RecognitionException {
         String current = null;
 
@@ -3546,8 +3442,8 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalNpl.g:1537:2: (iv_ruleFeedType= ruleFeedType EOF )
-            // InternalNpl.g:1538:2: iv_ruleFeedType= ruleFeedType EOF
+            // InternalNpl.g:1498:2: (iv_ruleFeedType= ruleFeedType EOF )
+            // InternalNpl.g:1499:2: iv_ruleFeedType= ruleFeedType EOF
             {
              newCompositeNode(grammarAccess.getFeedTypeRule()); 
             pushFollow(FOLLOW_1);
@@ -3574,7 +3470,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFeedType"
-    // InternalNpl.g:1545:1: ruleFeedType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'RSS' | kw= 'Atom' ) ;
+    // InternalNpl.g:1506:1: ruleFeedType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'RSS' | kw= 'Atom' ) ;
     public final AntlrDatatypeRuleToken ruleFeedType() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -3583,10 +3479,10 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalNpl.g:1548:28: ( (kw= 'RSS' | kw= 'Atom' ) )
-            // InternalNpl.g:1549:1: (kw= 'RSS' | kw= 'Atom' )
+            // InternalNpl.g:1509:28: ( (kw= 'RSS' | kw= 'Atom' ) )
+            // InternalNpl.g:1510:1: (kw= 'RSS' | kw= 'Atom' )
             {
-            // InternalNpl.g:1549:1: (kw= 'RSS' | kw= 'Atom' )
+            // InternalNpl.g:1510:1: (kw= 'RSS' | kw= 'Atom' )
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -3604,7 +3500,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             }
             switch (alt12) {
                 case 1 :
-                    // InternalNpl.g:1550:2: kw= 'RSS'
+                    // InternalNpl.g:1511:2: kw= 'RSS'
                     {
                     kw=(Token)match(input,55,FOLLOW_2); 
 
@@ -3615,7 +3511,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalNpl.g:1557:2: kw= 'Atom'
+                    // InternalNpl.g:1518:2: kw= 'Atom'
                     {
                     kw=(Token)match(input,56,FOLLOW_2); 
 

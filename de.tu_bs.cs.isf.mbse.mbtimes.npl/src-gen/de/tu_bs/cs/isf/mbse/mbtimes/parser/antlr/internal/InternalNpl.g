@@ -1313,19 +1313,19 @@ ruleTopic returns [EObject current=null]
     }
 (
 (
-		{ 
-	        newCompositeNode(grammarAccess.getTopicAccess().getTagsTopicTagParserRuleCall_3_0()); 
-	    }
-		lv_tags_3_0=ruleTopicTag		{
+		lv_tags_3_0=RULE_STRING
+		{
+			newLeafNode(lv_tags_3_0, grammarAccess.getTopicAccess().getTagsSTRINGTerminalRuleCall_3_0()); 
+		}
+		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getTopicRule());
+	            $current = createModelElement(grammarAccess.getTopicRule());
 	        }
-       		add(
+       		addWithLastConsumed(
        			$current, 
        			"tags",
         		lv_tags_3_0, 
-        		"de.tu_bs.cs.isf.mbse.mbtimes.Npl.TopicTag");
-	        afterParserOrEnumRuleCall();
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
@@ -1335,19 +1335,19 @@ ruleTopic returns [EObject current=null]
     }
 (
 (
-		{ 
-	        newCompositeNode(grammarAccess.getTopicAccess().getTagsTopicTagParserRuleCall_4_1_0()); 
-	    }
-		lv_tags_5_0=ruleTopicTag		{
+		lv_tags_5_0=RULE_STRING
+		{
+			newLeafNode(lv_tags_5_0, grammarAccess.getTopicAccess().getTagsSTRINGTerminalRuleCall_4_1_0()); 
+		}
+		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getTopicRule());
+	            $current = createModelElement(grammarAccess.getTopicRule());
 	        }
-       		add(
+       		addWithLastConsumed(
        			$current, 
        			"tags",
         		lv_tags_5_0, 
-        		"de.tu_bs.cs.isf.mbse.mbtimes.Npl.TopicTag");
-	        afterParserOrEnumRuleCall();
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
@@ -1355,45 +1355,6 @@ ruleTopic returns [EObject current=null]
     {
     	newLeafNode(otherlv_6, grammarAccess.getTopicAccess().getRightCurlyBracketKeyword_5());
     }
-)
-;
-
-
-
-
-
-// Entry rule entryRuleTopicTag
-entryRuleTopicTag returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getTopicTagRule()); }
-	 iv_ruleTopicTag=ruleTopicTag 
-	 { $current=$iv_ruleTopicTag.current; } 
-	 EOF 
-;
-
-// Rule TopicTag
-ruleTopicTag returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-(
-		lv_value_0_0=RULE_STRING
-		{
-			newLeafNode(lv_value_0_0, grammarAccess.getTopicTagAccess().getValueSTRINGTerminalRuleCall_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getTopicTagRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"value",
-        		lv_value_0_0, 
-        		"org.eclipse.xtext.common.Terminals.STRING");
-	    }
-
-)
 )
 ;
 

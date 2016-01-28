@@ -73,11 +73,8 @@ Currency:
 
 Topic:
 	"topic" name=ID "{"
-	tags+=TopicTag (", " tags+=TopicTag)*
+	tags+=STRING (", " tags+=STRING)*
 	"}";
-
-TopicTag:
-	value=STRING;
 
 Pair:
 	type=FeedType key = STRING "<" value = URL ">"
