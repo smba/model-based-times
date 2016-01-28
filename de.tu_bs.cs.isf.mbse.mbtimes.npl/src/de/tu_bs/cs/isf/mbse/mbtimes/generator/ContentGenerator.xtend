@@ -2,15 +2,16 @@ package de.tu_bs.cs.isf.mbse.mbtimes.generator
 
 import UnifiedModel.Article
 import UnifiedModel.UnifiedModelPackage
+import de.tu_bs.cs.isf.mbse.mbtimes.crawler.unifiedParser.UnifiedFileParser
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.vsm.VectorSpaceModel
 import java.util.ArrayList
 import java.util.LinkedList
 import java.util.List
+import java.util.Observable
 import java.util.StringTokenizer
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
-import de.tu_bs.cs.isf.mbse.mbtimes.crawler.unifiedParser.UnifiedFileParser
 
 class ContentGenerator {
 
@@ -43,7 +44,12 @@ class ContentGenerator {
 	
   	val vsm = new VectorSpaceModel();
   	vsm.buildDocumentVectors(fulltexts);
+  	
+  	System.err.println("VSM computing similarities");
+  	
   	val ranking = vsm.computeSimilarities(vsm.getQueryVector(topic));
+  	
+  	System.err.println("VSM computed similarities");
   	
   	topicTex.append("\\headline{{\\bfseries\\Huge " + topicName + "}\\linebreak\\medskip")
   	var str = topic.get(0)
@@ -126,6 +132,5 @@ class ContentGenerator {
     EPackage.Registry.INSTANCE.put(UnifiedModelPackage.eINSTANCE.nsURI, UnifiedModelPackage.eINSTANCE)
     Resource.Factory.Registry.INSTANCE.extensionToFactoryMap.put("xmi", new XMIResourceFactoryImpl);
   }
-
 }
 	

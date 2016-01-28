@@ -6,31 +6,44 @@ package de.tu_bs.cs.isf.mbse.mbtimes.generator
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.CrawlerDispatcher
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.m2m.Transformator
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.Pair
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic
 import java.util.HashMap
-import java.util.LinkedList
 import java.util.Map
+import java.util.Observer
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
+import java.util.Observable
 
 /**
  * Generates code from your model files on save
  * 
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
-class NplGenerator implements IGenerator {
+class NplGenerator implements Observer, IGenerator {
+	
+	var Resource resource;
+	var IFileSystemAccess fsa; 
 	
 	override doGenerate(Resource resource, IFileSystemAccess fsa) {
 
-		
-		val cd = new CrawlerDispatcher()
-		val trafo = Transformator.getInstance();
-		cd.addObserver(trafo);
-		
+		this.resource = resource
+		this.fsa = fsa
+
 		val feeds = new HashMap<String, String>()
 		//feeds.put("http://www.spiegel.de/schlagzeilen/tops/index.rss", "RSS");
 		//cd.dispatchAndCrawl(feeds)
+		resource.allContents.filter(typeof(Pair)).forEach[pair|
+			feeds.put(pair.value, pair.type)
+		]
+		
+		val cd = new CrawlerDispatcher()
+		cd.initialize(feeds)
+		
+		val Transformator trafo = Transformator.getInstance()
+		cd.addObserver(trafo);
+		trafo.addObserver(this)
 
 		resource.getAllContents.filter(typeof(Declaration)).forEach[declaration|
 			System.err.println(declaration.name)
@@ -44,17 +57,8 @@ class NplGenerator implements IGenerator {
 			]
 			
 		]
-		cd.dispatchAndCrawl(feeds)
-		
-		/* Compiling topics */
-		resource.allContents.filter(typeof(Topic)).forEach[topic|
-			val topicText = ContentGenerator.compileTopic(topic.tags, topic.name)
-			fsa.generateFile(topic.name + ".tex", topicText)
-		]
-		
-		for(d: resource.allContents.toIterable.filter(Declaration)) {
-    		fsa.generateFile(	d.name + ".tex", d.compileLayout)
-    	}
+		val crawlerThread = new Thread(cd)
+		crawlerThread.start
 	}
 	
 	private def small(int x) {
@@ -289,4 +293,18 @@ class NplGenerator implements IGenerator {
 		\end{document}
 		'''
 	}
+	
+	override update(Observable o, Object arg) {
+		System.err.println("Compiling .tex s")
+		/* Compiling topics */
+		resource.allContents.filter(typeof(Topic)).forEach[topic|
+			val topicText = ContentGenerator.compileTopic(topic.tags, topic.name)
+			fsa.generateFile(topic.name + ".tex", topicText)
+		]
+		
+		for(d: resource.allContents.toIterable.filter(Declaration)) {
+    		fsa.generateFile(	d.name + ".tex", d.compileLayout)
+    	}
+	}
+	
 }

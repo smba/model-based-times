@@ -36,7 +36,7 @@ import org.osgi.framework.Bundle;
  * @version 26.01.2016
  *
  */
-public class Transformator implements Observer {
+public class Transformator extends Observable implements Observer {
 
 	private static Transformator instance;
 	
@@ -172,7 +172,22 @@ public class Transformator implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
+		
+		System.err.println("Transformator update()");
+		
 		transformAtomToUnified();
+		
+		System.err.println("Atom trafo fertig");
+		
 		transformRSStoUnified();
+		
+		System.err.println("RSS trafo fertig");
+		
+		System.err.println("Transformator update() fertig");
+		
+		System.out.println(this.countObservers() + " classes are waiting");
+		
+		setChanged();
+		notifyObservers();
 	}
 }

@@ -17,19 +17,25 @@ import java.util.Observer;
  * 
  * @version 21.01.2016
  */
-public class CrawlerDispatcher extends Observable {
+public class CrawlerDispatcher extends Observable implements Runnable {
 
 	/** Crawler für Atom-Feeds */
 	private Crawler atomCrawler;
 
 	/** Crawler für RSS-Feeds */
 	private Crawler rssCrawler;
+	
+	private Map<String, String> feeds;
 
 	public CrawlerDispatcher() {
 		atomCrawler = new AtomCrawler();
 		rssCrawler = new RSSCrawler();
 	}
 
+	
+	public void initialize(Map<String, String> feeds) {
+		this.feeds = feeds;
+	}
 	/**
 	 * Diese Methode initialisiert und startet den Crawlvorgang. Übergeben wird
 	 * eine Map von Strings auf Strings, wobei die Feed-URL auf den Typ des
@@ -45,7 +51,7 @@ public class CrawlerDispatcher extends Observable {
 	 * 
 	 * @param feeds
 	 */
-	public void dispatchAndCrawl(Map<String, String> feeds) {
+	public void dispatchAndCrawl() {
 		List<String> rssFeeds = new LinkedList<String>();
 		List<String> atomFeeds = new LinkedList<String>();
 
@@ -68,22 +74,29 @@ public class CrawlerDispatcher extends Observable {
 		/*
 		 * Starten der einzelnen Crawler
 		 */
-		//this.atomCrawler.crawl(atomFeeds);
-		//this.rssCrawler.crawl(rssFeeds);
+		this.atomCrawler.crawl(atomFeeds);
+		this.rssCrawler.crawl(rssFeeds);
 
 		/*
 		 * Schreiben der Ausgabe in Dateien
 		 */
-		//this.atomCrawler.dispose();
-		//this.rssCrawler.dispose();
+		this.atomCrawler.dispose();
+		this.rssCrawler.dispose();
 
 		/*
 		 * Triggern des Ausführens der automatisierten M2M-Transformationen 
 		 * (RSS -> Unified, Atom -> Unified)
 		 */
-		System.err.println("notify all observers");
 		setChanged();
 		notifyObservers();
 		
+	}
+
+	@Override
+	public void run() {
+		
+		System.err.println("Started Crawling");
+		
+		dispatchAndCrawl();
 	}
 }

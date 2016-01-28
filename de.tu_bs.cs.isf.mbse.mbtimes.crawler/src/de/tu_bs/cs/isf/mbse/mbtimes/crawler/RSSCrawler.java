@@ -10,11 +10,13 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.osgi.framework.Bundle;
 
 import RSS.Category;
 import RSS.Channel;
@@ -33,8 +35,18 @@ import de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener.RSSFeedParserListener;
  */
 public class RSSCrawler implements Crawler, RSSFeedParserListener {
 
+	private static String crawlerBundlePathPrefix;
+	static {
+		Bundle bundle = Platform.getBundle("de.tu_bs.cs.isf.mbse.mbtimes.crawler");
+		int begin = bundle.getLocation().indexOf("/");
+		crawlerBundlePathPrefix = bundle.getLocation().substring(begin);
+		String prefix = (new File("dummy")).getAbsolutePath(); 
+		prefix = prefix.substring(0,  prefix.lastIndexOf('/') + 1); 
+		crawlerBundlePathPrefix = crawlerBundlePathPrefix.substring(prefix.length(), crawlerBundlePathPrefix.length());
+	}
+	
 	/** Ausgabepfad für die .rss-Datei (XMI) */
-	private static final String RSS_TARGET_PATH = "tmp/RssOutput.rss";
+	private static final String RSS_TARGET_PATH = crawlerBundlePathPrefix + "tmp/RssOutput.rss";
 
 	/** Maximale Anzahl an Feeds, welche gleichzeitig gecrawlt wird */
 	private static final int THREADPOOL_SIZE = 5;
@@ -89,6 +101,9 @@ public class RSSCrawler implements Crawler, RSSFeedParserListener {
 			} catch (IOException e) {
 				throw new RuntimeException("Crawler could not create output file " + f.getName() + ".");
 			}
+			System.err.println("File created!");
+		} else {
+			System.err.println("File already exists!");
 		}
 		this.rssResource = resSet.createResource(URI.createURI(RSS_TARGET_PATH));
 	}
@@ -100,6 +115,7 @@ public class RSSCrawler implements Crawler, RSSFeedParserListener {
 
 	@Override
 	public void receiveRSSItem(Item item) {
+		System.out.println(item.getTitle());
 		rssResource.getContents().add(item);
 	}
 
@@ -126,7 +142,9 @@ public class RSSCrawler implements Crawler, RSSFeedParserListener {
 	@Override
 	public void dispose() {
 		try {
+			System.err.println("Writing RSS file");
 			this.rssResource.save(Collections.EMPTY_MAP);
+			System.err.println("Written RSS file");
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}

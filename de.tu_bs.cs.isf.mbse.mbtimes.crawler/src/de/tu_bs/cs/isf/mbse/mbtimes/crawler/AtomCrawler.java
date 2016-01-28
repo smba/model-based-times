@@ -1,5 +1,6 @@
 package de.tu_bs.cs.isf.mbse.mbtimes.crawler;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -9,11 +10,13 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.osgi.framework.Bundle;
 
 import Atom.AtomFactory;
 import Atom.Author;
@@ -36,8 +39,18 @@ public class AtomCrawler implements Crawler, AtomFeedParserListener {
 	/** Factory, mittels welcher Elemente gemäß der Atom.ecore erstellt werden. */
 	private AtomFactory atomFactory;
 
+	private static String crawlerBundlePathPrefix;
+	static {
+		Bundle bundle = Platform.getBundle("de.tu_bs.cs.isf.mbse.mbtimes.crawler");
+		int begin = bundle.getLocation().indexOf("/");
+		crawlerBundlePathPrefix = bundle.getLocation().substring(begin);
+		String prefix = (new File("dummy")).getAbsolutePath(); 
+		prefix = prefix.substring(0,  prefix.lastIndexOf('/') + 1); 
+		crawlerBundlePathPrefix = crawlerBundlePathPrefix.substring(prefix.length(), crawlerBundlePathPrefix.length());
+	}
+	
 	/** Ausgabepfad für die .atom-Datei (XMI) */
-	private static final String ATOM_TARGET_PATH = "tmp/AtomOutput.atom";
+	private static final String ATOM_TARGET_PATH = crawlerBundlePathPrefix + "tmp/AtomOutput.atom";
 
 	/** Resource, welche in ATOM_TARGET_PATH ge. bzw. überscrieben wird */
 	private Resource atomResource;
