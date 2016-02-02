@@ -3,9 +3,9 @@ package de.tu_bs.cs.isf.mbse.mbtimes.generator
 import UnifiedModel.Article
 import UnifiedModel.UnifiedModelPackage
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.unifiedParser.UnifiedFileParser
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.Language
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.vsm.VectorSpaceModel
 import java.util.ArrayList
-import java.util.LinkedList
 import java.util.List
 import java.util.StringTokenizer
 import org.eclipse.emf.ecore.EPackage
@@ -17,31 +17,28 @@ class ContentGenerator {
 	//Special Characters in LaTeX and the changed version
   	static val String[] specialChars = #['\\','{','}','%','^','_','&','#','~','�','�','�'," . ", " , "]
   	static val String[] changedChars = #["\\textbackslash","\\{","\\}","\\%","\\textasciicircum","\\_","\\&","\\#","\\textasciitilde","$^\\circ$","\\pounds","", ". ", ", "]
- 
-	def ContentGenerator() {
+ 	static var Language language
+	def ContentGenerator(Language language) {
 		
 	}
-  def static void main(String[] args) {
-  	val x = new LinkedList<String>()
-  	x.add("berlin")
-  	x.add("london")
-  	
-  	var topicTex = new StringBuffer()
-  	topicTex.append(compileTopic(x, "Berliner News"))
-  	println(topicTex.toString)
-  }
+	
+	def static void setLanguage(Language lang) {
+		language = lang
+	}
 
   def static String compileTopic(List<String> topic, String topicName) {
   	val articles = new ArrayList<Article>(UnifiedFileParser.load());
   	val topicTex = new StringBuffer()
 
 	//retreive List from articles
+	
+	//TODO for scalability, use descriptions
 	val fulltexts = new ArrayList<String>();
 	for(Article a : articles) {
-		fulltexts.add(a.content);
+		fulltexts.add(a.subtitle);
 	}
 	
-  	val vsm = new VectorSpaceModel();
+  	val vsm = new VectorSpaceModel(language);
   	vsm.buildDocumentVectors(fulltexts);
   	
   	System.err.println("VSM computing similarities");
