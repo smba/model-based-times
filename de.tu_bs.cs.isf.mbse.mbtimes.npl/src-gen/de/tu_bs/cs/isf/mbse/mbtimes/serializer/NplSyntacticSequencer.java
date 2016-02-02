@@ -67,9 +67,9 @@ public class NplSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'optional: number of images per article' imagesCnt=ImagesCount
 	 *     (rule start) (ambiguity) 'optional: price' price=Price
 	 *     (rule start) (ambiguity) 'optional: volume' volume=INT
+	 *     (rule start) (ambiguity) 'title' title=STRING
 	 *     (rule start) (ambiguity) 'topics' '{' topics+=Topic
 	 *     (rule start) (ambiguity) (rule start)
-	 *     (rule start) (ambiguity) recrawl?='recrawl'
 	 *     articleCnt=INT (ambiguity) 'font size' fontSize=FontSize
 	 *     articleCnt=INT (ambiguity) 'format' format=Format
 	 *     articleCnt=INT (ambiguity) 'newspaper' name=ID
@@ -82,9 +82,9 @@ public class NplSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     articleCnt=INT (ambiguity) 'optional: number of images per article' imagesCnt=ImagesCount
 	 *     articleCnt=INT (ambiguity) 'optional: price' price=Price
 	 *     articleCnt=INT (ambiguity) 'optional: volume' volume=INT
+	 *     articleCnt=INT (ambiguity) 'title' title=STRING
 	 *     articleCnt=INT (ambiguity) 'topics' '{' topics+=Topic
 	 *     articleCnt=INT (ambiguity) (rule end)
-	 *     articleCnt=INT (ambiguity) recrawl?='recrawl'
 	 *     articleWordsMax=INT (ambiguity) 'font size' fontSize=FontSize
 	 *     articleWordsMax=INT (ambiguity) 'format' format=Format
 	 *     articleWordsMax=INT (ambiguity) 'newspaper' name=ID
@@ -97,9 +97,9 @@ public class NplSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     articleWordsMax=INT (ambiguity) 'optional: number of images per article' imagesCnt=ImagesCount
 	 *     articleWordsMax=INT (ambiguity) 'optional: price' price=Price
 	 *     articleWordsMax=INT (ambiguity) 'optional: volume' volume=INT
+	 *     articleWordsMax=INT (ambiguity) 'title' title=STRING
 	 *     articleWordsMax=INT (ambiguity) 'topics' '{' topics+=Topic
 	 *     articleWordsMax=INT (ambiguity) (rule end)
-	 *     articleWordsMax=INT (ambiguity) recrawl?='recrawl'
 	 *     columnsCnt=INT (ambiguity) 'font size' fontSize=FontSize
 	 *     columnsCnt=INT (ambiguity) 'format' format=Format
 	 *     columnsCnt=INT (ambiguity) 'newspaper' name=ID
@@ -112,9 +112,9 @@ public class NplSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     columnsCnt=INT (ambiguity) 'optional: number of images per article' imagesCnt=ImagesCount
 	 *     columnsCnt=INT (ambiguity) 'optional: price' price=Price
 	 *     columnsCnt=INT (ambiguity) 'optional: volume' volume=INT
+	 *     columnsCnt=INT (ambiguity) 'title' title=STRING
 	 *     columnsCnt=INT (ambiguity) 'topics' '{' topics+=Topic
 	 *     columnsCnt=INT (ambiguity) (rule end)
-	 *     columnsCnt=INT (ambiguity) recrawl?='recrawl'
 	 *     date=Date (ambiguity) 'font size' fontSize=FontSize
 	 *     date=Date (ambiguity) 'format' format=Format
 	 *     date=Date (ambiguity) 'newspaper' name=ID
@@ -127,9 +127,9 @@ public class NplSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     date=Date (ambiguity) 'optional: number of images per article' imagesCnt=ImagesCount
 	 *     date=Date (ambiguity) 'optional: price' price=Price
 	 *     date=Date (ambiguity) 'optional: volume' volume=INT
+	 *     date=Date (ambiguity) 'title' title=STRING
 	 *     date=Date (ambiguity) 'topics' '{' topics+=Topic
 	 *     date=Date (ambiguity) (rule end)
-	 *     date=Date (ambiguity) recrawl?='recrawl'
 	 *     feedlinks+=Pair '}' (ambiguity) 'font size' fontSize=FontSize
 	 *     feedlinks+=Pair '}' (ambiguity) 'format' format=Format
 	 *     feedlinks+=Pair '}' (ambiguity) 'newspaper' name=ID
@@ -142,9 +142,9 @@ public class NplSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     feedlinks+=Pair '}' (ambiguity) 'optional: number of images per article' imagesCnt=ImagesCount
 	 *     feedlinks+=Pair '}' (ambiguity) 'optional: price' price=Price
 	 *     feedlinks+=Pair '}' (ambiguity) 'optional: volume' volume=INT
+	 *     feedlinks+=Pair '}' (ambiguity) 'title' title=STRING
 	 *     feedlinks+=Pair '}' (ambiguity) 'topics' '{' topics+=Topic
 	 *     feedlinks+=Pair '}' (ambiguity) (rule end)
-	 *     feedlinks+=Pair '}' (ambiguity) recrawl?='recrawl'
 	 *     fontSize=FontSize (ambiguity) 'font size' fontSize=FontSize
 	 *     fontSize=FontSize (ambiguity) 'format' format=Format
 	 *     fontSize=FontSize (ambiguity) 'newspaper' name=ID
@@ -157,9 +157,9 @@ public class NplSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     fontSize=FontSize (ambiguity) 'optional: number of images per article' imagesCnt=ImagesCount
 	 *     fontSize=FontSize (ambiguity) 'optional: price' price=Price
 	 *     fontSize=FontSize (ambiguity) 'optional: volume' volume=INT
+	 *     fontSize=FontSize (ambiguity) 'title' title=STRING
 	 *     fontSize=FontSize (ambiguity) 'topics' '{' topics+=Topic
 	 *     fontSize=FontSize (ambiguity) (rule end)
-	 *     fontSize=FontSize (ambiguity) recrawl?='recrawl'
 	 *     format=Format (ambiguity) 'font size' fontSize=FontSize
 	 *     format=Format (ambiguity) 'format' format=Format
 	 *     format=Format (ambiguity) 'newspaper' name=ID
@@ -172,9 +172,9 @@ public class NplSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     format=Format (ambiguity) 'optional: number of images per article' imagesCnt=ImagesCount
 	 *     format=Format (ambiguity) 'optional: price' price=Price
 	 *     format=Format (ambiguity) 'optional: volume' volume=INT
+	 *     format=Format (ambiguity) 'title' title=STRING
 	 *     format=Format (ambiguity) 'topics' '{' topics+=Topic
 	 *     format=Format (ambiguity) (rule end)
-	 *     format=Format (ambiguity) recrawl?='recrawl'
 	 *     imagesCnt=ImagesCount (ambiguity) 'font size' fontSize=FontSize
 	 *     imagesCnt=ImagesCount (ambiguity) 'format' format=Format
 	 *     imagesCnt=ImagesCount (ambiguity) 'newspaper' name=ID
@@ -187,9 +187,9 @@ public class NplSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     imagesCnt=ImagesCount (ambiguity) 'optional: number of images per article' imagesCnt=ImagesCount
 	 *     imagesCnt=ImagesCount (ambiguity) 'optional: price' price=Price
 	 *     imagesCnt=ImagesCount (ambiguity) 'optional: volume' volume=INT
+	 *     imagesCnt=ImagesCount (ambiguity) 'title' title=STRING
 	 *     imagesCnt=ImagesCount (ambiguity) 'topics' '{' topics+=Topic
 	 *     imagesCnt=ImagesCount (ambiguity) (rule end)
-	 *     imagesCnt=ImagesCount (ambiguity) recrawl?='recrawl'
 	 *     language=Language (ambiguity) 'font size' fontSize=FontSize
 	 *     language=Language (ambiguity) 'format' format=Format
 	 *     language=Language (ambiguity) 'newspaper' name=ID
@@ -202,9 +202,9 @@ public class NplSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     language=Language (ambiguity) 'optional: number of images per article' imagesCnt=ImagesCount
 	 *     language=Language (ambiguity) 'optional: price' price=Price
 	 *     language=Language (ambiguity) 'optional: volume' volume=INT
+	 *     language=Language (ambiguity) 'title' title=STRING
 	 *     language=Language (ambiguity) 'topics' '{' topics+=Topic
 	 *     language=Language (ambiguity) (rule end)
-	 *     language=Language (ambiguity) recrawl?='recrawl'
 	 *     location=STRING (ambiguity) 'font size' fontSize=FontSize
 	 *     location=STRING (ambiguity) 'format' format=Format
 	 *     location=STRING (ambiguity) 'newspaper' name=ID
@@ -217,9 +217,9 @@ public class NplSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     location=STRING (ambiguity) 'optional: number of images per article' imagesCnt=ImagesCount
 	 *     location=STRING (ambiguity) 'optional: price' price=Price
 	 *     location=STRING (ambiguity) 'optional: volume' volume=INT
+	 *     location=STRING (ambiguity) 'title' title=STRING
 	 *     location=STRING (ambiguity) 'topics' '{' topics+=Topic
 	 *     location=STRING (ambiguity) (rule end)
-	 *     location=STRING (ambiguity) recrawl?='recrawl'
 	 *     name=ID '{' (ambiguity) 'font size' fontSize=FontSize
 	 *     name=ID '{' (ambiguity) 'format' format=Format
 	 *     name=ID '{' (ambiguity) 'newspaper' name=ID
@@ -232,9 +232,9 @@ public class NplSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=ID '{' (ambiguity) 'optional: number of images per article' imagesCnt=ImagesCount
 	 *     name=ID '{' (ambiguity) 'optional: price' price=Price
 	 *     name=ID '{' (ambiguity) 'optional: volume' volume=INT
+	 *     name=ID '{' (ambiguity) 'title' title=STRING
 	 *     name=ID '{' (ambiguity) 'topics' '{' topics+=Topic
 	 *     name=ID '{' (ambiguity) (rule end)
-	 *     name=ID '{' (ambiguity) recrawl?='recrawl'
 	 *     number=INT (ambiguity) 'font size' fontSize=FontSize
 	 *     number=INT (ambiguity) 'format' format=Format
 	 *     number=INT (ambiguity) 'newspaper' name=ID
@@ -247,9 +247,9 @@ public class NplSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     number=INT (ambiguity) 'optional: number of images per article' imagesCnt=ImagesCount
 	 *     number=INT (ambiguity) 'optional: price' price=Price
 	 *     number=INT (ambiguity) 'optional: volume' volume=INT
+	 *     number=INT (ambiguity) 'title' title=STRING
 	 *     number=INT (ambiguity) 'topics' '{' topics+=Topic
 	 *     number=INT (ambiguity) (rule end)
-	 *     number=INT (ambiguity) recrawl?='recrawl'
 	 *     price=Price (ambiguity) 'font size' fontSize=FontSize
 	 *     price=Price (ambiguity) 'format' format=Format
 	 *     price=Price (ambiguity) 'newspaper' name=ID
@@ -262,9 +262,9 @@ public class NplSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     price=Price (ambiguity) 'optional: number of images per article' imagesCnt=ImagesCount
 	 *     price=Price (ambiguity) 'optional: price' price=Price
 	 *     price=Price (ambiguity) 'optional: volume' volume=INT
+	 *     price=Price (ambiguity) 'title' title=STRING
 	 *     price=Price (ambiguity) 'topics' '{' topics+=Topic
 	 *     price=Price (ambiguity) (rule end)
-	 *     price=Price (ambiguity) recrawl?='recrawl'
 	 *     topics+=Topic '}' (ambiguity) 'font size' fontSize=FontSize
 	 *     topics+=Topic '}' (ambiguity) 'format' format=Format
 	 *     topics+=Topic '}' (ambiguity) 'newspaper' name=ID
@@ -277,9 +277,9 @@ public class NplSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     topics+=Topic '}' (ambiguity) 'optional: number of images per article' imagesCnt=ImagesCount
 	 *     topics+=Topic '}' (ambiguity) 'optional: price' price=Price
 	 *     topics+=Topic '}' (ambiguity) 'optional: volume' volume=INT
+	 *     topics+=Topic '}' (ambiguity) 'title' title=STRING
 	 *     topics+=Topic '}' (ambiguity) 'topics' '{' topics+=Topic
 	 *     topics+=Topic '}' (ambiguity) (rule end)
-	 *     topics+=Topic '}' (ambiguity) recrawl?='recrawl'
 	 *     volume=INT (ambiguity) 'font size' fontSize=FontSize
 	 *     volume=INT (ambiguity) 'format' format=Format
 	 *     volume=INT (ambiguity) 'newspaper' name=ID
@@ -292,9 +292,9 @@ public class NplSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     volume=INT (ambiguity) 'optional: number of images per article' imagesCnt=ImagesCount
 	 *     volume=INT (ambiguity) 'optional: price' price=Price
 	 *     volume=INT (ambiguity) 'optional: volume' volume=INT
+	 *     volume=INT (ambiguity) 'title' title=STRING
 	 *     volume=INT (ambiguity) 'topics' '{' topics+=Topic
 	 *     volume=INT (ambiguity) (rule end)
-	 *     volume=INT (ambiguity) recrawl?='recrawl'
 	 */
 	protected void emit_Declaration_RightCurlyBracketKeyword_14_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

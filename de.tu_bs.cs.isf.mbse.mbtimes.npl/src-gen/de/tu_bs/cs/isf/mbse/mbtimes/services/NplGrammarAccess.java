@@ -27,15 +27,16 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameIDTerminalRuleCall_0_1_0 = (RuleCall)cNameAssignment_0_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_0_2 = (Keyword)cGroup_0.eContents().get(2);
 		private final Group cGroup_1 = (Group)cUnorderedGroup.eContents().get(1);
-		private final Assignment cRecrawlAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final Keyword cRecrawlRecrawlKeyword_1_0_0 = (Keyword)cRecrawlAssignment_1_0.eContents().get(0);
-		private final Keyword cFeedLinksKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
-		private final Assignment cFeedlinksAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
-		private final RuleCall cFeedlinksPairParserRuleCall_1_3_0 = (RuleCall)cFeedlinksAssignment_1_3.eContents().get(0);
+		private final Keyword cTitleKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cTitleAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cTitleSTRINGTerminalRuleCall_1_1_0 = (RuleCall)cTitleAssignment_1_1.eContents().get(0);
+		private final Keyword cFeedLinksKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
+		private final Keyword cLeftCurlyBracketKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
 		private final Assignment cFeedlinksAssignment_1_4 = (Assignment)cGroup_1.eContents().get(4);
 		private final RuleCall cFeedlinksPairParserRuleCall_1_4_0 = (RuleCall)cFeedlinksAssignment_1_4.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_1_5 = (Keyword)cGroup_1.eContents().get(5);
+		private final Assignment cFeedlinksAssignment_1_5 = (Assignment)cGroup_1.eContents().get(5);
+		private final RuleCall cFeedlinksPairParserRuleCall_1_5_0 = (RuleCall)cFeedlinksAssignment_1_5.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_1_6 = (Keyword)cGroup_1.eContents().get(6);
 		private final Group cGroup_2 = (Group)cUnorderedGroup.eContents().get(2);
 		private final Keyword cTopicsKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
@@ -98,7 +99,9 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_14 = (Keyword)cUnorderedGroup.eContents().get(14);
 		
 		//Declaration:
-		//	"newspaper" name=ID "{" & recrawl?="recrawl" "feed links" "{"
+		//	"newspaper" name=ID "{" &
+		//	"title" title=STRING
+		//	"feed links" "{"
 		//	feedlinks+=Pair feedlinks+=Pair*
 		//	"}" &
 		//	"topics" "{"
@@ -114,7 +117,7 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		//	"}";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"newspaper" name=ID "{" & recrawl?="recrawl" "feed links" "{" feedlinks+=Pair feedlinks+=Pair* "}" & "topics" "{"
+		//"newspaper" name=ID "{" & "title" title=STRING "feed links" "{" feedlinks+=Pair feedlinks+=Pair* "}" & "topics" "{"
 		//topics+=Topic topics+=Topic* "}" & ("optional: date" date=Date)? & ("optional: location" location=STRING)? &
 		//("optional: price" price=Price)? & ("optional: volume" volume=INT ("no." number=INT)?)? & ("optional: language"
 		//language=Language)? & "format" format=Format & "number of articles per topic" articleCnt=INT &
@@ -137,35 +140,38 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_0_2() { return cLeftCurlyBracketKeyword_0_2; }
 
-		//recrawl?="recrawl" "feed links" "{" feedlinks+=Pair feedlinks+=Pair* "}"
+		//"title" title=STRING "feed links" "{" feedlinks+=Pair feedlinks+=Pair* "}"
 		public Group getGroup_1() { return cGroup_1; }
 
-		//recrawl?="recrawl"
-		public Assignment getRecrawlAssignment_1_0() { return cRecrawlAssignment_1_0; }
+		//"title"
+		public Keyword getTitleKeyword_1_0() { return cTitleKeyword_1_0; }
 
-		//"recrawl"
-		public Keyword getRecrawlRecrawlKeyword_1_0_0() { return cRecrawlRecrawlKeyword_1_0_0; }
+		//title=STRING
+		public Assignment getTitleAssignment_1_1() { return cTitleAssignment_1_1; }
+
+		//STRING
+		public RuleCall getTitleSTRINGTerminalRuleCall_1_1_0() { return cTitleSTRINGTerminalRuleCall_1_1_0; }
 
 		//"feed links"
-		public Keyword getFeedLinksKeyword_1_1() { return cFeedLinksKeyword_1_1; }
+		public Keyword getFeedLinksKeyword_1_2() { return cFeedLinksKeyword_1_2; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_1_2() { return cLeftCurlyBracketKeyword_1_2; }
+		public Keyword getLeftCurlyBracketKeyword_1_3() { return cLeftCurlyBracketKeyword_1_3; }
 
 		//feedlinks+=Pair
-		public Assignment getFeedlinksAssignment_1_3() { return cFeedlinksAssignment_1_3; }
-
-		//Pair
-		public RuleCall getFeedlinksPairParserRuleCall_1_3_0() { return cFeedlinksPairParserRuleCall_1_3_0; }
-
-		//feedlinks+=Pair*
 		public Assignment getFeedlinksAssignment_1_4() { return cFeedlinksAssignment_1_4; }
 
 		//Pair
 		public RuleCall getFeedlinksPairParserRuleCall_1_4_0() { return cFeedlinksPairParserRuleCall_1_4_0; }
 
+		//feedlinks+=Pair*
+		public Assignment getFeedlinksAssignment_1_5() { return cFeedlinksAssignment_1_5; }
+
+		//Pair
+		public RuleCall getFeedlinksPairParserRuleCall_1_5_0() { return cFeedlinksPairParserRuleCall_1_5_0; }
+
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_1_5() { return cRightCurlyBracketKeyword_1_5; }
+		public Keyword getRightCurlyBracketKeyword_1_6() { return cRightCurlyBracketKeyword_1_6; }
 
 		//"topics" "{" topics+=Topic topics+=Topic* "}"
 		public Group getGroup_2() { return cGroup_2; }
@@ -654,22 +660,25 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cTopicKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cTagsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cTagsSTRINGTerminalRuleCall_3_0 = (RuleCall)cTagsAssignment_3.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Keyword cCommaSpaceKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Assignment cTagsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cTagsSTRINGTerminalRuleCall_4_1_0 = (RuleCall)cTagsAssignment_4_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cAsKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cTitleAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cTitleSTRINGTerminalRuleCall_3_0 = (RuleCall)cTitleAssignment_3.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cTagsAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cTagsSTRINGTerminalRuleCall_5_0 = (RuleCall)cTagsAssignment_5.eContents().get(0);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Keyword cCommaSpaceKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Assignment cTagsAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cTagsSTRINGTerminalRuleCall_6_1_0 = (RuleCall)cTagsAssignment_6_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//Topic:
-		//	"topic" name=ID "{"
+		//	"topic" name=ID "as" title=STRING "{"
 		//	tags+=STRING (", " tags+=STRING)*
 		//	"}";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"topic" name=ID "{" tags+=STRING (", " tags+=STRING)* "}"
+		//"topic" name=ID "as" title=STRING "{" tags+=STRING (", " tags+=STRING)* "}"
 		public Group getGroup() { return cGroup; }
 
 		//"topic"
@@ -681,29 +690,38 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 
-		//"{"
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		//"as"
+		public Keyword getAsKeyword_2() { return cAsKeyword_2; }
 
-		//tags+=STRING
-		public Assignment getTagsAssignment_3() { return cTagsAssignment_3; }
+		//title=STRING
+		public Assignment getTitleAssignment_3() { return cTitleAssignment_3; }
 
 		//STRING
-		public RuleCall getTagsSTRINGTerminalRuleCall_3_0() { return cTagsSTRINGTerminalRuleCall_3_0; }
+		public RuleCall getTitleSTRINGTerminalRuleCall_3_0() { return cTitleSTRINGTerminalRuleCall_3_0; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
+
+		//tags+=STRING
+		public Assignment getTagsAssignment_5() { return cTagsAssignment_5; }
+
+		//STRING
+		public RuleCall getTagsSTRINGTerminalRuleCall_5_0() { return cTagsSTRINGTerminalRuleCall_5_0; }
 
 		//(", " tags+=STRING)*
-		public Group getGroup_4() { return cGroup_4; }
+		public Group getGroup_6() { return cGroup_6; }
 
 		//", "
-		public Keyword getCommaSpaceKeyword_4_0() { return cCommaSpaceKeyword_4_0; }
+		public Keyword getCommaSpaceKeyword_6_0() { return cCommaSpaceKeyword_6_0; }
 
 		//tags+=STRING
-		public Assignment getTagsAssignment_4_1() { return cTagsAssignment_4_1; }
+		public Assignment getTagsAssignment_6_1() { return cTagsAssignment_6_1; }
 
 		//STRING
-		public RuleCall getTagsSTRINGTerminalRuleCall_4_1_0() { return cTagsSTRINGTerminalRuleCall_4_1_0; }
+		public RuleCall getTagsSTRINGTerminalRuleCall_6_1_0() { return cTagsSTRINGTerminalRuleCall_6_1_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
 	}
 
 	public class PairElements extends AbstractParserRuleElementFinder {
@@ -874,7 +892,9 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Declaration:
-	//	"newspaper" name=ID "{" & recrawl?="recrawl" "feed links" "{"
+	//	"newspaper" name=ID "{" &
+	//	"title" title=STRING
+	//	"feed links" "{"
 	//	feedlinks+=Pair feedlinks+=Pair*
 	//	"}" &
 	//	"topics" "{"
@@ -971,7 +991,7 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Topic:
-	//	"topic" name=ID "{"
+	//	"topic" name=ID "as" title=STRING "{"
 	//	tags+=STRING (", " tags+=STRING)*
 	//	"}";
 	public TopicElements getTopicAccess() {

@@ -278,8 +278,8 @@ class NplGenerator implements Observer, IGenerator {
 				\getdateday{newsDate}. \monthname[\getdatemonth{newsDate}] \getdateyear{newsDate}}
 		\currentvolume{«d.volume»}
 		\currentissue{«d.number»}
-		\SetPaperName{«d.name.replace('_',' ')»}
-		\SetHeaderName{«d.name.replace('_',' ')»}
+		\SetPaperName{«d.title»}
+		\SetHeaderName{«d.title»}
 		\SetPaperLocation{«location»}
 		\SetPaperPrice{«price»}
 		
@@ -288,7 +288,8 @@ class NplGenerator implements Observer, IGenerator {
 			
 			%include topic.tex's
 		    «FOR t:d.topics»
-		    	\include{«t.name».tex}
+		    	\input{«t.name».tex}
+		    	\pagebreak
 			«ENDFOR»
 		\end{document}
 		'''
@@ -298,7 +299,7 @@ class NplGenerator implements Observer, IGenerator {
 		System.err.println("Compiling .tex s")
 		/* Compiling topics */
 		resource.allContents.filter(typeof(Topic)).forEach[topic|
-			val topicText = ContentGenerator.compileTopic(topic.tags, topic.name)
+			val topicText = ContentGenerator.compileTopic(topic.tags, topic.title)
 			fsa.generateFile(topic.name + ".tex", topicText)
 		]
 		

@@ -76,13 +76,13 @@ public interface NplPackage extends EPackage
   int DECLARATION__NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Recrawl</b></em>' attribute.
+   * The feature id for the '<em><b>Title</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DECLARATION__RECRAWL = 1;
+  int DECLARATION__TITLE = 1;
 
   /**
    * The feature id for the '<em><b>Feedlinks</b></em>' containment reference list.
@@ -471,13 +471,22 @@ public interface NplPackage extends EPackage
   int TOPIC__NAME = 0;
 
   /**
+   * The feature id for the '<em><b>Title</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TOPIC__TITLE = 1;
+
+  /**
    * The feature id for the '<em><b>Tags</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TOPIC__TAGS = 1;
+  int TOPIC__TAGS = 2;
 
   /**
    * The number of structural features of the '<em>Topic</em>' class.
@@ -486,7 +495,7 @@ public interface NplPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TOPIC_FEATURE_COUNT = 2;
+  int TOPIC_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.PairImpl <em>Pair</em>}' class.
@@ -557,15 +566,15 @@ public interface NplPackage extends EPackage
   EAttribute getDeclaration_Name();
 
   /**
-   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#isRecrawl <em>Recrawl</em>}'.
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getTitle <em>Title</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Recrawl</em>'.
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#isRecrawl()
+   * @return the meta object for the attribute '<em>Title</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getTitle()
    * @see #getDeclaration()
    * @generated
    */
-  EAttribute getDeclaration_Recrawl();
+  EAttribute getDeclaration_Title();
 
   /**
    * Returns the meta object for the containment reference list '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFeedlinks <em>Feedlinks</em>}'.
@@ -934,6 +943,17 @@ public interface NplPackage extends EPackage
   EAttribute getTopic_Name();
 
   /**
+   * Returns the meta object for the attribute '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic#getTitle <em>Title</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Title</em>'.
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic#getTitle()
+   * @see #getTopic()
+   * @generated
+   */
+  EAttribute getTopic_Title();
+
+  /**
    * Returns the meta object for the attribute list '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic#getTags <em>Tags</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1029,12 +1049,12 @@ public interface NplPackage extends EPackage
     EAttribute DECLARATION__NAME = eINSTANCE.getDeclaration_Name();
 
     /**
-     * The meta object literal for the '<em><b>Recrawl</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Title</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DECLARATION__RECRAWL = eINSTANCE.getDeclaration_Recrawl();
+    EAttribute DECLARATION__TITLE = eINSTANCE.getDeclaration_Title();
 
     /**
      * The meta object literal for the '<em><b>Feedlinks</b></em>' containment reference list feature.
@@ -1323,6 +1343,14 @@ public interface NplPackage extends EPackage
      * @generated
      */
     EAttribute TOPIC__NAME = eINSTANCE.getTopic_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Title</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TOPIC__TITLE = eINSTANCE.getTopic_Title();
 
     /**
      * The meta object literal for the '<em><b>Tags</b></em>' attribute list feature.

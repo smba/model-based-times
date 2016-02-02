@@ -188,7 +188,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDeclaration_Recrawl()
+  public EAttribute getDeclaration_Title()
   {
     return (EAttribute)declarationEClass.getEStructuralFeatures().get(1);
   }
@@ -538,9 +538,19 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getTopic_Tags()
+  public EAttribute getTopic_Title()
   {
     return (EAttribute)topicEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTopic_Tags()
+  {
+    return (EAttribute)topicEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -615,7 +625,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
     // Create classes and their features
     declarationEClass = createEClass(DECLARATION);
     createEAttribute(declarationEClass, DECLARATION__NAME);
-    createEAttribute(declarationEClass, DECLARATION__RECRAWL);
+    createEAttribute(declarationEClass, DECLARATION__TITLE);
     createEReference(declarationEClass, DECLARATION__FEEDLINKS);
     createEReference(declarationEClass, DECLARATION__TOPICS);
     createEReference(declarationEClass, DECLARATION__DATE);
@@ -658,6 +668,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
 
     topicEClass = createEClass(TOPIC);
     createEAttribute(topicEClass, TOPIC__NAME);
+    createEAttribute(topicEClass, TOPIC__TITLE);
     createEAttribute(topicEClass, TOPIC__TAGS);
 
     pairEClass = createEClass(PAIR);
@@ -699,7 +710,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
     // Initialize classes and features; add operations and parameters
     initEClass(declarationEClass, Declaration.class, "Declaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDeclaration_Recrawl(), ecorePackage.getEBoolean(), "recrawl", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDeclaration_Title(), ecorePackage.getEString(), "title", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDeclaration_Feedlinks(), this.getPair(), null, "feedlinks", null, 0, -1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDeclaration_Topics(), this.getTopic(), null, "topics", null, 0, -1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDeclaration_Date(), this.getDate(), null, "date", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -742,6 +753,7 @@ public class NplPackageImpl extends EPackageImpl implements NplPackage
 
     initEClass(topicEClass, Topic.class, "Topic", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTopic_Name(), ecorePackage.getEString(), "name", null, 0, 1, Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTopic_Title(), ecorePackage.getEString(), "title", null, 0, 1, Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getTopic_Tags(), ecorePackage.getEString(), "tags", null, 0, -1, Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pairEClass, Pair.class, "Pair", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

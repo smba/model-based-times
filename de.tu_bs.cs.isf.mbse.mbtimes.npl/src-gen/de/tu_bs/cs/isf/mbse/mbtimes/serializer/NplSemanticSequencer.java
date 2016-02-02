@@ -140,7 +140,7 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         (volume=INT number=INT?)? 
 	 *         (topics+=Topic topics+=Topic*)? 
 	 *         (articleWordsMin=INT articleWordsMax=INT)? 
-	 *         (recrawl?='recrawl' feedlinks+=Pair feedlinks+=Pair*)?
+	 *         (title=STRING feedlinks+=Pair feedlinks+=Pair*)?
 	 *     )+
 	 */
 	protected void sequence_Declaration(ISerializationContext context, Declaration semanticObject) {
@@ -260,7 +260,7 @@ public class NplSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Topic returns Topic
 	 *
 	 * Constraint:
-	 *     (name=ID tags+=STRING tags+=STRING*)
+	 *     (name=ID title=STRING tags+=STRING tags+=STRING*)
 	 */
 	protected void sequence_Topic(ISerializationContext context, Topic semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

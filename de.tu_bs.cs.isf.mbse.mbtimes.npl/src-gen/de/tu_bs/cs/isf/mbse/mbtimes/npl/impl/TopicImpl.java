@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * </p>
  * <ul>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.TopicImpl#getName <em>Name</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.TopicImpl#getTitle <em>Title</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.TopicImpl#getTags <em>Tags</em>}</li>
  * </ul>
  *
@@ -53,6 +54,26 @@ public class TopicImpl extends MinimalEObjectImpl.Container implements Topic
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getTitle() <em>Title</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTitle()
+   * @generated
+   * @ordered
+   */
+  protected static final String TITLE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getTitle() <em>Title</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTitle()
+   * @generated
+   * @ordered
+   */
+  protected String title = TITLE_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getTags() <em>Tags</em>}' attribute list.
@@ -113,6 +134,29 @@ public class TopicImpl extends MinimalEObjectImpl.Container implements Topic
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getTitle()
+  {
+    return title;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setTitle(String newTitle)
+  {
+    String oldTitle = title;
+    title = newTitle;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.TOPIC__TITLE, oldTitle, title));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EList<String> getTags()
   {
     if (tags == null)
@@ -134,6 +178,8 @@ public class TopicImpl extends MinimalEObjectImpl.Container implements Topic
     {
       case NplPackage.TOPIC__NAME:
         return getName();
+      case NplPackage.TOPIC__TITLE:
+        return getTitle();
       case NplPackage.TOPIC__TAGS:
         return getTags();
     }
@@ -153,6 +199,9 @@ public class TopicImpl extends MinimalEObjectImpl.Container implements Topic
     {
       case NplPackage.TOPIC__NAME:
         setName((String)newValue);
+        return;
+      case NplPackage.TOPIC__TITLE:
+        setTitle((String)newValue);
         return;
       case NplPackage.TOPIC__TAGS:
         getTags().clear();
@@ -175,6 +224,9 @@ public class TopicImpl extends MinimalEObjectImpl.Container implements Topic
       case NplPackage.TOPIC__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case NplPackage.TOPIC__TITLE:
+        setTitle(TITLE_EDEFAULT);
+        return;
       case NplPackage.TOPIC__TAGS:
         getTags().clear();
         return;
@@ -194,6 +246,8 @@ public class TopicImpl extends MinimalEObjectImpl.Container implements Topic
     {
       case NplPackage.TOPIC__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case NplPackage.TOPIC__TITLE:
+        return TITLE_EDEFAULT == null ? title != null : !TITLE_EDEFAULT.equals(title);
       case NplPackage.TOPIC__TAGS:
         return tags != null && !tags.isEmpty();
     }
@@ -213,6 +267,8 @@ public class TopicImpl extends MinimalEObjectImpl.Container implements Topic
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
+    result.append(", title: ");
+    result.append(title);
     result.append(", tags: ");
     result.append(tags);
     result.append(')');

@@ -38,7 +38,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getName <em>Name</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#isRecrawl <em>Recrawl</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getTitle <em>Title</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getFeedlinks <em>Feedlinks</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getTopics <em>Topics</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.impl.DeclarationImpl#getDate <em>Date</em>}</li>
@@ -81,24 +81,24 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The default value of the '{@link #isRecrawl() <em>Recrawl</em>}' attribute.
+   * The default value of the '{@link #getTitle() <em>Title</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isRecrawl()
+   * @see #getTitle()
    * @generated
    * @ordered
    */
-  protected static final boolean RECRAWL_EDEFAULT = false;
+  protected static final String TITLE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #isRecrawl() <em>Recrawl</em>}' attribute.
+   * The cached value of the '{@link #getTitle() <em>Title</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isRecrawl()
+   * @see #getTitle()
    * @generated
    * @ordered
    */
-  protected boolean recrawl = RECRAWL_EDEFAULT;
+  protected String title = TITLE_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getFeedlinks() <em>Feedlinks</em>}' containment reference list.
@@ -369,9 +369,9 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean isRecrawl()
+  public String getTitle()
   {
-    return recrawl;
+    return title;
   }
 
   /**
@@ -379,12 +379,12 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRecrawl(boolean newRecrawl)
+  public void setTitle(String newTitle)
   {
-    boolean oldRecrawl = recrawl;
-    recrawl = newRecrawl;
+    String oldTitle = title;
+    title = newTitle;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__RECRAWL, oldRecrawl, recrawl));
+      eNotify(new ENotificationImpl(this, Notification.SET, NplPackage.DECLARATION__TITLE, oldTitle, title));
   }
 
   /**
@@ -906,8 +906,8 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
     {
       case NplPackage.DECLARATION__NAME:
         return getName();
-      case NplPackage.DECLARATION__RECRAWL:
-        return isRecrawl();
+      case NplPackage.DECLARATION__TITLE:
+        return getTitle();
       case NplPackage.DECLARATION__FEEDLINKS:
         return getFeedlinks();
       case NplPackage.DECLARATION__TOPICS:
@@ -956,8 +956,8 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
       case NplPackage.DECLARATION__NAME:
         setName((String)newValue);
         return;
-      case NplPackage.DECLARATION__RECRAWL:
-        setRecrawl((Boolean)newValue);
+      case NplPackage.DECLARATION__TITLE:
+        setTitle((String)newValue);
         return;
       case NplPackage.DECLARATION__FEEDLINKS:
         getFeedlinks().clear();
@@ -1023,8 +1023,8 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
       case NplPackage.DECLARATION__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case NplPackage.DECLARATION__RECRAWL:
-        setRecrawl(RECRAWL_EDEFAULT);
+      case NplPackage.DECLARATION__TITLE:
+        setTitle(TITLE_EDEFAULT);
         return;
       case NplPackage.DECLARATION__FEEDLINKS:
         getFeedlinks().clear();
@@ -1087,8 +1087,8 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
     {
       case NplPackage.DECLARATION__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case NplPackage.DECLARATION__RECRAWL:
-        return recrawl != RECRAWL_EDEFAULT;
+      case NplPackage.DECLARATION__TITLE:
+        return TITLE_EDEFAULT == null ? title != null : !TITLE_EDEFAULT.equals(title);
       case NplPackage.DECLARATION__FEEDLINKS:
         return feedlinks != null && !feedlinks.isEmpty();
       case NplPackage.DECLARATION__TOPICS:
@@ -1136,8 +1136,8 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
-    result.append(", recrawl: ");
-    result.append(recrawl);
+    result.append(", title: ");
+    result.append(title);
     result.append(", location: ");
     result.append(location);
     result.append(", volume: ");

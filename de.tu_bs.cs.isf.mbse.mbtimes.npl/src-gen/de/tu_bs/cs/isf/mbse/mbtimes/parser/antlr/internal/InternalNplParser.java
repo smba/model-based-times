@@ -21,7 +21,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalNplParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_INT", "RULE_URL", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'newspaper'", "'{'", "'recrawl'", "'feed links'", "'}'", "'topics'", "'optional: date'", "'optional: location'", "'optional: price'", "'optional: volume'", "'no.'", "'optional: language'", "'format'", "'number of articles per topic'", "'number of words per article'", "'-'", "'optional: number of images per article'", "'number of columns'", "'font size'", "'small'", "'medium'", "'large'", "'DIN A6'", "'DIN A5'", "'DIN A4'", "'DIN A3'", "'DIN A2'", "'DIN A1'", "'DIN A0'", "'English'", "'German'", "'Euro'", "'EUR'", "'\\u20AC'", "'Dollar'", "'USD'", "'$'", "'topic'", "', '", "'<'", "'>'", "'.'", "','", "'RSS'", "'Atom'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_INT", "RULE_URL", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'newspaper'", "'{'", "'title'", "'feed links'", "'}'", "'topics'", "'optional: date'", "'optional: location'", "'optional: price'", "'optional: volume'", "'no.'", "'optional: language'", "'format'", "'number of articles per topic'", "'number of words per article'", "'-'", "'optional: number of images per article'", "'number of columns'", "'font size'", "'small'", "'medium'", "'large'", "'DIN A6'", "'DIN A5'", "'DIN A4'", "'DIN A3'", "'DIN A2'", "'DIN A1'", "'DIN A0'", "'English'", "'German'", "'Euro'", "'EUR'", "'\\u20AC'", "'Dollar'", "'USD'", "'$'", "'topic'", "'as'", "', '", "'<'", "'>'", "'.'", "','", "'RSS'", "'Atom'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -33,6 +33,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
     public static final int T__12=12;
     public static final int T__56=56;
     public static final int T__13=13;
+    public static final int T__57=57;
     public static final int T__14=14;
     public static final int T__51=51;
     public static final int T__52=52;
@@ -153,81 +154,82 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDeclaration"
-    // InternalNpl.g:76:1: ruleDeclaration returns [EObject current=null] : ( ( ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?) ) ) ;
+    // InternalNpl.g:76:1: ruleDeclaration returns [EObject current=null] : ( ( ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_4= 'title' ( (lv_title_5_0= RULE_STRING ) ) otherlv_6= 'feed links' otherlv_7= '{' ( (lv_feedlinks_8_0= rulePair ) ) ( (lv_feedlinks_9_0= rulePair ) )* otherlv_10= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_11= 'topics' otherlv_12= '{' ( (lv_topics_13_0= ruleTopic ) ) ( (lv_topics_14_0= ruleTopic ) )* otherlv_15= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_16= 'optional: date' ( (lv_date_17_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_18= 'optional: location' ( (lv_location_19_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_20= 'optional: price' ( (lv_price_21_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_22= 'optional: volume' ( (lv_volume_23_0= RULE_INT ) ) (otherlv_24= 'no.' ( (lv_number_25_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_26= 'optional: language' ( (lv_language_27_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_28= 'format' ( (lv_format_29_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_30= 'number of articles per topic' ( (lv_articleCnt_31_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_32= 'number of words per article' ( (lv_articleWordsMin_33_0= RULE_INT ) ) otherlv_34= '-' ( (lv_articleWordsMax_35_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_36= 'optional: number of images per article' ( (lv_imagesCnt_37_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_38= 'number of columns' ( (lv_columnsCnt_39_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_40= 'font size' ( (lv_fontSize_41_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_42= '}' ) ) ) ) )+ {...}?) ) ) ;
     public final EObject ruleDeclaration() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_1=null;
         Token lv_name_2_0=null;
         Token otherlv_3=null;
-        Token lv_recrawl_4_0=null;
-        Token otherlv_5=null;
+        Token otherlv_4=null;
+        Token lv_title_5_0=null;
         Token otherlv_6=null;
-        Token otherlv_9=null;
+        Token otherlv_7=null;
         Token otherlv_10=null;
         Token otherlv_11=null;
-        Token otherlv_14=null;
+        Token otherlv_12=null;
         Token otherlv_15=null;
-        Token otherlv_17=null;
-        Token lv_location_18_0=null;
-        Token otherlv_19=null;
-        Token otherlv_21=null;
-        Token lv_volume_22_0=null;
-        Token otherlv_23=null;
-        Token lv_number_24_0=null;
-        Token otherlv_25=null;
-        Token otherlv_27=null;
-        Token otherlv_29=null;
-        Token lv_articleCnt_30_0=null;
-        Token otherlv_31=null;
-        Token lv_articleWordsMin_32_0=null;
-        Token otherlv_33=null;
-        Token lv_articleWordsMax_34_0=null;
-        Token otherlv_35=null;
-        Token otherlv_37=null;
-        Token lv_columnsCnt_38_0=null;
-        Token otherlv_39=null;
-        Token otherlv_41=null;
-        EObject lv_feedlinks_7_0 = null;
-
+        Token otherlv_16=null;
+        Token otherlv_18=null;
+        Token lv_location_19_0=null;
+        Token otherlv_20=null;
+        Token otherlv_22=null;
+        Token lv_volume_23_0=null;
+        Token otherlv_24=null;
+        Token lv_number_25_0=null;
+        Token otherlv_26=null;
+        Token otherlv_28=null;
+        Token otherlv_30=null;
+        Token lv_articleCnt_31_0=null;
+        Token otherlv_32=null;
+        Token lv_articleWordsMin_33_0=null;
+        Token otherlv_34=null;
+        Token lv_articleWordsMax_35_0=null;
+        Token otherlv_36=null;
+        Token otherlv_38=null;
+        Token lv_columnsCnt_39_0=null;
+        Token otherlv_40=null;
+        Token otherlv_42=null;
         EObject lv_feedlinks_8_0 = null;
 
-        EObject lv_topics_12_0 = null;
+        EObject lv_feedlinks_9_0 = null;
 
         EObject lv_topics_13_0 = null;
 
-        EObject lv_date_16_0 = null;
+        EObject lv_topics_14_0 = null;
 
-        EObject lv_price_20_0 = null;
+        EObject lv_date_17_0 = null;
 
-        EObject lv_language_26_0 = null;
+        EObject lv_price_21_0 = null;
 
-        EObject lv_format_28_0 = null;
+        EObject lv_language_27_0 = null;
 
-        EObject lv_imagesCnt_36_0 = null;
+        EObject lv_format_29_0 = null;
 
-        EObject lv_fontSize_40_0 = null;
+        EObject lv_imagesCnt_37_0 = null;
+
+        EObject lv_fontSize_41_0 = null;
 
 
          enterRule(); 
             
         try {
-            // InternalNpl.g:79:28: ( ( ( ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?) ) ) )
-            // InternalNpl.g:80:1: ( ( ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?) ) )
+            // InternalNpl.g:79:28: ( ( ( ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_4= 'title' ( (lv_title_5_0= RULE_STRING ) ) otherlv_6= 'feed links' otherlv_7= '{' ( (lv_feedlinks_8_0= rulePair ) ) ( (lv_feedlinks_9_0= rulePair ) )* otherlv_10= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_11= 'topics' otherlv_12= '{' ( (lv_topics_13_0= ruleTopic ) ) ( (lv_topics_14_0= ruleTopic ) )* otherlv_15= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_16= 'optional: date' ( (lv_date_17_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_18= 'optional: location' ( (lv_location_19_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_20= 'optional: price' ( (lv_price_21_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_22= 'optional: volume' ( (lv_volume_23_0= RULE_INT ) ) (otherlv_24= 'no.' ( (lv_number_25_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_26= 'optional: language' ( (lv_language_27_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_28= 'format' ( (lv_format_29_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_30= 'number of articles per topic' ( (lv_articleCnt_31_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_32= 'number of words per article' ( (lv_articleWordsMin_33_0= RULE_INT ) ) otherlv_34= '-' ( (lv_articleWordsMax_35_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_36= 'optional: number of images per article' ( (lv_imagesCnt_37_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_38= 'number of columns' ( (lv_columnsCnt_39_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_40= 'font size' ( (lv_fontSize_41_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_42= '}' ) ) ) ) )+ {...}?) ) ) )
+            // InternalNpl.g:80:1: ( ( ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_4= 'title' ( (lv_title_5_0= RULE_STRING ) ) otherlv_6= 'feed links' otherlv_7= '{' ( (lv_feedlinks_8_0= rulePair ) ) ( (lv_feedlinks_9_0= rulePair ) )* otherlv_10= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_11= 'topics' otherlv_12= '{' ( (lv_topics_13_0= ruleTopic ) ) ( (lv_topics_14_0= ruleTopic ) )* otherlv_15= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_16= 'optional: date' ( (lv_date_17_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_18= 'optional: location' ( (lv_location_19_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_20= 'optional: price' ( (lv_price_21_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_22= 'optional: volume' ( (lv_volume_23_0= RULE_INT ) ) (otherlv_24= 'no.' ( (lv_number_25_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_26= 'optional: language' ( (lv_language_27_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_28= 'format' ( (lv_format_29_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_30= 'number of articles per topic' ( (lv_articleCnt_31_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_32= 'number of words per article' ( (lv_articleWordsMin_33_0= RULE_INT ) ) otherlv_34= '-' ( (lv_articleWordsMax_35_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_36= 'optional: number of images per article' ( (lv_imagesCnt_37_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_38= 'number of columns' ( (lv_columnsCnt_39_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_40= 'font size' ( (lv_fontSize_41_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_42= '}' ) ) ) ) )+ {...}?) ) )
             {
-            // InternalNpl.g:80:1: ( ( ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?) ) )
-            // InternalNpl.g:82:1: ( ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?) )
+            // InternalNpl.g:80:1: ( ( ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_4= 'title' ( (lv_title_5_0= RULE_STRING ) ) otherlv_6= 'feed links' otherlv_7= '{' ( (lv_feedlinks_8_0= rulePair ) ) ( (lv_feedlinks_9_0= rulePair ) )* otherlv_10= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_11= 'topics' otherlv_12= '{' ( (lv_topics_13_0= ruleTopic ) ) ( (lv_topics_14_0= ruleTopic ) )* otherlv_15= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_16= 'optional: date' ( (lv_date_17_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_18= 'optional: location' ( (lv_location_19_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_20= 'optional: price' ( (lv_price_21_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_22= 'optional: volume' ( (lv_volume_23_0= RULE_INT ) ) (otherlv_24= 'no.' ( (lv_number_25_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_26= 'optional: language' ( (lv_language_27_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_28= 'format' ( (lv_format_29_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_30= 'number of articles per topic' ( (lv_articleCnt_31_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_32= 'number of words per article' ( (lv_articleWordsMin_33_0= RULE_INT ) ) otherlv_34= '-' ( (lv_articleWordsMax_35_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_36= 'optional: number of images per article' ( (lv_imagesCnt_37_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_38= 'number of columns' ( (lv_columnsCnt_39_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_40= 'font size' ( (lv_fontSize_41_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_42= '}' ) ) ) ) )+ {...}?) ) )
+            // InternalNpl.g:82:1: ( ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_4= 'title' ( (lv_title_5_0= RULE_STRING ) ) otherlv_6= 'feed links' otherlv_7= '{' ( (lv_feedlinks_8_0= rulePair ) ) ( (lv_feedlinks_9_0= rulePair ) )* otherlv_10= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_11= 'topics' otherlv_12= '{' ( (lv_topics_13_0= ruleTopic ) ) ( (lv_topics_14_0= ruleTopic ) )* otherlv_15= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_16= 'optional: date' ( (lv_date_17_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_18= 'optional: location' ( (lv_location_19_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_20= 'optional: price' ( (lv_price_21_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_22= 'optional: volume' ( (lv_volume_23_0= RULE_INT ) ) (otherlv_24= 'no.' ( (lv_number_25_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_26= 'optional: language' ( (lv_language_27_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_28= 'format' ( (lv_format_29_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_30= 'number of articles per topic' ( (lv_articleCnt_31_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_32= 'number of words per article' ( (lv_articleWordsMin_33_0= RULE_INT ) ) otherlv_34= '-' ( (lv_articleWordsMax_35_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_36= 'optional: number of images per article' ( (lv_imagesCnt_37_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_38= 'number of columns' ( (lv_columnsCnt_39_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_40= 'font size' ( (lv_fontSize_41_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_42= '}' ) ) ) ) )+ {...}?) )
             {
-            // InternalNpl.g:82:1: ( ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?) )
-            // InternalNpl.g:83:2: ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?)
+            // InternalNpl.g:82:1: ( ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_4= 'title' ( (lv_title_5_0= RULE_STRING ) ) otherlv_6= 'feed links' otherlv_7= '{' ( (lv_feedlinks_8_0= rulePair ) ) ( (lv_feedlinks_9_0= rulePair ) )* otherlv_10= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_11= 'topics' otherlv_12= '{' ( (lv_topics_13_0= ruleTopic ) ) ( (lv_topics_14_0= ruleTopic ) )* otherlv_15= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_16= 'optional: date' ( (lv_date_17_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_18= 'optional: location' ( (lv_location_19_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_20= 'optional: price' ( (lv_price_21_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_22= 'optional: volume' ( (lv_volume_23_0= RULE_INT ) ) (otherlv_24= 'no.' ( (lv_number_25_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_26= 'optional: language' ( (lv_language_27_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_28= 'format' ( (lv_format_29_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_30= 'number of articles per topic' ( (lv_articleCnt_31_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_32= 'number of words per article' ( (lv_articleWordsMin_33_0= RULE_INT ) ) otherlv_34= '-' ( (lv_articleWordsMax_35_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_36= 'optional: number of images per article' ( (lv_imagesCnt_37_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_38= 'number of columns' ( (lv_columnsCnt_39_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_40= 'font size' ( (lv_fontSize_41_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_42= '}' ) ) ) ) )+ {...}?) )
+            // InternalNpl.g:83:2: ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_4= 'title' ( (lv_title_5_0= RULE_STRING ) ) otherlv_6= 'feed links' otherlv_7= '{' ( (lv_feedlinks_8_0= rulePair ) ) ( (lv_feedlinks_9_0= rulePair ) )* otherlv_10= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_11= 'topics' otherlv_12= '{' ( (lv_topics_13_0= ruleTopic ) ) ( (lv_topics_14_0= ruleTopic ) )* otherlv_15= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_16= 'optional: date' ( (lv_date_17_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_18= 'optional: location' ( (lv_location_19_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_20= 'optional: price' ( (lv_price_21_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_22= 'optional: volume' ( (lv_volume_23_0= RULE_INT ) ) (otherlv_24= 'no.' ( (lv_number_25_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_26= 'optional: language' ( (lv_language_27_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_28= 'format' ( (lv_format_29_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_30= 'number of articles per topic' ( (lv_articleCnt_31_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_32= 'number of words per article' ( (lv_articleWordsMin_33_0= RULE_INT ) ) otherlv_34= '-' ( (lv_articleWordsMax_35_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_36= 'optional: number of images per article' ( (lv_imagesCnt_37_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_38= 'number of columns' ( (lv_columnsCnt_39_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_40= 'font size' ( (lv_fontSize_41_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_42= '}' ) ) ) ) )+ {...}?)
             {
              
             	  getUnorderedGroupHelper().enter(grammarAccess.getDeclarationAccess().getUnorderedGroup());
             	
-            // InternalNpl.g:86:2: ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?)
-            // InternalNpl.g:87:3: ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+ {...}?
+            // InternalNpl.g:86:2: ( ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_4= 'title' ( (lv_title_5_0= RULE_STRING ) ) otherlv_6= 'feed links' otherlv_7= '{' ( (lv_feedlinks_8_0= rulePair ) ) ( (lv_feedlinks_9_0= rulePair ) )* otherlv_10= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_11= 'topics' otherlv_12= '{' ( (lv_topics_13_0= ruleTopic ) ) ( (lv_topics_14_0= ruleTopic ) )* otherlv_15= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_16= 'optional: date' ( (lv_date_17_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_18= 'optional: location' ( (lv_location_19_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_20= 'optional: price' ( (lv_price_21_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_22= 'optional: volume' ( (lv_volume_23_0= RULE_INT ) ) (otherlv_24= 'no.' ( (lv_number_25_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_26= 'optional: language' ( (lv_language_27_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_28= 'format' ( (lv_format_29_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_30= 'number of articles per topic' ( (lv_articleCnt_31_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_32= 'number of words per article' ( (lv_articleWordsMin_33_0= RULE_INT ) ) otherlv_34= '-' ( (lv_articleWordsMax_35_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_36= 'optional: number of images per article' ( (lv_imagesCnt_37_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_38= 'number of columns' ( (lv_columnsCnt_39_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_40= 'font size' ( (lv_fontSize_41_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_42= '}' ) ) ) ) )+ {...}?)
+            // InternalNpl.g:87:3: ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_4= 'title' ( (lv_title_5_0= RULE_STRING ) ) otherlv_6= 'feed links' otherlv_7= '{' ( (lv_feedlinks_8_0= rulePair ) ) ( (lv_feedlinks_9_0= rulePair ) )* otherlv_10= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_11= 'topics' otherlv_12= '{' ( (lv_topics_13_0= ruleTopic ) ) ( (lv_topics_14_0= ruleTopic ) )* otherlv_15= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_16= 'optional: date' ( (lv_date_17_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_18= 'optional: location' ( (lv_location_19_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_20= 'optional: price' ( (lv_price_21_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_22= 'optional: volume' ( (lv_volume_23_0= RULE_INT ) ) (otherlv_24= 'no.' ( (lv_number_25_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_26= 'optional: language' ( (lv_language_27_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_28= 'format' ( (lv_format_29_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_30= 'number of articles per topic' ( (lv_articleCnt_31_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_32= 'number of words per article' ( (lv_articleWordsMin_33_0= RULE_INT ) ) otherlv_34= '-' ( (lv_articleWordsMax_35_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_36= 'optional: number of images per article' ( (lv_imagesCnt_37_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_38= 'number of columns' ( (lv_columnsCnt_39_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_40= 'font size' ( (lv_fontSize_41_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_42= '}' ) ) ) ) )+ {...}?
             {
-            // InternalNpl.g:87:3: ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+
+            // InternalNpl.g:87:3: ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_4= 'title' ( (lv_title_5_0= RULE_STRING ) ) otherlv_6= 'feed links' otherlv_7= '{' ( (lv_feedlinks_8_0= rulePair ) ) ( (lv_feedlinks_9_0= rulePair ) )* otherlv_10= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_11= 'topics' otherlv_12= '{' ( (lv_topics_13_0= ruleTopic ) ) ( (lv_topics_14_0= ruleTopic ) )* otherlv_15= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_16= 'optional: date' ( (lv_date_17_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_18= 'optional: location' ( (lv_location_19_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_20= 'optional: price' ( (lv_price_21_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_22= 'optional: volume' ( (lv_volume_23_0= RULE_INT ) ) (otherlv_24= 'no.' ( (lv_number_25_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_26= 'optional: language' ( (lv_language_27_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_28= 'format' ( (lv_format_29_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_30= 'number of articles per topic' ( (lv_articleCnt_31_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_32= 'number of words per article' ( (lv_articleWordsMin_33_0= RULE_INT ) ) otherlv_34= '-' ( (lv_articleWordsMax_35_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_36= 'optional: number of images per article' ( (lv_imagesCnt_37_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_38= 'number of columns' ( (lv_columnsCnt_39_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_40= 'font size' ( (lv_fontSize_41_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_42= '}' ) ) ) ) )+
             int cnt4=0;
             loop4:
             do {
@@ -311,44 +313,52 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 2 :
-            	    // InternalNpl.g:127:4: ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) )
+            	    // InternalNpl.g:127:4: ({...}? => ( ({...}? => (otherlv_4= 'title' ( (lv_title_5_0= RULE_STRING ) ) otherlv_6= 'feed links' otherlv_7= '{' ( (lv_feedlinks_8_0= rulePair ) ) ( (lv_feedlinks_9_0= rulePair ) )* otherlv_10= '}' ) ) ) )
             	    {
-            	    // InternalNpl.g:127:4: ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) )
-            	    // InternalNpl.g:128:5: {...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) )
+            	    // InternalNpl.g:127:4: ({...}? => ( ({...}? => (otherlv_4= 'title' ( (lv_title_5_0= RULE_STRING ) ) otherlv_6= 'feed links' otherlv_7= '{' ( (lv_feedlinks_8_0= rulePair ) ) ( (lv_feedlinks_9_0= rulePair ) )* otherlv_10= '}' ) ) ) )
+            	    // InternalNpl.g:128:5: {...}? => ( ({...}? => (otherlv_4= 'title' ( (lv_title_5_0= RULE_STRING ) ) otherlv_6= 'feed links' otherlv_7= '{' ( (lv_feedlinks_8_0= rulePair ) ) ( (lv_feedlinks_9_0= rulePair ) )* otherlv_10= '}' ) ) )
             	    {
             	    if ( ! getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 1) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 1)");
             	    }
-            	    // InternalNpl.g:128:106: ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) )
-            	    // InternalNpl.g:129:6: ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) )
+            	    // InternalNpl.g:128:106: ( ({...}? => (otherlv_4= 'title' ( (lv_title_5_0= RULE_STRING ) ) otherlv_6= 'feed links' otherlv_7= '{' ( (lv_feedlinks_8_0= rulePair ) ) ( (lv_feedlinks_9_0= rulePair ) )* otherlv_10= '}' ) ) )
+            	    // InternalNpl.g:129:6: ({...}? => (otherlv_4= 'title' ( (lv_title_5_0= RULE_STRING ) ) otherlv_6= 'feed links' otherlv_7= '{' ( (lv_feedlinks_8_0= rulePair ) ) ( (lv_feedlinks_9_0= rulePair ) )* otherlv_10= '}' ) )
             	    {
             	     
             	    	 				  getUnorderedGroupHelper().select(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 1);
             	    	 				
-            	    // InternalNpl.g:132:6: ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) )
-            	    // InternalNpl.g:132:7: {...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' )
+            	    // InternalNpl.g:132:6: ({...}? => (otherlv_4= 'title' ( (lv_title_5_0= RULE_STRING ) ) otherlv_6= 'feed links' otherlv_7= '{' ( (lv_feedlinks_8_0= rulePair ) ) ( (lv_feedlinks_9_0= rulePair ) )* otherlv_10= '}' ) )
+            	    // InternalNpl.g:132:7: {...}? => (otherlv_4= 'title' ( (lv_title_5_0= RULE_STRING ) ) otherlv_6= 'feed links' otherlv_7= '{' ( (lv_feedlinks_8_0= rulePair ) ) ( (lv_feedlinks_9_0= rulePair ) )* otherlv_10= '}' )
             	    {
             	    if ( !((true)) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "true");
             	    }
-            	    // InternalNpl.g:132:16: ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' )
-            	    // InternalNpl.g:132:17: ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}'
+            	    // InternalNpl.g:132:16: (otherlv_4= 'title' ( (lv_title_5_0= RULE_STRING ) ) otherlv_6= 'feed links' otherlv_7= '{' ( (lv_feedlinks_8_0= rulePair ) ) ( (lv_feedlinks_9_0= rulePair ) )* otherlv_10= '}' )
+            	    // InternalNpl.g:132:18: otherlv_4= 'title' ( (lv_title_5_0= RULE_STRING ) ) otherlv_6= 'feed links' otherlv_7= '{' ( (lv_feedlinks_8_0= rulePair ) ) ( (lv_feedlinks_9_0= rulePair ) )* otherlv_10= '}'
             	    {
-            	    // InternalNpl.g:132:17: ( (lv_recrawl_4_0= 'recrawl' ) )
-            	    // InternalNpl.g:133:1: (lv_recrawl_4_0= 'recrawl' )
-            	    {
-            	    // InternalNpl.g:133:1: (lv_recrawl_4_0= 'recrawl' )
-            	    // InternalNpl.g:134:3: lv_recrawl_4_0= 'recrawl'
-            	    {
-            	    lv_recrawl_4_0=(Token)match(input,14,FOLLOW_6); 
+            	    otherlv_4=(Token)match(input,14,FOLLOW_6); 
 
-            	            newLeafNode(lv_recrawl_4_0, grammarAccess.getDeclarationAccess().getRecrawlRecrawlKeyword_1_0_0());
+            	        	newLeafNode(otherlv_4, grammarAccess.getDeclarationAccess().getTitleKeyword_1_0());
             	        
+            	    // InternalNpl.g:136:1: ( (lv_title_5_0= RULE_STRING ) )
+            	    // InternalNpl.g:137:1: (lv_title_5_0= RULE_STRING )
+            	    {
+            	    // InternalNpl.g:137:1: (lv_title_5_0= RULE_STRING )
+            	    // InternalNpl.g:138:3: lv_title_5_0= RULE_STRING
+            	    {
+            	    lv_title_5_0=(Token)match(input,RULE_STRING,FOLLOW_7); 
+
+            	    			newLeafNode(lv_title_5_0, grammarAccess.getDeclarationAccess().getTitleSTRINGTerminalRuleCall_1_1_0()); 
+            	    		
 
             	    	        if (current==null) {
             	    	            current = createModelElement(grammarAccess.getDeclarationRule());
             	    	        }
-            	           		setWithLastConsumed(current, "recrawl", true, "recrawl");
+            	           		setWithLastConsumed(
+            	           			current, 
+            	           			"title",
+            	            		lv_title_5_0, 
+            	            		"org.eclipse.xtext.common.Terminals.STRING");
             	    	    
 
             	    }
@@ -356,25 +366,25 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             	    }
 
-            	    otherlv_5=(Token)match(input,15,FOLLOW_4); 
+            	    otherlv_6=(Token)match(input,15,FOLLOW_4); 
 
-            	        	newLeafNode(otherlv_5, grammarAccess.getDeclarationAccess().getFeedLinksKeyword_1_1());
+            	        	newLeafNode(otherlv_6, grammarAccess.getDeclarationAccess().getFeedLinksKeyword_1_2());
             	        
-            	    otherlv_6=(Token)match(input,13,FOLLOW_7); 
+            	    otherlv_7=(Token)match(input,13,FOLLOW_8); 
 
-            	        	newLeafNode(otherlv_6, grammarAccess.getDeclarationAccess().getLeftCurlyBracketKeyword_1_2());
+            	        	newLeafNode(otherlv_7, grammarAccess.getDeclarationAccess().getLeftCurlyBracketKeyword_1_3());
             	        
-            	    // InternalNpl.g:155:1: ( (lv_feedlinks_7_0= rulePair ) )
-            	    // InternalNpl.g:156:1: (lv_feedlinks_7_0= rulePair )
+            	    // InternalNpl.g:162:1: ( (lv_feedlinks_8_0= rulePair ) )
+            	    // InternalNpl.g:163:1: (lv_feedlinks_8_0= rulePair )
             	    {
-            	    // InternalNpl.g:156:1: (lv_feedlinks_7_0= rulePair )
-            	    // InternalNpl.g:157:3: lv_feedlinks_7_0= rulePair
+            	    // InternalNpl.g:163:1: (lv_feedlinks_8_0= rulePair )
+            	    // InternalNpl.g:164:3: lv_feedlinks_8_0= rulePair
             	    {
             	     
-            	    	        newCompositeNode(grammarAccess.getDeclarationAccess().getFeedlinksPairParserRuleCall_1_3_0()); 
+            	    	        newCompositeNode(grammarAccess.getDeclarationAccess().getFeedlinksPairParserRuleCall_1_4_0()); 
             	    	    
-            	    pushFollow(FOLLOW_8);
-            	    lv_feedlinks_7_0=rulePair();
+            	    pushFollow(FOLLOW_9);
+            	    lv_feedlinks_8_0=rulePair();
 
             	    state._fsp--;
 
@@ -385,7 +395,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	           		add(
             	           			current, 
             	           			"feedlinks",
-            	            		lv_feedlinks_7_0, 
+            	            		lv_feedlinks_8_0, 
             	            		"de.tu_bs.cs.isf.mbse.mbtimes.Npl.Pair");
             	    	        afterParserOrEnumRuleCall();
             	    	    
@@ -395,29 +405,29 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             	    }
 
-            	    // InternalNpl.g:173:2: ( (lv_feedlinks_8_0= rulePair ) )*
+            	    // InternalNpl.g:180:2: ( (lv_feedlinks_9_0= rulePair ) )*
             	    loop1:
             	    do {
             	        int alt1=2;
             	        int LA1_0 = input.LA(1);
 
-            	        if ( ((LA1_0>=55 && LA1_0<=56)) ) {
+            	        if ( ((LA1_0>=56 && LA1_0<=57)) ) {
             	            alt1=1;
             	        }
 
 
             	        switch (alt1) {
             	    	case 1 :
-            	    	    // InternalNpl.g:174:1: (lv_feedlinks_8_0= rulePair )
+            	    	    // InternalNpl.g:181:1: (lv_feedlinks_9_0= rulePair )
             	    	    {
-            	    	    // InternalNpl.g:174:1: (lv_feedlinks_8_0= rulePair )
-            	    	    // InternalNpl.g:175:3: lv_feedlinks_8_0= rulePair
+            	    	    // InternalNpl.g:181:1: (lv_feedlinks_9_0= rulePair )
+            	    	    // InternalNpl.g:182:3: lv_feedlinks_9_0= rulePair
             	    	    {
             	    	     
-            	    	    	        newCompositeNode(grammarAccess.getDeclarationAccess().getFeedlinksPairParserRuleCall_1_4_0()); 
+            	    	    	        newCompositeNode(grammarAccess.getDeclarationAccess().getFeedlinksPairParserRuleCall_1_5_0()); 
             	    	    	    
-            	    	    pushFollow(FOLLOW_8);
-            	    	    lv_feedlinks_8_0=rulePair();
+            	    	    pushFollow(FOLLOW_9);
+            	    	    lv_feedlinks_9_0=rulePair();
 
             	    	    state._fsp--;
 
@@ -428,7 +438,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	    	           		add(
             	    	           			current, 
             	    	           			"feedlinks",
-            	    	            		lv_feedlinks_8_0, 
+            	    	            		lv_feedlinks_9_0, 
             	    	            		"de.tu_bs.cs.isf.mbse.mbtimes.Npl.Pair");
             	    	    	        afterParserOrEnumRuleCall();
             	    	    	    
@@ -444,9 +454,9 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	        }
             	    } while (true);
 
-            	    otherlv_9=(Token)match(input,16,FOLLOW_5); 
+            	    otherlv_10=(Token)match(input,16,FOLLOW_5); 
 
-            	        	newLeafNode(otherlv_9, grammarAccess.getDeclarationAccess().getRightCurlyBracketKeyword_1_5());
+            	        	newLeafNode(otherlv_10, grammarAccess.getDeclarationAccess().getRightCurlyBracketKeyword_1_6());
             	        
 
             	    }
@@ -467,48 +477,48 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 3 :
-            	    // InternalNpl.g:202:4: ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) )
+            	    // InternalNpl.g:209:4: ({...}? => ( ({...}? => (otherlv_11= 'topics' otherlv_12= '{' ( (lv_topics_13_0= ruleTopic ) ) ( (lv_topics_14_0= ruleTopic ) )* otherlv_15= '}' ) ) ) )
             	    {
-            	    // InternalNpl.g:202:4: ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) )
-            	    // InternalNpl.g:203:5: {...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) )
+            	    // InternalNpl.g:209:4: ({...}? => ( ({...}? => (otherlv_11= 'topics' otherlv_12= '{' ( (lv_topics_13_0= ruleTopic ) ) ( (lv_topics_14_0= ruleTopic ) )* otherlv_15= '}' ) ) ) )
+            	    // InternalNpl.g:210:5: {...}? => ( ({...}? => (otherlv_11= 'topics' otherlv_12= '{' ( (lv_topics_13_0= ruleTopic ) ) ( (lv_topics_14_0= ruleTopic ) )* otherlv_15= '}' ) ) )
             	    {
             	    if ( ! getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 2) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 2)");
             	    }
-            	    // InternalNpl.g:203:106: ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) )
-            	    // InternalNpl.g:204:6: ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) )
+            	    // InternalNpl.g:210:106: ( ({...}? => (otherlv_11= 'topics' otherlv_12= '{' ( (lv_topics_13_0= ruleTopic ) ) ( (lv_topics_14_0= ruleTopic ) )* otherlv_15= '}' ) ) )
+            	    // InternalNpl.g:211:6: ({...}? => (otherlv_11= 'topics' otherlv_12= '{' ( (lv_topics_13_0= ruleTopic ) ) ( (lv_topics_14_0= ruleTopic ) )* otherlv_15= '}' ) )
             	    {
             	     
             	    	 				  getUnorderedGroupHelper().select(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 2);
             	    	 				
-            	    // InternalNpl.g:207:6: ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) )
-            	    // InternalNpl.g:207:7: {...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' )
+            	    // InternalNpl.g:214:6: ({...}? => (otherlv_11= 'topics' otherlv_12= '{' ( (lv_topics_13_0= ruleTopic ) ) ( (lv_topics_14_0= ruleTopic ) )* otherlv_15= '}' ) )
+            	    // InternalNpl.g:214:7: {...}? => (otherlv_11= 'topics' otherlv_12= '{' ( (lv_topics_13_0= ruleTopic ) ) ( (lv_topics_14_0= ruleTopic ) )* otherlv_15= '}' )
             	    {
             	    if ( !((true)) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "true");
             	    }
-            	    // InternalNpl.g:207:16: (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' )
-            	    // InternalNpl.g:207:18: otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}'
+            	    // InternalNpl.g:214:16: (otherlv_11= 'topics' otherlv_12= '{' ( (lv_topics_13_0= ruleTopic ) ) ( (lv_topics_14_0= ruleTopic ) )* otherlv_15= '}' )
+            	    // InternalNpl.g:214:18: otherlv_11= 'topics' otherlv_12= '{' ( (lv_topics_13_0= ruleTopic ) ) ( (lv_topics_14_0= ruleTopic ) )* otherlv_15= '}'
             	    {
-            	    otherlv_10=(Token)match(input,17,FOLLOW_4); 
+            	    otherlv_11=(Token)match(input,17,FOLLOW_4); 
 
-            	        	newLeafNode(otherlv_10, grammarAccess.getDeclarationAccess().getTopicsKeyword_2_0());
+            	        	newLeafNode(otherlv_11, grammarAccess.getDeclarationAccess().getTopicsKeyword_2_0());
             	        
-            	    otherlv_11=(Token)match(input,13,FOLLOW_9); 
+            	    otherlv_12=(Token)match(input,13,FOLLOW_10); 
 
-            	        	newLeafNode(otherlv_11, grammarAccess.getDeclarationAccess().getLeftCurlyBracketKeyword_2_1());
+            	        	newLeafNode(otherlv_12, grammarAccess.getDeclarationAccess().getLeftCurlyBracketKeyword_2_1());
             	        
-            	    // InternalNpl.g:215:1: ( (lv_topics_12_0= ruleTopic ) )
-            	    // InternalNpl.g:216:1: (lv_topics_12_0= ruleTopic )
+            	    // InternalNpl.g:222:1: ( (lv_topics_13_0= ruleTopic ) )
+            	    // InternalNpl.g:223:1: (lv_topics_13_0= ruleTopic )
             	    {
-            	    // InternalNpl.g:216:1: (lv_topics_12_0= ruleTopic )
-            	    // InternalNpl.g:217:3: lv_topics_12_0= ruleTopic
+            	    // InternalNpl.g:223:1: (lv_topics_13_0= ruleTopic )
+            	    // InternalNpl.g:224:3: lv_topics_13_0= ruleTopic
             	    {
             	     
             	    	        newCompositeNode(grammarAccess.getDeclarationAccess().getTopicsTopicParserRuleCall_2_2_0()); 
             	    	    
-            	    pushFollow(FOLLOW_10);
-            	    lv_topics_12_0=ruleTopic();
+            	    pushFollow(FOLLOW_11);
+            	    lv_topics_13_0=ruleTopic();
 
             	    state._fsp--;
 
@@ -519,7 +529,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	           		add(
             	           			current, 
             	           			"topics",
-            	            		lv_topics_12_0, 
+            	            		lv_topics_13_0, 
             	            		"de.tu_bs.cs.isf.mbse.mbtimes.Npl.Topic");
             	    	        afterParserOrEnumRuleCall();
             	    	    
@@ -529,7 +539,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             	    }
 
-            	    // InternalNpl.g:233:2: ( (lv_topics_13_0= ruleTopic ) )*
+            	    // InternalNpl.g:240:2: ( (lv_topics_14_0= ruleTopic ) )*
             	    loop2:
             	    do {
             	        int alt2=2;
@@ -542,16 +552,16 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             	        switch (alt2) {
             	    	case 1 :
-            	    	    // InternalNpl.g:234:1: (lv_topics_13_0= ruleTopic )
+            	    	    // InternalNpl.g:241:1: (lv_topics_14_0= ruleTopic )
             	    	    {
-            	    	    // InternalNpl.g:234:1: (lv_topics_13_0= ruleTopic )
-            	    	    // InternalNpl.g:235:3: lv_topics_13_0= ruleTopic
+            	    	    // InternalNpl.g:241:1: (lv_topics_14_0= ruleTopic )
+            	    	    // InternalNpl.g:242:3: lv_topics_14_0= ruleTopic
             	    	    {
             	    	     
             	    	    	        newCompositeNode(grammarAccess.getDeclarationAccess().getTopicsTopicParserRuleCall_2_3_0()); 
             	    	    	    
-            	    	    pushFollow(FOLLOW_10);
-            	    	    lv_topics_13_0=ruleTopic();
+            	    	    pushFollow(FOLLOW_11);
+            	    	    lv_topics_14_0=ruleTopic();
 
             	    	    state._fsp--;
 
@@ -562,7 +572,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	    	           		add(
             	    	           			current, 
             	    	           			"topics",
-            	    	            		lv_topics_13_0, 
+            	    	            		lv_topics_14_0, 
             	    	            		"de.tu_bs.cs.isf.mbse.mbtimes.Npl.Topic");
             	    	    	        afterParserOrEnumRuleCall();
             	    	    	    
@@ -578,9 +588,9 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	        }
             	    } while (true);
 
-            	    otherlv_14=(Token)match(input,16,FOLLOW_5); 
+            	    otherlv_15=(Token)match(input,16,FOLLOW_5); 
 
-            	        	newLeafNode(otherlv_14, grammarAccess.getDeclarationAccess().getRightCurlyBracketKeyword_2_4());
+            	        	newLeafNode(otherlv_15, grammarAccess.getDeclarationAccess().getRightCurlyBracketKeyword_2_4());
             	        
 
             	    }
@@ -601,44 +611,44 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 4 :
-            	    // InternalNpl.g:262:4: ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) )
+            	    // InternalNpl.g:269:4: ({...}? => ( ({...}? => (otherlv_16= 'optional: date' ( (lv_date_17_0= ruleDate ) ) ) ) ) )
             	    {
-            	    // InternalNpl.g:262:4: ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) )
-            	    // InternalNpl.g:263:5: {...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) )
+            	    // InternalNpl.g:269:4: ({...}? => ( ({...}? => (otherlv_16= 'optional: date' ( (lv_date_17_0= ruleDate ) ) ) ) ) )
+            	    // InternalNpl.g:270:5: {...}? => ( ({...}? => (otherlv_16= 'optional: date' ( (lv_date_17_0= ruleDate ) ) ) ) )
             	    {
             	    if ( ! getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 3) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 3)");
             	    }
-            	    // InternalNpl.g:263:106: ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) )
-            	    // InternalNpl.g:264:6: ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) )
+            	    // InternalNpl.g:270:106: ( ({...}? => (otherlv_16= 'optional: date' ( (lv_date_17_0= ruleDate ) ) ) ) )
+            	    // InternalNpl.g:271:6: ({...}? => (otherlv_16= 'optional: date' ( (lv_date_17_0= ruleDate ) ) ) )
             	    {
             	     
             	    	 				  getUnorderedGroupHelper().select(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 3);
             	    	 				
-            	    // InternalNpl.g:267:6: ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) )
-            	    // InternalNpl.g:267:7: {...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) )
+            	    // InternalNpl.g:274:6: ({...}? => (otherlv_16= 'optional: date' ( (lv_date_17_0= ruleDate ) ) ) )
+            	    // InternalNpl.g:274:7: {...}? => (otherlv_16= 'optional: date' ( (lv_date_17_0= ruleDate ) ) )
             	    {
             	    if ( !((true)) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "true");
             	    }
-            	    // InternalNpl.g:267:16: (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) )
-            	    // InternalNpl.g:267:18: otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) )
+            	    // InternalNpl.g:274:16: (otherlv_16= 'optional: date' ( (lv_date_17_0= ruleDate ) ) )
+            	    // InternalNpl.g:274:18: otherlv_16= 'optional: date' ( (lv_date_17_0= ruleDate ) )
             	    {
-            	    otherlv_15=(Token)match(input,18,FOLLOW_4); 
+            	    otherlv_16=(Token)match(input,18,FOLLOW_4); 
 
-            	        	newLeafNode(otherlv_15, grammarAccess.getDeclarationAccess().getOptionalDateKeyword_3_0());
+            	        	newLeafNode(otherlv_16, grammarAccess.getDeclarationAccess().getOptionalDateKeyword_3_0());
             	        
-            	    // InternalNpl.g:271:1: ( (lv_date_16_0= ruleDate ) )
-            	    // InternalNpl.g:272:1: (lv_date_16_0= ruleDate )
+            	    // InternalNpl.g:278:1: ( (lv_date_17_0= ruleDate ) )
+            	    // InternalNpl.g:279:1: (lv_date_17_0= ruleDate )
             	    {
-            	    // InternalNpl.g:272:1: (lv_date_16_0= ruleDate )
-            	    // InternalNpl.g:273:3: lv_date_16_0= ruleDate
+            	    // InternalNpl.g:279:1: (lv_date_17_0= ruleDate )
+            	    // InternalNpl.g:280:3: lv_date_17_0= ruleDate
             	    {
             	     
             	    	        newCompositeNode(grammarAccess.getDeclarationAccess().getDateDateParserRuleCall_3_1_0()); 
             	    	    
             	    pushFollow(FOLLOW_5);
-            	    lv_date_16_0=ruleDate();
+            	    lv_date_17_0=ruleDate();
 
             	    state._fsp--;
 
@@ -649,7 +659,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	           		set(
             	           			current, 
             	           			"date",
-            	            		lv_date_16_0, 
+            	            		lv_date_17_0, 
             	            		"de.tu_bs.cs.isf.mbse.mbtimes.Npl.Date");
             	    	        afterParserOrEnumRuleCall();
             	    	    
@@ -678,42 +688,42 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 5 :
-            	    // InternalNpl.g:296:4: ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) )
+            	    // InternalNpl.g:303:4: ({...}? => ( ({...}? => (otherlv_18= 'optional: location' ( (lv_location_19_0= RULE_STRING ) ) ) ) ) )
             	    {
-            	    // InternalNpl.g:296:4: ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) )
-            	    // InternalNpl.g:297:5: {...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) )
+            	    // InternalNpl.g:303:4: ({...}? => ( ({...}? => (otherlv_18= 'optional: location' ( (lv_location_19_0= RULE_STRING ) ) ) ) ) )
+            	    // InternalNpl.g:304:5: {...}? => ( ({...}? => (otherlv_18= 'optional: location' ( (lv_location_19_0= RULE_STRING ) ) ) ) )
             	    {
             	    if ( ! getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 4) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 4)");
             	    }
-            	    // InternalNpl.g:297:106: ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) )
-            	    // InternalNpl.g:298:6: ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) )
+            	    // InternalNpl.g:304:106: ( ({...}? => (otherlv_18= 'optional: location' ( (lv_location_19_0= RULE_STRING ) ) ) ) )
+            	    // InternalNpl.g:305:6: ({...}? => (otherlv_18= 'optional: location' ( (lv_location_19_0= RULE_STRING ) ) ) )
             	    {
             	     
             	    	 				  getUnorderedGroupHelper().select(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 4);
             	    	 				
-            	    // InternalNpl.g:301:6: ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) )
-            	    // InternalNpl.g:301:7: {...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) )
+            	    // InternalNpl.g:308:6: ({...}? => (otherlv_18= 'optional: location' ( (lv_location_19_0= RULE_STRING ) ) ) )
+            	    // InternalNpl.g:308:7: {...}? => (otherlv_18= 'optional: location' ( (lv_location_19_0= RULE_STRING ) ) )
             	    {
             	    if ( !((true)) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "true");
             	    }
-            	    // InternalNpl.g:301:16: (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) )
-            	    // InternalNpl.g:301:18: otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) )
+            	    // InternalNpl.g:308:16: (otherlv_18= 'optional: location' ( (lv_location_19_0= RULE_STRING ) ) )
+            	    // InternalNpl.g:308:18: otherlv_18= 'optional: location' ( (lv_location_19_0= RULE_STRING ) )
             	    {
-            	    otherlv_17=(Token)match(input,19,FOLLOW_11); 
+            	    otherlv_18=(Token)match(input,19,FOLLOW_6); 
 
-            	        	newLeafNode(otherlv_17, grammarAccess.getDeclarationAccess().getOptionalLocationKeyword_4_0());
+            	        	newLeafNode(otherlv_18, grammarAccess.getDeclarationAccess().getOptionalLocationKeyword_4_0());
             	        
-            	    // InternalNpl.g:305:1: ( (lv_location_18_0= RULE_STRING ) )
-            	    // InternalNpl.g:306:1: (lv_location_18_0= RULE_STRING )
+            	    // InternalNpl.g:312:1: ( (lv_location_19_0= RULE_STRING ) )
+            	    // InternalNpl.g:313:1: (lv_location_19_0= RULE_STRING )
             	    {
-            	    // InternalNpl.g:306:1: (lv_location_18_0= RULE_STRING )
-            	    // InternalNpl.g:307:3: lv_location_18_0= RULE_STRING
+            	    // InternalNpl.g:313:1: (lv_location_19_0= RULE_STRING )
+            	    // InternalNpl.g:314:3: lv_location_19_0= RULE_STRING
             	    {
-            	    lv_location_18_0=(Token)match(input,RULE_STRING,FOLLOW_5); 
+            	    lv_location_19_0=(Token)match(input,RULE_STRING,FOLLOW_5); 
 
-            	    			newLeafNode(lv_location_18_0, grammarAccess.getDeclarationAccess().getLocationSTRINGTerminalRuleCall_4_1_0()); 
+            	    			newLeafNode(lv_location_19_0, grammarAccess.getDeclarationAccess().getLocationSTRINGTerminalRuleCall_4_1_0()); 
             	    		
 
             	    	        if (current==null) {
@@ -722,7 +732,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	           		setWithLastConsumed(
             	           			current, 
             	           			"location",
-            	            		lv_location_18_0, 
+            	            		lv_location_19_0, 
             	            		"org.eclipse.xtext.common.Terminals.STRING");
             	    	    
 
@@ -750,44 +760,44 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 6 :
-            	    // InternalNpl.g:330:4: ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) )
+            	    // InternalNpl.g:337:4: ({...}? => ( ({...}? => (otherlv_20= 'optional: price' ( (lv_price_21_0= rulePrice ) ) ) ) ) )
             	    {
-            	    // InternalNpl.g:330:4: ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) )
-            	    // InternalNpl.g:331:5: {...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) )
+            	    // InternalNpl.g:337:4: ({...}? => ( ({...}? => (otherlv_20= 'optional: price' ( (lv_price_21_0= rulePrice ) ) ) ) ) )
+            	    // InternalNpl.g:338:5: {...}? => ( ({...}? => (otherlv_20= 'optional: price' ( (lv_price_21_0= rulePrice ) ) ) ) )
             	    {
             	    if ( ! getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 5) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 5)");
             	    }
-            	    // InternalNpl.g:331:106: ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) )
-            	    // InternalNpl.g:332:6: ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) )
+            	    // InternalNpl.g:338:106: ( ({...}? => (otherlv_20= 'optional: price' ( (lv_price_21_0= rulePrice ) ) ) ) )
+            	    // InternalNpl.g:339:6: ({...}? => (otherlv_20= 'optional: price' ( (lv_price_21_0= rulePrice ) ) ) )
             	    {
             	     
             	    	 				  getUnorderedGroupHelper().select(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 5);
             	    	 				
-            	    // InternalNpl.g:335:6: ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) )
-            	    // InternalNpl.g:335:7: {...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) )
+            	    // InternalNpl.g:342:6: ({...}? => (otherlv_20= 'optional: price' ( (lv_price_21_0= rulePrice ) ) ) )
+            	    // InternalNpl.g:342:7: {...}? => (otherlv_20= 'optional: price' ( (lv_price_21_0= rulePrice ) ) )
             	    {
             	    if ( !((true)) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "true");
             	    }
-            	    // InternalNpl.g:335:16: (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) )
-            	    // InternalNpl.g:335:18: otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) )
+            	    // InternalNpl.g:342:16: (otherlv_20= 'optional: price' ( (lv_price_21_0= rulePrice ) ) )
+            	    // InternalNpl.g:342:18: otherlv_20= 'optional: price' ( (lv_price_21_0= rulePrice ) )
             	    {
-            	    otherlv_19=(Token)match(input,20,FOLLOW_4); 
+            	    otherlv_20=(Token)match(input,20,FOLLOW_4); 
 
-            	        	newLeafNode(otherlv_19, grammarAccess.getDeclarationAccess().getOptionalPriceKeyword_5_0());
+            	        	newLeafNode(otherlv_20, grammarAccess.getDeclarationAccess().getOptionalPriceKeyword_5_0());
             	        
-            	    // InternalNpl.g:339:1: ( (lv_price_20_0= rulePrice ) )
-            	    // InternalNpl.g:340:1: (lv_price_20_0= rulePrice )
+            	    // InternalNpl.g:346:1: ( (lv_price_21_0= rulePrice ) )
+            	    // InternalNpl.g:347:1: (lv_price_21_0= rulePrice )
             	    {
-            	    // InternalNpl.g:340:1: (lv_price_20_0= rulePrice )
-            	    // InternalNpl.g:341:3: lv_price_20_0= rulePrice
+            	    // InternalNpl.g:347:1: (lv_price_21_0= rulePrice )
+            	    // InternalNpl.g:348:3: lv_price_21_0= rulePrice
             	    {
             	     
             	    	        newCompositeNode(grammarAccess.getDeclarationAccess().getPricePriceParserRuleCall_5_1_0()); 
             	    	    
             	    pushFollow(FOLLOW_5);
-            	    lv_price_20_0=rulePrice();
+            	    lv_price_21_0=rulePrice();
 
             	    state._fsp--;
 
@@ -798,7 +808,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	           		set(
             	           			current, 
             	           			"price",
-            	            		lv_price_20_0, 
+            	            		lv_price_21_0, 
             	            		"de.tu_bs.cs.isf.mbse.mbtimes.Npl.Price");
             	    	        afterParserOrEnumRuleCall();
             	    	    
@@ -827,42 +837,42 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 7 :
-            	    // InternalNpl.g:364:4: ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) )
+            	    // InternalNpl.g:371:4: ({...}? => ( ({...}? => (otherlv_22= 'optional: volume' ( (lv_volume_23_0= RULE_INT ) ) (otherlv_24= 'no.' ( (lv_number_25_0= RULE_INT ) ) )? ) ) ) )
             	    {
-            	    // InternalNpl.g:364:4: ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) )
-            	    // InternalNpl.g:365:5: {...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) )
+            	    // InternalNpl.g:371:4: ({...}? => ( ({...}? => (otherlv_22= 'optional: volume' ( (lv_volume_23_0= RULE_INT ) ) (otherlv_24= 'no.' ( (lv_number_25_0= RULE_INT ) ) )? ) ) ) )
+            	    // InternalNpl.g:372:5: {...}? => ( ({...}? => (otherlv_22= 'optional: volume' ( (lv_volume_23_0= RULE_INT ) ) (otherlv_24= 'no.' ( (lv_number_25_0= RULE_INT ) ) )? ) ) )
             	    {
             	    if ( ! getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 6) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 6)");
             	    }
-            	    // InternalNpl.g:365:106: ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) )
-            	    // InternalNpl.g:366:6: ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) )
+            	    // InternalNpl.g:372:106: ( ({...}? => (otherlv_22= 'optional: volume' ( (lv_volume_23_0= RULE_INT ) ) (otherlv_24= 'no.' ( (lv_number_25_0= RULE_INT ) ) )? ) ) )
+            	    // InternalNpl.g:373:6: ({...}? => (otherlv_22= 'optional: volume' ( (lv_volume_23_0= RULE_INT ) ) (otherlv_24= 'no.' ( (lv_number_25_0= RULE_INT ) ) )? ) )
             	    {
             	     
             	    	 				  getUnorderedGroupHelper().select(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 6);
             	    	 				
-            	    // InternalNpl.g:369:6: ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) )
-            	    // InternalNpl.g:369:7: {...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? )
+            	    // InternalNpl.g:376:6: ({...}? => (otherlv_22= 'optional: volume' ( (lv_volume_23_0= RULE_INT ) ) (otherlv_24= 'no.' ( (lv_number_25_0= RULE_INT ) ) )? ) )
+            	    // InternalNpl.g:376:7: {...}? => (otherlv_22= 'optional: volume' ( (lv_volume_23_0= RULE_INT ) ) (otherlv_24= 'no.' ( (lv_number_25_0= RULE_INT ) ) )? )
             	    {
             	    if ( !((true)) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "true");
             	    }
-            	    // InternalNpl.g:369:16: (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? )
-            	    // InternalNpl.g:369:18: otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )?
+            	    // InternalNpl.g:376:16: (otherlv_22= 'optional: volume' ( (lv_volume_23_0= RULE_INT ) ) (otherlv_24= 'no.' ( (lv_number_25_0= RULE_INT ) ) )? )
+            	    // InternalNpl.g:376:18: otherlv_22= 'optional: volume' ( (lv_volume_23_0= RULE_INT ) ) (otherlv_24= 'no.' ( (lv_number_25_0= RULE_INT ) ) )?
             	    {
-            	    otherlv_21=(Token)match(input,21,FOLLOW_12); 
+            	    otherlv_22=(Token)match(input,21,FOLLOW_12); 
 
-            	        	newLeafNode(otherlv_21, grammarAccess.getDeclarationAccess().getOptionalVolumeKeyword_6_0());
+            	        	newLeafNode(otherlv_22, grammarAccess.getDeclarationAccess().getOptionalVolumeKeyword_6_0());
             	        
-            	    // InternalNpl.g:373:1: ( (lv_volume_22_0= RULE_INT ) )
-            	    // InternalNpl.g:374:1: (lv_volume_22_0= RULE_INT )
+            	    // InternalNpl.g:380:1: ( (lv_volume_23_0= RULE_INT ) )
+            	    // InternalNpl.g:381:1: (lv_volume_23_0= RULE_INT )
             	    {
-            	    // InternalNpl.g:374:1: (lv_volume_22_0= RULE_INT )
-            	    // InternalNpl.g:375:3: lv_volume_22_0= RULE_INT
+            	    // InternalNpl.g:381:1: (lv_volume_23_0= RULE_INT )
+            	    // InternalNpl.g:382:3: lv_volume_23_0= RULE_INT
             	    {
-            	    lv_volume_22_0=(Token)match(input,RULE_INT,FOLLOW_13); 
+            	    lv_volume_23_0=(Token)match(input,RULE_INT,FOLLOW_13); 
 
-            	    			newLeafNode(lv_volume_22_0, grammarAccess.getDeclarationAccess().getVolumeINTTerminalRuleCall_6_1_0()); 
+            	    			newLeafNode(lv_volume_23_0, grammarAccess.getDeclarationAccess().getVolumeINTTerminalRuleCall_6_1_0()); 
             	    		
 
             	    	        if (current==null) {
@@ -871,7 +881,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	           		setWithLastConsumed(
             	           			current, 
             	           			"volume",
-            	            		lv_volume_22_0, 
+            	            		lv_volume_23_0, 
             	            		"org.eclipse.xtext.common.Terminals.INT");
             	    	    
 
@@ -880,7 +890,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             	    }
 
-            	    // InternalNpl.g:391:2: (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )?
+            	    // InternalNpl.g:398:2: (otherlv_24= 'no.' ( (lv_number_25_0= RULE_INT ) ) )?
             	    int alt3=2;
             	    int LA3_0 = input.LA(1);
 
@@ -889,21 +899,21 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	    }
             	    switch (alt3) {
             	        case 1 :
-            	            // InternalNpl.g:391:4: otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) )
+            	            // InternalNpl.g:398:4: otherlv_24= 'no.' ( (lv_number_25_0= RULE_INT ) )
             	            {
-            	            otherlv_23=(Token)match(input,22,FOLLOW_12); 
+            	            otherlv_24=(Token)match(input,22,FOLLOW_12); 
 
-            	                	newLeafNode(otherlv_23, grammarAccess.getDeclarationAccess().getNoKeyword_6_2_0());
+            	                	newLeafNode(otherlv_24, grammarAccess.getDeclarationAccess().getNoKeyword_6_2_0());
             	                
-            	            // InternalNpl.g:395:1: ( (lv_number_24_0= RULE_INT ) )
-            	            // InternalNpl.g:396:1: (lv_number_24_0= RULE_INT )
+            	            // InternalNpl.g:402:1: ( (lv_number_25_0= RULE_INT ) )
+            	            // InternalNpl.g:403:1: (lv_number_25_0= RULE_INT )
             	            {
-            	            // InternalNpl.g:396:1: (lv_number_24_0= RULE_INT )
-            	            // InternalNpl.g:397:3: lv_number_24_0= RULE_INT
+            	            // InternalNpl.g:403:1: (lv_number_25_0= RULE_INT )
+            	            // InternalNpl.g:404:3: lv_number_25_0= RULE_INT
             	            {
-            	            lv_number_24_0=(Token)match(input,RULE_INT,FOLLOW_5); 
+            	            lv_number_25_0=(Token)match(input,RULE_INT,FOLLOW_5); 
 
-            	            			newLeafNode(lv_number_24_0, grammarAccess.getDeclarationAccess().getNumberINTTerminalRuleCall_6_2_1_0()); 
+            	            			newLeafNode(lv_number_25_0, grammarAccess.getDeclarationAccess().getNumberINTTerminalRuleCall_6_2_1_0()); 
             	            		
 
             	            	        if (current==null) {
@@ -912,7 +922,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	                   		setWithLastConsumed(
             	                   			current, 
             	                   			"number",
-            	                    		lv_number_24_0, 
+            	                    		lv_number_25_0, 
             	                    		"org.eclipse.xtext.common.Terminals.INT");
             	            	    
 
@@ -946,44 +956,44 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 8 :
-            	    // InternalNpl.g:420:4: ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) )
+            	    // InternalNpl.g:427:4: ({...}? => ( ({...}? => (otherlv_26= 'optional: language' ( (lv_language_27_0= ruleLanguage ) ) ) ) ) )
             	    {
-            	    // InternalNpl.g:420:4: ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) )
-            	    // InternalNpl.g:421:5: {...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) )
+            	    // InternalNpl.g:427:4: ({...}? => ( ({...}? => (otherlv_26= 'optional: language' ( (lv_language_27_0= ruleLanguage ) ) ) ) ) )
+            	    // InternalNpl.g:428:5: {...}? => ( ({...}? => (otherlv_26= 'optional: language' ( (lv_language_27_0= ruleLanguage ) ) ) ) )
             	    {
             	    if ( ! getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 7) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 7)");
             	    }
-            	    // InternalNpl.g:421:106: ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) )
-            	    // InternalNpl.g:422:6: ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) )
+            	    // InternalNpl.g:428:106: ( ({...}? => (otherlv_26= 'optional: language' ( (lv_language_27_0= ruleLanguage ) ) ) ) )
+            	    // InternalNpl.g:429:6: ({...}? => (otherlv_26= 'optional: language' ( (lv_language_27_0= ruleLanguage ) ) ) )
             	    {
             	     
             	    	 				  getUnorderedGroupHelper().select(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 7);
             	    	 				
-            	    // InternalNpl.g:425:6: ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) )
-            	    // InternalNpl.g:425:7: {...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) )
+            	    // InternalNpl.g:432:6: ({...}? => (otherlv_26= 'optional: language' ( (lv_language_27_0= ruleLanguage ) ) ) )
+            	    // InternalNpl.g:432:7: {...}? => (otherlv_26= 'optional: language' ( (lv_language_27_0= ruleLanguage ) ) )
             	    {
             	    if ( !((true)) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "true");
             	    }
-            	    // InternalNpl.g:425:16: (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) )
-            	    // InternalNpl.g:425:18: otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) )
+            	    // InternalNpl.g:432:16: (otherlv_26= 'optional: language' ( (lv_language_27_0= ruleLanguage ) ) )
+            	    // InternalNpl.g:432:18: otherlv_26= 'optional: language' ( (lv_language_27_0= ruleLanguage ) )
             	    {
-            	    otherlv_25=(Token)match(input,23,FOLLOW_14); 
+            	    otherlv_26=(Token)match(input,23,FOLLOW_14); 
 
-            	        	newLeafNode(otherlv_25, grammarAccess.getDeclarationAccess().getOptionalLanguageKeyword_7_0());
+            	        	newLeafNode(otherlv_26, grammarAccess.getDeclarationAccess().getOptionalLanguageKeyword_7_0());
             	        
-            	    // InternalNpl.g:429:1: ( (lv_language_26_0= ruleLanguage ) )
-            	    // InternalNpl.g:430:1: (lv_language_26_0= ruleLanguage )
+            	    // InternalNpl.g:436:1: ( (lv_language_27_0= ruleLanguage ) )
+            	    // InternalNpl.g:437:1: (lv_language_27_0= ruleLanguage )
             	    {
-            	    // InternalNpl.g:430:1: (lv_language_26_0= ruleLanguage )
-            	    // InternalNpl.g:431:3: lv_language_26_0= ruleLanguage
+            	    // InternalNpl.g:437:1: (lv_language_27_0= ruleLanguage )
+            	    // InternalNpl.g:438:3: lv_language_27_0= ruleLanguage
             	    {
             	     
             	    	        newCompositeNode(grammarAccess.getDeclarationAccess().getLanguageLanguageParserRuleCall_7_1_0()); 
             	    	    
             	    pushFollow(FOLLOW_5);
-            	    lv_language_26_0=ruleLanguage();
+            	    lv_language_27_0=ruleLanguage();
 
             	    state._fsp--;
 
@@ -994,7 +1004,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	           		set(
             	           			current, 
             	           			"language",
-            	            		lv_language_26_0, 
+            	            		lv_language_27_0, 
             	            		"de.tu_bs.cs.isf.mbse.mbtimes.Npl.Language");
             	    	        afterParserOrEnumRuleCall();
             	    	    
@@ -1023,44 +1033,44 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 9 :
-            	    // InternalNpl.g:454:4: ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) )
+            	    // InternalNpl.g:461:4: ({...}? => ( ({...}? => (otherlv_28= 'format' ( (lv_format_29_0= ruleFormat ) ) ) ) ) )
             	    {
-            	    // InternalNpl.g:454:4: ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) )
-            	    // InternalNpl.g:455:5: {...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) )
+            	    // InternalNpl.g:461:4: ({...}? => ( ({...}? => (otherlv_28= 'format' ( (lv_format_29_0= ruleFormat ) ) ) ) ) )
+            	    // InternalNpl.g:462:5: {...}? => ( ({...}? => (otherlv_28= 'format' ( (lv_format_29_0= ruleFormat ) ) ) ) )
             	    {
             	    if ( ! getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 8) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 8)");
             	    }
-            	    // InternalNpl.g:455:106: ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) )
-            	    // InternalNpl.g:456:6: ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) )
+            	    // InternalNpl.g:462:106: ( ({...}? => (otherlv_28= 'format' ( (lv_format_29_0= ruleFormat ) ) ) ) )
+            	    // InternalNpl.g:463:6: ({...}? => (otherlv_28= 'format' ( (lv_format_29_0= ruleFormat ) ) ) )
             	    {
             	     
             	    	 				  getUnorderedGroupHelper().select(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 8);
             	    	 				
-            	    // InternalNpl.g:459:6: ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) )
-            	    // InternalNpl.g:459:7: {...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) )
+            	    // InternalNpl.g:466:6: ({...}? => (otherlv_28= 'format' ( (lv_format_29_0= ruleFormat ) ) ) )
+            	    // InternalNpl.g:466:7: {...}? => (otherlv_28= 'format' ( (lv_format_29_0= ruleFormat ) ) )
             	    {
             	    if ( !((true)) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "true");
             	    }
-            	    // InternalNpl.g:459:16: (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) )
-            	    // InternalNpl.g:459:18: otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) )
+            	    // InternalNpl.g:466:16: (otherlv_28= 'format' ( (lv_format_29_0= ruleFormat ) ) )
+            	    // InternalNpl.g:466:18: otherlv_28= 'format' ( (lv_format_29_0= ruleFormat ) )
             	    {
-            	    otherlv_27=(Token)match(input,24,FOLLOW_15); 
+            	    otherlv_28=(Token)match(input,24,FOLLOW_15); 
 
-            	        	newLeafNode(otherlv_27, grammarAccess.getDeclarationAccess().getFormatKeyword_8_0());
+            	        	newLeafNode(otherlv_28, grammarAccess.getDeclarationAccess().getFormatKeyword_8_0());
             	        
-            	    // InternalNpl.g:463:1: ( (lv_format_28_0= ruleFormat ) )
-            	    // InternalNpl.g:464:1: (lv_format_28_0= ruleFormat )
+            	    // InternalNpl.g:470:1: ( (lv_format_29_0= ruleFormat ) )
+            	    // InternalNpl.g:471:1: (lv_format_29_0= ruleFormat )
             	    {
-            	    // InternalNpl.g:464:1: (lv_format_28_0= ruleFormat )
-            	    // InternalNpl.g:465:3: lv_format_28_0= ruleFormat
+            	    // InternalNpl.g:471:1: (lv_format_29_0= ruleFormat )
+            	    // InternalNpl.g:472:3: lv_format_29_0= ruleFormat
             	    {
             	     
             	    	        newCompositeNode(grammarAccess.getDeclarationAccess().getFormatFormatParserRuleCall_8_1_0()); 
             	    	    
             	    pushFollow(FOLLOW_5);
-            	    lv_format_28_0=ruleFormat();
+            	    lv_format_29_0=ruleFormat();
 
             	    state._fsp--;
 
@@ -1071,7 +1081,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	           		set(
             	           			current, 
             	           			"format",
-            	            		lv_format_28_0, 
+            	            		lv_format_29_0, 
             	            		"de.tu_bs.cs.isf.mbse.mbtimes.Npl.Format");
             	    	        afterParserOrEnumRuleCall();
             	    	    
@@ -1100,42 +1110,42 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 10 :
-            	    // InternalNpl.g:488:4: ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) )
+            	    // InternalNpl.g:495:4: ({...}? => ( ({...}? => (otherlv_30= 'number of articles per topic' ( (lv_articleCnt_31_0= RULE_INT ) ) ) ) ) )
             	    {
-            	    // InternalNpl.g:488:4: ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) )
-            	    // InternalNpl.g:489:5: {...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) )
+            	    // InternalNpl.g:495:4: ({...}? => ( ({...}? => (otherlv_30= 'number of articles per topic' ( (lv_articleCnt_31_0= RULE_INT ) ) ) ) ) )
+            	    // InternalNpl.g:496:5: {...}? => ( ({...}? => (otherlv_30= 'number of articles per topic' ( (lv_articleCnt_31_0= RULE_INT ) ) ) ) )
             	    {
             	    if ( ! getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 9) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 9)");
             	    }
-            	    // InternalNpl.g:489:106: ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) )
-            	    // InternalNpl.g:490:6: ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) )
+            	    // InternalNpl.g:496:106: ( ({...}? => (otherlv_30= 'number of articles per topic' ( (lv_articleCnt_31_0= RULE_INT ) ) ) ) )
+            	    // InternalNpl.g:497:6: ({...}? => (otherlv_30= 'number of articles per topic' ( (lv_articleCnt_31_0= RULE_INT ) ) ) )
             	    {
             	     
             	    	 				  getUnorderedGroupHelper().select(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 9);
             	    	 				
-            	    // InternalNpl.g:493:6: ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) )
-            	    // InternalNpl.g:493:7: {...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) )
+            	    // InternalNpl.g:500:6: ({...}? => (otherlv_30= 'number of articles per topic' ( (lv_articleCnt_31_0= RULE_INT ) ) ) )
+            	    // InternalNpl.g:500:7: {...}? => (otherlv_30= 'number of articles per topic' ( (lv_articleCnt_31_0= RULE_INT ) ) )
             	    {
             	    if ( !((true)) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "true");
             	    }
-            	    // InternalNpl.g:493:16: (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) )
-            	    // InternalNpl.g:493:18: otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) )
+            	    // InternalNpl.g:500:16: (otherlv_30= 'number of articles per topic' ( (lv_articleCnt_31_0= RULE_INT ) ) )
+            	    // InternalNpl.g:500:18: otherlv_30= 'number of articles per topic' ( (lv_articleCnt_31_0= RULE_INT ) )
             	    {
-            	    otherlv_29=(Token)match(input,25,FOLLOW_12); 
+            	    otherlv_30=(Token)match(input,25,FOLLOW_12); 
 
-            	        	newLeafNode(otherlv_29, grammarAccess.getDeclarationAccess().getNumberOfArticlesPerTopicKeyword_9_0());
+            	        	newLeafNode(otherlv_30, grammarAccess.getDeclarationAccess().getNumberOfArticlesPerTopicKeyword_9_0());
             	        
-            	    // InternalNpl.g:497:1: ( (lv_articleCnt_30_0= RULE_INT ) )
-            	    // InternalNpl.g:498:1: (lv_articleCnt_30_0= RULE_INT )
+            	    // InternalNpl.g:504:1: ( (lv_articleCnt_31_0= RULE_INT ) )
+            	    // InternalNpl.g:505:1: (lv_articleCnt_31_0= RULE_INT )
             	    {
-            	    // InternalNpl.g:498:1: (lv_articleCnt_30_0= RULE_INT )
-            	    // InternalNpl.g:499:3: lv_articleCnt_30_0= RULE_INT
+            	    // InternalNpl.g:505:1: (lv_articleCnt_31_0= RULE_INT )
+            	    // InternalNpl.g:506:3: lv_articleCnt_31_0= RULE_INT
             	    {
-            	    lv_articleCnt_30_0=(Token)match(input,RULE_INT,FOLLOW_5); 
+            	    lv_articleCnt_31_0=(Token)match(input,RULE_INT,FOLLOW_5); 
 
-            	    			newLeafNode(lv_articleCnt_30_0, grammarAccess.getDeclarationAccess().getArticleCntINTTerminalRuleCall_9_1_0()); 
+            	    			newLeafNode(lv_articleCnt_31_0, grammarAccess.getDeclarationAccess().getArticleCntINTTerminalRuleCall_9_1_0()); 
             	    		
 
             	    	        if (current==null) {
@@ -1144,7 +1154,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	           		setWithLastConsumed(
             	           			current, 
             	           			"articleCnt",
-            	            		lv_articleCnt_30_0, 
+            	            		lv_articleCnt_31_0, 
             	            		"org.eclipse.xtext.common.Terminals.INT");
             	    	    
 
@@ -1172,42 +1182,42 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 11 :
-            	    // InternalNpl.g:522:4: ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) )
+            	    // InternalNpl.g:529:4: ({...}? => ( ({...}? => (otherlv_32= 'number of words per article' ( (lv_articleWordsMin_33_0= RULE_INT ) ) otherlv_34= '-' ( (lv_articleWordsMax_35_0= RULE_INT ) ) ) ) ) )
             	    {
-            	    // InternalNpl.g:522:4: ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) )
-            	    // InternalNpl.g:523:5: {...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) )
+            	    // InternalNpl.g:529:4: ({...}? => ( ({...}? => (otherlv_32= 'number of words per article' ( (lv_articleWordsMin_33_0= RULE_INT ) ) otherlv_34= '-' ( (lv_articleWordsMax_35_0= RULE_INT ) ) ) ) ) )
+            	    // InternalNpl.g:530:5: {...}? => ( ({...}? => (otherlv_32= 'number of words per article' ( (lv_articleWordsMin_33_0= RULE_INT ) ) otherlv_34= '-' ( (lv_articleWordsMax_35_0= RULE_INT ) ) ) ) )
             	    {
             	    if ( ! getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 10) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 10)");
             	    }
-            	    // InternalNpl.g:523:107: ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) )
-            	    // InternalNpl.g:524:6: ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) )
+            	    // InternalNpl.g:530:107: ( ({...}? => (otherlv_32= 'number of words per article' ( (lv_articleWordsMin_33_0= RULE_INT ) ) otherlv_34= '-' ( (lv_articleWordsMax_35_0= RULE_INT ) ) ) ) )
+            	    // InternalNpl.g:531:6: ({...}? => (otherlv_32= 'number of words per article' ( (lv_articleWordsMin_33_0= RULE_INT ) ) otherlv_34= '-' ( (lv_articleWordsMax_35_0= RULE_INT ) ) ) )
             	    {
             	     
             	    	 				  getUnorderedGroupHelper().select(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 10);
             	    	 				
-            	    // InternalNpl.g:527:6: ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) )
-            	    // InternalNpl.g:527:7: {...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) )
+            	    // InternalNpl.g:534:6: ({...}? => (otherlv_32= 'number of words per article' ( (lv_articleWordsMin_33_0= RULE_INT ) ) otherlv_34= '-' ( (lv_articleWordsMax_35_0= RULE_INT ) ) ) )
+            	    // InternalNpl.g:534:7: {...}? => (otherlv_32= 'number of words per article' ( (lv_articleWordsMin_33_0= RULE_INT ) ) otherlv_34= '-' ( (lv_articleWordsMax_35_0= RULE_INT ) ) )
             	    {
             	    if ( !((true)) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "true");
             	    }
-            	    // InternalNpl.g:527:16: (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) )
-            	    // InternalNpl.g:527:18: otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) )
+            	    // InternalNpl.g:534:16: (otherlv_32= 'number of words per article' ( (lv_articleWordsMin_33_0= RULE_INT ) ) otherlv_34= '-' ( (lv_articleWordsMax_35_0= RULE_INT ) ) )
+            	    // InternalNpl.g:534:18: otherlv_32= 'number of words per article' ( (lv_articleWordsMin_33_0= RULE_INT ) ) otherlv_34= '-' ( (lv_articleWordsMax_35_0= RULE_INT ) )
             	    {
-            	    otherlv_31=(Token)match(input,26,FOLLOW_12); 
+            	    otherlv_32=(Token)match(input,26,FOLLOW_12); 
 
-            	        	newLeafNode(otherlv_31, grammarAccess.getDeclarationAccess().getNumberOfWordsPerArticleKeyword_10_0());
+            	        	newLeafNode(otherlv_32, grammarAccess.getDeclarationAccess().getNumberOfWordsPerArticleKeyword_10_0());
             	        
-            	    // InternalNpl.g:531:1: ( (lv_articleWordsMin_32_0= RULE_INT ) )
-            	    // InternalNpl.g:532:1: (lv_articleWordsMin_32_0= RULE_INT )
+            	    // InternalNpl.g:538:1: ( (lv_articleWordsMin_33_0= RULE_INT ) )
+            	    // InternalNpl.g:539:1: (lv_articleWordsMin_33_0= RULE_INT )
             	    {
-            	    // InternalNpl.g:532:1: (lv_articleWordsMin_32_0= RULE_INT )
-            	    // InternalNpl.g:533:3: lv_articleWordsMin_32_0= RULE_INT
+            	    // InternalNpl.g:539:1: (lv_articleWordsMin_33_0= RULE_INT )
+            	    // InternalNpl.g:540:3: lv_articleWordsMin_33_0= RULE_INT
             	    {
-            	    lv_articleWordsMin_32_0=(Token)match(input,RULE_INT,FOLLOW_16); 
+            	    lv_articleWordsMin_33_0=(Token)match(input,RULE_INT,FOLLOW_16); 
 
-            	    			newLeafNode(lv_articleWordsMin_32_0, grammarAccess.getDeclarationAccess().getArticleWordsMinINTTerminalRuleCall_10_1_0()); 
+            	    			newLeafNode(lv_articleWordsMin_33_0, grammarAccess.getDeclarationAccess().getArticleWordsMinINTTerminalRuleCall_10_1_0()); 
             	    		
 
             	    	        if (current==null) {
@@ -1216,7 +1226,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	           		setWithLastConsumed(
             	           			current, 
             	           			"articleWordsMin",
-            	            		lv_articleWordsMin_32_0, 
+            	            		lv_articleWordsMin_33_0, 
             	            		"org.eclipse.xtext.common.Terminals.INT");
             	    	    
 
@@ -1225,19 +1235,19 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             	    }
 
-            	    otherlv_33=(Token)match(input,27,FOLLOW_12); 
+            	    otherlv_34=(Token)match(input,27,FOLLOW_12); 
 
-            	        	newLeafNode(otherlv_33, grammarAccess.getDeclarationAccess().getHyphenMinusKeyword_10_2());
+            	        	newLeafNode(otherlv_34, grammarAccess.getDeclarationAccess().getHyphenMinusKeyword_10_2());
             	        
-            	    // InternalNpl.g:553:1: ( (lv_articleWordsMax_34_0= RULE_INT ) )
-            	    // InternalNpl.g:554:1: (lv_articleWordsMax_34_0= RULE_INT )
+            	    // InternalNpl.g:560:1: ( (lv_articleWordsMax_35_0= RULE_INT ) )
+            	    // InternalNpl.g:561:1: (lv_articleWordsMax_35_0= RULE_INT )
             	    {
-            	    // InternalNpl.g:554:1: (lv_articleWordsMax_34_0= RULE_INT )
-            	    // InternalNpl.g:555:3: lv_articleWordsMax_34_0= RULE_INT
+            	    // InternalNpl.g:561:1: (lv_articleWordsMax_35_0= RULE_INT )
+            	    // InternalNpl.g:562:3: lv_articleWordsMax_35_0= RULE_INT
             	    {
-            	    lv_articleWordsMax_34_0=(Token)match(input,RULE_INT,FOLLOW_5); 
+            	    lv_articleWordsMax_35_0=(Token)match(input,RULE_INT,FOLLOW_5); 
 
-            	    			newLeafNode(lv_articleWordsMax_34_0, grammarAccess.getDeclarationAccess().getArticleWordsMaxINTTerminalRuleCall_10_3_0()); 
+            	    			newLeafNode(lv_articleWordsMax_35_0, grammarAccess.getDeclarationAccess().getArticleWordsMaxINTTerminalRuleCall_10_3_0()); 
             	    		
 
             	    	        if (current==null) {
@@ -1246,7 +1256,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	           		setWithLastConsumed(
             	           			current, 
             	           			"articleWordsMax",
-            	            		lv_articleWordsMax_34_0, 
+            	            		lv_articleWordsMax_35_0, 
             	            		"org.eclipse.xtext.common.Terminals.INT");
             	    	    
 
@@ -1274,44 +1284,44 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 12 :
-            	    // InternalNpl.g:578:4: ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) )
+            	    // InternalNpl.g:585:4: ({...}? => ( ({...}? => (otherlv_36= 'optional: number of images per article' ( (lv_imagesCnt_37_0= ruleImagesCount ) ) ) ) ) )
             	    {
-            	    // InternalNpl.g:578:4: ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) )
-            	    // InternalNpl.g:579:5: {...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) )
+            	    // InternalNpl.g:585:4: ({...}? => ( ({...}? => (otherlv_36= 'optional: number of images per article' ( (lv_imagesCnt_37_0= ruleImagesCount ) ) ) ) ) )
+            	    // InternalNpl.g:586:5: {...}? => ( ({...}? => (otherlv_36= 'optional: number of images per article' ( (lv_imagesCnt_37_0= ruleImagesCount ) ) ) ) )
             	    {
             	    if ( ! getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 11) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 11)");
             	    }
-            	    // InternalNpl.g:579:107: ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) )
-            	    // InternalNpl.g:580:6: ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) )
+            	    // InternalNpl.g:586:107: ( ({...}? => (otherlv_36= 'optional: number of images per article' ( (lv_imagesCnt_37_0= ruleImagesCount ) ) ) ) )
+            	    // InternalNpl.g:587:6: ({...}? => (otherlv_36= 'optional: number of images per article' ( (lv_imagesCnt_37_0= ruleImagesCount ) ) ) )
             	    {
             	     
             	    	 				  getUnorderedGroupHelper().select(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 11);
             	    	 				
-            	    // InternalNpl.g:583:6: ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) )
-            	    // InternalNpl.g:583:7: {...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) )
+            	    // InternalNpl.g:590:6: ({...}? => (otherlv_36= 'optional: number of images per article' ( (lv_imagesCnt_37_0= ruleImagesCount ) ) ) )
+            	    // InternalNpl.g:590:7: {...}? => (otherlv_36= 'optional: number of images per article' ( (lv_imagesCnt_37_0= ruleImagesCount ) ) )
             	    {
             	    if ( !((true)) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "true");
             	    }
-            	    // InternalNpl.g:583:16: (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) )
-            	    // InternalNpl.g:583:18: otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) )
+            	    // InternalNpl.g:590:16: (otherlv_36= 'optional: number of images per article' ( (lv_imagesCnt_37_0= ruleImagesCount ) ) )
+            	    // InternalNpl.g:590:18: otherlv_36= 'optional: number of images per article' ( (lv_imagesCnt_37_0= ruleImagesCount ) )
             	    {
-            	    otherlv_35=(Token)match(input,28,FOLLOW_12); 
+            	    otherlv_36=(Token)match(input,28,FOLLOW_12); 
 
-            	        	newLeafNode(otherlv_35, grammarAccess.getDeclarationAccess().getOptionalNumberOfImagesPerArticleKeyword_11_0());
+            	        	newLeafNode(otherlv_36, grammarAccess.getDeclarationAccess().getOptionalNumberOfImagesPerArticleKeyword_11_0());
             	        
-            	    // InternalNpl.g:587:1: ( (lv_imagesCnt_36_0= ruleImagesCount ) )
-            	    // InternalNpl.g:588:1: (lv_imagesCnt_36_0= ruleImagesCount )
+            	    // InternalNpl.g:594:1: ( (lv_imagesCnt_37_0= ruleImagesCount ) )
+            	    // InternalNpl.g:595:1: (lv_imagesCnt_37_0= ruleImagesCount )
             	    {
-            	    // InternalNpl.g:588:1: (lv_imagesCnt_36_0= ruleImagesCount )
-            	    // InternalNpl.g:589:3: lv_imagesCnt_36_0= ruleImagesCount
+            	    // InternalNpl.g:595:1: (lv_imagesCnt_37_0= ruleImagesCount )
+            	    // InternalNpl.g:596:3: lv_imagesCnt_37_0= ruleImagesCount
             	    {
             	     
             	    	        newCompositeNode(grammarAccess.getDeclarationAccess().getImagesCntImagesCountParserRuleCall_11_1_0()); 
             	    	    
             	    pushFollow(FOLLOW_5);
-            	    lv_imagesCnt_36_0=ruleImagesCount();
+            	    lv_imagesCnt_37_0=ruleImagesCount();
 
             	    state._fsp--;
 
@@ -1322,7 +1332,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	           		set(
             	           			current, 
             	           			"imagesCnt",
-            	            		lv_imagesCnt_36_0, 
+            	            		lv_imagesCnt_37_0, 
             	            		"de.tu_bs.cs.isf.mbse.mbtimes.Npl.ImagesCount");
             	    	        afterParserOrEnumRuleCall();
             	    	    
@@ -1351,42 +1361,42 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 13 :
-            	    // InternalNpl.g:612:4: ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) )
+            	    // InternalNpl.g:619:4: ({...}? => ( ({...}? => (otherlv_38= 'number of columns' ( (lv_columnsCnt_39_0= RULE_INT ) ) ) ) ) )
             	    {
-            	    // InternalNpl.g:612:4: ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) )
-            	    // InternalNpl.g:613:5: {...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) )
+            	    // InternalNpl.g:619:4: ({...}? => ( ({...}? => (otherlv_38= 'number of columns' ( (lv_columnsCnt_39_0= RULE_INT ) ) ) ) ) )
+            	    // InternalNpl.g:620:5: {...}? => ( ({...}? => (otherlv_38= 'number of columns' ( (lv_columnsCnt_39_0= RULE_INT ) ) ) ) )
             	    {
             	    if ( ! getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 12) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 12)");
             	    }
-            	    // InternalNpl.g:613:107: ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) )
-            	    // InternalNpl.g:614:6: ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) )
+            	    // InternalNpl.g:620:107: ( ({...}? => (otherlv_38= 'number of columns' ( (lv_columnsCnt_39_0= RULE_INT ) ) ) ) )
+            	    // InternalNpl.g:621:6: ({...}? => (otherlv_38= 'number of columns' ( (lv_columnsCnt_39_0= RULE_INT ) ) ) )
             	    {
             	     
             	    	 				  getUnorderedGroupHelper().select(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 12);
             	    	 				
-            	    // InternalNpl.g:617:6: ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) )
-            	    // InternalNpl.g:617:7: {...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) )
+            	    // InternalNpl.g:624:6: ({...}? => (otherlv_38= 'number of columns' ( (lv_columnsCnt_39_0= RULE_INT ) ) ) )
+            	    // InternalNpl.g:624:7: {...}? => (otherlv_38= 'number of columns' ( (lv_columnsCnt_39_0= RULE_INT ) ) )
             	    {
             	    if ( !((true)) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "true");
             	    }
-            	    // InternalNpl.g:617:16: (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) )
-            	    // InternalNpl.g:617:18: otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) )
+            	    // InternalNpl.g:624:16: (otherlv_38= 'number of columns' ( (lv_columnsCnt_39_0= RULE_INT ) ) )
+            	    // InternalNpl.g:624:18: otherlv_38= 'number of columns' ( (lv_columnsCnt_39_0= RULE_INT ) )
             	    {
-            	    otherlv_37=(Token)match(input,29,FOLLOW_12); 
+            	    otherlv_38=(Token)match(input,29,FOLLOW_12); 
 
-            	        	newLeafNode(otherlv_37, grammarAccess.getDeclarationAccess().getNumberOfColumnsKeyword_12_0());
+            	        	newLeafNode(otherlv_38, grammarAccess.getDeclarationAccess().getNumberOfColumnsKeyword_12_0());
             	        
-            	    // InternalNpl.g:621:1: ( (lv_columnsCnt_38_0= RULE_INT ) )
-            	    // InternalNpl.g:622:1: (lv_columnsCnt_38_0= RULE_INT )
+            	    // InternalNpl.g:628:1: ( (lv_columnsCnt_39_0= RULE_INT ) )
+            	    // InternalNpl.g:629:1: (lv_columnsCnt_39_0= RULE_INT )
             	    {
-            	    // InternalNpl.g:622:1: (lv_columnsCnt_38_0= RULE_INT )
-            	    // InternalNpl.g:623:3: lv_columnsCnt_38_0= RULE_INT
+            	    // InternalNpl.g:629:1: (lv_columnsCnt_39_0= RULE_INT )
+            	    // InternalNpl.g:630:3: lv_columnsCnt_39_0= RULE_INT
             	    {
-            	    lv_columnsCnt_38_0=(Token)match(input,RULE_INT,FOLLOW_5); 
+            	    lv_columnsCnt_39_0=(Token)match(input,RULE_INT,FOLLOW_5); 
 
-            	    			newLeafNode(lv_columnsCnt_38_0, grammarAccess.getDeclarationAccess().getColumnsCntINTTerminalRuleCall_12_1_0()); 
+            	    			newLeafNode(lv_columnsCnt_39_0, grammarAccess.getDeclarationAccess().getColumnsCntINTTerminalRuleCall_12_1_0()); 
             	    		
 
             	    	        if (current==null) {
@@ -1395,7 +1405,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	           		setWithLastConsumed(
             	           			current, 
             	           			"columnsCnt",
-            	            		lv_columnsCnt_38_0, 
+            	            		lv_columnsCnt_39_0, 
             	            		"org.eclipse.xtext.common.Terminals.INT");
             	    	    
 
@@ -1423,44 +1433,44 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 14 :
-            	    // InternalNpl.g:646:4: ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) )
+            	    // InternalNpl.g:653:4: ({...}? => ( ({...}? => (otherlv_40= 'font size' ( (lv_fontSize_41_0= ruleFontSize ) ) ) ) ) )
             	    {
-            	    // InternalNpl.g:646:4: ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) )
-            	    // InternalNpl.g:647:5: {...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) )
+            	    // InternalNpl.g:653:4: ({...}? => ( ({...}? => (otherlv_40= 'font size' ( (lv_fontSize_41_0= ruleFontSize ) ) ) ) ) )
+            	    // InternalNpl.g:654:5: {...}? => ( ({...}? => (otherlv_40= 'font size' ( (lv_fontSize_41_0= ruleFontSize ) ) ) ) )
             	    {
             	    if ( ! getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 13) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 13)");
             	    }
-            	    // InternalNpl.g:647:107: ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) )
-            	    // InternalNpl.g:648:6: ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) )
+            	    // InternalNpl.g:654:107: ( ({...}? => (otherlv_40= 'font size' ( (lv_fontSize_41_0= ruleFontSize ) ) ) ) )
+            	    // InternalNpl.g:655:6: ({...}? => (otherlv_40= 'font size' ( (lv_fontSize_41_0= ruleFontSize ) ) ) )
             	    {
             	     
             	    	 				  getUnorderedGroupHelper().select(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 13);
             	    	 				
-            	    // InternalNpl.g:651:6: ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) )
-            	    // InternalNpl.g:651:7: {...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) )
+            	    // InternalNpl.g:658:6: ({...}? => (otherlv_40= 'font size' ( (lv_fontSize_41_0= ruleFontSize ) ) ) )
+            	    // InternalNpl.g:658:7: {...}? => (otherlv_40= 'font size' ( (lv_fontSize_41_0= ruleFontSize ) ) )
             	    {
             	    if ( !((true)) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "true");
             	    }
-            	    // InternalNpl.g:651:16: (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) )
-            	    // InternalNpl.g:651:18: otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) )
+            	    // InternalNpl.g:658:16: (otherlv_40= 'font size' ( (lv_fontSize_41_0= ruleFontSize ) ) )
+            	    // InternalNpl.g:658:18: otherlv_40= 'font size' ( (lv_fontSize_41_0= ruleFontSize ) )
             	    {
-            	    otherlv_39=(Token)match(input,30,FOLLOW_17); 
+            	    otherlv_40=(Token)match(input,30,FOLLOW_17); 
 
-            	        	newLeafNode(otherlv_39, grammarAccess.getDeclarationAccess().getFontSizeKeyword_13_0());
+            	        	newLeafNode(otherlv_40, grammarAccess.getDeclarationAccess().getFontSizeKeyword_13_0());
             	        
-            	    // InternalNpl.g:655:1: ( (lv_fontSize_40_0= ruleFontSize ) )
-            	    // InternalNpl.g:656:1: (lv_fontSize_40_0= ruleFontSize )
+            	    // InternalNpl.g:662:1: ( (lv_fontSize_41_0= ruleFontSize ) )
+            	    // InternalNpl.g:663:1: (lv_fontSize_41_0= ruleFontSize )
             	    {
-            	    // InternalNpl.g:656:1: (lv_fontSize_40_0= ruleFontSize )
-            	    // InternalNpl.g:657:3: lv_fontSize_40_0= ruleFontSize
+            	    // InternalNpl.g:663:1: (lv_fontSize_41_0= ruleFontSize )
+            	    // InternalNpl.g:664:3: lv_fontSize_41_0= ruleFontSize
             	    {
             	     
             	    	        newCompositeNode(grammarAccess.getDeclarationAccess().getFontSizeFontSizeParserRuleCall_13_1_0()); 
             	    	    
             	    pushFollow(FOLLOW_5);
-            	    lv_fontSize_40_0=ruleFontSize();
+            	    lv_fontSize_41_0=ruleFontSize();
 
             	    state._fsp--;
 
@@ -1471,7 +1481,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	           		set(
             	           			current, 
             	           			"fontSize",
-            	            		lv_fontSize_40_0, 
+            	            		lv_fontSize_41_0, 
             	            		"de.tu_bs.cs.isf.mbse.mbtimes.Npl.FontSize");
             	    	        afterParserOrEnumRuleCall();
             	    	    
@@ -1500,32 +1510,32 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 15 :
-            	    // InternalNpl.g:680:4: ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) )
+            	    // InternalNpl.g:687:4: ({...}? => ( ({...}? => (otherlv_42= '}' ) ) ) )
             	    {
-            	    // InternalNpl.g:680:4: ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) )
-            	    // InternalNpl.g:681:5: {...}? => ( ({...}? => (otherlv_41= '}' ) ) )
+            	    // InternalNpl.g:687:4: ({...}? => ( ({...}? => (otherlv_42= '}' ) ) ) )
+            	    // InternalNpl.g:688:5: {...}? => ( ({...}? => (otherlv_42= '}' ) ) )
             	    {
             	    if ( ! getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 14) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "getUnorderedGroupHelper().canSelect(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 14)");
             	    }
-            	    // InternalNpl.g:681:107: ( ({...}? => (otherlv_41= '}' ) ) )
-            	    // InternalNpl.g:682:6: ({...}? => (otherlv_41= '}' ) )
+            	    // InternalNpl.g:688:107: ( ({...}? => (otherlv_42= '}' ) ) )
+            	    // InternalNpl.g:689:6: ({...}? => (otherlv_42= '}' ) )
             	    {
             	     
             	    	 				  getUnorderedGroupHelper().select(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 14);
             	    	 				
-            	    // InternalNpl.g:685:6: ({...}? => (otherlv_41= '}' ) )
-            	    // InternalNpl.g:685:7: {...}? => (otherlv_41= '}' )
+            	    // InternalNpl.g:692:6: ({...}? => (otherlv_42= '}' ) )
+            	    // InternalNpl.g:692:7: {...}? => (otherlv_42= '}' )
             	    {
             	    if ( !((true)) ) {
             	        throw new FailedPredicateException(input, "ruleDeclaration", "true");
             	    }
-            	    // InternalNpl.g:685:16: (otherlv_41= '}' )
-            	    // InternalNpl.g:685:18: otherlv_41= '}'
+            	    // InternalNpl.g:692:16: (otherlv_42= '}' )
+            	    // InternalNpl.g:692:18: otherlv_42= '}'
             	    {
-            	    otherlv_41=(Token)match(input,16,FOLLOW_5); 
+            	    otherlv_42=(Token)match(input,16,FOLLOW_5); 
 
-            	        	newLeafNode(otherlv_41, grammarAccess.getDeclarationAccess().getRightCurlyBracketKeyword_14());
+            	        	newLeafNode(otherlv_42, grammarAccess.getDeclarationAccess().getRightCurlyBracketKeyword_14());
             	        
 
             	    }
@@ -1588,7 +1598,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleImagesCount"
-    // InternalNpl.g:712:1: entryRuleImagesCount returns [EObject current=null] : iv_ruleImagesCount= ruleImagesCount EOF ;
+    // InternalNpl.g:719:1: entryRuleImagesCount returns [EObject current=null] : iv_ruleImagesCount= ruleImagesCount EOF ;
     public final EObject entryRuleImagesCount() throws RecognitionException {
         EObject current = null;
 
@@ -1596,8 +1606,8 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalNpl.g:713:2: (iv_ruleImagesCount= ruleImagesCount EOF )
-            // InternalNpl.g:714:2: iv_ruleImagesCount= ruleImagesCount EOF
+            // InternalNpl.g:720:2: (iv_ruleImagesCount= ruleImagesCount EOF )
+            // InternalNpl.g:721:2: iv_ruleImagesCount= ruleImagesCount EOF
             {
              newCompositeNode(grammarAccess.getImagesCountRule()); 
             pushFollow(FOLLOW_1);
@@ -1624,7 +1634,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleImagesCount"
-    // InternalNpl.g:721:1: ruleImagesCount returns [EObject current=null] : ( (lv_value_0_0= RULE_INT ) ) ;
+    // InternalNpl.g:728:1: ruleImagesCount returns [EObject current=null] : ( (lv_value_0_0= RULE_INT ) ) ;
     public final EObject ruleImagesCount() throws RecognitionException {
         EObject current = null;
 
@@ -1633,14 +1643,14 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalNpl.g:724:28: ( ( (lv_value_0_0= RULE_INT ) ) )
-            // InternalNpl.g:725:1: ( (lv_value_0_0= RULE_INT ) )
+            // InternalNpl.g:731:28: ( ( (lv_value_0_0= RULE_INT ) ) )
+            // InternalNpl.g:732:1: ( (lv_value_0_0= RULE_INT ) )
             {
-            // InternalNpl.g:725:1: ( (lv_value_0_0= RULE_INT ) )
-            // InternalNpl.g:726:1: (lv_value_0_0= RULE_INT )
+            // InternalNpl.g:732:1: ( (lv_value_0_0= RULE_INT ) )
+            // InternalNpl.g:733:1: (lv_value_0_0= RULE_INT )
             {
-            // InternalNpl.g:726:1: (lv_value_0_0= RULE_INT )
-            // InternalNpl.g:727:3: lv_value_0_0= RULE_INT
+            // InternalNpl.g:733:1: (lv_value_0_0= RULE_INT )
+            // InternalNpl.g:734:3: lv_value_0_0= RULE_INT
             {
             lv_value_0_0=(Token)match(input,RULE_INT,FOLLOW_2); 
 
@@ -1680,7 +1690,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFontSize"
-    // InternalNpl.g:751:1: entryRuleFontSize returns [EObject current=null] : iv_ruleFontSize= ruleFontSize EOF ;
+    // InternalNpl.g:758:1: entryRuleFontSize returns [EObject current=null] : iv_ruleFontSize= ruleFontSize EOF ;
     public final EObject entryRuleFontSize() throws RecognitionException {
         EObject current = null;
 
@@ -1688,8 +1698,8 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalNpl.g:752:2: (iv_ruleFontSize= ruleFontSize EOF )
-            // InternalNpl.g:753:2: iv_ruleFontSize= ruleFontSize EOF
+            // InternalNpl.g:759:2: (iv_ruleFontSize= ruleFontSize EOF )
+            // InternalNpl.g:760:2: iv_ruleFontSize= ruleFontSize EOF
             {
              newCompositeNode(grammarAccess.getFontSizeRule()); 
             pushFollow(FOLLOW_1);
@@ -1716,7 +1726,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFontSize"
-    // InternalNpl.g:760:1: ruleFontSize returns [EObject current=null] : ( ( (lv_value_0_0= 'small' ) ) | ( (lv_value_1_0= 'medium' ) ) | ( (lv_value_2_0= 'large' ) ) ) ;
+    // InternalNpl.g:767:1: ruleFontSize returns [EObject current=null] : ( ( (lv_value_0_0= 'small' ) ) | ( (lv_value_1_0= 'medium' ) ) | ( (lv_value_2_0= 'large' ) ) ) ;
     public final EObject ruleFontSize() throws RecognitionException {
         EObject current = null;
 
@@ -1727,10 +1737,10 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalNpl.g:763:28: ( ( ( (lv_value_0_0= 'small' ) ) | ( (lv_value_1_0= 'medium' ) ) | ( (lv_value_2_0= 'large' ) ) ) )
-            // InternalNpl.g:764:1: ( ( (lv_value_0_0= 'small' ) ) | ( (lv_value_1_0= 'medium' ) ) | ( (lv_value_2_0= 'large' ) ) )
+            // InternalNpl.g:770:28: ( ( ( (lv_value_0_0= 'small' ) ) | ( (lv_value_1_0= 'medium' ) ) | ( (lv_value_2_0= 'large' ) ) ) )
+            // InternalNpl.g:771:1: ( ( (lv_value_0_0= 'small' ) ) | ( (lv_value_1_0= 'medium' ) ) | ( (lv_value_2_0= 'large' ) ) )
             {
-            // InternalNpl.g:764:1: ( ( (lv_value_0_0= 'small' ) ) | ( (lv_value_1_0= 'medium' ) ) | ( (lv_value_2_0= 'large' ) ) )
+            // InternalNpl.g:771:1: ( ( (lv_value_0_0= 'small' ) ) | ( (lv_value_1_0= 'medium' ) ) | ( (lv_value_2_0= 'large' ) ) )
             int alt5=3;
             switch ( input.LA(1) ) {
             case 31:
@@ -1757,13 +1767,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             switch (alt5) {
                 case 1 :
-                    // InternalNpl.g:764:2: ( (lv_value_0_0= 'small' ) )
+                    // InternalNpl.g:771:2: ( (lv_value_0_0= 'small' ) )
                     {
-                    // InternalNpl.g:764:2: ( (lv_value_0_0= 'small' ) )
-                    // InternalNpl.g:765:1: (lv_value_0_0= 'small' )
+                    // InternalNpl.g:771:2: ( (lv_value_0_0= 'small' ) )
+                    // InternalNpl.g:772:1: (lv_value_0_0= 'small' )
                     {
-                    // InternalNpl.g:765:1: (lv_value_0_0= 'small' )
-                    // InternalNpl.g:766:3: lv_value_0_0= 'small'
+                    // InternalNpl.g:772:1: (lv_value_0_0= 'small' )
+                    // InternalNpl.g:773:3: lv_value_0_0= 'small'
                     {
                     lv_value_0_0=(Token)match(input,31,FOLLOW_2); 
 
@@ -1785,13 +1795,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalNpl.g:780:6: ( (lv_value_1_0= 'medium' ) )
+                    // InternalNpl.g:787:6: ( (lv_value_1_0= 'medium' ) )
                     {
-                    // InternalNpl.g:780:6: ( (lv_value_1_0= 'medium' ) )
-                    // InternalNpl.g:781:1: (lv_value_1_0= 'medium' )
+                    // InternalNpl.g:787:6: ( (lv_value_1_0= 'medium' ) )
+                    // InternalNpl.g:788:1: (lv_value_1_0= 'medium' )
                     {
-                    // InternalNpl.g:781:1: (lv_value_1_0= 'medium' )
-                    // InternalNpl.g:782:3: lv_value_1_0= 'medium'
+                    // InternalNpl.g:788:1: (lv_value_1_0= 'medium' )
+                    // InternalNpl.g:789:3: lv_value_1_0= 'medium'
                     {
                     lv_value_1_0=(Token)match(input,32,FOLLOW_2); 
 
@@ -1813,13 +1823,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalNpl.g:796:6: ( (lv_value_2_0= 'large' ) )
+                    // InternalNpl.g:803:6: ( (lv_value_2_0= 'large' ) )
                     {
-                    // InternalNpl.g:796:6: ( (lv_value_2_0= 'large' ) )
-                    // InternalNpl.g:797:1: (lv_value_2_0= 'large' )
+                    // InternalNpl.g:803:6: ( (lv_value_2_0= 'large' ) )
+                    // InternalNpl.g:804:1: (lv_value_2_0= 'large' )
                     {
-                    // InternalNpl.g:797:1: (lv_value_2_0= 'large' )
-                    // InternalNpl.g:798:3: lv_value_2_0= 'large'
+                    // InternalNpl.g:804:1: (lv_value_2_0= 'large' )
+                    // InternalNpl.g:805:3: lv_value_2_0= 'large'
                     {
                     lv_value_2_0=(Token)match(input,33,FOLLOW_2); 
 
@@ -1861,7 +1871,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFormat"
-    // InternalNpl.g:819:1: entryRuleFormat returns [EObject current=null] : iv_ruleFormat= ruleFormat EOF ;
+    // InternalNpl.g:826:1: entryRuleFormat returns [EObject current=null] : iv_ruleFormat= ruleFormat EOF ;
     public final EObject entryRuleFormat() throws RecognitionException {
         EObject current = null;
 
@@ -1869,8 +1879,8 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalNpl.g:820:2: (iv_ruleFormat= ruleFormat EOF )
-            // InternalNpl.g:821:2: iv_ruleFormat= ruleFormat EOF
+            // InternalNpl.g:827:2: (iv_ruleFormat= ruleFormat EOF )
+            // InternalNpl.g:828:2: iv_ruleFormat= ruleFormat EOF
             {
              newCompositeNode(grammarAccess.getFormatRule()); 
             pushFollow(FOLLOW_1);
@@ -1897,7 +1907,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFormat"
-    // InternalNpl.g:828:1: ruleFormat returns [EObject current=null] : ( ( (lv_value_0_0= 'DIN A6' ) ) | ( (lv_value_1_0= 'DIN A5' ) ) | ( (lv_value_2_0= 'DIN A4' ) ) | ( (lv_value_3_0= 'DIN A3' ) ) | ( (lv_value_4_0= 'DIN A2' ) ) | ( (lv_value_5_0= 'DIN A1' ) ) | ( (lv_value_6_0= 'DIN A0' ) ) ) ;
+    // InternalNpl.g:835:1: ruleFormat returns [EObject current=null] : ( ( (lv_value_0_0= 'DIN A6' ) ) | ( (lv_value_1_0= 'DIN A5' ) ) | ( (lv_value_2_0= 'DIN A4' ) ) | ( (lv_value_3_0= 'DIN A3' ) ) | ( (lv_value_4_0= 'DIN A2' ) ) | ( (lv_value_5_0= 'DIN A1' ) ) | ( (lv_value_6_0= 'DIN A0' ) ) ) ;
     public final EObject ruleFormat() throws RecognitionException {
         EObject current = null;
 
@@ -1912,10 +1922,10 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalNpl.g:831:28: ( ( ( (lv_value_0_0= 'DIN A6' ) ) | ( (lv_value_1_0= 'DIN A5' ) ) | ( (lv_value_2_0= 'DIN A4' ) ) | ( (lv_value_3_0= 'DIN A3' ) ) | ( (lv_value_4_0= 'DIN A2' ) ) | ( (lv_value_5_0= 'DIN A1' ) ) | ( (lv_value_6_0= 'DIN A0' ) ) ) )
-            // InternalNpl.g:832:1: ( ( (lv_value_0_0= 'DIN A6' ) ) | ( (lv_value_1_0= 'DIN A5' ) ) | ( (lv_value_2_0= 'DIN A4' ) ) | ( (lv_value_3_0= 'DIN A3' ) ) | ( (lv_value_4_0= 'DIN A2' ) ) | ( (lv_value_5_0= 'DIN A1' ) ) | ( (lv_value_6_0= 'DIN A0' ) ) )
+            // InternalNpl.g:838:28: ( ( ( (lv_value_0_0= 'DIN A6' ) ) | ( (lv_value_1_0= 'DIN A5' ) ) | ( (lv_value_2_0= 'DIN A4' ) ) | ( (lv_value_3_0= 'DIN A3' ) ) | ( (lv_value_4_0= 'DIN A2' ) ) | ( (lv_value_5_0= 'DIN A1' ) ) | ( (lv_value_6_0= 'DIN A0' ) ) ) )
+            // InternalNpl.g:839:1: ( ( (lv_value_0_0= 'DIN A6' ) ) | ( (lv_value_1_0= 'DIN A5' ) ) | ( (lv_value_2_0= 'DIN A4' ) ) | ( (lv_value_3_0= 'DIN A3' ) ) | ( (lv_value_4_0= 'DIN A2' ) ) | ( (lv_value_5_0= 'DIN A1' ) ) | ( (lv_value_6_0= 'DIN A0' ) ) )
             {
-            // InternalNpl.g:832:1: ( ( (lv_value_0_0= 'DIN A6' ) ) | ( (lv_value_1_0= 'DIN A5' ) ) | ( (lv_value_2_0= 'DIN A4' ) ) | ( (lv_value_3_0= 'DIN A3' ) ) | ( (lv_value_4_0= 'DIN A2' ) ) | ( (lv_value_5_0= 'DIN A1' ) ) | ( (lv_value_6_0= 'DIN A0' ) ) )
+            // InternalNpl.g:839:1: ( ( (lv_value_0_0= 'DIN A6' ) ) | ( (lv_value_1_0= 'DIN A5' ) ) | ( (lv_value_2_0= 'DIN A4' ) ) | ( (lv_value_3_0= 'DIN A3' ) ) | ( (lv_value_4_0= 'DIN A2' ) ) | ( (lv_value_5_0= 'DIN A1' ) ) | ( (lv_value_6_0= 'DIN A0' ) ) )
             int alt6=7;
             switch ( input.LA(1) ) {
             case 34:
@@ -1962,13 +1972,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             switch (alt6) {
                 case 1 :
-                    // InternalNpl.g:832:2: ( (lv_value_0_0= 'DIN A6' ) )
+                    // InternalNpl.g:839:2: ( (lv_value_0_0= 'DIN A6' ) )
                     {
-                    // InternalNpl.g:832:2: ( (lv_value_0_0= 'DIN A6' ) )
-                    // InternalNpl.g:833:1: (lv_value_0_0= 'DIN A6' )
+                    // InternalNpl.g:839:2: ( (lv_value_0_0= 'DIN A6' ) )
+                    // InternalNpl.g:840:1: (lv_value_0_0= 'DIN A6' )
                     {
-                    // InternalNpl.g:833:1: (lv_value_0_0= 'DIN A6' )
-                    // InternalNpl.g:834:3: lv_value_0_0= 'DIN A6'
+                    // InternalNpl.g:840:1: (lv_value_0_0= 'DIN A6' )
+                    // InternalNpl.g:841:3: lv_value_0_0= 'DIN A6'
                     {
                     lv_value_0_0=(Token)match(input,34,FOLLOW_2); 
 
@@ -1990,13 +2000,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalNpl.g:848:6: ( (lv_value_1_0= 'DIN A5' ) )
+                    // InternalNpl.g:855:6: ( (lv_value_1_0= 'DIN A5' ) )
                     {
-                    // InternalNpl.g:848:6: ( (lv_value_1_0= 'DIN A5' ) )
-                    // InternalNpl.g:849:1: (lv_value_1_0= 'DIN A5' )
+                    // InternalNpl.g:855:6: ( (lv_value_1_0= 'DIN A5' ) )
+                    // InternalNpl.g:856:1: (lv_value_1_0= 'DIN A5' )
                     {
-                    // InternalNpl.g:849:1: (lv_value_1_0= 'DIN A5' )
-                    // InternalNpl.g:850:3: lv_value_1_0= 'DIN A5'
+                    // InternalNpl.g:856:1: (lv_value_1_0= 'DIN A5' )
+                    // InternalNpl.g:857:3: lv_value_1_0= 'DIN A5'
                     {
                     lv_value_1_0=(Token)match(input,35,FOLLOW_2); 
 
@@ -2018,13 +2028,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalNpl.g:864:6: ( (lv_value_2_0= 'DIN A4' ) )
+                    // InternalNpl.g:871:6: ( (lv_value_2_0= 'DIN A4' ) )
                     {
-                    // InternalNpl.g:864:6: ( (lv_value_2_0= 'DIN A4' ) )
-                    // InternalNpl.g:865:1: (lv_value_2_0= 'DIN A4' )
+                    // InternalNpl.g:871:6: ( (lv_value_2_0= 'DIN A4' ) )
+                    // InternalNpl.g:872:1: (lv_value_2_0= 'DIN A4' )
                     {
-                    // InternalNpl.g:865:1: (lv_value_2_0= 'DIN A4' )
-                    // InternalNpl.g:866:3: lv_value_2_0= 'DIN A4'
+                    // InternalNpl.g:872:1: (lv_value_2_0= 'DIN A4' )
+                    // InternalNpl.g:873:3: lv_value_2_0= 'DIN A4'
                     {
                     lv_value_2_0=(Token)match(input,36,FOLLOW_2); 
 
@@ -2046,13 +2056,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalNpl.g:880:6: ( (lv_value_3_0= 'DIN A3' ) )
+                    // InternalNpl.g:887:6: ( (lv_value_3_0= 'DIN A3' ) )
                     {
-                    // InternalNpl.g:880:6: ( (lv_value_3_0= 'DIN A3' ) )
-                    // InternalNpl.g:881:1: (lv_value_3_0= 'DIN A3' )
+                    // InternalNpl.g:887:6: ( (lv_value_3_0= 'DIN A3' ) )
+                    // InternalNpl.g:888:1: (lv_value_3_0= 'DIN A3' )
                     {
-                    // InternalNpl.g:881:1: (lv_value_3_0= 'DIN A3' )
-                    // InternalNpl.g:882:3: lv_value_3_0= 'DIN A3'
+                    // InternalNpl.g:888:1: (lv_value_3_0= 'DIN A3' )
+                    // InternalNpl.g:889:3: lv_value_3_0= 'DIN A3'
                     {
                     lv_value_3_0=(Token)match(input,37,FOLLOW_2); 
 
@@ -2074,13 +2084,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalNpl.g:896:6: ( (lv_value_4_0= 'DIN A2' ) )
+                    // InternalNpl.g:903:6: ( (lv_value_4_0= 'DIN A2' ) )
                     {
-                    // InternalNpl.g:896:6: ( (lv_value_4_0= 'DIN A2' ) )
-                    // InternalNpl.g:897:1: (lv_value_4_0= 'DIN A2' )
+                    // InternalNpl.g:903:6: ( (lv_value_4_0= 'DIN A2' ) )
+                    // InternalNpl.g:904:1: (lv_value_4_0= 'DIN A2' )
                     {
-                    // InternalNpl.g:897:1: (lv_value_4_0= 'DIN A2' )
-                    // InternalNpl.g:898:3: lv_value_4_0= 'DIN A2'
+                    // InternalNpl.g:904:1: (lv_value_4_0= 'DIN A2' )
+                    // InternalNpl.g:905:3: lv_value_4_0= 'DIN A2'
                     {
                     lv_value_4_0=(Token)match(input,38,FOLLOW_2); 
 
@@ -2102,13 +2112,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // InternalNpl.g:912:6: ( (lv_value_5_0= 'DIN A1' ) )
+                    // InternalNpl.g:919:6: ( (lv_value_5_0= 'DIN A1' ) )
                     {
-                    // InternalNpl.g:912:6: ( (lv_value_5_0= 'DIN A1' ) )
-                    // InternalNpl.g:913:1: (lv_value_5_0= 'DIN A1' )
+                    // InternalNpl.g:919:6: ( (lv_value_5_0= 'DIN A1' ) )
+                    // InternalNpl.g:920:1: (lv_value_5_0= 'DIN A1' )
                     {
-                    // InternalNpl.g:913:1: (lv_value_5_0= 'DIN A1' )
-                    // InternalNpl.g:914:3: lv_value_5_0= 'DIN A1'
+                    // InternalNpl.g:920:1: (lv_value_5_0= 'DIN A1' )
+                    // InternalNpl.g:921:3: lv_value_5_0= 'DIN A1'
                     {
                     lv_value_5_0=(Token)match(input,39,FOLLOW_2); 
 
@@ -2130,13 +2140,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // InternalNpl.g:928:6: ( (lv_value_6_0= 'DIN A0' ) )
+                    // InternalNpl.g:935:6: ( (lv_value_6_0= 'DIN A0' ) )
                     {
-                    // InternalNpl.g:928:6: ( (lv_value_6_0= 'DIN A0' ) )
-                    // InternalNpl.g:929:1: (lv_value_6_0= 'DIN A0' )
+                    // InternalNpl.g:935:6: ( (lv_value_6_0= 'DIN A0' ) )
+                    // InternalNpl.g:936:1: (lv_value_6_0= 'DIN A0' )
                     {
-                    // InternalNpl.g:929:1: (lv_value_6_0= 'DIN A0' )
-                    // InternalNpl.g:930:3: lv_value_6_0= 'DIN A0'
+                    // InternalNpl.g:936:1: (lv_value_6_0= 'DIN A0' )
+                    // InternalNpl.g:937:3: lv_value_6_0= 'DIN A0'
                     {
                     lv_value_6_0=(Token)match(input,40,FOLLOW_2); 
 
@@ -2178,7 +2188,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleDate"
-    // InternalNpl.g:951:1: entryRuleDate returns [EObject current=null] : iv_ruleDate= ruleDate EOF ;
+    // InternalNpl.g:958:1: entryRuleDate returns [EObject current=null] : iv_ruleDate= ruleDate EOF ;
     public final EObject entryRuleDate() throws RecognitionException {
         EObject current = null;
 
@@ -2186,8 +2196,8 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalNpl.g:952:2: (iv_ruleDate= ruleDate EOF )
-            // InternalNpl.g:953:2: iv_ruleDate= ruleDate EOF
+            // InternalNpl.g:959:2: (iv_ruleDate= ruleDate EOF )
+            // InternalNpl.g:960:2: iv_ruleDate= ruleDate EOF
             {
              newCompositeNode(grammarAccess.getDateRule()); 
             pushFollow(FOLLOW_1);
@@ -2214,7 +2224,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDate"
-    // InternalNpl.g:960:1: ruleDate returns [EObject current=null] : (otherlv_0= '{' ( (lv_day_1_0= RULE_INT ) ) otherlv_2= '-' ( (lv_month_3_0= RULE_INT ) ) otherlv_4= '-' ( (lv_year_5_0= RULE_INT ) ) otherlv_6= '}' ) ;
+    // InternalNpl.g:967:1: ruleDate returns [EObject current=null] : (otherlv_0= '{' ( (lv_day_1_0= RULE_INT ) ) otherlv_2= '-' ( (lv_month_3_0= RULE_INT ) ) otherlv_4= '-' ( (lv_year_5_0= RULE_INT ) ) otherlv_6= '}' ) ;
     public final EObject ruleDate() throws RecognitionException {
         EObject current = null;
 
@@ -2229,21 +2239,21 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalNpl.g:963:28: ( (otherlv_0= '{' ( (lv_day_1_0= RULE_INT ) ) otherlv_2= '-' ( (lv_month_3_0= RULE_INT ) ) otherlv_4= '-' ( (lv_year_5_0= RULE_INT ) ) otherlv_6= '}' ) )
-            // InternalNpl.g:964:1: (otherlv_0= '{' ( (lv_day_1_0= RULE_INT ) ) otherlv_2= '-' ( (lv_month_3_0= RULE_INT ) ) otherlv_4= '-' ( (lv_year_5_0= RULE_INT ) ) otherlv_6= '}' )
+            // InternalNpl.g:970:28: ( (otherlv_0= '{' ( (lv_day_1_0= RULE_INT ) ) otherlv_2= '-' ( (lv_month_3_0= RULE_INT ) ) otherlv_4= '-' ( (lv_year_5_0= RULE_INT ) ) otherlv_6= '}' ) )
+            // InternalNpl.g:971:1: (otherlv_0= '{' ( (lv_day_1_0= RULE_INT ) ) otherlv_2= '-' ( (lv_month_3_0= RULE_INT ) ) otherlv_4= '-' ( (lv_year_5_0= RULE_INT ) ) otherlv_6= '}' )
             {
-            // InternalNpl.g:964:1: (otherlv_0= '{' ( (lv_day_1_0= RULE_INT ) ) otherlv_2= '-' ( (lv_month_3_0= RULE_INT ) ) otherlv_4= '-' ( (lv_year_5_0= RULE_INT ) ) otherlv_6= '}' )
-            // InternalNpl.g:964:3: otherlv_0= '{' ( (lv_day_1_0= RULE_INT ) ) otherlv_2= '-' ( (lv_month_3_0= RULE_INT ) ) otherlv_4= '-' ( (lv_year_5_0= RULE_INT ) ) otherlv_6= '}'
+            // InternalNpl.g:971:1: (otherlv_0= '{' ( (lv_day_1_0= RULE_INT ) ) otherlv_2= '-' ( (lv_month_3_0= RULE_INT ) ) otherlv_4= '-' ( (lv_year_5_0= RULE_INT ) ) otherlv_6= '}' )
+            // InternalNpl.g:971:3: otherlv_0= '{' ( (lv_day_1_0= RULE_INT ) ) otherlv_2= '-' ( (lv_month_3_0= RULE_INT ) ) otherlv_4= '-' ( (lv_year_5_0= RULE_INT ) ) otherlv_6= '}'
             {
             otherlv_0=(Token)match(input,13,FOLLOW_12); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getDateAccess().getLeftCurlyBracketKeyword_0());
                 
-            // InternalNpl.g:968:1: ( (lv_day_1_0= RULE_INT ) )
-            // InternalNpl.g:969:1: (lv_day_1_0= RULE_INT )
+            // InternalNpl.g:975:1: ( (lv_day_1_0= RULE_INT ) )
+            // InternalNpl.g:976:1: (lv_day_1_0= RULE_INT )
             {
-            // InternalNpl.g:969:1: (lv_day_1_0= RULE_INT )
-            // InternalNpl.g:970:3: lv_day_1_0= RULE_INT
+            // InternalNpl.g:976:1: (lv_day_1_0= RULE_INT )
+            // InternalNpl.g:977:3: lv_day_1_0= RULE_INT
             {
             lv_day_1_0=(Token)match(input,RULE_INT,FOLLOW_16); 
 
@@ -2269,11 +2279,11 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
                 	newLeafNode(otherlv_2, grammarAccess.getDateAccess().getHyphenMinusKeyword_2());
                 
-            // InternalNpl.g:990:1: ( (lv_month_3_0= RULE_INT ) )
-            // InternalNpl.g:991:1: (lv_month_3_0= RULE_INT )
+            // InternalNpl.g:997:1: ( (lv_month_3_0= RULE_INT ) )
+            // InternalNpl.g:998:1: (lv_month_3_0= RULE_INT )
             {
-            // InternalNpl.g:991:1: (lv_month_3_0= RULE_INT )
-            // InternalNpl.g:992:3: lv_month_3_0= RULE_INT
+            // InternalNpl.g:998:1: (lv_month_3_0= RULE_INT )
+            // InternalNpl.g:999:3: lv_month_3_0= RULE_INT
             {
             lv_month_3_0=(Token)match(input,RULE_INT,FOLLOW_16); 
 
@@ -2299,11 +2309,11 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
                 	newLeafNode(otherlv_4, grammarAccess.getDateAccess().getHyphenMinusKeyword_4());
                 
-            // InternalNpl.g:1012:1: ( (lv_year_5_0= RULE_INT ) )
-            // InternalNpl.g:1013:1: (lv_year_5_0= RULE_INT )
+            // InternalNpl.g:1019:1: ( (lv_year_5_0= RULE_INT ) )
+            // InternalNpl.g:1020:1: (lv_year_5_0= RULE_INT )
             {
-            // InternalNpl.g:1013:1: (lv_year_5_0= RULE_INT )
-            // InternalNpl.g:1014:3: lv_year_5_0= RULE_INT
+            // InternalNpl.g:1020:1: (lv_year_5_0= RULE_INT )
+            // InternalNpl.g:1021:3: lv_year_5_0= RULE_INT
             {
             lv_year_5_0=(Token)match(input,RULE_INT,FOLLOW_18); 
 
@@ -2350,7 +2360,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLanguage"
-    // InternalNpl.g:1042:1: entryRuleLanguage returns [EObject current=null] : iv_ruleLanguage= ruleLanguage EOF ;
+    // InternalNpl.g:1049:1: entryRuleLanguage returns [EObject current=null] : iv_ruleLanguage= ruleLanguage EOF ;
     public final EObject entryRuleLanguage() throws RecognitionException {
         EObject current = null;
 
@@ -2358,8 +2368,8 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalNpl.g:1043:2: (iv_ruleLanguage= ruleLanguage EOF )
-            // InternalNpl.g:1044:2: iv_ruleLanguage= ruleLanguage EOF
+            // InternalNpl.g:1050:2: (iv_ruleLanguage= ruleLanguage EOF )
+            // InternalNpl.g:1051:2: iv_ruleLanguage= ruleLanguage EOF
             {
              newCompositeNode(grammarAccess.getLanguageRule()); 
             pushFollow(FOLLOW_1);
@@ -2386,7 +2396,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLanguage"
-    // InternalNpl.g:1051:1: ruleLanguage returns [EObject current=null] : ( ( (lv_value_0_0= 'English' ) ) | ( (lv_value_1_0= 'German' ) ) ) ;
+    // InternalNpl.g:1058:1: ruleLanguage returns [EObject current=null] : ( ( (lv_value_0_0= 'English' ) ) | ( (lv_value_1_0= 'German' ) ) ) ;
     public final EObject ruleLanguage() throws RecognitionException {
         EObject current = null;
 
@@ -2396,10 +2406,10 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalNpl.g:1054:28: ( ( ( (lv_value_0_0= 'English' ) ) | ( (lv_value_1_0= 'German' ) ) ) )
-            // InternalNpl.g:1055:1: ( ( (lv_value_0_0= 'English' ) ) | ( (lv_value_1_0= 'German' ) ) )
+            // InternalNpl.g:1061:28: ( ( ( (lv_value_0_0= 'English' ) ) | ( (lv_value_1_0= 'German' ) ) ) )
+            // InternalNpl.g:1062:1: ( ( (lv_value_0_0= 'English' ) ) | ( (lv_value_1_0= 'German' ) ) )
             {
-            // InternalNpl.g:1055:1: ( ( (lv_value_0_0= 'English' ) ) | ( (lv_value_1_0= 'German' ) ) )
+            // InternalNpl.g:1062:1: ( ( (lv_value_0_0= 'English' ) ) | ( (lv_value_1_0= 'German' ) ) )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -2417,13 +2427,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             }
             switch (alt7) {
                 case 1 :
-                    // InternalNpl.g:1055:2: ( (lv_value_0_0= 'English' ) )
+                    // InternalNpl.g:1062:2: ( (lv_value_0_0= 'English' ) )
                     {
-                    // InternalNpl.g:1055:2: ( (lv_value_0_0= 'English' ) )
-                    // InternalNpl.g:1056:1: (lv_value_0_0= 'English' )
+                    // InternalNpl.g:1062:2: ( (lv_value_0_0= 'English' ) )
+                    // InternalNpl.g:1063:1: (lv_value_0_0= 'English' )
                     {
-                    // InternalNpl.g:1056:1: (lv_value_0_0= 'English' )
-                    // InternalNpl.g:1057:3: lv_value_0_0= 'English'
+                    // InternalNpl.g:1063:1: (lv_value_0_0= 'English' )
+                    // InternalNpl.g:1064:3: lv_value_0_0= 'English'
                     {
                     lv_value_0_0=(Token)match(input,41,FOLLOW_2); 
 
@@ -2445,13 +2455,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalNpl.g:1071:6: ( (lv_value_1_0= 'German' ) )
+                    // InternalNpl.g:1078:6: ( (lv_value_1_0= 'German' ) )
                     {
-                    // InternalNpl.g:1071:6: ( (lv_value_1_0= 'German' ) )
-                    // InternalNpl.g:1072:1: (lv_value_1_0= 'German' )
+                    // InternalNpl.g:1078:6: ( (lv_value_1_0= 'German' ) )
+                    // InternalNpl.g:1079:1: (lv_value_1_0= 'German' )
                     {
-                    // InternalNpl.g:1072:1: (lv_value_1_0= 'German' )
-                    // InternalNpl.g:1073:3: lv_value_1_0= 'German'
+                    // InternalNpl.g:1079:1: (lv_value_1_0= 'German' )
+                    // InternalNpl.g:1080:3: lv_value_1_0= 'German'
                     {
                     lv_value_1_0=(Token)match(input,42,FOLLOW_2); 
 
@@ -2493,7 +2503,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePrice"
-    // InternalNpl.g:1094:1: entryRulePrice returns [EObject current=null] : iv_rulePrice= rulePrice EOF ;
+    // InternalNpl.g:1101:1: entryRulePrice returns [EObject current=null] : iv_rulePrice= rulePrice EOF ;
     public final EObject entryRulePrice() throws RecognitionException {
         EObject current = null;
 
@@ -2501,8 +2511,8 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalNpl.g:1095:2: (iv_rulePrice= rulePrice EOF )
-            // InternalNpl.g:1096:2: iv_rulePrice= rulePrice EOF
+            // InternalNpl.g:1102:2: (iv_rulePrice= rulePrice EOF )
+            // InternalNpl.g:1103:2: iv_rulePrice= rulePrice EOF
             {
              newCompositeNode(grammarAccess.getPriceRule()); 
             pushFollow(FOLLOW_1);
@@ -2529,7 +2539,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePrice"
-    // InternalNpl.g:1103:1: rulePrice returns [EObject current=null] : (otherlv_0= '{' ( (lv_value_1_0= ruleFloat ) ) ( (lv_currency_2_0= ruleCurrency ) ) otherlv_3= '}' ) ;
+    // InternalNpl.g:1110:1: rulePrice returns [EObject current=null] : (otherlv_0= '{' ( (lv_value_1_0= ruleFloat ) ) ( (lv_currency_2_0= ruleCurrency ) ) otherlv_3= '}' ) ;
     public final EObject rulePrice() throws RecognitionException {
         EObject current = null;
 
@@ -2543,21 +2553,21 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalNpl.g:1106:28: ( (otherlv_0= '{' ( (lv_value_1_0= ruleFloat ) ) ( (lv_currency_2_0= ruleCurrency ) ) otherlv_3= '}' ) )
-            // InternalNpl.g:1107:1: (otherlv_0= '{' ( (lv_value_1_0= ruleFloat ) ) ( (lv_currency_2_0= ruleCurrency ) ) otherlv_3= '}' )
+            // InternalNpl.g:1113:28: ( (otherlv_0= '{' ( (lv_value_1_0= ruleFloat ) ) ( (lv_currency_2_0= ruleCurrency ) ) otherlv_3= '}' ) )
+            // InternalNpl.g:1114:1: (otherlv_0= '{' ( (lv_value_1_0= ruleFloat ) ) ( (lv_currency_2_0= ruleCurrency ) ) otherlv_3= '}' )
             {
-            // InternalNpl.g:1107:1: (otherlv_0= '{' ( (lv_value_1_0= ruleFloat ) ) ( (lv_currency_2_0= ruleCurrency ) ) otherlv_3= '}' )
-            // InternalNpl.g:1107:3: otherlv_0= '{' ( (lv_value_1_0= ruleFloat ) ) ( (lv_currency_2_0= ruleCurrency ) ) otherlv_3= '}'
+            // InternalNpl.g:1114:1: (otherlv_0= '{' ( (lv_value_1_0= ruleFloat ) ) ( (lv_currency_2_0= ruleCurrency ) ) otherlv_3= '}' )
+            // InternalNpl.g:1114:3: otherlv_0= '{' ( (lv_value_1_0= ruleFloat ) ) ( (lv_currency_2_0= ruleCurrency ) ) otherlv_3= '}'
             {
             otherlv_0=(Token)match(input,13,FOLLOW_12); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getPriceAccess().getLeftCurlyBracketKeyword_0());
                 
-            // InternalNpl.g:1111:1: ( (lv_value_1_0= ruleFloat ) )
-            // InternalNpl.g:1112:1: (lv_value_1_0= ruleFloat )
+            // InternalNpl.g:1118:1: ( (lv_value_1_0= ruleFloat ) )
+            // InternalNpl.g:1119:1: (lv_value_1_0= ruleFloat )
             {
-            // InternalNpl.g:1112:1: (lv_value_1_0= ruleFloat )
-            // InternalNpl.g:1113:3: lv_value_1_0= ruleFloat
+            // InternalNpl.g:1119:1: (lv_value_1_0= ruleFloat )
+            // InternalNpl.g:1120:3: lv_value_1_0= ruleFloat
             {
              
             	        newCompositeNode(grammarAccess.getPriceAccess().getValueFloatParserRuleCall_1_0()); 
@@ -2584,11 +2594,11 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalNpl.g:1129:2: ( (lv_currency_2_0= ruleCurrency ) )
-            // InternalNpl.g:1130:1: (lv_currency_2_0= ruleCurrency )
+            // InternalNpl.g:1136:2: ( (lv_currency_2_0= ruleCurrency ) )
+            // InternalNpl.g:1137:1: (lv_currency_2_0= ruleCurrency )
             {
-            // InternalNpl.g:1130:1: (lv_currency_2_0= ruleCurrency )
-            // InternalNpl.g:1131:3: lv_currency_2_0= ruleCurrency
+            // InternalNpl.g:1137:1: (lv_currency_2_0= ruleCurrency )
+            // InternalNpl.g:1138:3: lv_currency_2_0= ruleCurrency
             {
              
             	        newCompositeNode(grammarAccess.getPriceAccess().getCurrencyCurrencyParserRuleCall_2_0()); 
@@ -2640,7 +2650,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleCurrency"
-    // InternalNpl.g:1159:1: entryRuleCurrency returns [EObject current=null] : iv_ruleCurrency= ruleCurrency EOF ;
+    // InternalNpl.g:1166:1: entryRuleCurrency returns [EObject current=null] : iv_ruleCurrency= ruleCurrency EOF ;
     public final EObject entryRuleCurrency() throws RecognitionException {
         EObject current = null;
 
@@ -2648,8 +2658,8 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalNpl.g:1160:2: (iv_ruleCurrency= ruleCurrency EOF )
-            // InternalNpl.g:1161:2: iv_ruleCurrency= ruleCurrency EOF
+            // InternalNpl.g:1167:2: (iv_ruleCurrency= ruleCurrency EOF )
+            // InternalNpl.g:1168:2: iv_ruleCurrency= ruleCurrency EOF
             {
              newCompositeNode(grammarAccess.getCurrencyRule()); 
             pushFollow(FOLLOW_1);
@@ -2676,7 +2686,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCurrency"
-    // InternalNpl.g:1168:1: ruleCurrency returns [EObject current=null] : ( ( (lv_value_0_0= 'Euro' ) ) | ( (lv_value_1_0= 'EUR' ) ) | ( (lv_value_2_0= '\\u20AC' ) ) | ( (lv_value_3_0= 'Dollar' ) ) | ( (lv_value_4_0= 'USD' ) ) | ( (lv_value_5_0= '$' ) ) ) ;
+    // InternalNpl.g:1175:1: ruleCurrency returns [EObject current=null] : ( ( (lv_value_0_0= 'Euro' ) ) | ( (lv_value_1_0= 'EUR' ) ) | ( (lv_value_2_0= '\\u20AC' ) ) | ( (lv_value_3_0= 'Dollar' ) ) | ( (lv_value_4_0= 'USD' ) ) | ( (lv_value_5_0= '$' ) ) ) ;
     public final EObject ruleCurrency() throws RecognitionException {
         EObject current = null;
 
@@ -2690,10 +2700,10 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalNpl.g:1171:28: ( ( ( (lv_value_0_0= 'Euro' ) ) | ( (lv_value_1_0= 'EUR' ) ) | ( (lv_value_2_0= '\\u20AC' ) ) | ( (lv_value_3_0= 'Dollar' ) ) | ( (lv_value_4_0= 'USD' ) ) | ( (lv_value_5_0= '$' ) ) ) )
-            // InternalNpl.g:1172:1: ( ( (lv_value_0_0= 'Euro' ) ) | ( (lv_value_1_0= 'EUR' ) ) | ( (lv_value_2_0= '\\u20AC' ) ) | ( (lv_value_3_0= 'Dollar' ) ) | ( (lv_value_4_0= 'USD' ) ) | ( (lv_value_5_0= '$' ) ) )
+            // InternalNpl.g:1178:28: ( ( ( (lv_value_0_0= 'Euro' ) ) | ( (lv_value_1_0= 'EUR' ) ) | ( (lv_value_2_0= '\\u20AC' ) ) | ( (lv_value_3_0= 'Dollar' ) ) | ( (lv_value_4_0= 'USD' ) ) | ( (lv_value_5_0= '$' ) ) ) )
+            // InternalNpl.g:1179:1: ( ( (lv_value_0_0= 'Euro' ) ) | ( (lv_value_1_0= 'EUR' ) ) | ( (lv_value_2_0= '\\u20AC' ) ) | ( (lv_value_3_0= 'Dollar' ) ) | ( (lv_value_4_0= 'USD' ) ) | ( (lv_value_5_0= '$' ) ) )
             {
-            // InternalNpl.g:1172:1: ( ( (lv_value_0_0= 'Euro' ) ) | ( (lv_value_1_0= 'EUR' ) ) | ( (lv_value_2_0= '\\u20AC' ) ) | ( (lv_value_3_0= 'Dollar' ) ) | ( (lv_value_4_0= 'USD' ) ) | ( (lv_value_5_0= '$' ) ) )
+            // InternalNpl.g:1179:1: ( ( (lv_value_0_0= 'Euro' ) ) | ( (lv_value_1_0= 'EUR' ) ) | ( (lv_value_2_0= '\\u20AC' ) ) | ( (lv_value_3_0= 'Dollar' ) ) | ( (lv_value_4_0= 'USD' ) ) | ( (lv_value_5_0= '$' ) ) )
             int alt8=6;
             switch ( input.LA(1) ) {
             case 43:
@@ -2735,13 +2745,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             switch (alt8) {
                 case 1 :
-                    // InternalNpl.g:1172:2: ( (lv_value_0_0= 'Euro' ) )
+                    // InternalNpl.g:1179:2: ( (lv_value_0_0= 'Euro' ) )
                     {
-                    // InternalNpl.g:1172:2: ( (lv_value_0_0= 'Euro' ) )
-                    // InternalNpl.g:1173:1: (lv_value_0_0= 'Euro' )
+                    // InternalNpl.g:1179:2: ( (lv_value_0_0= 'Euro' ) )
+                    // InternalNpl.g:1180:1: (lv_value_0_0= 'Euro' )
                     {
-                    // InternalNpl.g:1173:1: (lv_value_0_0= 'Euro' )
-                    // InternalNpl.g:1174:3: lv_value_0_0= 'Euro'
+                    // InternalNpl.g:1180:1: (lv_value_0_0= 'Euro' )
+                    // InternalNpl.g:1181:3: lv_value_0_0= 'Euro'
                     {
                     lv_value_0_0=(Token)match(input,43,FOLLOW_2); 
 
@@ -2763,13 +2773,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalNpl.g:1188:6: ( (lv_value_1_0= 'EUR' ) )
+                    // InternalNpl.g:1195:6: ( (lv_value_1_0= 'EUR' ) )
                     {
-                    // InternalNpl.g:1188:6: ( (lv_value_1_0= 'EUR' ) )
-                    // InternalNpl.g:1189:1: (lv_value_1_0= 'EUR' )
+                    // InternalNpl.g:1195:6: ( (lv_value_1_0= 'EUR' ) )
+                    // InternalNpl.g:1196:1: (lv_value_1_0= 'EUR' )
                     {
-                    // InternalNpl.g:1189:1: (lv_value_1_0= 'EUR' )
-                    // InternalNpl.g:1190:3: lv_value_1_0= 'EUR'
+                    // InternalNpl.g:1196:1: (lv_value_1_0= 'EUR' )
+                    // InternalNpl.g:1197:3: lv_value_1_0= 'EUR'
                     {
                     lv_value_1_0=(Token)match(input,44,FOLLOW_2); 
 
@@ -2791,13 +2801,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalNpl.g:1204:6: ( (lv_value_2_0= '\\u20AC' ) )
+                    // InternalNpl.g:1211:6: ( (lv_value_2_0= '\\u20AC' ) )
                     {
-                    // InternalNpl.g:1204:6: ( (lv_value_2_0= '\\u20AC' ) )
-                    // InternalNpl.g:1205:1: (lv_value_2_0= '\\u20AC' )
+                    // InternalNpl.g:1211:6: ( (lv_value_2_0= '\\u20AC' ) )
+                    // InternalNpl.g:1212:1: (lv_value_2_0= '\\u20AC' )
                     {
-                    // InternalNpl.g:1205:1: (lv_value_2_0= '\\u20AC' )
-                    // InternalNpl.g:1206:3: lv_value_2_0= '\\u20AC'
+                    // InternalNpl.g:1212:1: (lv_value_2_0= '\\u20AC' )
+                    // InternalNpl.g:1213:3: lv_value_2_0= '\\u20AC'
                     {
                     lv_value_2_0=(Token)match(input,45,FOLLOW_2); 
 
@@ -2819,13 +2829,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalNpl.g:1220:6: ( (lv_value_3_0= 'Dollar' ) )
+                    // InternalNpl.g:1227:6: ( (lv_value_3_0= 'Dollar' ) )
                     {
-                    // InternalNpl.g:1220:6: ( (lv_value_3_0= 'Dollar' ) )
-                    // InternalNpl.g:1221:1: (lv_value_3_0= 'Dollar' )
+                    // InternalNpl.g:1227:6: ( (lv_value_3_0= 'Dollar' ) )
+                    // InternalNpl.g:1228:1: (lv_value_3_0= 'Dollar' )
                     {
-                    // InternalNpl.g:1221:1: (lv_value_3_0= 'Dollar' )
-                    // InternalNpl.g:1222:3: lv_value_3_0= 'Dollar'
+                    // InternalNpl.g:1228:1: (lv_value_3_0= 'Dollar' )
+                    // InternalNpl.g:1229:3: lv_value_3_0= 'Dollar'
                     {
                     lv_value_3_0=(Token)match(input,46,FOLLOW_2); 
 
@@ -2847,13 +2857,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalNpl.g:1236:6: ( (lv_value_4_0= 'USD' ) )
+                    // InternalNpl.g:1243:6: ( (lv_value_4_0= 'USD' ) )
                     {
-                    // InternalNpl.g:1236:6: ( (lv_value_4_0= 'USD' ) )
-                    // InternalNpl.g:1237:1: (lv_value_4_0= 'USD' )
+                    // InternalNpl.g:1243:6: ( (lv_value_4_0= 'USD' ) )
+                    // InternalNpl.g:1244:1: (lv_value_4_0= 'USD' )
                     {
-                    // InternalNpl.g:1237:1: (lv_value_4_0= 'USD' )
-                    // InternalNpl.g:1238:3: lv_value_4_0= 'USD'
+                    // InternalNpl.g:1244:1: (lv_value_4_0= 'USD' )
+                    // InternalNpl.g:1245:3: lv_value_4_0= 'USD'
                     {
                     lv_value_4_0=(Token)match(input,47,FOLLOW_2); 
 
@@ -2875,13 +2885,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // InternalNpl.g:1252:6: ( (lv_value_5_0= '$' ) )
+                    // InternalNpl.g:1259:6: ( (lv_value_5_0= '$' ) )
                     {
-                    // InternalNpl.g:1252:6: ( (lv_value_5_0= '$' ) )
-                    // InternalNpl.g:1253:1: (lv_value_5_0= '$' )
+                    // InternalNpl.g:1259:6: ( (lv_value_5_0= '$' ) )
+                    // InternalNpl.g:1260:1: (lv_value_5_0= '$' )
                     {
-                    // InternalNpl.g:1253:1: (lv_value_5_0= '$' )
-                    // InternalNpl.g:1254:3: lv_value_5_0= '$'
+                    // InternalNpl.g:1260:1: (lv_value_5_0= '$' )
+                    // InternalNpl.g:1261:3: lv_value_5_0= '$'
                     {
                     lv_value_5_0=(Token)match(input,48,FOLLOW_2); 
 
@@ -2923,7 +2933,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleTopic"
-    // InternalNpl.g:1275:1: entryRuleTopic returns [EObject current=null] : iv_ruleTopic= ruleTopic EOF ;
+    // InternalNpl.g:1282:1: entryRuleTopic returns [EObject current=null] : iv_ruleTopic= ruleTopic EOF ;
     public final EObject entryRuleTopic() throws RecognitionException {
         EObject current = null;
 
@@ -2931,8 +2941,8 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalNpl.g:1276:2: (iv_ruleTopic= ruleTopic EOF )
-            // InternalNpl.g:1277:2: iv_ruleTopic= ruleTopic EOF
+            // InternalNpl.g:1283:2: (iv_ruleTopic= ruleTopic EOF )
+            // InternalNpl.g:1284:2: iv_ruleTopic= ruleTopic EOF
             {
              newCompositeNode(grammarAccess.getTopicRule()); 
             pushFollow(FOLLOW_1);
@@ -2959,38 +2969,40 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTopic"
-    // InternalNpl.g:1284:1: ruleTopic returns [EObject current=null] : (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= RULE_STRING ) ) (otherlv_4= ', ' ( (lv_tags_5_0= RULE_STRING ) ) )* otherlv_6= '}' ) ;
+    // InternalNpl.g:1291:1: ruleTopic returns [EObject current=null] : (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'as' ( (lv_title_3_0= RULE_STRING ) ) otherlv_4= '{' ( (lv_tags_5_0= RULE_STRING ) ) (otherlv_6= ', ' ( (lv_tags_7_0= RULE_STRING ) ) )* otherlv_8= '}' ) ;
     public final EObject ruleTopic() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
         Token lv_name_1_0=null;
         Token otherlv_2=null;
-        Token lv_tags_3_0=null;
+        Token lv_title_3_0=null;
         Token otherlv_4=null;
         Token lv_tags_5_0=null;
         Token otherlv_6=null;
+        Token lv_tags_7_0=null;
+        Token otherlv_8=null;
 
          enterRule(); 
             
         try {
-            // InternalNpl.g:1287:28: ( (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= RULE_STRING ) ) (otherlv_4= ', ' ( (lv_tags_5_0= RULE_STRING ) ) )* otherlv_6= '}' ) )
-            // InternalNpl.g:1288:1: (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= RULE_STRING ) ) (otherlv_4= ', ' ( (lv_tags_5_0= RULE_STRING ) ) )* otherlv_6= '}' )
+            // InternalNpl.g:1294:28: ( (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'as' ( (lv_title_3_0= RULE_STRING ) ) otherlv_4= '{' ( (lv_tags_5_0= RULE_STRING ) ) (otherlv_6= ', ' ( (lv_tags_7_0= RULE_STRING ) ) )* otherlv_8= '}' ) )
+            // InternalNpl.g:1295:1: (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'as' ( (lv_title_3_0= RULE_STRING ) ) otherlv_4= '{' ( (lv_tags_5_0= RULE_STRING ) ) (otherlv_6= ', ' ( (lv_tags_7_0= RULE_STRING ) ) )* otherlv_8= '}' )
             {
-            // InternalNpl.g:1288:1: (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= RULE_STRING ) ) (otherlv_4= ', ' ( (lv_tags_5_0= RULE_STRING ) ) )* otherlv_6= '}' )
-            // InternalNpl.g:1288:3: otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_tags_3_0= RULE_STRING ) ) (otherlv_4= ', ' ( (lv_tags_5_0= RULE_STRING ) ) )* otherlv_6= '}'
+            // InternalNpl.g:1295:1: (otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'as' ( (lv_title_3_0= RULE_STRING ) ) otherlv_4= '{' ( (lv_tags_5_0= RULE_STRING ) ) (otherlv_6= ', ' ( (lv_tags_7_0= RULE_STRING ) ) )* otherlv_8= '}' )
+            // InternalNpl.g:1295:3: otherlv_0= 'topic' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'as' ( (lv_title_3_0= RULE_STRING ) ) otherlv_4= '{' ( (lv_tags_5_0= RULE_STRING ) ) (otherlv_6= ', ' ( (lv_tags_7_0= RULE_STRING ) ) )* otherlv_8= '}'
             {
             otherlv_0=(Token)match(input,49,FOLLOW_3); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getTopicAccess().getTopicKeyword_0());
                 
-            // InternalNpl.g:1292:1: ( (lv_name_1_0= RULE_ID ) )
-            // InternalNpl.g:1293:1: (lv_name_1_0= RULE_ID )
+            // InternalNpl.g:1299:1: ( (lv_name_1_0= RULE_ID ) )
+            // InternalNpl.g:1300:1: (lv_name_1_0= RULE_ID )
             {
-            // InternalNpl.g:1293:1: (lv_name_1_0= RULE_ID )
-            // InternalNpl.g:1294:3: lv_name_1_0= RULE_ID
+            // InternalNpl.g:1300:1: (lv_name_1_0= RULE_ID )
+            // InternalNpl.g:1301:3: lv_name_1_0= RULE_ID
             {
-            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_4); 
+            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_20); 
 
             			newLeafNode(lv_name_1_0, grammarAccess.getTopicAccess().getNameIDTerminalRuleCall_1_0()); 
             		
@@ -3010,28 +3022,28 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,13,FOLLOW_11); 
+            otherlv_2=(Token)match(input,50,FOLLOW_6); 
 
-                	newLeafNode(otherlv_2, grammarAccess.getTopicAccess().getLeftCurlyBracketKeyword_2());
+                	newLeafNode(otherlv_2, grammarAccess.getTopicAccess().getAsKeyword_2());
                 
-            // InternalNpl.g:1314:1: ( (lv_tags_3_0= RULE_STRING ) )
-            // InternalNpl.g:1315:1: (lv_tags_3_0= RULE_STRING )
+            // InternalNpl.g:1321:1: ( (lv_title_3_0= RULE_STRING ) )
+            // InternalNpl.g:1322:1: (lv_title_3_0= RULE_STRING )
             {
-            // InternalNpl.g:1315:1: (lv_tags_3_0= RULE_STRING )
-            // InternalNpl.g:1316:3: lv_tags_3_0= RULE_STRING
+            // InternalNpl.g:1322:1: (lv_title_3_0= RULE_STRING )
+            // InternalNpl.g:1323:3: lv_title_3_0= RULE_STRING
             {
-            lv_tags_3_0=(Token)match(input,RULE_STRING,FOLLOW_20); 
+            lv_title_3_0=(Token)match(input,RULE_STRING,FOLLOW_4); 
 
-            			newLeafNode(lv_tags_3_0, grammarAccess.getTopicAccess().getTagsSTRINGTerminalRuleCall_3_0()); 
+            			newLeafNode(lv_title_3_0, grammarAccess.getTopicAccess().getTitleSTRINGTerminalRuleCall_3_0()); 
             		
 
             	        if (current==null) {
             	            current = createModelElement(grammarAccess.getTopicRule());
             	        }
-                   		addWithLastConsumed(
+                   		setWithLastConsumed(
                    			current, 
-                   			"tags",
-                    		lv_tags_3_0, 
+                   			"title",
+                    		lv_title_3_0, 
                     		"org.eclipse.xtext.common.Terminals.STRING");
             	    
 
@@ -3040,34 +3052,64 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalNpl.g:1332:2: (otherlv_4= ', ' ( (lv_tags_5_0= RULE_STRING ) ) )*
+            otherlv_4=(Token)match(input,13,FOLLOW_6); 
+
+                	newLeafNode(otherlv_4, grammarAccess.getTopicAccess().getLeftCurlyBracketKeyword_4());
+                
+            // InternalNpl.g:1343:1: ( (lv_tags_5_0= RULE_STRING ) )
+            // InternalNpl.g:1344:1: (lv_tags_5_0= RULE_STRING )
+            {
+            // InternalNpl.g:1344:1: (lv_tags_5_0= RULE_STRING )
+            // InternalNpl.g:1345:3: lv_tags_5_0= RULE_STRING
+            {
+            lv_tags_5_0=(Token)match(input,RULE_STRING,FOLLOW_21); 
+
+            			newLeafNode(lv_tags_5_0, grammarAccess.getTopicAccess().getTagsSTRINGTerminalRuleCall_5_0()); 
+            		
+
+            	        if (current==null) {
+            	            current = createModelElement(grammarAccess.getTopicRule());
+            	        }
+                   		addWithLastConsumed(
+                   			current, 
+                   			"tags",
+                    		lv_tags_5_0, 
+                    		"org.eclipse.xtext.common.Terminals.STRING");
+            	    
+
+            }
+
+
+            }
+
+            // InternalNpl.g:1361:2: (otherlv_6= ', ' ( (lv_tags_7_0= RULE_STRING ) ) )*
             loop9:
             do {
                 int alt9=2;
                 int LA9_0 = input.LA(1);
 
-                if ( (LA9_0==50) ) {
+                if ( (LA9_0==51) ) {
                     alt9=1;
                 }
 
 
                 switch (alt9) {
             	case 1 :
-            	    // InternalNpl.g:1332:4: otherlv_4= ', ' ( (lv_tags_5_0= RULE_STRING ) )
+            	    // InternalNpl.g:1361:4: otherlv_6= ', ' ( (lv_tags_7_0= RULE_STRING ) )
             	    {
-            	    otherlv_4=(Token)match(input,50,FOLLOW_11); 
+            	    otherlv_6=(Token)match(input,51,FOLLOW_6); 
 
-            	        	newLeafNode(otherlv_4, grammarAccess.getTopicAccess().getCommaSpaceKeyword_4_0());
+            	        	newLeafNode(otherlv_6, grammarAccess.getTopicAccess().getCommaSpaceKeyword_6_0());
             	        
-            	    // InternalNpl.g:1336:1: ( (lv_tags_5_0= RULE_STRING ) )
-            	    // InternalNpl.g:1337:1: (lv_tags_5_0= RULE_STRING )
+            	    // InternalNpl.g:1365:1: ( (lv_tags_7_0= RULE_STRING ) )
+            	    // InternalNpl.g:1366:1: (lv_tags_7_0= RULE_STRING )
             	    {
-            	    // InternalNpl.g:1337:1: (lv_tags_5_0= RULE_STRING )
-            	    // InternalNpl.g:1338:3: lv_tags_5_0= RULE_STRING
+            	    // InternalNpl.g:1366:1: (lv_tags_7_0= RULE_STRING )
+            	    // InternalNpl.g:1367:3: lv_tags_7_0= RULE_STRING
             	    {
-            	    lv_tags_5_0=(Token)match(input,RULE_STRING,FOLLOW_20); 
+            	    lv_tags_7_0=(Token)match(input,RULE_STRING,FOLLOW_21); 
 
-            	    			newLeafNode(lv_tags_5_0, grammarAccess.getTopicAccess().getTagsSTRINGTerminalRuleCall_4_1_0()); 
+            	    			newLeafNode(lv_tags_7_0, grammarAccess.getTopicAccess().getTagsSTRINGTerminalRuleCall_6_1_0()); 
             	    		
 
             	    	        if (current==null) {
@@ -3076,7 +3118,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             	           		addWithLastConsumed(
             	           			current, 
             	           			"tags",
-            	            		lv_tags_5_0, 
+            	            		lv_tags_7_0, 
             	            		"org.eclipse.xtext.common.Terminals.STRING");
             	    	    
 
@@ -3094,9 +3136,9 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            otherlv_6=(Token)match(input,16,FOLLOW_2); 
+            otherlv_8=(Token)match(input,16,FOLLOW_2); 
 
-                	newLeafNode(otherlv_6, grammarAccess.getTopicAccess().getRightCurlyBracketKeyword_5());
+                	newLeafNode(otherlv_8, grammarAccess.getTopicAccess().getRightCurlyBracketKeyword_7());
                 
 
             }
@@ -3119,7 +3161,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePair"
-    // InternalNpl.g:1366:1: entryRulePair returns [EObject current=null] : iv_rulePair= rulePair EOF ;
+    // InternalNpl.g:1395:1: entryRulePair returns [EObject current=null] : iv_rulePair= rulePair EOF ;
     public final EObject entryRulePair() throws RecognitionException {
         EObject current = null;
 
@@ -3127,8 +3169,8 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalNpl.g:1367:2: (iv_rulePair= rulePair EOF )
-            // InternalNpl.g:1368:2: iv_rulePair= rulePair EOF
+            // InternalNpl.g:1396:2: (iv_rulePair= rulePair EOF )
+            // InternalNpl.g:1397:2: iv_rulePair= rulePair EOF
             {
              newCompositeNode(grammarAccess.getPairRule()); 
             pushFollow(FOLLOW_1);
@@ -3155,7 +3197,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePair"
-    // InternalNpl.g:1375:1: rulePair returns [EObject current=null] : ( ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>' ) ;
+    // InternalNpl.g:1404:1: rulePair returns [EObject current=null] : ( ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>' ) ;
     public final EObject rulePair() throws RecognitionException {
         EObject current = null;
 
@@ -3169,22 +3211,22 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalNpl.g:1378:28: ( ( ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>' ) )
-            // InternalNpl.g:1379:1: ( ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>' )
+            // InternalNpl.g:1407:28: ( ( ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>' ) )
+            // InternalNpl.g:1408:1: ( ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>' )
             {
-            // InternalNpl.g:1379:1: ( ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>' )
-            // InternalNpl.g:1379:2: ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>'
+            // InternalNpl.g:1408:1: ( ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>' )
+            // InternalNpl.g:1408:2: ( (lv_type_0_0= ruleFeedType ) ) ( (lv_key_1_0= RULE_STRING ) ) otherlv_2= '<' ( (lv_value_3_0= RULE_URL ) ) otherlv_4= '>'
             {
-            // InternalNpl.g:1379:2: ( (lv_type_0_0= ruleFeedType ) )
-            // InternalNpl.g:1380:1: (lv_type_0_0= ruleFeedType )
+            // InternalNpl.g:1408:2: ( (lv_type_0_0= ruleFeedType ) )
+            // InternalNpl.g:1409:1: (lv_type_0_0= ruleFeedType )
             {
-            // InternalNpl.g:1380:1: (lv_type_0_0= ruleFeedType )
-            // InternalNpl.g:1381:3: lv_type_0_0= ruleFeedType
+            // InternalNpl.g:1409:1: (lv_type_0_0= ruleFeedType )
+            // InternalNpl.g:1410:3: lv_type_0_0= ruleFeedType
             {
              
             	        newCompositeNode(grammarAccess.getPairAccess().getTypeFeedTypeParserRuleCall_0_0()); 
             	    
-            pushFollow(FOLLOW_11);
+            pushFollow(FOLLOW_6);
             lv_type_0_0=ruleFeedType();
 
             state._fsp--;
@@ -3206,13 +3248,13 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalNpl.g:1397:2: ( (lv_key_1_0= RULE_STRING ) )
-            // InternalNpl.g:1398:1: (lv_key_1_0= RULE_STRING )
+            // InternalNpl.g:1426:2: ( (lv_key_1_0= RULE_STRING ) )
+            // InternalNpl.g:1427:1: (lv_key_1_0= RULE_STRING )
             {
-            // InternalNpl.g:1398:1: (lv_key_1_0= RULE_STRING )
-            // InternalNpl.g:1399:3: lv_key_1_0= RULE_STRING
+            // InternalNpl.g:1427:1: (lv_key_1_0= RULE_STRING )
+            // InternalNpl.g:1428:3: lv_key_1_0= RULE_STRING
             {
-            lv_key_1_0=(Token)match(input,RULE_STRING,FOLLOW_21); 
+            lv_key_1_0=(Token)match(input,RULE_STRING,FOLLOW_22); 
 
             			newLeafNode(lv_key_1_0, grammarAccess.getPairAccess().getKeySTRINGTerminalRuleCall_1_0()); 
             		
@@ -3232,17 +3274,17 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,51,FOLLOW_22); 
+            otherlv_2=(Token)match(input,52,FOLLOW_23); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getPairAccess().getLessThanSignKeyword_2());
                 
-            // InternalNpl.g:1419:1: ( (lv_value_3_0= RULE_URL ) )
-            // InternalNpl.g:1420:1: (lv_value_3_0= RULE_URL )
+            // InternalNpl.g:1448:1: ( (lv_value_3_0= RULE_URL ) )
+            // InternalNpl.g:1449:1: (lv_value_3_0= RULE_URL )
             {
-            // InternalNpl.g:1420:1: (lv_value_3_0= RULE_URL )
-            // InternalNpl.g:1421:3: lv_value_3_0= RULE_URL
+            // InternalNpl.g:1449:1: (lv_value_3_0= RULE_URL )
+            // InternalNpl.g:1450:3: lv_value_3_0= RULE_URL
             {
-            lv_value_3_0=(Token)match(input,RULE_URL,FOLLOW_23); 
+            lv_value_3_0=(Token)match(input,RULE_URL,FOLLOW_24); 
 
             			newLeafNode(lv_value_3_0, grammarAccess.getPairAccess().getValueURLTerminalRuleCall_3_0()); 
             		
@@ -3262,7 +3304,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,52,FOLLOW_2); 
+            otherlv_4=(Token)match(input,53,FOLLOW_2); 
 
                 	newLeafNode(otherlv_4, grammarAccess.getPairAccess().getGreaterThanSignKeyword_4());
                 
@@ -3287,7 +3329,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFloat"
-    // InternalNpl.g:1449:1: entryRuleFloat returns [String current=null] : iv_ruleFloat= ruleFloat EOF ;
+    // InternalNpl.g:1478:1: entryRuleFloat returns [String current=null] : iv_ruleFloat= ruleFloat EOF ;
     public final String entryRuleFloat() throws RecognitionException {
         String current = null;
 
@@ -3295,8 +3337,8 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalNpl.g:1450:2: (iv_ruleFloat= ruleFloat EOF )
-            // InternalNpl.g:1451:2: iv_ruleFloat= ruleFloat EOF
+            // InternalNpl.g:1479:2: (iv_ruleFloat= ruleFloat EOF )
+            // InternalNpl.g:1480:2: iv_ruleFloat= ruleFloat EOF
             {
              newCompositeNode(grammarAccess.getFloatRule()); 
             pushFollow(FOLLOW_1);
@@ -3323,7 +3365,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFloat"
-    // InternalNpl.g:1458:1: ruleFloat returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )? ) ;
+    // InternalNpl.g:1487:1: ruleFloat returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )? ) ;
     public final AntlrDatatypeRuleToken ruleFloat() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -3334,38 +3376,38 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalNpl.g:1461:28: ( (this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )? ) )
-            // InternalNpl.g:1462:1: (this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )? )
+            // InternalNpl.g:1490:28: ( (this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )? ) )
+            // InternalNpl.g:1491:1: (this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )? )
             {
-            // InternalNpl.g:1462:1: (this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )? )
-            // InternalNpl.g:1462:6: this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )?
+            // InternalNpl.g:1491:1: (this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )? )
+            // InternalNpl.g:1491:6: this_INT_0= RULE_INT ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )?
             {
-            this_INT_0=(Token)match(input,RULE_INT,FOLLOW_24); 
+            this_INT_0=(Token)match(input,RULE_INT,FOLLOW_25); 
 
             		current.merge(this_INT_0);
                 
              
                 newLeafNode(this_INT_0, grammarAccess.getFloatAccess().getINTTerminalRuleCall_0()); 
                 
-            // InternalNpl.g:1469:1: ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )?
+            // InternalNpl.g:1498:1: ( (kw= '.' | kw= ',' ) this_INT_3= RULE_INT )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
-            if ( ((LA11_0>=53 && LA11_0<=54)) ) {
+            if ( ((LA11_0>=54 && LA11_0<=55)) ) {
                 alt11=1;
             }
             switch (alt11) {
                 case 1 :
-                    // InternalNpl.g:1469:2: (kw= '.' | kw= ',' ) this_INT_3= RULE_INT
+                    // InternalNpl.g:1498:2: (kw= '.' | kw= ',' ) this_INT_3= RULE_INT
                     {
-                    // InternalNpl.g:1469:2: (kw= '.' | kw= ',' )
+                    // InternalNpl.g:1498:2: (kw= '.' | kw= ',' )
                     int alt10=2;
                     int LA10_0 = input.LA(1);
 
-                    if ( (LA10_0==53) ) {
+                    if ( (LA10_0==54) ) {
                         alt10=1;
                     }
-                    else if ( (LA10_0==54) ) {
+                    else if ( (LA10_0==55) ) {
                         alt10=2;
                     }
                     else {
@@ -3376,9 +3418,9 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt10) {
                         case 1 :
-                            // InternalNpl.g:1470:2: kw= '.'
+                            // InternalNpl.g:1499:2: kw= '.'
                             {
-                            kw=(Token)match(input,53,FOLLOW_12); 
+                            kw=(Token)match(input,54,FOLLOW_12); 
 
                                     current.merge(kw);
                                     newLeafNode(kw, grammarAccess.getFloatAccess().getFullStopKeyword_1_0_0()); 
@@ -3387,9 +3429,9 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 2 :
-                            // InternalNpl.g:1477:2: kw= ','
+                            // InternalNpl.g:1506:2: kw= ','
                             {
-                            kw=(Token)match(input,54,FOLLOW_12); 
+                            kw=(Token)match(input,55,FOLLOW_12); 
 
                                     current.merge(kw);
                                     newLeafNode(kw, grammarAccess.getFloatAccess().getCommaKeyword_1_0_1()); 
@@ -3434,7 +3476,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFeedType"
-    // InternalNpl.g:1497:1: entryRuleFeedType returns [String current=null] : iv_ruleFeedType= ruleFeedType EOF ;
+    // InternalNpl.g:1526:1: entryRuleFeedType returns [String current=null] : iv_ruleFeedType= ruleFeedType EOF ;
     public final String entryRuleFeedType() throws RecognitionException {
         String current = null;
 
@@ -3442,8 +3484,8 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalNpl.g:1498:2: (iv_ruleFeedType= ruleFeedType EOF )
-            // InternalNpl.g:1499:2: iv_ruleFeedType= ruleFeedType EOF
+            // InternalNpl.g:1527:2: (iv_ruleFeedType= ruleFeedType EOF )
+            // InternalNpl.g:1528:2: iv_ruleFeedType= ruleFeedType EOF
             {
              newCompositeNode(grammarAccess.getFeedTypeRule()); 
             pushFollow(FOLLOW_1);
@@ -3470,7 +3512,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFeedType"
-    // InternalNpl.g:1506:1: ruleFeedType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'RSS' | kw= 'Atom' ) ;
+    // InternalNpl.g:1535:1: ruleFeedType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'RSS' | kw= 'Atom' ) ;
     public final AntlrDatatypeRuleToken ruleFeedType() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -3479,17 +3521,17 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalNpl.g:1509:28: ( (kw= 'RSS' | kw= 'Atom' ) )
-            // InternalNpl.g:1510:1: (kw= 'RSS' | kw= 'Atom' )
+            // InternalNpl.g:1538:28: ( (kw= 'RSS' | kw= 'Atom' ) )
+            // InternalNpl.g:1539:1: (kw= 'RSS' | kw= 'Atom' )
             {
-            // InternalNpl.g:1510:1: (kw= 'RSS' | kw= 'Atom' )
+            // InternalNpl.g:1539:1: (kw= 'RSS' | kw= 'Atom' )
             int alt12=2;
             int LA12_0 = input.LA(1);
 
-            if ( (LA12_0==55) ) {
+            if ( (LA12_0==56) ) {
                 alt12=1;
             }
-            else if ( (LA12_0==56) ) {
+            else if ( (LA12_0==57) ) {
                 alt12=2;
             }
             else {
@@ -3500,9 +3542,9 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             }
             switch (alt12) {
                 case 1 :
-                    // InternalNpl.g:1511:2: kw= 'RSS'
+                    // InternalNpl.g:1540:2: kw= 'RSS'
                     {
-                    kw=(Token)match(input,55,FOLLOW_2); 
+                    kw=(Token)match(input,56,FOLLOW_2); 
 
                             current.merge(kw);
                             newLeafNode(kw, grammarAccess.getFeedTypeAccess().getRSSKeyword_0()); 
@@ -3511,9 +3553,9 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalNpl.g:1518:2: kw= 'Atom'
+                    // InternalNpl.g:1547:2: kw= 'Atom'
                     {
-                    kw=(Token)match(input,56,FOLLOW_2); 
+                    kw=(Token)match(input,57,FOLLOW_2); 
 
                             current.merge(kw);
                             newLeafNode(kw, grammarAccess.getFeedTypeAccess().getAtomKeyword_1()); 
@@ -3592,7 +3634,7 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
             this.transition = dfa_7;
         }
         public String getDescription() {
-            return "()+ loopback of 87:3: ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => ( ( (lv_recrawl_4_0= 'recrawl' ) ) otherlv_5= 'feed links' otherlv_6= '{' ( (lv_feedlinks_7_0= rulePair ) ) ( (lv_feedlinks_8_0= rulePair ) )* otherlv_9= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_10= 'topics' otherlv_11= '{' ( (lv_topics_12_0= ruleTopic ) ) ( (lv_topics_13_0= ruleTopic ) )* otherlv_14= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_15= 'optional: date' ( (lv_date_16_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_17= 'optional: location' ( (lv_location_18_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_19= 'optional: price' ( (lv_price_20_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_21= 'optional: volume' ( (lv_volume_22_0= RULE_INT ) ) (otherlv_23= 'no.' ( (lv_number_24_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_25= 'optional: language' ( (lv_language_26_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_27= 'format' ( (lv_format_28_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_29= 'number of articles per topic' ( (lv_articleCnt_30_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_31= 'number of words per article' ( (lv_articleWordsMin_32_0= RULE_INT ) ) otherlv_33= '-' ( (lv_articleWordsMax_34_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_35= 'optional: number of images per article' ( (lv_imagesCnt_36_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_37= 'number of columns' ( (lv_columnsCnt_38_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_39= 'font size' ( (lv_fontSize_40_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_41= '}' ) ) ) ) )+";
+            return "()+ loopback of 87:3: ( ({...}? => ( ({...}? => (otherlv_1= 'newspaper' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= '{' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_4= 'title' ( (lv_title_5_0= RULE_STRING ) ) otherlv_6= 'feed links' otherlv_7= '{' ( (lv_feedlinks_8_0= rulePair ) ) ( (lv_feedlinks_9_0= rulePair ) )* otherlv_10= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_11= 'topics' otherlv_12= '{' ( (lv_topics_13_0= ruleTopic ) ) ( (lv_topics_14_0= ruleTopic ) )* otherlv_15= '}' ) ) ) ) | ({...}? => ( ({...}? => (otherlv_16= 'optional: date' ( (lv_date_17_0= ruleDate ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_18= 'optional: location' ( (lv_location_19_0= RULE_STRING ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_20= 'optional: price' ( (lv_price_21_0= rulePrice ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_22= 'optional: volume' ( (lv_volume_23_0= RULE_INT ) ) (otherlv_24= 'no.' ( (lv_number_25_0= RULE_INT ) ) )? ) ) ) ) | ({...}? => ( ({...}? => (otherlv_26= 'optional: language' ( (lv_language_27_0= ruleLanguage ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_28= 'format' ( (lv_format_29_0= ruleFormat ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_30= 'number of articles per topic' ( (lv_articleCnt_31_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_32= 'number of words per article' ( (lv_articleWordsMin_33_0= RULE_INT ) ) otherlv_34= '-' ( (lv_articleWordsMax_35_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_36= 'optional: number of images per article' ( (lv_imagesCnt_37_0= ruleImagesCount ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_38= 'number of columns' ( (lv_columnsCnt_39_0= RULE_INT ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_40= 'font size' ( (lv_fontSize_41_0= ruleFontSize ) ) ) ) ) ) | ({...}? => ( ({...}? => (otherlv_42= '}' ) ) ) ) )+";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
@@ -3655,12 +3697,12 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000077BF5002L});
-    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0180000000000000L});
-    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0180000000010000L});
-    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0002000000010000L});
-    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0300000000000000L});
+    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0300000000010000L});
+    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0002000000010000L});
     public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000077FF5002L});
     public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000060000000000L});
@@ -3669,10 +3711,11 @@ public class InternalNplParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000380000000L});
     public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000000010000L});
     public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0001F80000000000L});
-    public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0004000000010000L});
-    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0060000000000002L});
+    public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0008000000010000L});
+    public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0020000000000000L});
+    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x00C0000000000002L});
 
 }

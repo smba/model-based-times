@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getName <em>Name</em>}</li>
- *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#isRecrawl <em>Recrawl</em>}</li>
+ *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getTitle <em>Title</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getFeedlinks <em>Feedlinks</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getTopics <em>Topics</em>}</li>
  *   <li>{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getDate <em>Date</em>}</li>
@@ -67,30 +67,30 @@ public interface Declaration extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Recrawl</b></em>' attribute.
+   * Returns the value of the '<em><b>Title</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Recrawl</em>' attribute isn't clear,
+   * If the meaning of the '<em>Title</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Recrawl</em>' attribute.
-   * @see #setRecrawl(boolean)
-   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_Recrawl()
+   * @return the value of the '<em>Title</em>' attribute.
+   * @see #setTitle(String)
+   * @see de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage#getDeclaration_Title()
    * @model
    * @generated
    */
-  boolean isRecrawl();
+  String getTitle();
 
   /**
-   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#isRecrawl <em>Recrawl</em>}' attribute.
+   * Sets the value of the '{@link de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration#getTitle <em>Title</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Recrawl</em>' attribute.
-   * @see #isRecrawl()
+   * @param value the new value of the '<em>Title</em>' attribute.
+   * @see #getTitle()
    * @generated
    */
-  void setRecrawl(boolean value);
+  void setTitle(String value);
 
   /**
    * Returns the value of the '<em><b>Feedlinks</b></em>' containment reference list.

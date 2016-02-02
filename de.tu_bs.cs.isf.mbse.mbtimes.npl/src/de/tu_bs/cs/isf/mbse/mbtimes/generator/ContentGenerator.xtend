@@ -7,7 +7,6 @@ import de.tu_bs.cs.isf.mbse.mbtimes.npl.vsm.VectorSpaceModel
 import java.util.ArrayList
 import java.util.LinkedList
 import java.util.List
-import java.util.Observable
 import java.util.StringTokenizer
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
@@ -77,10 +76,7 @@ class ContentGenerator {
   def  static compileArticle(Article it) {
   	var content = it.content
   	var subtitle = it.subtitle
-  	subtitle = subtitle.substring(subtitle.lastIndexOf(".value=")+7)
-  	if(subtitle.lastIndexOf("</a>") >= 0) {
-  		subtitle = subtitle.substring(subtitle.lastIndexOf("</a>")+5)
-  	}
+
   	var title = it.title
   	var authors = ""
   	if(it.author != null && it.author.size() > 0 ) {

@@ -10,7 +10,8 @@ generate npl "http://www.tu_bs.de/cs/isf/mbse/mbtimes/Npl"
 
 Declaration:
 	"newspaper" name=ID "{" &
-	recrawl ?= "recrawl" "feed links" "{"
+	"title" title = STRING
+	"feed links" "{"
 		feedlinks += Pair (feedlinks+=Pair)*
 	"}" &
 	"topics" "{" 
@@ -72,7 +73,7 @@ Currency:
 	value = "$";
 
 Topic:
-	"topic" name=ID "{"
+	"topic" name=ID "as" title = STRING  "{"
 	tags+=STRING (", " tags+=STRING)*
 	"}";
 
