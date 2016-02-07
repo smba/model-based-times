@@ -1,9 +1,5 @@
 package de.tu_bs.cs.isf.mbse.mbtimes.npl.vsm;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -11,19 +7,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.StringJoiner;
 
 import org.apache.commons.lang3.StringUtils;
-import org.eclipse.core.runtime.Platform;
-import org.osgi.framework.Bundle;
 
-import de.tu_bs.cs.isf.mbse.mbtimes.npl.Language;
 import edu.ucla.sspace.common.Similarity;
 import edu.ucla.sspace.common.Similarity.SimType;
 import edu.ucla.sspace.matrix.AtomicGrowingSparseMatrix;
 import edu.ucla.sspace.matrix.Matrix;
-import edu.ucla.sspace.text.EnglishStemmer;
-import edu.ucla.sspace.text.GermanStemmer;
 import edu.ucla.sspace.text.Stemmer;
 import edu.ucla.sspace.vector.CompactSparseVector;
 import edu.ucla.sspace.vector.DoubleVector;
@@ -36,61 +26,23 @@ import edu.ucla.sspace.vector.ScaledDoubleVector;
  */
 public class VectorSpaceModel {
 
-	public static String nplBundlePathPrefix;
-	static {
-		Bundle bundle = Platform.getBundle("de.tu_bs.cs.isf.mbse.mbtimes.npl");
-		int begin = bundle.getLocation().indexOf("/");
-		nplBundlePathPrefix = bundle.getLocation().substring(begin);
-		String prefix = (new File("dummy")).getAbsolutePath(); 
-		prefix = prefix.substring(0,  prefix.lastIndexOf('/') + 1); 
-		nplBundlePathPrefix = nplBundlePathPrefix.substring(prefix.length(), nplBundlePathPrefix.length());
-	}
-	
 	private static final SimType SIMILARITY_TYPE = SimType.COSINE;
 
 	final private ArrayList<String> documents;
 	final private Matrix documentMatrix;
 	final private List<String> bagOfWords;
-	final private List<String> stopwords;
-	
-	final private Stemmer stemmer;
 
-	public VectorSpaceModel(Language language) {
+	protected Stemmer stemmer;
+
+	public VectorSpaceModel() {
 		documents = new ArrayList<String>();
 		bagOfWords = new LinkedList<String>();
 		documentMatrix = new AtomicGrowingSparseMatrix();
-		stopwords = new LinkedList<String>();
-		
-		final String PATH_STOPWORDS;
-		if (language.getValue().equals("German")) {
-			stemmer = new GermanStemmer();
-			PATH_STOPWORDS = nplBundlePathPrefix + "/stopwords/stopwordsDE.txt";
-		} else {
-			stemmer = new EnglishStemmer();
-			PATH_STOPWORDS = nplBundlePathPrefix + "/stopwords/stopwordsEN.txt";
-		}
-	
-		//load stopwords
-		System.out.println((new File(".")).getAbsolutePath());
-		try (final BufferedReader br = new BufferedReader(new FileReader(PATH_STOPWORDS))) {
-		      String line;
-		      while ((line = br.readLine()) != null) {
-		    	  
-		        stopwords.add(line);
-		      }
-		    } catch (IOException ioe) {
-		      throw new RuntimeException(ioe);
-		    }
-		
 	}
 
 	public void buildDocumentVectors(List<String> docs) {
 
-		//Get stemmed document working copies
-		for (String document : docs) {
-			String documentStemmed = getStemmedText(document);
-			this.documents.add(documentStemmed);
-		}
+		this.documents.addAll(docs);
 
 		final Matrix tfMatrix = new AtomicGrowingSparseMatrix();
 		/**
@@ -99,19 +51,12 @@ public class VectorSpaceModel {
 		final Set<String> temporarySetOfWords = new HashSet<String>();
 		for (String document : documents) {
 			for (String term : document.split(" ")) {
-				
-				//Wortstammreduktion
-				String termStemmed = stemmer.stem( term.toLowerCase() );
-				
-				// Omit stopwords
-				if (! stopwords.contains(termStemmed)) {
-					temporarySetOfWords.add( termStemmed);
-				}
-				
+				temporarySetOfWords.add(term.toLowerCase());
 			}
 		}
 
 		bagOfWords.addAll(temporarySetOfWords);
+		// assert (bagOfWords.size() > 0);
 
 		/**
 		 * Get the TF values
@@ -205,7 +150,6 @@ public class VectorSpaceModel {
 				}
 			}
 			map.remove(maxPosition);
-			System.out.println(sortedMap.size());
 			sortedMap.put(counter, maxPosition);
 			counter++;
 		}
@@ -219,7 +163,6 @@ public class VectorSpaceModel {
 
 	}
 
-	/*
 	public static void main(String[] args) {
 		List<String> docs = new ArrayList<String>();
 		docs.add(
@@ -239,7 +182,6 @@ public class VectorSpaceModel {
 		DoubleVector queryV = vsm.getQueryVector(query);
 		vsm.computeSimilarities(queryV);
 	}
-	*/
 
 	// TODO remove
 	public Matrix getDocumentMatrix() {
@@ -266,12 +208,7 @@ public class VectorSpaceModel {
 		return new ScaledDoubleVector(tfVector, 1.0 / tfVector.magnitude());
 	}
 
-	public String getStemmedText(String text) {
-		StringJoiner strj = new StringJoiner(" ");
-		for (String term : text.split(" ")) {
-			strj.add( stemmer.stem(term) );
-		}
-		return strj.toString();
-	}
+
 	
+
 }

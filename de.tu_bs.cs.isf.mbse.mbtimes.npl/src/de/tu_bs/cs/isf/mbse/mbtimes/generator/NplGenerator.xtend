@@ -6,16 +6,15 @@ package de.tu_bs.cs.isf.mbse.mbtimes.generator
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.CrawlerDispatcher
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.m2m.Transformator
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration
-import de.tu_bs.cs.isf.mbse.mbtimes.npl.Language
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Pair
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic
 import java.util.HashMap
 import java.util.Map
-import java.util.Observable
 import java.util.Observer
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
+import java.util.Observable
 
 /**
  * Generates code from your model files on save
@@ -298,15 +297,6 @@ class NplGenerator implements Observer, IGenerator {
 	
 	override update(Observable o, Object arg) {
 		System.err.println("Compiling .tex s")
-		
-		//Set language 
-		var Language lang = null;
-		for(d: resource.allContents.toIterable.filter(Declaration)) {
-    		lang = d.language
-    	}
-    	val language = lang;
-		ContentGenerator.language = language
-		
 		/* Compiling topics */
 		resource.allContents.filter(typeof(Topic)).forEach[topic|
 			val topicText = ContentGenerator.compileTopic(topic.tags, topic.title)
