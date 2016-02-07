@@ -1,6 +1,6 @@
+
 //this line indicates we want the new grammar to be derived from the build in grammar terminals
 // which defines some basic terminal rules like STRING, ID and so forth
-// with erweitert grammatiken
 grammar de.tu_bs.cs.isf.mbse.mbtimes.Npl with org.eclipse.xtext.common.Terminals
 //grammar de.tu_bs.cs.isf.mbse.mbtimes.Npl
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
@@ -8,6 +8,11 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 //this line defines the name and namespace URI for our grammar
 generate npl "http://www.tu_bs.de/cs/isf/mbse/mbtimes/Npl"
 
+/*
+ * This is the parser rule for the newpaper language grammar.
+ * The newpaper name is set as the file name for the layout.tex.The topic name is set
+ * as the file name for the content.tex which is included by the layout.tex.
+ */
 Declaration:
 	"newspaper" name=ID "{" &
 	"title" title = STRING
@@ -17,28 +22,24 @@ Declaration:
 	"topics" "{" 
 		topics+=Topic (topics+=Topic)*
 	"}" &
-	("optional: date" date=Date)? &
-	("optional: location" location=STRING)? &
-	("optional: price" price=Price)? &
-	("optional: volume" volume=INT ("no." number=INT)? )? &
-	("optional: language" language=Language)? &
+	("date" date=Date)? &
+	("location" location=STRING)? &
+	("price" price=Price)? &
+	("volume" volume=INT ("no." number=INT)? )? &
+	("language" language=Language)? &
 	"format" format=Format &
 	"number of articles per topic" articleCnt=INT &
 	"number of words per article" articleWordsMin=INT "-" articleWordsMax=INT &
-	("optional: number of images per article" imagesCnt=ImagesCount)? &
+	("number of images per article" imagesCnt=ImagesCount)? &
 	"number of columns" columnsCnt=INT &
 	"font size" fontSize=FontSize &
 "}";
 
-/**
- * 
- */
+
 ImagesCount:
 	value = INT
 ;
 
-// Nutzer kann auswählen, ob die Schriftgröße klein, medium und groß sein soll. Größe sollte 
-// abhängig vom gewählten Format festgelegt. 
 FontSize:
 	value =  "small"  | 
 	value =  "medium" | 
@@ -209,7 +210,4 @@ FeedType:
 	"RSS" |
 	"Atom"
 ;
-//terminal PREIS: 
-//	('0'..'9')+(','|'.')*('0'..'9')*;
-
 
