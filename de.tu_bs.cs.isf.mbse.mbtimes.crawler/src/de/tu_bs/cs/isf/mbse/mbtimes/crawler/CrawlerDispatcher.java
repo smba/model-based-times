@@ -100,28 +100,13 @@ public class CrawlerDispatcher extends Observable implements Runnable {
 	@Override
 	public void run() {
 		
-		Display display = new Display();
-		MessageBox startDialog = new MessageBox(new Shell(display), SWT.ICON_QUESTION | SWT.YES | SWT.NO);
 		
-		if(Platform.getNL().contains("de")) {
-			startDialog.setText("Zeitungserstellung");
-			startDialog.setMessage("Soll jetzt deine Zeitung erstellt werden?");		
-		} else {
-			startDialog.setText("Start Generation");
-			startDialog.setMessage("Should your newspaper be generated, now?");
-		}
-				// open dialog and await user selection
-		int btn = startDialog.open(); 
-		
-		if(btn == SWT.NO) {
-			return;
-		}
 		
 		System.err.println("Started Crawling");
 		dispatchAndCrawl();
 		
 		// create a dialog with ok and cancel buttons and a question icon
-		MessageBox endDialog = new MessageBox(new Shell(display), SWT.ICON_INFORMATION | SWT.OK);
+		MessageBox endDialog = new MessageBox(new Shell(new Display()), SWT.ICON_INFORMATION | SWT.OK);
 		if(Platform.getNL().contains("de")) {
 			endDialog.setText("Fertig");
 			endDialog.setMessage("Deine Zeitung wurde erstellt!");		
