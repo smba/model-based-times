@@ -67,7 +67,7 @@ class ContentGenerator {
   			val st = new StringTokenizer(article.content)
   			println("numberWords: " + st.countTokens())
  	 		if(st.countTokens() >= d.articleWordsMin && st.countTokens() <= d.articleWordsMax) {
-  				topicTex.append(compileArticle(article))
+  				topicTex.append(compileArticle(article, topic))
   				cntArticles++
   			} else {
   				k++
@@ -97,7 +97,7 @@ class ContentGenerator {
   	return topicTex.toString
   }
 //  	    \headline{\it\huge �it.title�}
-  def  static compileArticle(Article it) {
+  def  static compileArticle(Article it, List<String> topic) {
   	var content = new String(it.content.getBytes("UTF-8"),"UTF-8")
   	var subtitle = new String(it.subtitle.getBytes("UTF-8"),"UTF-8")
   	if(subtitle.indexOf("<") >= 0) {
@@ -128,6 +128,10 @@ class ContentGenerator {
   		}
   		authors = authors.replace(specialChars.get(i),changedChars.get(i))
 		newschannel = newschannel.replace(specialChars.get(i),changedChars.get(i))
+  	}
+  	
+  	for(t: topic) {
+  		content = content.replace(t,"\\textcolor{red}{" + t + "}")
   	}
   	
   	
