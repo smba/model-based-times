@@ -23,35 +23,48 @@ import edu.ucla.sspace.vector.DoubleVector;
 import edu.ucla.sspace.vector.ScaledDoubleVector;
 
 /**
- * 
- * @author Stefan Mühlbauer <s.muehlbauer@tu-bs.de>
- *
+ * Das Vector Space Model ist ein Werkzeug, um Artikel nach Ähnlichkeit 
+ * zu durchsuchen.
  */
 public class VectorSpaceModel {
-
+	
+	/** Similarity type, default should be COSINE */
 	private static final SimType SIMILARITY_TYPE = SimType.COSINE;
-
+	
+	/**	(stemmed) list of documents; the document corpus */
 	final private ArrayList<String> documents;
+	
+	/** Matrix for the tf-idf values */
 	final private Matrix documentMatrix;
+	
+	/** Bag of words; set of all words */
 	final private List<String> bagOfWords;
-
-	private Stemmer stemmer;
-	private String languageCode;
 	
+	private final Stemmer stemmer;
+	private Map<Integer, Double> mapSimilarities;
 	
-	private Map<Integer, Double> mapSimilarities = new HashMap<Integer, Double>();
-
+	/**
+	 * The constructor requires a language code in order to 
+	 * instantiate an appropriate Stemmer. 
+	 * 
+	 * @param languageCode DE or EN for German or English respectively.
+	 */
 	public VectorSpaceModel(String languageCode) {
-		
+
 		documents = new ArrayList<String>();
 		bagOfWords = new LinkedList<String>();
 		documentMatrix = new AtomicGrowingSparseMatrix();
+		mapSimilarities = new HashMap<Integer, Double>();
 		
 		// Create the Stemmer instance
-		this.languageCode = languageCode;
 		stemmer = (languageCode.equals("DE")) ? new GermanStemmer() : new EnglishStemmer();
 	}
 
+	/**
+	 * Loads the document corpus which is to be searched.
+	 *  
+	 * @param docs List of documents, the corpus to search.
+	 */
 	public void buildDocumentVectors(List<String> docs) {
 
 		/**
@@ -60,26 +73,26 @@ public class VectorSpaceModel {
 		for (String document : docs) {
 			StringJoiner joiner = new StringJoiner(" ");
 			for (String term : document.split(" ")) {
-				joiner.add( stemmer.stem(term) );
+				joiner.add(stemmer.stem(term));
 			}
-			this.documents.add( joiner.toString() );
+			this.documents.add(joiner.toString());
 		}
 
+		/** Matrix for the TF values */
 		final Matrix tfMatrix = new AtomicGrowingSparseMatrix();
-		
+
 		/**
 		 * Construct the bag of words for the given set of documents
 		 */
 		final Set<String> temporarySetOfWords = new HashSet<String>();
 		for (String document : documents) {
 			for (String term : document.split(" ")) {
-				
+
 				// word needs to be stemmed
-				temporarySetOfWords.add( stemmer.stem(term.toLowerCase()) );
+				temporarySetOfWords.add(stemmer.stem(term.toLowerCase()));
 			}
 		}
 		bagOfWords.addAll(temporarySetOfWords);
-		
 
 		/**
 		 * Get the TF [term frequency] values
@@ -90,7 +103,7 @@ public class VectorSpaceModel {
 
 			for (int i = 0; i < bagOfWords.size(); i++) {
 				final int o;
-				o = StringUtils.countMatches( documents.get(j).toLowerCase(), bagOfWords.get(i));
+				o = StringUtils.countMatches(documents.get(j).toLowerCase(), bagOfWords.get(i));
 				tempTfVector[i] = (double) o;
 			}
 			tfVector = new CompactSparseVector(tempTfVector);
@@ -116,10 +129,6 @@ public class VectorSpaceModel {
 		/**
 		 * Construct TF-IDF Vectors / Matrix
 		 */
-		// assert (
-		// (documents.size() == tfMatrix.rows()) &&
-		// (bagOfWords.size() == tfMatrix.columns()));
-
 		for (int l = 0; l < tfMatrix.rows(); l++) {
 
 			DoubleVector tfIdfVector = new CompactSparseVector();
@@ -141,75 +150,68 @@ public class VectorSpaceModel {
 		}
 	}
 
-	public void testMethod() {
-		
-	}
-
-
 	public Map<Integer, Integer> computeSimilarities(DoubleVector queryV) {
+		
 		Map<Integer, Double> map = new HashMap<Integer, Double>();
 		for (int i = 0; i < documentMatrix.rows(); i++) {
+			
 			DoubleVector dv = documentMatrix.getRowVector(i);
-			
+
+			/*
+			 * Calculate the similarity; if the similarity, however, 
+			 * yields a NaN (not a number) result, we continue with 
+			 * a similarity of 0.0 since NaN causes trouble.
+			 */
 			Double similarity = Similarity.getSimilarity(SIMILARITY_TYPE, queryV, dv);
-			
 			similarity = (similarity.toString().equals("NaN")) ? 0.0 : similarity;
 
-			System.out.println(similarity);
 			map.put(i, similarity);
 		}
 
 		// backup map
 		Map<Integer, Double> mapBackup = new HashMap<Integer, Double>();
 		for (Integer key : map.keySet()) {
-			mapBackup.put(key,map.get(key));
+			mapBackup.put(key, map.get(key));
 		}
 
 		// sort map
 		Map<Integer, Integer> sortedMap = new HashMap<Integer, Integer>();
 		int counter = 0;
-		
-		
+
 		while (!map.isEmpty()) {
-			
+
 			int maxPosition = 0;
 			double maxValue = -1;
-			
+
 			for (Integer key : map.keySet()) {
-				
+
 				if (map.get(key) > maxValue) {
-					
+
 					maxValue = map.get(key);
 					maxPosition = key;
 				}
 			}
-			
-			
+
 			map.remove(maxPosition);
-			
-			
+
 			sortedMap.put(counter, maxPosition);
-			
+
 			counter++;
 		}
 
-		// misc
-		for (Integer key: sortedMap.keySet()) {
-			System.out.println(key + 1 + ".: Text #" + sortedMap.get(key) + " with similarity of " + mapBackup.get(sortedMap.get(key)));
+		// TODO remove
+		for (Integer key : sortedMap.keySet()) {
+			System.out.println(key + 1 + ".: Text #" + sortedMap.get(key) + " with similarity of "
+					+ mapBackup.get(sortedMap.get(key)));
 		}
 		map = mapBackup;
 		mapSimilarities = map;
 		return sortedMap;
 
 	}
-	
+
 	public double getSimilarity(int key) {
 		return mapSimilarities.get(key);
-	}
-
-	// TODO remove
-	public Matrix getDocumentMatrix() {
-		return documentMatrix;
 	}
 
 	public DoubleVector getQueryVector(List<String> queryStrings) {
@@ -231,8 +233,4 @@ public class VectorSpaceModel {
 		tfVector = new CompactSparseVector(tempTfVector);
 		return new ScaledDoubleVector(tfVector, 1.0 / tfVector.magnitude());
 	}
-
-
-	
-
 }
