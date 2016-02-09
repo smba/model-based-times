@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.StringJoiner;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -14,6 +15,8 @@ import edu.ucla.sspace.common.Similarity;
 import edu.ucla.sspace.common.Similarity.SimType;
 import edu.ucla.sspace.matrix.AtomicGrowingSparseMatrix;
 import edu.ucla.sspace.matrix.Matrix;
+import edu.ucla.sspace.text.EnglishStemmer;
+import edu.ucla.sspace.text.GermanStemmer;
 import edu.ucla.sspace.text.Stemmer;
 import edu.ucla.sspace.vector.CompactSparseVector;
 import edu.ucla.sspace.vector.DoubleVector;
@@ -43,29 +46,43 @@ public class VectorSpaceModel {
 		documents = new ArrayList<String>();
 		bagOfWords = new LinkedList<String>();
 		documentMatrix = new AtomicGrowingSparseMatrix();
+		
+		// Create the Stemmer instance
 		this.languageCode = languageCode;
+		stemmer = (languageCode.equals("DE")) ? new GermanStemmer() : new EnglishStemmer();
 	}
 
 	public void buildDocumentVectors(List<String> docs) {
 
-		this.documents.addAll(docs);
+		/**
+		 * For each document, stem the words
+		 */
+		for (String document : docs) {
+			StringJoiner joiner = new StringJoiner(" ");
+			for (String term : document.split(" ")) {
+				joiner.add( stemmer.stem(term) );
+			}
+			this.documents.add( joiner.toString() );
+		}
 
 		final Matrix tfMatrix = new AtomicGrowingSparseMatrix();
+		
 		/**
 		 * Construct the bag of words for the given set of documents
 		 */
 		final Set<String> temporarySetOfWords = new HashSet<String>();
 		for (String document : documents) {
 			for (String term : document.split(" ")) {
-				temporarySetOfWords.add(term.toLowerCase());
+				
+				// word needs to be stemmed
+				temporarySetOfWords.add( stemmer.stem(term.toLowerCase()) );
 			}
 		}
-
 		bagOfWords.addAll(temporarySetOfWords);
-		// assert (bagOfWords.size() > 0);
+		
 
 		/**
-		 * Get the TF values
+		 * Get the TF [term frequency] values
 		 */
 		for (int j = 0; j < documents.size(); j++) {
 			final DoubleVector tfVector;
@@ -73,7 +90,7 @@ public class VectorSpaceModel {
 
 			for (int i = 0; i < bagOfWords.size(); i++) {
 				final int o;
-				o = StringUtils.countMatches(documents.get(j).toLowerCase(), bagOfWords.get(i));
+				o = StringUtils.countMatches( documents.get(j).toLowerCase(), bagOfWords.get(i));
 				tempTfVector[i] = (double) o;
 			}
 			tfVector = new CompactSparseVector(tempTfVector);
@@ -152,28 +169,25 @@ public class VectorSpaceModel {
 		Map<Integer, Integer> sortedMap = new HashMap<Integer, Integer>();
 		int counter = 0;
 		
-		/**
-		 * Degugging ahead
-		 */
+		
 		while (!map.isEmpty()) {
-			//System.err.println("[VSM] " +" !map.isEmpty()) is " + !map.isEmpty());
+			
 			int maxPosition = 0;
 			double maxValue = -1;
-			//System.err.println("[VSM] For-Loop for " + map.keySet().size() + " elements in map.keySet()");
+			
 			for (Integer key : map.keySet()) {
 				
 				if (map.get(key) > maxValue) {
-					//System.err.println("[VSM] Inside For-loop: map.get(key) > maxValue");
+					
 					maxValue = map.get(key);
 					maxPosition = key;
 				}
 			}
 			
-			//System.err.println(map);
-			//System.err.println("before Removal");
+			
 			map.remove(maxPosition);
-			//System.err.println("after removal");
-			//System.err.println(map);
+			
+			
 			sortedMap.put(counter, maxPosition);
 			
 			counter++;
