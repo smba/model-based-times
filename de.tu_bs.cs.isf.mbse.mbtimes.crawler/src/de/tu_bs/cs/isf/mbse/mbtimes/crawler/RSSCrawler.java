@@ -136,6 +136,7 @@ public class RSSCrawler implements Crawler, RSSFeedParserListener {
 
 	@Override
 	public void receiveRSSImage(Image image) {
+		System.err.println("Received image!");
 		rssResource.getContents().add(image);
 	}
 
