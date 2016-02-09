@@ -45,7 +45,11 @@ public class AtomCrawler implements Crawler, AtomFeedParserListener {
 		int begin = bundle.getLocation().indexOf("/");
 		crawlerBundlePathPrefix = bundle.getLocation().substring(begin);
 		String prefix = (new File("dummy")).getAbsolutePath(); 
-		prefix = prefix.substring(0,  prefix.lastIndexOf('/') + 1); 
+		if(Platform.getOS().compareTo(Platform.OS_WIN32) == 0) {
+			prefix = prefix.substring(0,  prefix.lastIndexOf('\\') + 2);
+		} else {
+			prefix = prefix.substring(0,  prefix.lastIndexOf('/') + 1); 
+		}
 		crawlerBundlePathPrefix = crawlerBundlePathPrefix.substring(prefix.length(), crawlerBundlePathPrefix.length());
 	}
 	
