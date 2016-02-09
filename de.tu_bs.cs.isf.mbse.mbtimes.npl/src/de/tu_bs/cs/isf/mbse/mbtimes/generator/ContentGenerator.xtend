@@ -40,7 +40,7 @@ class ContentGenerator {
   	
   	// index out of bound fix
   	if (newschannels.size > 0) {
-  		println("crawled newschannel icon url: " + newschannels.get(1).icon);
+  		println("crawled newschannel icon url: " + newschannels.get(0).icon);
   	}
   	
   	val topicTex = new StringBuffer()

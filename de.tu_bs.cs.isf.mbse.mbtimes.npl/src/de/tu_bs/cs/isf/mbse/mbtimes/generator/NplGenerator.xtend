@@ -145,13 +145,26 @@ class NplGenerator implements Observer, IGenerator {
 		}
 		
 		var language = ""
+		var feeds = ""
+		var copyright = "\\copyright\\ Sofia Ananieva, Florian Maurer, Stefan Mühlbauer \\& Julian Troegel"
 		if(d.language != null) {
 			if(d.language.value.equals("German")) {
 				language = "\\usepackage[ngerman]{babel}"
+				feeds = "Folgende Newsfeeds wurden in dieser Zeitung betrachtet: \n"
+				copyright += " -- Ein Projekt aus \"{}Modellbasierte Softwareentwicklung\"{} von Christoph Seidl"
 			} else if(d.language.value.equals("English")) {
 				language = "\\usepackage[english]{babel}"
+				feeds = "The following newsfeeds are used for this newspaper: \n"
+				copyright += " -- A project from \"{}Model-based Software Development\"{} by Christoph Seidl"
 			}
 		}
+		
+		feeds += "\\begin{itemize}\n"
+		for(f: d.feedlinks) {
+			feeds += "\\item " + f.key + ": " + "\\url{" + f.value + "}\n"
+		}
+		feeds += "\\end{itemize}"
+		
 		
 		/*
 		var Double fontSize = 0.0;
@@ -201,6 +214,7 @@ class NplGenerator implements Observer, IGenerator {
 		\usepackage{wrapfig}
 		\usepackage{picinpar}
 		\usepackage{eurosym}
+		\usepackage[hidelinks]{hyperref}
 		
 		% Change geometry and dimensions
 		
@@ -275,12 +289,24 @@ class NplGenerator implements Observer, IGenerator {
 		\begin{document}
 			\maketitle
 			
+			\begin{center}
+				\fbox{\parbox{0.9\textwidth}{\footnotesize «feeds»}}
+			\end{center}
+		
 			%include topic.tex's
-		    «FOR t:d.topics»
-		    	\input{«t.name».tex}
-		    	\pagebreak
+			«FOR t:d.topics»
+				\input{«t.name».tex}
+			«IF !t.name.equals(d.topics.get(d.topics.size-1).name)»
+			\pagebreak
+			«ENDIF»
 			«ENDFOR»
+						
+			\vfill
+			\noindent{\footnotesize «copyright»}
+			
 		\end{document}
+			
+			
 		'''
 	}
 	
