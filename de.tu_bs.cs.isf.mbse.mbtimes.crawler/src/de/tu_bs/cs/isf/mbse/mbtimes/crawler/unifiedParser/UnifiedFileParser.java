@@ -28,12 +28,12 @@ public class UnifiedFileParser {
 	} 
 	
 	public static void main(String[] args) {
-		LinkedList<UnifiedModel.Article> unifiedArticles= load();
+		LinkedList<UnifiedModel.Article> unifiedArticles= loadArticles();
 		System.out.println();
 		System.out.println(unifiedArticles.get(0).getContent());
 	}
 	
-	public static LinkedList<UnifiedModel.Article> load() {
+	public static LinkedList<UnifiedModel.Article> loadArticles() {
 	    // Initialize the model
 	    UnifiedModelPackage.eINSTANCE.eClass();
 	    
@@ -52,6 +52,9 @@ public class UnifiedFileParser {
 	    Resource resource = resSet.getResource(URI
 	        .createURI(crawlerBundlePathPrefix + "tmp/unifiedRSS.unified"), true);
 	    
+	    // Get the resource
+	    Resource resource2 = resSet.getResource(URI
+	        .createURI(crawlerBundlePathPrefix + "tmp/unifiedAtom.unified"), true);
 	    
 	    
 	    // Get the first model element and cast it to the right type, in my
@@ -64,7 +67,13 @@ public class UnifiedFileParser {
 		    	System.out.println(current.getTitle());
 	    	}
 	    }
-	    
+	    for(int i = 0; i < resource2.getContents().size(); i++) {
+	    	if(resource.getContents().get(i) instanceof UnifiedModel.Article) {
+	    		UnifiedModel.Article current = (UnifiedModel.Article) resource2.getContents().get(i);
+	    		unifiedArticles.add(current);
+		    	System.out.println(current.getTitle());
+	    	}
+	    }
 	   return unifiedArticles;
 	  }
 

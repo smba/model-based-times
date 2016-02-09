@@ -33,7 +33,7 @@ class ContentGenerator {
   }
 
   def static String compileTopic(List<String> topic, String topicName, Declaration d) {
-  	val articles = new ArrayList<Article>(UnifiedFileParser.load());
+  	val articles = new ArrayList<Article>(UnifiedFileParser.loadArticles());
   	val topicTex = new StringBuffer()
 
 	//retreive List from articles
