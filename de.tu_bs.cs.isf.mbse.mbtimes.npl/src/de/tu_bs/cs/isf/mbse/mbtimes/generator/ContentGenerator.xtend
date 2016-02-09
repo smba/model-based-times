@@ -1,5 +1,6 @@
 package de.tu_bs.cs.isf.mbse.mbtimes.generator
 
+import UnifiedModel.NewsChannel
 import UnifiedModel.Article
 import UnifiedModel.UnifiedModelPackage
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.unifiedParser.UnifiedFileParser
@@ -35,6 +36,8 @@ class ContentGenerator {
 
   def static String compileTopic(List<String> topic, String topicName, Declaration d) {
   	val articles = new ArrayList<Article>(UnifiedFileParser.loadArticles());
+  	val newschannels = new ArrayList<NewsChannel>(UnifiedFileParser.loadNewsChannels());
+  	println("crawled newschannel icon url: " + newschannels.get(1).icon);
   	val topicTex = new StringBuffer()
 
 	//retreive List from articles

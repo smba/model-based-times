@@ -43,6 +43,7 @@ public class RSSFeedParser extends AbstractFeedParser {
 
 	@Override
 	public void run() {
+		System.out.println("Parsing " + url);
 		HttpURLConnection httpcon;
 		try {
 			httpcon = (HttpURLConnection) this.url.openConnection();

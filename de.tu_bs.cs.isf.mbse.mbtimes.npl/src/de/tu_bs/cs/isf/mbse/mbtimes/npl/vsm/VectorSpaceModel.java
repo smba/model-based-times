@@ -70,6 +70,7 @@ public class VectorSpaceModel {
 		/**
 		 * For each document, stem the words
 		 */
+		/*
 		for (String document : docs) {
 			StringJoiner joiner = new StringJoiner(" ");
 			for (String term : document.split(" ")) {
@@ -77,6 +78,8 @@ public class VectorSpaceModel {
 			}
 			this.documents.add(joiner.toString());
 		}
+		*/
+		this.documents.addAll(docs);
 
 		/** Matrix for the TF values */
 		final Matrix tfMatrix = new AtomicGrowingSparseMatrix();
@@ -89,7 +92,7 @@ public class VectorSpaceModel {
 			for (String term : document.split(" ")) {
 
 				// word needs to be stemmed
-				temporarySetOfWords.add(stemmer.stem(term.toLowerCase()));
+				temporarySetOfWords.add( term.toLowerCase() );
 			}
 		}
 		bagOfWords.addAll(temporarySetOfWords);

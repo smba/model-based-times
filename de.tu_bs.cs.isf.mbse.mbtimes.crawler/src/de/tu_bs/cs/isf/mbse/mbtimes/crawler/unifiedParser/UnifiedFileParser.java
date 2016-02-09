@@ -68,7 +68,7 @@ public class UnifiedFileParser {
 	    	}
 	    }
 	    for(int i = 0; i < resource2.getContents().size(); i++) {
-	    	if(resource.getContents().get(i) instanceof UnifiedModel.Article) {
+	    	if(resource2.getContents().get(i) instanceof UnifiedModel.Article) {
 	    		UnifiedModel.Article current = (UnifiedModel.Article) resource2.getContents().get(i);
 	    		unifiedArticles.add(current);
 		    	System.out.println(current.getTitle());
