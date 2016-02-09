@@ -46,19 +46,19 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTopicsTopicParserRuleCall_2_3_0 = (RuleCall)cTopicsAssignment_2_3.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_2_4 = (Keyword)cGroup_2.eContents().get(4);
 		private final Group cGroup_3 = (Group)cUnorderedGroup.eContents().get(3);
-		private final Keyword cOptionalDateKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Keyword cDateKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
 		private final Assignment cDateAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final RuleCall cDateDateParserRuleCall_3_1_0 = (RuleCall)cDateAssignment_3_1.eContents().get(0);
 		private final Group cGroup_4 = (Group)cUnorderedGroup.eContents().get(4);
-		private final Keyword cOptionalLocationKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Keyword cLocationKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
 		private final Assignment cLocationAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
 		private final RuleCall cLocationSTRINGTerminalRuleCall_4_1_0 = (RuleCall)cLocationAssignment_4_1.eContents().get(0);
 		private final Group cGroup_5 = (Group)cUnorderedGroup.eContents().get(5);
-		private final Keyword cOptionalPriceKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Keyword cPriceKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
 		private final Assignment cPriceAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
 		private final RuleCall cPricePriceParserRuleCall_5_1_0 = (RuleCall)cPriceAssignment_5_1.eContents().get(0);
 		private final Group cGroup_6 = (Group)cUnorderedGroup.eContents().get(6);
-		private final Keyword cOptionalVolumeKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Keyword cVolumeKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
 		private final Assignment cVolumeAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
 		private final RuleCall cVolumeINTTerminalRuleCall_6_1_0 = (RuleCall)cVolumeAssignment_6_1.eContents().get(0);
 		private final Group cGroup_6_2 = (Group)cGroup_6.eContents().get(2);
@@ -66,7 +66,7 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNumberAssignment_6_2_1 = (Assignment)cGroup_6_2.eContents().get(1);
 		private final RuleCall cNumberINTTerminalRuleCall_6_2_1_0 = (RuleCall)cNumberAssignment_6_2_1.eContents().get(0);
 		private final Group cGroup_7 = (Group)cUnorderedGroup.eContents().get(7);
-		private final Keyword cOptionalLanguageKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
+		private final Keyword cLanguageKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
 		private final Assignment cLanguageAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
 		private final RuleCall cLanguageLanguageParserRuleCall_7_1_0 = (RuleCall)cLanguageAssignment_7_1.eContents().get(0);
 		private final Group cGroup_8 = (Group)cUnorderedGroup.eContents().get(8);
@@ -85,7 +85,7 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cArticleWordsMaxAssignment_10_3 = (Assignment)cGroup_10.eContents().get(3);
 		private final RuleCall cArticleWordsMaxINTTerminalRuleCall_10_3_0 = (RuleCall)cArticleWordsMaxAssignment_10_3.eContents().get(0);
 		private final Group cGroup_11 = (Group)cUnorderedGroup.eContents().get(11);
-		private final Keyword cOptionalNumberOfImagesPerArticleKeyword_11_0 = (Keyword)cGroup_11.eContents().get(0);
+		private final Keyword cNumberOfImagesPerArticleKeyword_11_0 = (Keyword)cGroup_11.eContents().get(0);
 		private final Assignment cImagesCntAssignment_11_1 = (Assignment)cGroup_11.eContents().get(1);
 		private final RuleCall cImagesCntImagesCountParserRuleCall_11_1_0 = (RuleCall)cImagesCntAssignment_11_1.eContents().get(0);
 		private final Group cGroup_12 = (Group)cUnorderedGroup.eContents().get(12);
@@ -98,7 +98,11 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cFontSizeFontSizeParserRuleCall_13_1_0 = (RuleCall)cFontSizeAssignment_13_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_14 = (Keyword)cUnorderedGroup.eContents().get(14);
 		
-		//Declaration:
+		/// *
+		// * This is the parser rule for the newpaper language grammar.
+		// * The newpaper name is set as the file name for the layout.tex.The topic name is set
+		// * as the file name for the content.tex which is included by the layout.tex.
+		// * / Declaration:
 		//	"newspaper" name=ID "{" &
 		//	"title" title=STRING
 		//	"feed links" "{"
@@ -106,11 +110,11 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		//	"}" &
 		//	"topics" "{"
 		//	topics+=Topic topics+=Topic*
-		//	"}" & ("optional: date" date=Date)? & ("optional: location" location=STRING)? & ("optional: price" price=Price)? &
-		//	("optional: volume" volume=INT ("no." number=INT)?)? & ("optional: language" language=Language)? &
+		//	"}" & ("date" date=Date)? & ("location" location=STRING)? & ("price" price=Price)? & ("volume" volume=INT ("no."
+		//	number=INT)?)? & ("language" language=Language)? &
 		//	"format" format=Format &
 		//	"number of articles per topic" articleCnt=INT &
-		//	"number of words per article" articleWordsMin=INT "-" articleWordsMax=INT & ("optional: number of images per article"
+		//	"number of words per article" articleWordsMin=INT "-" articleWordsMax=INT & ("number of images per article"
 		//	imagesCnt=ImagesCount)? &
 		//	"number of columns" columnsCnt=INT &
 		//	"font size" fontSize=FontSize &
@@ -118,11 +122,11 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		@Override public ParserRule getRule() { return rule; }
 
 		//"newspaper" name=ID "{" & "title" title=STRING "feed links" "{" feedlinks+=Pair feedlinks+=Pair* "}" & "topics" "{"
-		//topics+=Topic topics+=Topic* "}" & ("optional: date" date=Date)? & ("optional: location" location=STRING)? &
-		//("optional: price" price=Price)? & ("optional: volume" volume=INT ("no." number=INT)?)? & ("optional: language"
-		//language=Language)? & "format" format=Format & "number of articles per topic" articleCnt=INT &
-		//"number of words per article" articleWordsMin=INT "-" articleWordsMax=INT & ("optional: number of images per article"
-		//imagesCnt=ImagesCount)? & "number of columns" columnsCnt=INT & "font size" fontSize=FontSize & "}"
+		//topics+=Topic topics+=Topic* "}" & ("date" date=Date)? & ("location" location=STRING)? & ("price" price=Price)? &
+		//("volume" volume=INT ("no." number=INT)?)? & ("language" language=Language)? & "format" format=Format &
+		//"number of articles per topic" articleCnt=INT & "number of words per article" articleWordsMin=INT "-"
+		//articleWordsMax=INT & ("number of images per article" imagesCnt=ImagesCount)? & "number of columns" columnsCnt=INT &
+		//"font size" fontSize=FontSize & "}"
 		public UnorderedGroup getUnorderedGroup() { return cUnorderedGroup; }
 
 		//"newspaper" name=ID "{"
@@ -197,11 +201,11 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_2_4() { return cRightCurlyBracketKeyword_2_4; }
 
-		//("optional: date" date=Date)?
+		//("date" date=Date)?
 		public Group getGroup_3() { return cGroup_3; }
 
-		//"optional: date"
-		public Keyword getOptionalDateKeyword_3_0() { return cOptionalDateKeyword_3_0; }
+		//"date"
+		public Keyword getDateKeyword_3_0() { return cDateKeyword_3_0; }
 
 		//date=Date
 		public Assignment getDateAssignment_3_1() { return cDateAssignment_3_1; }
@@ -209,11 +213,11 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		//Date
 		public RuleCall getDateDateParserRuleCall_3_1_0() { return cDateDateParserRuleCall_3_1_0; }
 
-		//("optional: location" location=STRING)?
+		//("location" location=STRING)?
 		public Group getGroup_4() { return cGroup_4; }
 
-		//"optional: location"
-		public Keyword getOptionalLocationKeyword_4_0() { return cOptionalLocationKeyword_4_0; }
+		//"location"
+		public Keyword getLocationKeyword_4_0() { return cLocationKeyword_4_0; }
 
 		//location=STRING
 		public Assignment getLocationAssignment_4_1() { return cLocationAssignment_4_1; }
@@ -221,11 +225,11 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		//STRING
 		public RuleCall getLocationSTRINGTerminalRuleCall_4_1_0() { return cLocationSTRINGTerminalRuleCall_4_1_0; }
 
-		//("optional: price" price=Price)?
+		//("price" price=Price)?
 		public Group getGroup_5() { return cGroup_5; }
 
-		//"optional: price"
-		public Keyword getOptionalPriceKeyword_5_0() { return cOptionalPriceKeyword_5_0; }
+		//"price"
+		public Keyword getPriceKeyword_5_0() { return cPriceKeyword_5_0; }
 
 		//price=Price
 		public Assignment getPriceAssignment_5_1() { return cPriceAssignment_5_1; }
@@ -233,11 +237,11 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		//Price
 		public RuleCall getPricePriceParserRuleCall_5_1_0() { return cPricePriceParserRuleCall_5_1_0; }
 
-		//("optional: volume" volume=INT ("no." number=INT)?)?
+		//("volume" volume=INT ("no." number=INT)?)?
 		public Group getGroup_6() { return cGroup_6; }
 
-		//"optional: volume"
-		public Keyword getOptionalVolumeKeyword_6_0() { return cOptionalVolumeKeyword_6_0; }
+		//"volume"
+		public Keyword getVolumeKeyword_6_0() { return cVolumeKeyword_6_0; }
 
 		//volume=INT
 		public Assignment getVolumeAssignment_6_1() { return cVolumeAssignment_6_1; }
@@ -257,11 +261,11 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		//INT
 		public RuleCall getNumberINTTerminalRuleCall_6_2_1_0() { return cNumberINTTerminalRuleCall_6_2_1_0; }
 
-		//("optional: language" language=Language)?
+		//("language" language=Language)?
 		public Group getGroup_7() { return cGroup_7; }
 
-		//"optional: language"
-		public Keyword getOptionalLanguageKeyword_7_0() { return cOptionalLanguageKeyword_7_0; }
+		//"language"
+		public Keyword getLanguageKeyword_7_0() { return cLanguageKeyword_7_0; }
 
 		//language=Language
 		public Assignment getLanguageAssignment_7_1() { return cLanguageAssignment_7_1; }
@@ -314,11 +318,11 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		//INT
 		public RuleCall getArticleWordsMaxINTTerminalRuleCall_10_3_0() { return cArticleWordsMaxINTTerminalRuleCall_10_3_0; }
 
-		//("optional: number of images per article" imagesCnt=ImagesCount)?
+		//("number of images per article" imagesCnt=ImagesCount)?
 		public Group getGroup_11() { return cGroup_11; }
 
-		//"optional: number of images per article"
-		public Keyword getOptionalNumberOfImagesPerArticleKeyword_11_0() { return cOptionalNumberOfImagesPerArticleKeyword_11_0; }
+		//"number of images per article"
+		public Keyword getNumberOfImagesPerArticleKeyword_11_0() { return cNumberOfImagesPerArticleKeyword_11_0; }
 
 		//imagesCnt=ImagesCount
 		public Assignment getImagesCntAssignment_11_1() { return cImagesCntAssignment_11_1; }
@@ -359,9 +363,7 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cValueINTTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
-		/// **
-		// * 
-		// * / ImagesCount:
+		//ImagesCount:
 		//	value=INT;
 		@Override public ParserRule getRule() { return rule; }
 
@@ -382,8 +384,6 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cValueAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
 		private final Keyword cValueLargeKeyword_2_0 = (Keyword)cValueAssignment_2.eContents().get(0);
 		
-		//// Nutzer kann auswählen, ob die Schriftgröße klein, medium und groß sein soll. Größe sollte 
-		//// abhängig vom gewählten Format festgelegt. 
 		//FontSize:
 		//	value="small" | value="medium" | value="large";
 		@Override public ParserRule getRule() { return rule; }
@@ -891,7 +891,11 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	
-	//Declaration:
+	/// *
+	// * This is the parser rule for the newpaper language grammar.
+	// * The newpaper name is set as the file name for the layout.tex.The topic name is set
+	// * as the file name for the content.tex which is included by the layout.tex.
+	// * / Declaration:
 	//	"newspaper" name=ID "{" &
 	//	"title" title=STRING
 	//	"feed links" "{"
@@ -899,11 +903,11 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 	//	"}" &
 	//	"topics" "{"
 	//	topics+=Topic topics+=Topic*
-	//	"}" & ("optional: date" date=Date)? & ("optional: location" location=STRING)? & ("optional: price" price=Price)? &
-	//	("optional: volume" volume=INT ("no." number=INT)?)? & ("optional: language" language=Language)? &
+	//	"}" & ("date" date=Date)? & ("location" location=STRING)? & ("price" price=Price)? & ("volume" volume=INT ("no."
+	//	number=INT)?)? & ("language" language=Language)? &
 	//	"format" format=Format &
 	//	"number of articles per topic" articleCnt=INT &
-	//	"number of words per article" articleWordsMin=INT "-" articleWordsMax=INT & ("optional: number of images per article"
+	//	"number of words per article" articleWordsMin=INT "-" articleWordsMax=INT & ("number of images per article"
 	//	imagesCnt=ImagesCount)? &
 	//	"number of columns" columnsCnt=INT &
 	//	"font size" fontSize=FontSize &
@@ -916,9 +920,7 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		return getDeclarationAccess().getRule();
 	}
 
-	/// **
-	// * 
-	// * / ImagesCount:
+	//ImagesCount:
 	//	value=INT;
 	public ImagesCountElements getImagesCountAccess() {
 		return pImagesCount;
@@ -928,8 +930,6 @@ public class NplGrammarAccess extends AbstractGrammarElementFinder {
 		return getImagesCountAccess().getRule();
 	}
 
-	//// Nutzer kann auswählen, ob die Schriftgröße klein, medium und groß sein soll. Größe sollte 
-	//// abhängig vom gewählten Format festgelegt. 
 	//FontSize:
 	//	value="small" | value="medium" | value="large";
 	public FontSizeElements getFontSizeAccess() {

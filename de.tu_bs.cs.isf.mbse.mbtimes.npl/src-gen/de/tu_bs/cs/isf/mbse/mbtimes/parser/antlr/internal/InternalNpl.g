@@ -271,9 +271,9 @@ ruleDeclaration returns [EObject current=null]
 					{ 
 	 				  getUnorderedGroupHelper().select(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 3);
 	 				}
-					({true}?=>(	otherlv_16='optional: date' 
+					({true}?=>(	otherlv_16='date' 
     {
-    	newLeafNode(otherlv_16, grammarAccess.getDeclarationAccess().getOptionalDateKeyword_3_0());
+    	newLeafNode(otherlv_16, grammarAccess.getDeclarationAccess().getDateKeyword_3_0());
     }
 (
 (
@@ -305,9 +305,9 @@ ruleDeclaration returns [EObject current=null]
 					{ 
 	 				  getUnorderedGroupHelper().select(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 4);
 	 				}
-					({true}?=>(	otherlv_18='optional: location' 
+					({true}?=>(	otherlv_18='location' 
     {
-    	newLeafNode(otherlv_18, grammarAccess.getDeclarationAccess().getOptionalLocationKeyword_4_0());
+    	newLeafNode(otherlv_18, grammarAccess.getDeclarationAccess().getLocationKeyword_4_0());
     }
 (
 (
@@ -339,9 +339,9 @@ ruleDeclaration returns [EObject current=null]
 					{ 
 	 				  getUnorderedGroupHelper().select(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 5);
 	 				}
-					({true}?=>(	otherlv_20='optional: price' 
+					({true}?=>(	otherlv_20='price' 
     {
-    	newLeafNode(otherlv_20, grammarAccess.getDeclarationAccess().getOptionalPriceKeyword_5_0());
+    	newLeafNode(otherlv_20, grammarAccess.getDeclarationAccess().getPriceKeyword_5_0());
     }
 (
 (
@@ -373,9 +373,9 @@ ruleDeclaration returns [EObject current=null]
 					{ 
 	 				  getUnorderedGroupHelper().select(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 6);
 	 				}
-					({true}?=>(	otherlv_22='optional: volume' 
+					({true}?=>(	otherlv_22='volume' 
     {
-    	newLeafNode(otherlv_22, grammarAccess.getDeclarationAccess().getOptionalVolumeKeyword_6_0());
+    	newLeafNode(otherlv_22, grammarAccess.getDeclarationAccess().getVolumeKeyword_6_0());
     }
 (
 (
@@ -429,9 +429,9 @@ ruleDeclaration returns [EObject current=null]
 					{ 
 	 				  getUnorderedGroupHelper().select(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 7);
 	 				}
-					({true}?=>(	otherlv_26='optional: language' 
+					({true}?=>(	otherlv_26='language' 
     {
-    	newLeafNode(otherlv_26, grammarAccess.getDeclarationAccess().getOptionalLanguageKeyword_7_0());
+    	newLeafNode(otherlv_26, grammarAccess.getDeclarationAccess().getLanguageKeyword_7_0());
     }
 (
 (
@@ -587,9 +587,9 @@ ruleDeclaration returns [EObject current=null]
 					{ 
 	 				  getUnorderedGroupHelper().select(grammarAccess.getDeclarationAccess().getUnorderedGroup(), 11);
 	 				}
-					({true}?=>(	otherlv_36='optional: number of images per article' 
+					({true}?=>(	otherlv_36='number of images per article' 
     {
-    	newLeafNode(otherlv_36, grammarAccess.getDeclarationAccess().getOptionalNumberOfImagesPerArticleKeyword_11_0());
+    	newLeafNode(otherlv_36, grammarAccess.getDeclarationAccess().getNumberOfImagesPerArticleKeyword_11_0());
     }
 (
 (
