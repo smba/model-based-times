@@ -6,6 +6,12 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.PlatformUI;
+
 /**
  * Diese Klasse nimmt Aufträge zum Crawlen entgegen und verteilt diese
  * entsprechend der Art des Feeds (RSS, Atom) auf einen speziellen Crawler.
@@ -98,5 +104,17 @@ public class CrawlerDispatcher extends Observable implements Runnable {
 		System.err.println("Started Crawling");
 		
 		dispatchAndCrawl();
+		
+		
+		// create a dialog with ok and cancel buttons and a question icon
+		//Shell shell = Display.getCurrent().getActiveShell()
+		MessageBox dialog = 
+		  new MessageBox(new Shell(new Display()), SWT.ICON_INFORMATION | SWT.OK);
+		dialog.setText("Done");
+		dialog.setMessage("Your newspaper is generated!");
+
+		// open dialog and await user selection
+		dialog.open(); 
+
 	}
 }

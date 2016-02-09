@@ -59,6 +59,7 @@ class NplGenerator implements Observer, IGenerator {
 		]
 		val crawlerThread = new Thread(cd)
 		crawlerThread.start
+		
 	}
 	
 	private def small(int x) {
@@ -203,7 +204,7 @@ class NplGenerator implements Observer, IGenerator {
 		«language»
 		\usepackage{datetime}
 		\usepackage[T1]{fontenc}    
-		\usepackage[utf8]{inputenc}
+		\usepackage[utf8x]{inputenc}
 		\usepackage{newspaper}
 		\usepackage{times}
 		\usepackage{graphicx}
@@ -298,14 +299,24 @@ class NplGenerator implements Observer, IGenerator {
 	override update(Observable o, Object arg) {
 		System.err.println("Compiling .tex s")
 		/* Compiling topics */
-		resource.allContents.filter(typeof(Topic)).forEach[topic|
-			val topicText = ContentGenerator.compileTopic(topic.tags, topic.title)
-			fsa.generateFile(topic.name + ".tex", topicText)
-		]
 		
 		for(d: resource.allContents.toIterable.filter(Declaration)) {
     		fsa.generateFile(	d.name + ".tex", d.compileLayout)
+    		
+    		for(topic: d.topics) {
+    			val topicText = ContentGenerator.compileTopic(topic.tags, topic.title,d)
+				fsa.generateFile(topic.name + ".tex", topicText)
+    		}
     	}
+		
+//		resource.allContents.filter(typeof(Topic)).forEach[topic|
+//			val topicText = ContentGenerator.compileTopic(topic.tags, topic.title)
+//			fsa.generateFile(topic.name + ".tex", topicText)
+//		]
+//		
+//		for(d: resource.allContents.toIterable.filter(Declaration)) {
+//    		fsa.generateFile(	d.name + ".tex", d.compileLayout)
+//    	}
 	}
 	
 }

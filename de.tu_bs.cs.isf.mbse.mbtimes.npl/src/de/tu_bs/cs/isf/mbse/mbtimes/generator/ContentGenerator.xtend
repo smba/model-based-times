@@ -11,6 +11,7 @@ import java.util.StringTokenizer
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration
 
 class ContentGenerator {
 
@@ -27,11 +28,11 @@ class ContentGenerator {
   	x.add("london")
   	
   	var topicTex = new StringBuffer()
-  	topicTex.append(compileTopic(x, "Berliner News"))
+  	//topicTex.append(compileTopic(x, "Berliner News"))
   	println(topicTex.toString)
   }
 
-  def static String compileTopic(List<String> topic, String topicName) {
+  def static String compileTopic(List<String> topic, String topicName, Declaration d) {
   	val articles = new ArrayList<Article>(UnifiedFileParser.load());
   	val topicTex = new StringBuffer()
 
@@ -58,38 +59,66 @@ class ContentGenerator {
   	topicTex.append("{\\footnotesize{\\bfseries Tags: }{\\it " + str + "}}}")
   	topicTex.append("\\begin{multicols}{\\numberColumns}")
   	
-  	var k = 5
+  	var k = d.articleCnt
+  	var cntArticles = 0
   	for(var i = 0; i < k && i < ranking.size(); i++) {
-  		val article = articles.get(ranking.get(i))
-  		val st = new StringTokenizer(article.content)
-  		println("numberWords: " + st.countTokens())
-  		if(st.countTokens() >= 20 && st.countTokens() <= 1000) {
-  			topicTex.append(compileArticle(article))
+  		if(vsm.getSimilarity(ranking.get(i)) > 0.01) {
+	  		val article = articles.get(ranking.get(i))
+  			val st = new StringTokenizer(article.content)
+  			println("numberWords: " + st.countTokens())
+ 	 		if(st.countTokens() >= d.articleWordsMin && st.countTokens() <= d.articleWordsMax) {
+  				topicTex.append(compileArticle(article))
+  				cntArticles++
+  			} else {
+  				k++
+ 	 		}
   		} else {
-  			k++
+  			k=0
   		}
   	}  	
-  	topicTex.append("\\end{multicols}")
+  	topicTex.append("\\end{multicols}\n")
+  	if(k==0) {
+  		topicTex.append("\\begin{center}")
+  		if(d.language != null && d.language.value.equals("German")) {
+  			if(cntArticles == 0) {
+  				topicTex.append("{\\it\\huge Keine passenden Artikel gefunden!}")
+  			} else {
+  				topicTex.append("{\\it\\huge Keine weiteren passenden Artikel gefunden!}")
+  			}
+  		} else {
+  			if(cntArticles == 0) {
+  				topicTex.append("{\\it\\huge No suitable articles found!}")
+  			} else {
+  				topicTex.append("{\\it\\huge No other suitable articles found!}")
+  			}
+  		}
+  		topicTex.append("\\end{center}")
+  	}
   	return topicTex.toString
   }
 //  	    \headline{\it\huge �it.title�}
   def  static compileArticle(Article it) {
-  	var content = it.content
-  	var subtitle = it.subtitle
+  	var content = new String(it.content.getBytes("UTF-8"),"UTF-8")
+  	var subtitle = new String(it.subtitle.getBytes("UTF-8"),"UTF-8")
+  	if(subtitle.indexOf("<") >= 0) {
+		subtitle = subtitle.substring(0,subtitle.indexOf("<"));
+	}
 
-  	var title = it.title
+  	var title = new String(it.title.getBytes("UTF-8"),"UTF-8")
   	var authors = ""
   	if(it.author != null && it.author.size() > 0 ) {
-	  	it.author.get(0).name
+	  	authors = new String(it.author.get(0).name.getBytes("UTF-8"),"UTF-8")
 	  	for(var i=1; i < it.author.size; i++) {
-	  		authors += ", " + it.author.get(0).name
+	  		authors += ", " + new String(it.author.get(i).name.getBytes("UTF-8"),"UTF-8")
 	  	}
   	}
   	
   	var newschannel = ""
   	if(it.newschannel != null) {
-  	newschannel = it.newschannel.title
+  	newschannel = new String(it.newschannel.title.getBytes("UTF-8"),"UTF-8")
   	}
+  	
+  	//content = new String(content.getBytes("UTF-8"),"UTF-8")
   	
   	for(var i=0;i < specialChars.length;i++) {
   		content = content.replace(specialChars.get(i),changedChars.get(i))

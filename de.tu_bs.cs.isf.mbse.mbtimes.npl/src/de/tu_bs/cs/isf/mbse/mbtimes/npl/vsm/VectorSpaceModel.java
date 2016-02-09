@@ -33,6 +33,8 @@ public class VectorSpaceModel {
 	final private List<String> bagOfWords;
 
 	protected Stemmer stemmer;
+	
+	private Map<Integer, Double> mapSimilarities = new HashMap<Integer, Double>();
 
 	public VectorSpaceModel() {
 		documents = new ArrayList<String>();
@@ -178,8 +180,13 @@ public class VectorSpaceModel {
 			System.out.println(key + 1 + ".: Text #" + sortedMap.get(key) + " with similarity of " + mapBackup.get(sortedMap.get(key)));
 		}
 		map = mapBackup;
+		mapSimilarities = map;
 		return sortedMap;
 
+	}
+	
+	public double getSimilarity(int key) {
+		return mapSimilarities.get(key);
 	}
 
 	public static void main(String[] args) {
