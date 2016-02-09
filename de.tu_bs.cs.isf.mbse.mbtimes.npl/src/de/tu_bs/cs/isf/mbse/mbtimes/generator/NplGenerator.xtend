@@ -210,6 +210,7 @@ class NplGenerator implements Observer, IGenerator {
 		\usepackage{graphicx}
 		\usepackage{multicol}
 		\usepackage{calc}
+		\usepackage{color}
 		\usepackage{wrapfig}
 		\usepackage{picinpar}
 		\usepackage{eurosym}
