@@ -20,13 +20,13 @@ Declaration:
 		feedlinks += Pair (feedlinks+=Pair)*
 	"}" &
 	"topics" "{" 
-		topics+=Topic (topics+=Topic)*
+		topics +=Topic (topics+=Topic)*
 	"}" &
 	("date" date=Date)? &
 	("location" location=STRING)? &
 	("price" price=Price)? &
 	("volume" volume=INT ("no." number=INT)? )? &
-	("language" language=Language)? &
+	"language" language=Language &
 	"format" format=Format &
 	"number of articles per topic" articleCnt=INT &
 	"number of words per article" articleWordsMin=INT "-" articleWordsMax=INT &
@@ -34,7 +34,15 @@ Declaration:
 	"number of columns" columnsCnt=INT &
 	"font size" fontSize=FontSize &
 "}";
+/* 
+Topics:
+	topics +=Topic (topics+=Topic)*
+;
 
+Feedlinks:
+	values += Pair (values+=Pair)*
+;
+*/
 
 ImagesCount:
 	value = INT

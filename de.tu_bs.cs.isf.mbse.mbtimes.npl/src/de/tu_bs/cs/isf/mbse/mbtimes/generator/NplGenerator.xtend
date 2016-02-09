@@ -276,7 +276,7 @@ class NplGenerator implements Observer, IGenerator {
 			\maketitle
 			
 			%include topic.tex's
-		    «FOR t:d.topics.topics»
+		    «FOR t:d.topics»
 		    	\input{«t.name».tex}
 		    	\pagebreak
 			«ENDFOR»
@@ -291,7 +291,7 @@ class NplGenerator implements Observer, IGenerator {
 		for(d: resource.allContents.toIterable.filter(Declaration)) {
     		fsa.generateFile(	d.name + ".tex", d.compileLayout)
     		
-    		for(topic: d.topics.topics) {
+    		for(topic: d.topics) {
     			val topicText = ContentGenerator.compileTopic(topic.tags, topic.title,d)
 				fsa.generateFile(topic.name + ".tex", topicText)
     		}
