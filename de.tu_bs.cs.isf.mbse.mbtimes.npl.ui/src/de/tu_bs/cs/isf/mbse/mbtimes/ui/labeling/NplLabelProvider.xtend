@@ -4,19 +4,97 @@
 package de.tu_bs.cs.isf.mbse.mbtimes.ui.labeling
 
 import com.google.inject.Inject
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.Currency
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.Date
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.FontSize
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.Format
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.Pair
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.Price
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
+import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
 
 /**
  * Provides labels for EObjects.
  * 
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#label-provider
  */
-class NplLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider {
+class NplLabelProvider extends DefaultEObjectLabelProvider {
 
 	@Inject
-	new(org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider delegate) {
+	new(AdapterFactoryLabelProvider delegate) {
 		super(delegate);
 	}
 
+	def text(Declaration newspaper) {
+		newspaper.name + " (" + newspaper.title + ")"
+	}
+	
+	def image(Declaration newspaper) {
+		"newspaper.png"
+	}
+	
+	def text(Pair pair) {
+		pair.key + " (" + pair.type + ")"
+	}
+	
+	def image(Pair newspaper) {
+		"feed.png"
+	}
+	
+	def text(FontSize fs) {
+		fs.value
+	}
+	
+	def image(FontSize fs) {
+		"fontsize.png"
+	}
+
+	def text(Format f) {
+		f.value 
+	}
+	
+	def image(Format f) {
+		"document.png"
+	}
+	
+	def text(Topic t) {
+		t.name + " (" + t.title + ")"
+	}
+	
+	def image(Topic t) {
+		"topic.png"
+	}
+	
+	def text(Date d) {
+		d.month + "/" + d.day + "/" + d.year
+	}
+	
+	def image(Date d) {
+		"calendar.png"
+	}
+	
+	def text(Price p) {
+		"Price"
+	}
+	
+	def image(Price p) {
+		"calendar.png"
+	}
+	
+
+	def text(Currency c) {
+		c.value
+	}
+	
+	def image(Currency p) {
+		if (p.value.equals("EUR") || p.value.equals("Euro") || p.value.equals("€")) {
+			"eurotag.png"
+		} else {
+			"dollartag.png"
+		}
+	}
 	// Labels and icons can be computed like this:
 	
 //	def text(Greeting ele) {
