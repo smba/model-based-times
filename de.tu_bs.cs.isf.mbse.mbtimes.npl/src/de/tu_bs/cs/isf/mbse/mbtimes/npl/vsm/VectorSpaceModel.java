@@ -127,7 +127,13 @@ public class VectorSpaceModel {
 		Map<Integer, Double> map = new HashMap<Integer, Double>();
 		for (int i = 0; i < documentMatrix.rows(); i++) {
 			DoubleVector dv = documentMatrix.getRowVector(i);
-			map.put(i, Similarity.getSimilarity(SIMILARITY_TYPE, queryV, dv));
+			
+			Double similarity = Similarity.getSimilarity(SIMILARITY_TYPE, queryV, dv);
+			
+			similarity = (similarity.toString().equals("NaN")) ? 0.0 : similarity;
+
+			System.out.println(similarity);
+			map.put(i, similarity);
 		}
 
 		// backup map
@@ -139,18 +145,31 @@ public class VectorSpaceModel {
 		// sort map
 		Map<Integer, Integer> sortedMap = new HashMap<Integer, Integer>();
 		int counter = 0;
+		
+		/**
+		 * Degugging ahead
+		 */
 		while (!map.isEmpty()) {
+			//System.err.println("[VSM] " +" !map.isEmpty()) is " + !map.isEmpty());
 			int maxPosition = 0;
 			double maxValue = -1;
+			//System.err.println("[VSM] For-Loop for " + map.keySet().size() + " elements in map.keySet()");
 			for (Integer key : map.keySet()) {
 				
 				if (map.get(key) > maxValue) {
+					//System.err.println("[VSM] Inside For-loop: map.get(key) > maxValue");
 					maxValue = map.get(key);
 					maxPosition = key;
 				}
 			}
+			
+			//System.err.println(map);
+			//System.err.println("before Removal");
 			map.remove(maxPosition);
+			//System.err.println("after removal");
+			//System.err.println(map);
 			sortedMap.put(counter, maxPosition);
+			
 			counter++;
 		}
 
