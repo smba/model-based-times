@@ -59,7 +59,7 @@ class ContentGenerator {
 	}
 		
 	
-  	val vsm = new VectorSpaceModel(language);
+  	val vsm = new VectorSpaceModel( /*language*/ );
   	vsm.buildDocumentVectors(fulltexts);
   	
   	System.err.println("VSM computing similarities");

@@ -40,7 +40,7 @@ public class VectorSpaceModel {
 	/** Bag of words; set of all words */
 	final private List<String> bagOfWords;
 	
-	private final Stemmer stemmer;
+	//private final Stemmer stemmer;
 	private Map<Integer, Double> mapSimilarities;
 	
 	/**
@@ -49,7 +49,7 @@ public class VectorSpaceModel {
 	 * 
 	 * @param languageCode DE or EN for German or English respectively.
 	 */
-	public VectorSpaceModel(String languageCode) {
+	public VectorSpaceModel(/*String languageCode */) {
 
 		documents = new ArrayList<String>();
 		bagOfWords = new LinkedList<String>();
@@ -57,7 +57,7 @@ public class VectorSpaceModel {
 		mapSimilarities = new HashMap<Integer, Double>();
 		
 		// Create the Stemmer instance
-		stemmer = (languageCode.equals("DE")) ? new GermanStemmer() : new EnglishStemmer();
+		//stemmer = (languageCode.equals("DE")) ? new GermanStemmer() : new EnglishStemmer();
 	}
 
 	/**
