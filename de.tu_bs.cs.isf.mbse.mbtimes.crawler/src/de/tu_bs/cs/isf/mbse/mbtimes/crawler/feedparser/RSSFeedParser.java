@@ -16,6 +16,7 @@ import com.sun.syndication.io.XmlReader;
 
 import RSS.Category;
 import RSS.Channel;
+import RSS.Enclosure;
 import RSS.Image;
 import RSS.Item;
 import RSS.Language;
@@ -81,7 +82,7 @@ public class RSSFeedParser extends AbstractFeedParser {
 			SyndImage feedImage = feed.getImage();
 			Image image = this.factory.createImage();
 			image.setTitle(feedImage.getTitle());
-			image.setUrl(feed.getLink()); // oder URI?
+			image.setUrl(feedImage.getLink());
 
 			// dispose image to listener
 			this.listener.receiveRSSImage(image);
@@ -111,6 +112,22 @@ public class RSSFeedParser extends AbstractFeedParser {
 				item.setDescription(entry.getDescription().getValue()); 
 				item.setGuid(entry.getUri());
 				item.setPubDate(entry.getPublishedDate());
+				
+				
+				if (entry.getEnclosures().size() > 0) {
+					System.err.println("Found enclosure for article");
+					
+					Object element = entry.getEnclosures().get(0);
+					
+					/*
+					Enclosure enclosure = this.factory.createEnclosure();
+					enclosure.setType
+					item.setEnclosure()
+					*/
+				} else {
+					System.err.println("No enclosure found for article");
+				}
+				
 
 				/*
 				 * Try to retrieve the full text
