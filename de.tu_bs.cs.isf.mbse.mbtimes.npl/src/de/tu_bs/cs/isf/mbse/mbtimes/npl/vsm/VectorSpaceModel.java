@@ -32,14 +32,18 @@ public class VectorSpaceModel {
 	final private Matrix documentMatrix;
 	final private List<String> bagOfWords;
 
-	protected Stemmer stemmer;
+	private Stemmer stemmer;
+	private String languageCode;
+	
 	
 	private Map<Integer, Double> mapSimilarities = new HashMap<Integer, Double>();
 
-	public VectorSpaceModel() {
+	public VectorSpaceModel(String languageCode) {
+		
 		documents = new ArrayList<String>();
 		bagOfWords = new LinkedList<String>();
 		documentMatrix = new AtomicGrowingSparseMatrix();
+		this.languageCode = languageCode;
 	}
 
 	public void buildDocumentVectors(List<String> docs) {
@@ -187,26 +191,6 @@ public class VectorSpaceModel {
 	
 	public double getSimilarity(int key) {
 		return mapSimilarities.get(key);
-	}
-
-	public static void main(String[] args) {
-		List<String> docs = new ArrayList<String>();
-		docs.add(
-				"Birmingham New Street ist der Hauptbahnhof der britischen Stadt Birmingham. Er befindet sich im Stadtzentrum an der West Coast Main Line und ist einer der wichtigsten Knotenpunkte des britischen Schienennetzes. Aufgrund seiner zentralen Lage fahren Züge aus verschiedenen Teilen des Landes diesen Bahnhof an. Ziele sind unter anderem London, Liverpool, Manchester, Schottland, Cardiff, Nordwales, Bristol, Penzance, Nottingham, Leicester, Shrewsbury und Newcastle upon Tyne. Der Bahnhof ist auch Endstation mehrerer Vorortslinien in der Region West Midlands, die beispielsweise nach Lichfield und Redditch führen.");
-		docs.add(
-				"Die Spur des Windes – Das letzte große Abenteuer ist der Titel eines Abenteuerfilms, der 1993 von Amblin Entertainment und Walt Disney Pictures produziert wurde. Für die heute international bekannte Schauspielerin Reese Witherspoon bedeutete dieser Film den Durchbruch.");
-		docs.add(
-				"Wegen der guten Luft ist Marcelo Mendez vor ein paar Jahren mit seiner Familie aufs Land gezogen – doch die Landluft, da sind sich Mendez und die Ärzte inzwischen sicher, macht seine Frau und die beiden Töchter krank. Das Haus der Familie liegt zwischen riesigen Sojafeldern, die aus Lastwagen und Flugzeugen großflächig mit Pestiziden besprüht werden. Darunter ist Glyphosat.");
-
-		VectorSpaceModel vsm = new VectorSpaceModel();
-		vsm.buildDocumentVectors(docs);
-
-		List<String> query = new LinkedList<String>();
-		query.add("Landluft");
-		query.add("Birmingham");
-
-		DoubleVector queryV = vsm.getQueryVector(query);
-		vsm.computeSimilarities(queryV);
 	}
 
 	// TODO remove

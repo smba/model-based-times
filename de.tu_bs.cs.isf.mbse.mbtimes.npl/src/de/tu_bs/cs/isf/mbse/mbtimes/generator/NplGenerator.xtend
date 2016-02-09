@@ -32,8 +32,7 @@ class NplGenerator implements Observer, IGenerator {
 		this.fsa = fsa
 
 		val feeds = new HashMap<String, String>()
-		//feeds.put("http://www.spiegel.de/schlagzeilen/tops/index.rss", "RSS");
-		//cd.dispatchAndCrawl(feeds)
+		
 		resource.allContents.filter(typeof(Pair)).forEach[pair|
 			feeds.put(pair.value, pair.type)
 		]
@@ -44,19 +43,7 @@ class NplGenerator implements Observer, IGenerator {
 		val Transformator trafo = Transformator.getInstance()
 		cd.addObserver(trafo);
 		trafo.addObserver(this)
-
-		resource.getAllContents.filter(typeof(Declaration)).forEach[declaration|
-			System.err.println(declaration.name)
-			
-			declaration.feedlinks.forEach[fl|
-				feeds.put(fl.value,fl.type)
-				//System.err.println(fl.type + " feed " + fl.key + " at " + fl.value)
-			]
-			declaration.topics.forEach[t|
-				//System.err.println("Topic " + t.name + " with tags " + t.tags)
-			]
-			
-		]
+		
 		val crawlerThread = new Thread(cd)
 		crawlerThread.start
 		

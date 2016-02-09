@@ -3,15 +3,16 @@ package de.tu_bs.cs.isf.mbse.mbtimes.generator
 import UnifiedModel.Article
 import UnifiedModel.UnifiedModelPackage
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.unifiedParser.UnifiedFileParser
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.vsm.VectorSpaceModel
 import java.util.ArrayList
 import java.util.LinkedList
 import java.util.List
+import java.util.Locale
 import java.util.StringTokenizer
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
-import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration
 
 class ContentGenerator {
 
@@ -42,7 +43,15 @@ class ContentGenerator {
 		fulltexts.add(a.content);
 	}
 	
-  	val vsm = new VectorSpaceModel();
+	var String language = null
+	if (d.language.value.equals("English")) {
+		language = "EN"
+	} else if (d.language.value.equals("German")) {
+		language = "DE"
+	}
+		
+	
+  	val vsm = new VectorSpaceModel(language);
   	vsm.buildDocumentVectors(fulltexts);
   	
   	System.err.println("VSM computing similarities");
