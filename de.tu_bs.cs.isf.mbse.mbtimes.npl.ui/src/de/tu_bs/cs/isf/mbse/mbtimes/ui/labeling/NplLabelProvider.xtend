@@ -7,11 +7,18 @@ import com.google.inject.Inject
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Currency
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Date
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration
+
+//imports for outline
+//import de.tu_bs.cs.isf.mbse.mbtimes.npl.Feedlinks
+//import de.tu_bs.cs.isf.mbse.mbtimes.npl.Topics
+
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.FontSize
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Format
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.Language
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Pair
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Price
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic
+
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
 
@@ -39,8 +46,12 @@ class NplLabelProvider extends DefaultEObjectLabelProvider {
 		pair.key + " (" + pair.type + ")"
 	}
 	
-	def image(Pair newspaper) {
-		"feed.png"
+	def image(Pair pair) {
+		if (pair.type.equals("RSS")) {
+			"rss.png"
+		} else {
+			"atom.png"
+		}
 	}
 	
 	def text(FontSize fs) {
@@ -80,7 +91,7 @@ class NplLabelProvider extends DefaultEObjectLabelProvider {
 	}
 	
 	def image(Price p) {
-		"calendar.png"
+		"money.png"
 	}
 	
 
@@ -88,6 +99,33 @@ class NplLabelProvider extends DefaultEObjectLabelProvider {
 		c.value
 	}
 	
+	def image(Language l) {
+		"world.png"
+	}
+	
+
+	def text(Language l) {
+		l.value
+	}
+	/* 
+	def image(Feedlinks fl) {
+		"feed.png"
+	}
+	
+	
+	def text(Feedlinks fl) {
+		"Feeds (" + fl.values.size + ")"
+	}
+	
+	def image(Topics topics) {
+		"book.png"
+	}
+	
+
+	def text(Topics topics) {
+		"Topics (" + topics.topics.size + ")"
+	}
+	*/
 	def image(Currency p) {
 		if (p.value.equals("EUR") || p.value.equals("Euro") || p.value.equals("€")) {
 			"eurotag.png"
