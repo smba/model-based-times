@@ -37,7 +37,12 @@ class ContentGenerator {
   def static String compileTopic(List<String> topic, String topicName, Declaration d) {
   	val articles = new ArrayList<Article>(UnifiedFileParser.loadArticles());
   	val newschannels = new ArrayList<NewsChannel>(UnifiedFileParser.loadNewsChannels());
-  	println("crawled newschannel icon url: " + newschannels.get(1).icon);
+  	
+  	// index out of bound fix
+  	if (newschannels.size > 0) {
+  		println("crawled newschannel icon url: " + newschannels.get(1).icon);
+  	}
+  	
   	val topicTex = new StringBuffer()
 
 	//retreive List from articles
