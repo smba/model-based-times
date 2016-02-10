@@ -110,11 +110,9 @@ public class CrawlerDispatcher extends Observable implements Runnable {
 		Display display = Display.getCurrent();
 	    //may be null if outside the UI thread
 	    if (display == null) {
-	    	System.out.println("test1");
 	       display = Display.getDefault();
 	    }
 	    if (display == null) {
-	    	System.out.println("test2");
 	    	display = new Display();
 	    }
 	    
