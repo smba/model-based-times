@@ -96,28 +96,67 @@ public class CrawlerDispatcher extends Observable implements Runnable {
 		notifyObservers();
 		
 	}
+	
+	private int pressedbtn = 0;
 
 	@Override
 	public void run() {
 		
-		
+		Display display = Display.getCurrent();
+	    //may be null if outside the UI thread
+	    if (display == null) {
+	    	System.out.println("test1");
+	       display = Display.getDefault();
+	    }
+	    if (display == null) {
+	    	System.out.println("test2");
+	    	display = new Display();
+	    }
+	    
+	    display.syncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				MessageBox startDialog = new MessageBox(new Shell(), SWT.ICON_QUESTION | SWT.YES | SWT.NO);
+				
+				if(Platform.getNL().contains("de")) {
+					startDialog.setText("Zeitungserstellung");
+					startDialog.setMessage("Soll jetzt deine Zeitung erstellt werden?");		
+				} else {
+					startDialog.setText("Start Generation");
+					startDialog.setMessage("Should your newspaper be generated, now?");
+				}
+				// open dialog and await user selection
+				pressedbtn = startDialog.open(); 
+			}
+	    	
+	    });	    
+	    
+		if(pressedbtn == SWT.NO) {
+			return;
+		}
 		
 		System.err.println("Started Crawling");
 		dispatchAndCrawl();
 		
-		// create a dialog with ok and cancel buttons and a question icon
-		MessageBox endDialog = new MessageBox(new Shell(new Display()), SWT.ICON_INFORMATION | SWT.OK);
-		if(Platform.getNL().contains("de")) {
-			endDialog.setText("Fertig");
-			endDialog.setMessage("Deine Zeitung wurde erstellt!");		
-		} else {
-			endDialog.setText("Done");
-			endDialog.setMessage("Your newspaper is generated!");
-		}
+		display.asyncExec(new Runnable() {
 
-
-		// open dialog and await user selection
-		endDialog.open(); 
+			@Override
+			public void run() {
+				MessageBox endDialog = new MessageBox(new Shell(), SWT.ICON_INFORMATION | SWT.OK);
+				if(Platform.getNL().contains("de")) {
+					endDialog.setText("Fertig");
+					endDialog.setMessage("Deine Zeitung wurde erstellt!");		
+				} else {
+					endDialog.setText("Done");
+					endDialog.setMessage("Your newspaper is generated!");
+				}
+				endDialog.open(); 
+			}
+	    	
+	    });
+		
+		
 
 	}
 }
