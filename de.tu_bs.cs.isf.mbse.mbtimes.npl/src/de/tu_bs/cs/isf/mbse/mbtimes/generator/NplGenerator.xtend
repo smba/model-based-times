@@ -49,19 +49,6 @@ class NplGenerator implements Observer, IGenerator {
 		
 	}
 	
-	private def small(int x) {
-		val r = (0.00277777777777911 * x**6) + (-0.0583333333333484 * x**5) + (0.486111111111176 * x**4) + (-2.04166666666683 * x**3) + (5.51111111111132 * x**2) + (-15.9000000000001 * x) + 40
-		return r
-	}
-	private def medium(int x) {
-		val r = (0.0361111111111134 * x**6) + (-0.691666666666697 * x**5) + (5.06944444444462 * x**4) + (-17.7083333333339 * x**3) + (30.8944444444452 * x**2) + (-33.6000000000004 * x) + 48
-		return r
-	}
-	private def large(int x) {
-		val r = -0.019444444444443 * x**6 + 0.341666666666656 * x**5 + -2.23611111111109 * x**4 + 6.62499999999998 * x**3 + -6.74444444444453 * x**2 + -13.9666666666666 * x + 56
-		return r
-	}
-	
 	def compileLayout(Declaration d) {
 		/*
 		%A6 small  8 medium 10 large 12
@@ -288,21 +275,20 @@ class NplGenerator implements Observer, IGenerator {
 		
 		\begin{document}
 			\maketitle
-			
-			\begin{center}
-				\fbox{\parbox{0.9\textwidth}{\footnotesize «feeds»}}
-			\end{center}
 		
 			%include topic.tex's
 			«FOR t:d.topics»
 				\input{«t.name».tex}
-			«IF !t.name.equals(d.topics.get(d.topics.size-1).name)»
-			\pagebreak
+			«IF !t.name.equals(d.topics.get(d.topics.size-1).name)» \pagebreak
 			«ENDIF»
 			«ENDFOR»
 						
 			\vfill
-			\noindent{\footnotesize «copyright»}
+			\begin{center}
+				\fbox{\parbox{0.9\textwidth}{\footnotesize «feeds»
+				\medskip
+				\noindent «copyright»}}
+			\end{center}
 			
 		\end{document}
 			
@@ -310,17 +296,26 @@ class NplGenerator implements Observer, IGenerator {
 		'''
 	}
 	
+	
 	override update(Observable o, Object arg) {
 		System.err.println("Compiling .tex s")
 		/* Compiling topics */
 		
 		for(d: resource.allContents.toIterable.filter(Declaration)) {
-    		fsa.generateFile(	d.name + ".tex", d.compileLayout)
+    		var String language = null
+			if (d.language != null && d.language.value.equals("English")) {
+				language = "EN"
+			} else if (d.language != null && d.language.value.equals("German")) {
+				language = "DE"
+			}
+    		ContentGenerator.initVSM(language)
     		
     		for(topic: d.topics) {
     			val topicText = ContentGenerator.compileTopic(topic.tags, topic.title,d)
 				fsa.generateFile(topic.name + ".tex", topicText)
     		}
+    		
+			fsa.generateFile(	d.name + ".tex", d.compileLayout)
     	}
 		
 //		resource.allContents.filter(typeof(Topic)).forEach[topic|

@@ -14,12 +14,13 @@ import java.util.StringTokenizer
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
+import java.util.Vector
 
 class ContentGenerator {
 
 	//Special Characters in LaTeX and the changed version
-  	static val String[] specialChars = #['\\','{','}','%','^','_','&','#','~','�','�','�'," . ", " , "]
-  	static val String[] changedChars = #["\\textbackslash","\\{","\\}","\\%","\\textasciicircum","\\_","\\&","\\#","\\textasciitilde","$^\\circ$","\\pounds","", ". ", ", "]
+  	static val String[] specialChars = #['\\','{','}','%','^','_','&','#','~','�','�','�'," . ", " , ", "\""]
+  	static val String[] changedChars = #["\\textbackslash","\\{","\\}","\\%","\\textasciicircum","\\_","\\&","\\#","\\textasciitilde","$^\\circ$","\\pounds","", ". ", ", ", "\"{}"]
  
 	def ContentGenerator() {
 		
@@ -32,6 +33,19 @@ class ContentGenerator {
   	var topicTex = new StringBuffer()
   	//topicTex.append(compileTopic(x, "Berliner News"))
   	println(topicTex.toString)
+  }
+  
+  static var vsm = new VectorSpaceModel();
+
+  def static void initVSM(String language) {
+  	val articles = new ArrayList<Article>(UnifiedFileParser.loadArticles());
+  	val fulltexts = new ArrayList<String>();
+	for(Article a : articles) {
+		fulltexts.add(a.content);
+	}
+  	
+  	vsm = new VectorSpaceModel( /*language*/ );
+  	vsm.buildDocumentVectors(fulltexts);
   }
 
   def static String compileTopic(List<String> topic, String topicName, Declaration d) {
@@ -46,22 +60,22 @@ class ContentGenerator {
   	val topicTex = new StringBuffer()
 
 	//retreive List from articles
-	val fulltexts = new ArrayList<String>();
-	for(Article a : articles) {
-		fulltexts.add(a.content);
-	}
+//	val fulltexts = new ArrayList<String>();
+//	for(Article a : articles) {
+//		fulltexts.add(a.content);
+//	}
 	
-	var String language = null
-	if (d.language.value.equals("English")) {
-		language = "EN"
-	} else if (d.language.value.equals("German")) {
-		language = "DE"
-	}
-		
-	
-  	val vsm = new VectorSpaceModel( /*language*/ );
-  	vsm.buildDocumentVectors(fulltexts);
-  	
+//	var String language = null
+//	if (d.language != null && d.language.value.equals("English")) {
+//		language = "EN"
+//	} else if (d.language != null && d.language.value.equals("German")) {
+//		language = "DE"
+//	}
+//		
+//	
+//  	val vsm = new VectorSpaceModel( /*language*/ );
+//  	vsm.buildDocumentVectors(fulltexts);
+//  	
   	System.err.println("VSM computing similarities");
   	
   	val ranking = vsm.computeSimilarities(vsm.getQueryVector(topic));
