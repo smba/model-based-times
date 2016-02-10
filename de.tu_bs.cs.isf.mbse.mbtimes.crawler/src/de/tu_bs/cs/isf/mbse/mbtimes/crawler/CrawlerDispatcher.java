@@ -56,37 +56,42 @@ public class CrawlerDispatcher extends Observable implements Runnable {
 	 * 
 	 * @param feeds
 	 */
-	public void dispatchAndCrawl() {
-		List<String> rssFeeds = new LinkedList<String>();
-		List<String> atomFeeds = new LinkedList<String>();
+	public void dispatchAndCrawl(boolean useCrawler) {
+		
+		if(useCrawler) {
+			System.err.println("Started Crawling");
+			
+			List<String> rssFeeds = new LinkedList<String>();
+			List<String> atomFeeds = new LinkedList<String>();
 
-		/*
-		 * Aufteilen der Feeds auf die einzelnen speziellen Crawler
-		 */
-		for (String feed : feeds.keySet()) {
-			switch (feeds.get(feed)) {
-			case "RSS":
-				rssFeeds.add(feed);
-				break;
-			case "Atom":
-				atomFeeds.add(feed);
-				break;
-			default:
-				break;
+			/*
+			 * Aufteilen der Feeds auf die einzelnen speziellen Crawler
+			 */
+			for (String feed : feeds.keySet()) {
+				switch (feeds.get(feed)) {
+				case "RSS":
+					rssFeeds.add(feed);
+					break;
+				case "Atom":
+					atomFeeds.add(feed);
+					break;
+				default:
+					break;
+				}
 			}
-		}
+			/*
 		/*
-		/*
-		 * Starten der einzelnen Crawler
-		 */
-		this.atomCrawler.crawl(atomFeeds);
-		this.rssCrawler.crawl(rssFeeds);
+			 * Starten der einzelnen Crawler
+			 */
+			this.atomCrawler.crawl(atomFeeds);
+			this.rssCrawler.crawl(rssFeeds);
 
-		/*
-		 * Schreiben der Ausgabe in Dateien
-		 */
-		this.atomCrawler.dispose();
-		this.rssCrawler.dispose();
+			/*
+			 * Schreiben der Ausgabe in Dateien
+			 */
+			this.atomCrawler.dispose();
+			this.rssCrawler.dispose();
+		}
 
 		/*
 		 * Triggern des AusfÃ¼hrens der automatisierten M2M-Transformationen 
@@ -117,14 +122,16 @@ public class CrawlerDispatcher extends Observable implements Runnable {
 
 			@Override
 			public void run() {
-				MessageBox startDialog = new MessageBox(new Shell(), SWT.ICON_QUESTION | SWT.YES | SWT.NO);
 				
+				MessageBox startDialog = new MessageBox(new Shell(), SWT.ICON_QUESTION | SWT.YES | SWT.NO | SWT.CANCEL);
 				if(Platform.getNL().contains("de")) {
 					startDialog.setText("Zeitungserstellung");
-					startDialog.setMessage("Soll jetzt deine Zeitung erstellt werden?");		
+					startDialog.setMessage("Deine Zeitung wird nun erstellt.\n\n"
+							+ "Möchtest du deine gewählten Newsfeeds crawlen?");		
 				} else {
-					startDialog.setText("Start Generation");
-					startDialog.setMessage("Should your newspaper be generated, now?");
+					startDialog.setText("Start newspaper generation");
+					startDialog.setMessage("Your newspaper gets generated, now. \n\n" 
+							+ "Do you want to crawl your choosen newsfeeds?");
 				}
 				// open dialog and await user selection
 				pressedbtn = startDialog.open(); 
@@ -132,12 +139,21 @@ public class CrawlerDispatcher extends Observable implements Runnable {
 	    	
 	    });	    
 	    
-		if(pressedbtn == SWT.NO) {
+	    boolean useCrawler = true;
+	    switch (pressedbtn) {
+		case SWT.YES:
+			useCrawler = true;
+			break;
+		case SWT.NO:
+			useCrawler = false;
+			break;
+		case SWT.CANCEL:
 			return;
+		default:
+			break;
 		}
 		
-		System.err.println("Started Crawling");
-		dispatchAndCrawl();
+		dispatchAndCrawl(useCrawler);
 		
 		display.asyncExec(new Runnable() {
 
