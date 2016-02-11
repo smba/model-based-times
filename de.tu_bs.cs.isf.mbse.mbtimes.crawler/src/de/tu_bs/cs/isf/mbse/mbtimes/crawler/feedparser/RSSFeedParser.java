@@ -129,7 +129,7 @@ public class RSSFeedParser extends AbstractFeedParser {
 					
 					Object element = entry.getEnclosures().get(0);
 					
-					final SyndEnclosure enclosure;
+					SyndEnclosure enclosure = null;
 					if (element instanceof SyndEnclosure) {
 						enclosure = (SyndEnclosure) element;
 					}
@@ -137,7 +137,7 @@ public class RSSFeedParser extends AbstractFeedParser {
 					try {
 						// TODO @Flo please code enclosure here
 						
-						
+						System.err.println("Found enclosure " + enclosure.getUrl() + " " + enclosure.getType());
 						
 						/*
 						Enclosure enclosure = this.factory.createEnclosure();
