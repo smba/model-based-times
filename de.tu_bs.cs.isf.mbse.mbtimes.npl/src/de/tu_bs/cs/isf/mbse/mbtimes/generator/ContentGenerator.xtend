@@ -9,13 +9,16 @@ import de.tu_bs.cs.isf.mbse.mbtimes.npl.vsm.VectorSpaceModel
 import java.util.ArrayList
 import java.util.LinkedList
 import java.util.List
-import java.util.Locale
 import java.util.StringTokenizer
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
-import java.util.Vector
 import java.util.Collections
+import java.util.Map
+import org.apache.commons.lang3.StringUtils
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.Random
 
 class ContentGenerator {
 
@@ -56,6 +59,7 @@ class ContentGenerator {
   	// index out of bound fix
   	if (newschannels.size > 0) {
   		println("crawled newschannel icon url: " + newschannels.get(0).icon);
+  		println("Newschannel-Title: " + newschannels.get(0).title)
   	}
   	
   	val topicTex = new StringBuffer()
@@ -92,37 +96,35 @@ class ContentGenerator {
   	topicTex.append("\\begin{multicols}{\\numberColumns}")
   	
   	//calculate median of similarities for article selection
-  	val simArray = new LinkedList<Double>()
-  	for(var i = 0; i < ranking.size(); i++) {
-  		if(vsm.getSimilarity(ranking.get(i)) > 0.0) {
-  			simArray.add(vsm.getSimilarity(ranking.get(i)))
-  		}
-  	}
-  	Collections.sort(simArray)
-  	var median = 0.0
-  	if(simArray.size > 1) {
-  		var middle = simArray.size/2;
-    	if (simArray.size%2 == 1) {
-        	 median = simArray.get(middle);
-    	} else {
-        	median = (simArray.get(middle-1) + simArray.get(middle)) / 2.0;
-    	}
-    } else if(!simArray.empty) {
-    	median = 0.01
-    }
+  	var median = medianOfSimilarities(ranking)
     
     println("Median: " + median)
+  	
+  	
+  	var language = ""
+  	if(d.language != null) {
+  		language = d.language.value
+  	}
   	
   	var k = d.articleCnt
   	var cntArticles = 0
   	for(var i = 0; i < k && i < ranking.size(); i++) {
+  		val article = articles.get(ranking.get(i))
+  		var countTags = 0;
+	  	for(var t = 0; t < topic.size(); t++) {	
+	  		countTags += StringUtils.countMatches(article.content, topic.get(t))
+  		}
   		if(vsm.getSimilarity(ranking.get(i)) >= median) {
-	  		val article = articles.get(ranking.get(i))
-  			val st = new StringTokenizer(article.content)
-  			println("numberWords: " + st.countTokens())
+	  		val st = new StringTokenizer(article.content)
  	 		if(st.countTokens() >= d.articleWordsMin && st.countTokens() <= d.articleWordsMax) {
-  				topicTex.append(compileArticle(article, topic))
+  				topicTex.append(compileArticle(article, topic, language, d.imagesCnt.value))
   				cntArticles++
+  				
+  				println("Title:\t\t" + article.title)
+  				println("numberWords:\t" + st.countTokens())
+  				println("countTags:\t" + countTags)
+  				println("Similarity:\t" + vsm.getSimilarity(ranking.get(i)))
+  				println()
   			} else {
   				k++
  	 		}
@@ -150,14 +152,40 @@ class ContentGenerator {
   	}
   	return topicTex.toString
   }
-//  	    \headline{\it\huge �it.title�}
-  def  static compileArticle(Article it, List<String> topic) {
+  
+  def static double medianOfSimilarities(Map<Integer, Integer> ranking) {
+  	val simArray = new LinkedList<Double>()
+  	for(var i = 0; i < ranking.size(); i++) {
+  		if(vsm.getSimilarity(ranking.get(i)) > 0.0) {
+  			simArray.add(vsm.getSimilarity(ranking.get(i)))
+  		}
+  	}
+  	Collections.sort(simArray)
+  	var median = 0.0
+  	if(simArray.size > 1) {
+  		var middle = simArray.size/2;
+    	if (simArray.size%2 == 1) {
+        	 median = simArray.get(middle);
+    	} else {
+        	median = (simArray.get(middle-1) + simArray.get(middle)) / 2.0;
+    	}
+    } else if(!simArray.empty) {
+    	median = 0.01
+    }
+    
+    return median
+  }
+  
+  def  static compileArticle(Article it, List<String> topic, String language, int imagesCnt) {
   	var content = new String(it.content.getBytes("UTF-8"),"UTF-8")
   	var subtitle = new String(it.subtitle.getBytes("UTF-8"),"UTF-8")
   	if(subtitle.indexOf("<") >= 0) {
 		subtitle = subtitle.substring(0,subtitle.indexOf("<"));
 	}
-
+	if(subtitle.lastIndexOf(" ") >= 0) {
+		subtitle = subtitle.substring(0,subtitle.lastIndexOf(" "));
+	}
+	
   	var title = new String(it.title.getBytes("UTF-8"),"UTF-8")
   	var authors = ""
   	if(it.author != null && it.author.size() > 0 ) {
@@ -189,26 +217,72 @@ class ContentGenerator {
   	}
   	
   	
+  	val LinkedList<String> images = new LinkedList<String>()
+  	//TODO Fill LinkedList images with filenames or relative paths 
+  	//	to the pictures of the corresponding article
+  	
+  	//images.add("Carolo-Cup_03.jpg")
+  	//images.add("Masterbild-6969c7796e984254.jpeg")
+  	
+  	title = title.trim()
+  	newschannel = newschannel.trim()
+  	authors = authors.trim()
+  	
+  	println("Authors: " + authors)
+  	
+  	var date = ""
+  	if(it.published != null) {
+  		val dt = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss"); 
+  		date = dt.format(it.published)
+  	}
+  	
   	'''
-  		
-  		«IF authors.length() > 0 && it.title != null && newschannel.length() > 0»
-       	\byline{\it\Large «title»}{«authors», «newschannel»}
-        «ELSEIF it.title != null && newschannel.length() > 0»
-        \byline{\it\Large «title»}{«newschannel»}
-        «ELSEIF authors.length() > 0 && it.title != null»
-        \byline{\it\Large «title»}{«authors»}
-        «ELSEIF it.title != null»
-        \headline{\it\Large «title»}
-        «ELSE»
-        \headline{\it\Large N.N.}
-        «ENDIF»
-		{\bfseries
-		\noindent «subtitle»
-		} \medskip\newline
-		«content»
-		
-        \closearticle 
+  	«IF !authors.empty && !title.empty»
+	\byline{\it\Large «title»}{«authors»}
+  	«ELSEIF !title.empty»
+	\headline{\it\Large «title»}
+  	«ELSE»
+	\headline{\it\Large N.N.}
+  	«ENDIF»
+	\noindent 
+	{\bfseries «subtitle.trim()»} \medskip\newline
+	
+	\noindent «contentWithFigures(content,images,imagesCnt)»
+	
+	«IF !newschannel.empty»
+		\begin{center}
+			\fbox{\parbox{0.9\columnwidth}{\footnotesize 
+			\textbf{
+			«IF language.equals("German")»
+				Quelle: 
+			«ELSE»
+				Source: 
+			«ENDIF»
+			} «newschannel»
+			}}
+		\end{center}
+	«ENDIF»
+	
+	\closearticle 
   	'''
+  	}
+  	
+  	def static String contentWithFigures(String str, LinkedList<String> images, int imagesCnt) {
+  		var content = str
+  		var split = (content.length/(images.size()+1))
+  		for(var i = 0; i < imagesCnt && i < images.size(); i++) {
+  			val splitIndex = content.indexOf(".",((i+1)*split)-1)+1
+  			val contentFirst = content.substring(0,splitIndex).trim()
+  			val contentSec = "\n" + 
+  			'''
+  			\begin{Figure}
+  				\includegraphics[width=\columnwidth]{«images.get(i)»}
+  			\end{Figure}
+  			'''
+  			val contentThird = content.substring(splitIndex).trim()
+  			content = contentFirst + contentSec + contentThird
+  		}
+  		return content.trim()
   	}
 
   def doEMFSetup() {

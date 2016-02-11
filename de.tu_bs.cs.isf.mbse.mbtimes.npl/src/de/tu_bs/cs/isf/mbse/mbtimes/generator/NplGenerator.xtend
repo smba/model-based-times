@@ -7,7 +7,6 @@ import de.tu_bs.cs.isf.mbse.mbtimes.crawler.CrawlerDispatcher
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.m2m.Transformator
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Pair
-import de.tu_bs.cs.isf.mbse.mbtimes.npl.Topic
 import java.util.HashMap
 import java.util.Map
 import java.util.Observer
@@ -133,22 +132,30 @@ class NplGenerator implements Observer, IGenerator {
 		
 		var language = ""
 		var feeds = ""
-		var copyright = "\\copyright\\ "
+		var copyright = ""
 		if(d.language != null) {
 			if(d.language.value.equals("German")) {
 				language = "\\usepackage[ngerman]{babel}"
 				feeds = "Folgende Newsfeeds wurden in dieser Zeitung betrachtet: \n"
-				copyright += "Alle Rechte gehören ihren jeweiligen Eigentümern, Autoren und Newsfeeds. "
-				copyright += "Design und Layout von Sofia Ananieva, Florian Maurer, Stefan Mühlbauer \\& Julian Troegel"
-				copyright += " -- Ein Projekt aus \"{}Modellbasierte Softwareentwicklung\"{} von Christoph Seidl.\n\n"
-				copyright += "Diese Zeitung ist ausschließlich für ihren privaten, nicht-kommerziellen Gebrauch ansehen, einschließlich der Verwendung der gespeicherten Bilder und Dateien."
+				copyright = 
+				'''
+				\copyright\ Alle Rechte gehören ihren jeweiligen Eigentümern, Autoren und Newsfeeds. 
+				Design und Layout von Sofia Ananieva, Florian Maurer, Stefan Mühlbauer und Julian Troegel. 
+				-- Ein Projekt aus "{}Modellbasierte Softwareentwicklung"{} von Christoph Seidl.
+				
+				Diese Zeitung ist ausschließlich für ihren privaten, nicht-kommerziellen Gebrauch ansehen, einschließlich der Verwendung der gespeicherten Bilder und Dateien.
+				'''
 			} else if(d.language.value.equals("English")) {
 				language = "\\usepackage[english]{babel}"
 				feeds = "The following newsfeeds are used for this newspaper: \n"
-				copyright += "All rights belong to their respective owners, authors and newsfeeds. "
-				copyright += "Design and layout by Sofia Ananieva, Florian Maurer, Stefan Mühlbauer \\& Julian Troegel"
-				copyright += " -- A project from \"{}Model-based Software Development\"{} by Christoph Seidl.\n\n"
-				copyright += "This newspaper is for your own informational, personal and non-commercial use, including using the saved pictures and files."
+				copyright = 
+				'''
+				\copyright\ All rights belong to their respective owners, authors and newsfeeds. 
+				Design and layout by Sofia Ananieva, Florian Maurer, Stefan Mühlbauer and Julian Troegel. 
+				-- A project from "{}Model-based Software Development"{} by Christoph Seidl.
+				
+				This newspaper is for your own informational, personal and non-commercial use, including using the saved pictures and files.
+				'''
 			}
 		}
 		
@@ -158,32 +165,6 @@ class NplGenerator implements Observer, IGenerator {
 		}
 		feeds += "\\end{itemize}"
 		
-		
-		/*
-		var Double fontSize = 0.0;
-		if (d.fontSize.value.equals("small")) {
-			fontSize = small(format)
-		} else if (d.fontSize.value.equals("medium")) {
-			fontSize = medium(format)
-		} else if (d.fontSize.value.equals("large")) {
-			fontSize = large(format)
-		}
-		* 
-		*/
-		
-		/*
-		%A6 small  8 medium 10 large 12
-		%A5 small  8 medium 10 large 12
-		%A4 small 10 medium 12 large 14
-		%A3 small 14 medium 16 large 20
-		%A2 small 20 medium 24 large 28
-		%A1 small 28 medium 32 large 40
-		%A0 small 40 medium 48 large 56
-		
-		%small  p(x) = 0,00277777777777911 * x^6 + -0,0583333333333484 * x^5 + 0,486111111111176 * x^4 + -2,04166666666683 * x^3 + 5,51111111111132 * x^2 + -15,9000000000001 * x + 40
-		%medium p(x) = 0,0361111111111134 * x^6 + -0,691666666666697 * x^5 + 5,06944444444462 * x^4 + -17,7083333333339 * x^3 + 30,8944444444452 * x^2 + -33,6000000000004 * x + 48
-		%large  p(x) = -0,019444444444443 * x^6 + 0,341666666666656 * x^5 + -2,23611111111109 * x^4 + 6,62499999999998 * x^3 + -6,74444444444453 * x^2 + -13,9666666666666 * x + 56
-		 */
 		//«»
 		'''
 		\newcommand{\textsize}{«fontSizeMap.get(d.fontSize.value).get(format)»pt}
@@ -261,9 +242,12 @@ class NplGenerator implements Observer, IGenerator {
 		\MakeUppercase{#2}} \\ %
 		\rule[3pt]{0.4\hsize}{0.5pt}\\ \end{center} \par}
 		
+		% New environment for pictures
+		\newenvironment{Figure}
+		{\linebreak\par\noindent\minipage{\linewidth}}
+		{\endminipage\par\bigskip}
+		
 		% Set data for title
-		
-		
 		
 		«IF d.date != null»
 		\newdate{newsDate}{«d.date.day»}{«d.date.month»}{«d.date.year»}
@@ -284,8 +268,9 @@ class NplGenerator implements Observer, IGenerator {
 		
 			%include topic.tex's
 			«FOR t:d.topics»
-				\input{«t.name».tex}
-			«IF !t.name.equals(d.topics.get(d.topics.size-1).name)» \pagebreak
+			\input{«t.name».tex}
+			«IF !t.name.equals(d.topics.get(d.topics.size-1).name)»
+				\pagebreak
 			«ENDIF»
 			«ENDFOR»
 						
