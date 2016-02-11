@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
@@ -33,12 +35,18 @@ import de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener.AtomFeedParserListener;
  */
 public class AtomCrawler implements Crawler, AtomFeedParserListener {
 
+	/** Logger for this class */
+	private static final Logger log = Logger.getLogger(AtomCrawler.class.getName());
+	
 	/** Maximale Anzahl an Feeds, welche gleichzeitig gecrawlt wird */
 	private static final int THREADPOOL_SIZE = 5;
 
 	/** Factory, mittels welcher Elemente gemäß der Atom.ecore erstellt werden. */
 	private AtomFactory atomFactory;
 
+	/**
+	 * Determine to 
+	 */
 	private static String crawlerBundlePathPrefix;
 	static {
 		Bundle bundle = Platform.getBundle("de.tu_bs.cs.isf.mbse.mbtimes.crawler");
@@ -72,7 +80,8 @@ public class AtomCrawler implements Crawler, AtomFeedParserListener {
 			try {
 				worker = new AtomFeedParser(this, new URL(feed));
 			} catch (MalformedURLException e) {
-				throw new RuntimeException("The URL " + feed + " is malformed. Please check the link.");
+				log.log(Level.SEVERE, "The URL " + feed + " is malformed. Please check the link.");
+				continue;
 			}
 			executor.execute(worker);
 		}
@@ -102,7 +111,7 @@ public class AtomCrawler implements Crawler, AtomFeedParserListener {
 		try {
 			this.atomResource.save(Collections.EMPTY_MAP);
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			log.log(Level.WARNING, "Atom resource file may be empty!");
 		}
 	}
 

@@ -6,6 +6,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.sun.syndication.feed.synd.SyndCategory;
 import com.sun.syndication.feed.synd.SyndEntry;
@@ -20,6 +22,7 @@ import Atom.Category;
 import Atom.Entry;
 import Atom.Feed;
 import de.l3s.boilerpipe.BoilerpipeProcessingException;
+import de.tu_bs.cs.isf.mbse.mbtimes.crawler.AtomCrawler;
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener.AtomFeedParserListener;
 
 /**
@@ -29,6 +32,9 @@ import de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener.AtomFeedParserListener;
  */
 public class AtomFeedParser extends AbstractFeedParser {
 
+	/** Logger for this class */
+	private static final Logger log = Logger.getLogger(AtomCrawler.class.getName());
+	
 	private AtomFeedParserListener listener;
 	private URL url;
 	private AtomFactory factory;
@@ -42,20 +48,20 @@ public class AtomFeedParser extends AbstractFeedParser {
 	@Override
 	public void run() {
 		System.out.println("Parsing " + url);
-		HttpURLConnection httpcon;
+		HttpURLConnection httpcon = null;
 		try {
 			httpcon = (HttpURLConnection) this.url.openConnection();
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			log.log(Level.SEVERE, "Could not establish connection to feed " + url + ".");
 		}
 
 		SyndFeedInput input = new SyndFeedInput();
-		SyndFeed feed;
+		SyndFeed feed = null;
 
 		try {
 			feed = input.build(new XmlReader(httpcon));
-		} catch (IllegalArgumentException | FeedException | IOException e) {
-			throw new RuntimeException(e);
+		} catch (IllegalArgumentException | FeedException | IOException | NullPointerException e) {
+			log.log(Level.SEVERE, "Could not read feed " + url + ".");
 		}
 
 		/*
@@ -126,11 +132,11 @@ public class AtomFeedParser extends AbstractFeedParser {
 					/*
 					 * Could not retrieve fulltext, continue with next article in feed.
 					 */
-					System.err.println("Could not retrieve fulltext for article " + entry.getLink() + ". Discarding article...");
+					log.log(Level.WARNING, "Could not retrieve fulltext for article " + entry.getLink() + ". Discarding article...");
 					continue;
 					
 				} catch (MalformedURLException e) {
-					System.err.println("Malformed URL, discarding article.");
+					log.log(Level.WARNING, "Malformed URL, discarding article.");
 					continue;
 				}
 

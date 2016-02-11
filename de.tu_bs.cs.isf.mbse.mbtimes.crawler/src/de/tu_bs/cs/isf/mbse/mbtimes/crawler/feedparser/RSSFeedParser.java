@@ -6,6 +6,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.sun.syndication.feed.synd.SyndCategory;
 import com.sun.syndication.feed.synd.SyndEntry;
@@ -24,6 +26,7 @@ import RSS.Language;
 import RSS.RSSFactory;
 import RSS.RSSPackage;
 import de.l3s.boilerpipe.BoilerpipeProcessingException;
+import de.tu_bs.cs.isf.mbse.mbtimes.crawler.AtomCrawler;
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener.RSSFeedParserListener;
 
 /**
@@ -33,6 +36,9 @@ import de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener.RSSFeedParserListener;
  */
 public class RSSFeedParser extends AbstractFeedParser {
 
+	/** Logger for this class */
+	private static final Logger log = Logger.getLogger(AtomCrawler.class.getName());
+	
 	private RSSFeedParserListener listener;
 	private URL url;
 	private RSSFactory factory;
@@ -46,20 +52,20 @@ public class RSSFeedParser extends AbstractFeedParser {
 	@Override
 	public void run() {
 		System.out.println("Parsing " + url);
-		HttpURLConnection httpcon;
+		HttpURLConnection httpcon = null;
 		try {
 			httpcon = (HttpURLConnection) this.url.openConnection();
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			log.log(Level.SEVERE, "Could not establish connection to feed " + url + ".");
 		}
 
 		SyndFeedInput input = new SyndFeedInput();
-		SyndFeed feed;
+		SyndFeed feed = null;
 
 		try {
 			feed = input.build(new XmlReader(httpcon));
-		} catch (IllegalArgumentException | FeedException | IOException e) {
-			throw new RuntimeException(e);
+		} catch (IllegalArgumentException | FeedException | IOException | NullPointerException e) {
+			log.log(Level.SEVERE, "Could not read feed " + url + ".");
 		}
 
 		/*

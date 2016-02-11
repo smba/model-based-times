@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
@@ -35,6 +37,9 @@ import de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener.RSSFeedParserListener;
  */
 public class RSSCrawler implements Crawler, RSSFeedParserListener {
 
+	/** Logger for this class */
+	private static final Logger log = Logger.getLogger(AtomCrawler.class.getName());
+	
 	private static String crawlerBundlePathPrefix;
 	static {
 		Bundle bundle = Platform.getBundle("de.tu_bs.cs.isf.mbse.mbtimes.crawler");
@@ -76,6 +81,7 @@ public class RSSCrawler implements Crawler, RSSFeedParserListener {
 			try {
 				worker = new RSSFeedParser(this, new URL(feed));
 			} catch (MalformedURLException e) {
+				
 				throw new RuntimeException("The URL " + feed + " is malformed. Please check the link.");
 			}
 			executor.execute(worker);
@@ -103,7 +109,7 @@ public class RSSCrawler implements Crawler, RSSFeedParserListener {
 			try {
 				f.createNewFile();
 			} catch (IOException e) {
-				throw new RuntimeException("Crawler could not create output file " + f.getName() + ".");
+				log.log(Level.SEVERE, "Crawler could not create output file " + f.getName() + ".");
 			}
 			System.err.println("File created!");
 		} else {
@@ -147,11 +153,9 @@ public class RSSCrawler implements Crawler, RSSFeedParserListener {
 	@Override
 	public void dispose() {
 		try {
-			System.err.println("Writing RSS file");
 			this.rssResource.save(Collections.EMPTY_MAP);
-			System.err.println("Written RSS file");
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			log.log(Level.WARNING, "RSS resource file may be empty!");
 		}
 	}
 }
