@@ -93,8 +93,9 @@ public class RSSFeedParser extends AbstractFeedParser {
 		 * Dispose channel to listener
 		 */
 		this.listener.receiveRSSChannel(channel);
-
-		List<SyndEntry> entries = feed.getEntries();
+		List<SyndEntry> entries = (feed.getEntries() instanceof List<?>) ? (List<SyndEntry>)feed.getEntries() : null;
+		
+		
 		Iterator<SyndEntry> itEntries = entries.iterator();
 
 		while (itEntries.hasNext()) {
@@ -136,8 +137,21 @@ public class RSSFeedParser extends AbstractFeedParser {
 				try {
 					String content = super.getText(new URL(entry.getLink()));
 					item.setFulltext(content);
+					
+				
 				} catch (IOException e) {
-					throw new RuntimeException(e);
+					/**
+					 * Exception handling:
+					 * If the getText() method returns an IOException, 
+					 * we could not retrieve the fulltext. Therefore, the crawling job 
+					 * for the corresponding article is discarded.
+					 */
+					
+					/*
+					 * Could not retrieve fulltext, continue with next article in feed.
+					 */
+					System.err.println("Could not retrieve fulltext for article " + entry.getLink() + ". Discarding article...");
+					continue;
 				}
 
 				/*

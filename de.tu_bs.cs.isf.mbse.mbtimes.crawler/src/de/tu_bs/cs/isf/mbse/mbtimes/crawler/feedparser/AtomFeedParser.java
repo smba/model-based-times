@@ -114,7 +114,18 @@ public class AtomFeedParser extends AbstractFeedParser {
 					String content = super.getText(new URL(entry.getLink()));
 					entry.setContent(content);
 				} catch (IOException e) {
-					throw new RuntimeException(e);
+					/**
+					 * Exception handling:
+					 * If the getText() method returns an IOException, 
+					 * we could not retrieve the fulltext. Therefore, the crawling job 
+					 * for the corresponding article is discarded.
+					 */
+					
+					/*
+					 * Could not retrieve fulltext, continue with next article in feed.
+					 */
+					System.err.println("Could not retrieve fulltext for article " + entry.getLink() + ". Discarding article...");
+					continue;
 				}
 
 				/*
