@@ -1,6 +1,7 @@
 package de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -30,8 +31,6 @@ import RSS.RSSPackage;
 import de.l3s.boilerpipe.BoilerpipeProcessingException;
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.AtomCrawler;
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener.RSSFeedParserListener;
-
-import de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser.ImageDownloader;
 /**
  * Parser dedicated to a single RSS feeds.
  * 
@@ -128,7 +127,7 @@ public class RSSFeedParser extends AbstractFeedParser {
 				
 				
 				if (entry.getEnclosures().size() > 0) {
-					System.err.println("Found enclosure for article...");
+					log.log(Level.INFO, "Found enclosure for article...");
 					
 					Object element = entry.getEnclosures().get(0);
 					
@@ -137,7 +136,7 @@ public class RSSFeedParser extends AbstractFeedParser {
 						enclosure = (SyndEnclosure) element;
 						System.out.println(enclosure.getUrl());
 					} else {
-						System.out.println("enclosure wasn't a SyndEnclosure");
+						log.log(Level.WARNING, "Enclosure wasn't a SyndEnclosure");
 					}
 					
 					try {
@@ -145,9 +144,11 @@ public class RSSFeedParser extends AbstractFeedParser {
 						
 						System.err.println("Found enclosure " + enclosure.getUrl() + " " + enclosure.getType());
 						MessageDigest md = MessageDigest.getInstance("MD5");
-						md.digest(enclosure.getUrl().getBytes());
-						ImageDownloader.downloadFile(md.toString() + ".jpg", enclosure.getUrl());
-						System.err.println("saved enclosure as " + md.toString() + ".jpg");
+						
+						final String md5hash = String.format("%032x", new BigInteger(1, md.digest(enclosure.getUrl().getBytes())));
+						
+						ImageDownloader.downloadFile(md5hash + ".jpg", enclosure.getUrl());
+						System.err.println("saved enclosure as " + String.format("%032x", md5hash) + ".jpg");
 						/*
 						Enclosure enclosure = this.factory.createEnclosure();
 						enclosure.setType

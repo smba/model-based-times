@@ -1,3 +1,5 @@
+package de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser;
+
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
@@ -5,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+
 
 
 public class ImageDownloader {
