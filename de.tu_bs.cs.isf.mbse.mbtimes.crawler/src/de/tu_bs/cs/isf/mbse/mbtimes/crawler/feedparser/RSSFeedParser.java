@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -29,6 +31,7 @@ import de.l3s.boilerpipe.BoilerpipeProcessingException;
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.AtomCrawler;
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener.RSSFeedParserListener;
 
+import de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser.ImageDownloader;
 /**
  * Parser dedicated to a single RSS feeds.
  * 
@@ -125,20 +128,26 @@ public class RSSFeedParser extends AbstractFeedParser {
 				
 				
 				if (entry.getEnclosures().size() > 0) {
-					System.err.println("Found enclosure for article");
+					System.err.println("Found enclosure for article...");
 					
 					Object element = entry.getEnclosures().get(0);
 					
 					SyndEnclosure enclosure = null;
 					if (element instanceof SyndEnclosure) {
 						enclosure = (SyndEnclosure) element;
+						System.out.println(enclosure.getUrl());
+					} else {
+						System.out.println("enclosure wasn't a SyndEnclosure");
 					}
 					
 					try {
 						// TODO @Flo please code enclosure here
 						
 						System.err.println("Found enclosure " + enclosure.getUrl() + " " + enclosure.getType());
-						
+						MessageDigest md = MessageDigest.getInstance("MD5");
+						md.digest(enclosure.getUrl().getBytes());
+						ImageDownloader.downloadFile(md.toString() + ".jpg", enclosure.getUrl());
+						System.err.println("saved enclosure as " + md.toString() + ".jpg");
 						/*
 						Enclosure enclosure = this.factory.createEnclosure();
 						enclosure.setType
@@ -146,6 +155,12 @@ public class RSSFeedParser extends AbstractFeedParser {
 						*/
 					} catch (NullPointerException e) {
 						log.log(Level.INFO, "Enclosure for article " + entry.getLink() + " is malformed.");
+					} catch (NoSuchAlgorithmException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 					
 					
