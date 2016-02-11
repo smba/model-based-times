@@ -148,7 +148,7 @@ public class RSSFeedParser extends AbstractFeedParser {
 						final String md5hash = String.format("%032x", new BigInteger(1, md.digest(enclosure.getUrl().getBytes())));
 						
 						ImageDownloader.downloadFile(md5hash + ".jpg", enclosure.getUrl());
-						System.err.println("saved enclosure as " + String.format("%032x", md5hash) + ".jpg");
+						System.err.println("saved enclosure as " + md5hash + ".jpg");
 						/*
 						Enclosure enclosure = this.factory.createEnclosure();
 						enclosure.setType
