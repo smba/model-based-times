@@ -133,16 +133,22 @@ class NplGenerator implements Observer, IGenerator {
 		
 		var language = ""
 		var feeds = ""
-		var copyright = "\\copyright\\ Sofia Ananieva, Florian Maurer, Stefan Mühlbauer \\& Julian Troegel"
+		var copyright = "\\copyright\\ "
 		if(d.language != null) {
 			if(d.language.value.equals("German")) {
 				language = "\\usepackage[ngerman]{babel}"
 				feeds = "Folgende Newsfeeds wurden in dieser Zeitung betrachtet: \n"
-				copyright += " -- Ein Projekt aus \"{}Modellbasierte Softwareentwicklung\"{} von Christoph Seidl"
+				copyright += "Alle Rechte gehören ihren jeweiligen Eigentümern, Autoren und Newsfeeds. "
+				copyright += "Design und Layout von Sofia Ananieva, Florian Maurer, Stefan Mühlbauer \\& Julian Troegel"
+				copyright += " -- Ein Projekt aus \"{}Modellbasierte Softwareentwicklung\"{} von Christoph Seidl.\n\n"
+				copyright += "Diese Zeitung ist ausschließlich für ihren privaten, nicht-kommerziellen Gebrauch ansehen, einschließlich der Verwendung der gespeicherten Bilder und Dateien."
 			} else if(d.language.value.equals("English")) {
 				language = "\\usepackage[english]{babel}"
 				feeds = "The following newsfeeds are used for this newspaper: \n"
-				copyright += " -- A project from \"{}Model-based Software Development\"{} by Christoph Seidl"
+				copyright += "All rights belong to their respective owners, authors and newsfeeds. "
+				copyright += "Design and layout by Sofia Ananieva, Florian Maurer, Stefan Mühlbauer \\& Julian Troegel"
+				copyright += " -- A project from \"{}Model-based Software Development\"{} by Christoph Seidl.\n\n"
+				copyright += "This newspaper is for your own informational, personal and non-commercial use, including using the saved pictures and files."
 			}
 		}
 		

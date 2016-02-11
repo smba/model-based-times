@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import java.util.Vector
+import java.util.Collections
 
 class ContentGenerator {
 
@@ -90,10 +91,32 @@ class ContentGenerator {
   	topicTex.append("{\\footnotesize{\\bfseries Tags: }{\\it " + str + "}}}")
   	topicTex.append("\\begin{multicols}{\\numberColumns}")
   	
+  	//calculate median of similarities for article selection
+  	val simArray = new LinkedList<Double>()
+  	for(var i = 0; i < ranking.size(); i++) {
+  		if(vsm.getSimilarity(ranking.get(i)) > 0.0) {
+  			simArray.add(vsm.getSimilarity(ranking.get(i)))
+  		}
+  	}
+  	Collections.sort(simArray)
+  	var median = 0.0
+  	if(simArray.size > 1) {
+  		var middle = simArray.size/2;
+    	if (simArray.size%2 == 1) {
+        	 median = simArray.get(middle);
+    	} else {
+        	median = (simArray.get(middle-1) + simArray.get(middle)) / 2.0;
+    	}
+    } else if(!simArray.empty) {
+    	median = 0.01
+    }
+    
+    println("Median: " + median)
+  	
   	var k = d.articleCnt
   	var cntArticles = 0
   	for(var i = 0; i < k && i < ranking.size(); i++) {
-  		if(vsm.getSimilarity(ranking.get(i)) > 0.01) {
+  		if(vsm.getSimilarity(ranking.get(i)) >= median) {
 	  		val article = articles.get(ranking.get(i))
   			val st = new StringTokenizer(article.content)
   			println("numberWords: " + st.countTokens())
