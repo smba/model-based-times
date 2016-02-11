@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.sun.syndication.feed.synd.SyndCategory;
+import com.sun.syndication.feed.synd.SyndEnclosure;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.feed.synd.SyndImage;
@@ -19,7 +20,6 @@ import com.sun.syndication.io.XmlReader;
 
 import RSS.Category;
 import RSS.Channel;
-import RSS.Enclosure;
 import RSS.Image;
 import RSS.Item;
 import RSS.Language;
@@ -129,13 +129,28 @@ public class RSSFeedParser extends AbstractFeedParser {
 					
 					Object element = entry.getEnclosures().get(0);
 					
-					/*
-					Enclosure enclosure = this.factory.createEnclosure();
-					enclosure.setType
-					item.setEnclosure()
-					*/
+					final SyndEnclosure enclosure;
+					if (element instanceof SyndEnclosure) {
+						enclosure = (SyndEnclosure) element;
+					}
+					
+					try {
+						// TODO @Flo please code enclosure here
+						
+						
+						
+						/*
+						Enclosure enclosure = this.factory.createEnclosure();
+						enclosure.setType
+						item.setEnclosure()
+						*/
+					} catch (NullPointerException e) {
+						log.log(Level.INFO, "Enclosure for article " + entry.getLink() + " is malformed.");
+					}
+					
+					
 				} else {
-					System.err.println("No enclosure found for article");
+					log.log(Level.WARNING, "No enclosure found for article " + entry.getLink() + ".");
 				}
 				
 
