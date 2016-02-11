@@ -27,14 +27,11 @@ public abstract class AbstractFeedParser implements FeedParser, Runnable {
 	 * @param url
 	 * @return
 	 * @throws IOException
+	 * @throws BoilerpipeProcessingException 
 	 */
-	protected final String getText(URL url) throws IOException {
+	protected final String getText(URL url) throws BoilerpipeProcessingException {
 		String text = "";
-		try {
-			text = ArticleExtractor.getInstance().getText(url);
-		} catch (BoilerpipeProcessingException e) {
-			throw new IOException(e);
-		}
+		text = ArticleExtractor.getInstance().getText(url);
 		return text;
 	}
 	

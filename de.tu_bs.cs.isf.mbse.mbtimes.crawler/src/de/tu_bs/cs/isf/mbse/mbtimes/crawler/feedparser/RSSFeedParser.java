@@ -2,6 +2,7 @@ package de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
@@ -22,6 +23,7 @@ import RSS.Item;
 import RSS.Language;
 import RSS.RSSFactory;
 import RSS.RSSPackage;
+import de.l3s.boilerpipe.BoilerpipeProcessingException;
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener.RSSFeedParserListener;
 
 /**
@@ -139,7 +141,7 @@ public class RSSFeedParser extends AbstractFeedParser {
 					item.setFulltext(content);
 					
 				
-				} catch (IOException e) {
+				} catch (BoilerpipeProcessingException e) {
 					/**
 					 * Exception handling:
 					 * If the getText() method returns an IOException, 
@@ -151,6 +153,9 @@ public class RSSFeedParser extends AbstractFeedParser {
 					 * Could not retrieve fulltext, continue with next article in feed.
 					 */
 					System.err.println("Could not retrieve fulltext for article " + entry.getLink() + ". Discarding article...");
+					continue;
+				} catch (MalformedURLException e) {
+					System.err.println("Malformed URL, discarding article.");
 					continue;
 				}
 

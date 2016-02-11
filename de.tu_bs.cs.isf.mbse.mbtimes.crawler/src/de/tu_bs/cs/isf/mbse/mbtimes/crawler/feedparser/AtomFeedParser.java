@@ -2,6 +2,7 @@ package de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
@@ -18,6 +19,7 @@ import Atom.AtomPackage;
 import Atom.Category;
 import Atom.Entry;
 import Atom.Feed;
+import de.l3s.boilerpipe.BoilerpipeProcessingException;
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener.AtomFeedParserListener;
 
 /**
@@ -113,7 +115,7 @@ public class AtomFeedParser extends AbstractFeedParser {
 				try {
 					String content = super.getText(new URL(entry.getLink()));
 					entry.setContent(content);
-				} catch (IOException e) {
+				} catch (BoilerpipeProcessingException e) {
 					/**
 					 * Exception handling:
 					 * If the getText() method returns an IOException, 
@@ -125,6 +127,10 @@ public class AtomFeedParser extends AbstractFeedParser {
 					 * Could not retrieve fulltext, continue with next article in feed.
 					 */
 					System.err.println("Could not retrieve fulltext for article " + entry.getLink() + ". Discarding article...");
+					continue;
+					
+				} catch (MalformedURLException e) {
+					System.err.println("Malformed URL, discarding article.");
 					continue;
 				}
 
