@@ -227,14 +227,14 @@ class ContentGenerator {
   	//TODO Fill LinkedList images with filenames or relative paths 
   	//	to the pictures of the corresponding article
   	
-  	val rndInt = new Random().nextInt(3)
-  	
-  	if(rndInt > 0) {
-  		images.add("Carolo-Cup_03.jpg")
-  	}
-  	if(rndInt > 1) {
-  		images.add("Masterbild-6969c7796e984254.jpeg")
-  	}
+//  	val rndInt = new Random().nextInt(3)
+//  	
+//  	if(rndInt > 0) {
+//  		images.add("Carolo-Cup_03.jpg")
+//  	}
+//  	if(rndInt > 1) {
+//  		images.add("Masterbild-6969c7796e984254.jpeg")
+//  	}
   	//images.add("Carolo-Cup_03.jpg")
   	//images.add("Masterbild-6969c7796e984254.jpeg")
   	
