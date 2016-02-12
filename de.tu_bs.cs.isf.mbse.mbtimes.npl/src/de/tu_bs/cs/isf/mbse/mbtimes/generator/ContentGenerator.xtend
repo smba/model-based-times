@@ -227,14 +227,6 @@ class ContentGenerator {
   	//TODO Fill LinkedList images with filenames or relative paths 
   	//	to the pictures of the corresponding article
   	
-//  	val rndInt = new Random().nextInt(3)
-//  	
-//  	if(rndInt > 0) {
-//  		images.add("Carolo-Cup_03.jpg")
-//  	}
-//  	if(rndInt > 1) {
-//  		images.add("Masterbild-6969c7796e984254.jpeg")
-//  	}
   	//images.add("Carolo-Cup_03.jpg")
   	//images.add("Masterbild-6969c7796e984254.jpeg")
   	
@@ -269,7 +261,7 @@ class ContentGenerator {
 			\begin{tabular}{p{0.15\columnwidth}l}
 			«IF language.equals("German")»
 				«IF !newschannel.empty»
-					\textbf{Quelle:} & «newschannel»
+					\textbf{Quelle:} & \href{«it.link»}{«newschannel»}
 				«ENDIF»
 				«IF !newschannel.empty && !date.empty»
 					\\
@@ -279,7 +271,7 @@ class ContentGenerator {
 				«ENDIF»
 			«ELSE»
 				«IF !newschannel.empty»
-					\textbf{Source:} & «newschannel»
+					\textbf{Source:} & \href{«it.link»}{«newschannel»}
 				«ENDIF»
 				«IF !newschannel.empty && !date.empty»
 					\\
