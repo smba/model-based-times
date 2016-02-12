@@ -2,21 +2,30 @@ module RSS2Unified;
 create OUT: Unified from IN: RSS;
 
 rule Item2Article {
-	from 
+	from
 		s: RSS!Item
-	to	
+	to
 		t: Unified!Article (
 
 			published <- s.pubDate,
 			title <- s.title,
 			subtitle <- s.description,
-			link <- s.link,
-			content <- s.fulltext
+			 link <- s.link,
+			content <- s.fulltext,
 			
+			--newschannel <- s.channel
 			--author <- s.author,
 			--category <- s.categories,
 			--newschannel <- s.channel,
 			--image <- s.enclosure
+			
+			author <- Sequence{author}.first(),
+			newschannel <- s.channel
+    	),
+	
+		author : Unified!Author(
+			
+			name<-s.author	
 		)
 }
 
@@ -55,3 +64,4 @@ rule Category2Category {
 			id <- s.domain	
 		)
 }
+
