@@ -96,7 +96,7 @@ class ContentGenerator {
   	topicTex.append("\\begin{multicols}{\\numberColumns}")
   	
   	//calculate median of similarities for article selection
-  	var median = medianOfSimilarities(ranking)
+  	var median = medianOfSimilarities(ranking, d.articleCnt)
     
     println("Median: " + median)
   	
@@ -153,7 +153,7 @@ class ContentGenerator {
   	return topicTex.toString
   }
   
-  def static double medianOfSimilarities(Map<Integer, Integer> ranking) {
+  def static double medianOfSimilarities(Map<Integer, Integer> ranking, int articleCnt) {
   	val simArray = new LinkedList<Double>()
   	for(var i = 0; i < ranking.size(); i++) {
   		if(vsm.getSimilarity(ranking.get(i)) > 0.0) {
@@ -173,7 +173,12 @@ class ContentGenerator {
     	median = 0.01
     }
     
-    return median
+    if(simArray.size > articleCnt) {
+    	return median
+    } else {
+    	return 0.01
+    }
+    
   }
   
   def  static compileArticle(Article it, List<String> topic, String language, int imagesCnt) {
@@ -226,7 +231,7 @@ class ContentGenerator {
   	val LinkedList<String> images = new LinkedList<String>()
   	//TODO Fill LinkedList images with filenames or relative paths 
   	//	to the pictures of the corresponding article
-  	
+
   	//images.add("Carolo-Cup_03.jpg")
   	//images.add("Masterbild-6969c7796e984254.jpeg")
   	
@@ -258,7 +263,7 @@ class ContentGenerator {
 	«IF !newschannel.empty || !date.empty»
 		\begin{center}
 			\fbox{\parbox{0.8\columnwidth}{\footnotesize 
-			\begin{tabular}{p{0.15\columnwidth}l}
+			\begin{tabular}{p{0.15\columnwidth}p{0.5\columnwidth}}
 			«IF language.equals("German")»
 				«IF !newschannel.empty»
 					\textbf{Quelle:} & \href{«it.link»}{«newschannel»}
