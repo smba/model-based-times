@@ -211,6 +211,12 @@ class ContentGenerator {
   		authors = authors.replace(specialChars.get(i),changedChars.get(i))
 		newschannel = newschannel.replace(specialChars.get(i),changedChars.get(i))
   	}
+
+  	while(content.indexOf("(Bild") >= 0) {
+  		var index = content.indexOf("(Bild");
+  		content = content.substring(0,index).trim() + " "
+  				 + content.substring(content.indexOf(")",index)+1).trim()
+  	}
   	
   	for(t: topic) {
   		content = content.replace(t,"\\textcolor{red}{" + t + "}")
@@ -221,6 +227,14 @@ class ContentGenerator {
   	//TODO Fill LinkedList images with filenames or relative paths 
   	//	to the pictures of the corresponding article
   	
+  	val rndInt = new Random().nextInt(3)
+  	
+  	if(rndInt > 0) {
+  		images.add("Carolo-Cup_03.jpg")
+  	}
+  	if(rndInt > 1) {
+  		images.add("Masterbild-6969c7796e984254.jpeg")
+  	}
   	//images.add("Carolo-Cup_03.jpg")
   	//images.add("Masterbild-6969c7796e984254.jpeg")
   	
@@ -249,17 +263,32 @@ class ContentGenerator {
 	
 	\noindent «contentWithFigures(content,images,imagesCnt)»
 	
-	«IF !newschannel.empty»
+	«IF !newschannel.empty || !date.empty»
 		\begin{center}
-			\fbox{\parbox{0.9\columnwidth}{\footnotesize 
-			\textbf{
+			\fbox{\parbox{0.8\columnwidth}{\footnotesize 
+			\begin{tabular}{p{0.15\columnwidth}l}
 			«IF language.equals("German")»
-				Quelle: 
+				«IF !newschannel.empty»
+					\textbf{Quelle:} & «newschannel»
+				«ENDIF»
+				«IF !newschannel.empty && !date.empty»
+					\\
+				«ENDIF»
+				«IF !date.empty»
+					\textbf{Datum:} & «date»
+				«ENDIF»
 			«ELSE»
-				Source: 
+				«IF !newschannel.empty»
+					\textbf{Source:} & «newschannel»
+				«ENDIF»
+				«IF !newschannel.empty && !date.empty»
+					\\
+				«ENDIF»
+				«IF !date.empty»
+					\textbf{Date:} & «date»
+				«ENDIF»
 			«ENDIF»
-			} «newschannel»
-			}}
+			\end{tabular} }}
 		\end{center}
 	«ENDIF»
 	
