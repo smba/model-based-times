@@ -140,10 +140,10 @@ class NplGenerator implements Observer, IGenerator {
 				copyright = 
 				'''
 				\copyright\ Alle Rechte gehören ihren jeweiligen Eigentümern, Autoren und Newsfeeds. 
-				Design und Layout von Sofia Ananieva, Florian Maurer, Stefan Mühlbauer und Julian Troegel. 
+				Design und Layout von Sofia Ananieva, Florian Maurer, Stefan Mühlbauer und Julian Troegel 
 				-- Ein Projekt aus "{}Modellbasierte Softwareentwicklung"{} von Christoph Seidl.
 				
-				Diese Zeitung ist ausschließlich für ihren privaten, nicht-kommerziellen Gebrauch ansehen, einschließlich der Verwendung der gespeicherten Bilder und Dateien.
+				Diese Zeitung ist ausschließlich für ihren privaten, nicht-kommerziellen Gebrauch, einschließlich der Verwendung der gespeicherten Bilder und Dateien.
 				'''
 			} else if(d.language.value.equals("English")) {
 				language = "\\usepackage[english]{babel}"
@@ -151,7 +151,7 @@ class NplGenerator implements Observer, IGenerator {
 				copyright = 
 				'''
 				\copyright\ All rights belong to their respective owners, authors and newsfeeds. 
-				Design and layout by Sofia Ananieva, Florian Maurer, Stefan Mühlbauer and Julian Troegel. 
+				Design and layout by Sofia Ananieva, Florian Maurer, Stefan Mühlbauer and Julian Troegel 
 				-- A project from "{}Model-based Software Development"{} by Christoph Seidl.
 				
 				This newspaper is for your own informational, personal and non-commercial use, including using the saved pictures and files.
@@ -244,7 +244,7 @@ class NplGenerator implements Observer, IGenerator {
 		
 		% New environment for pictures
 		\newenvironment{Figure}
-		{\linebreak\par\noindent\minipage{\linewidth}}
+		{\linebreak\par\minipage{\linewidth}}
 		{\endminipage\par\bigskip}
 		
 		% Set data for title
@@ -263,6 +263,9 @@ class NplGenerator implements Observer, IGenerator {
 		\SetPaperLocation{«location»}
 		\SetPaperPrice{«price»}
 		
+		% remove the space at the start of each paragraph
+		\setlength{\parindent}{0pt}
+		
 		\begin{document}
 			\maketitle
 		
@@ -276,14 +279,12 @@ class NplGenerator implements Observer, IGenerator {
 						
 			\vfill
 			\begin{center}
-				\fbox{\parbox{0.9\textwidth}{\footnotesize «feeds»
+				\fbox{\parbox{\textwidth}{\footnotesize «feeds»
 				\medskip
-				\noindent «copyright»}}
+				«copyright»}}
 			\end{center}
 			
 		\end{document}
-			
-			
 		'''
 	}
 	
@@ -308,15 +309,6 @@ class NplGenerator implements Observer, IGenerator {
     		
 			fsa.generateFile(	d.name + ".tex", d.compileLayout)
     	}
-		
-//		resource.allContents.filter(typeof(Topic)).forEach[topic|
-//			val topicText = ContentGenerator.compileTopic(topic.tags, topic.title)
-//			fsa.generateFile(topic.name + ".tex", topicText)
-//		]
-//		
-//		for(d: resource.allContents.toIterable.filter(Declaration)) {
-//    		fsa.generateFile(	d.name + ".tex", d.compileLayout)
-//    	}
 	}
 	
 }

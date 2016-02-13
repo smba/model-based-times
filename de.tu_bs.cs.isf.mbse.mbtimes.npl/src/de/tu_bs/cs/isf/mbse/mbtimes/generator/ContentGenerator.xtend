@@ -19,6 +19,8 @@ import org.apache.commons.lang3.StringUtils
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.Random
+import java.io.File
+
 
 class ContentGenerator {
 
@@ -87,13 +89,23 @@ class ContentGenerator {
   	
   	System.err.println("VSM computed similarities");
   	
-  	topicTex.append("\\headline{{\\bfseries\\Huge " + topicName + "}\\linebreak\\medskip")
-  	var str = topic.get(0)
+  	//topicTex.append("\\headline{{\\bfseries\\Huge " + topicName + "}\\linebreak\\medskip")
+  	var tags = topic.get(0)
   	for(var i = 1; i < topic.size(); i++) {
-  		str += ", " + topic.get(i)
+  		tags += ", " + topic.get(i)
   	}
-  	topicTex.append("{\\footnotesize{\\bfseries Tags: }{\\it " + str + "}}}")
-  	topicTex.append("\\begin{multicols}{\\numberColumns}")
+  	//topicTex.append("{\\footnotesize{\\bfseries Tags: }{\\it " + str + "}}}")
+  	//topicTex.append("\\begin{multicols}{\\numberColumns}")
+  	
+  	val headline = 
+  	'''
+  	\headline{{\bfseries\Huge «topicName»}\\
+  	\medskip
+  	{\footnotesize{\bfseries Tags: }{\it «tags»}}}
+  	\begin{multicols}{\numberColumns}
+  	
+  	'''
+  	topicTex.append(headline)
   	
   	//calculate median of similarities for article selection
   	var median = medianOfSimilarities(ranking, d.articleCnt)
@@ -117,6 +129,7 @@ class ContentGenerator {
   		if(vsm.getSimilarity(ranking.get(i)) >= median) {
 	  		val st = new StringTokenizer(article.content)
  	 		if(st.countTokens() >= d.articleWordsMin && st.countTokens() <= d.articleWordsMax) {
+  				
   				topicTex.append(compileArticle(article, topic, language, d.imagesCnt.value))
   				cntArticles++
   				
@@ -132,6 +145,9 @@ class ContentGenerator {
   			k=0
   		}
   	}  	
+  	val str = "\\bigskip\\bigskip"
+  	topicTex.delete(topicTex.lastIndexOf(str),topicTex.lastIndexOf(str)+str.length)
+  	
   	topicTex.append("\\end{multicols}\n")
   	if(k==0) {
   		topicTex.append("\\begin{center}")
@@ -231,7 +247,16 @@ class ContentGenerator {
   	val LinkedList<String> images = new LinkedList<String>()
   	//TODO Fill LinkedList images with filenames or relative paths 
   	//	to the pictures of the corresponding article
-
+  	
+  	var tmp = new Random().nextInt(3)
+  	if(tmp == 1) {
+  		images.add("Carolo-Cup_03.jpg")
+  	}
+  	if(tmp == 2) {
+  		images.add("Masterbild-6969c7796e984254.jpeg")
+  		images.add("pmz_Carolo_Cup-91311619635f7d7f.jpeg")
+  	}
+  	
   	//images.add("Carolo-Cup_03.jpg")
   	//images.add("Masterbild-6969c7796e984254.jpeg")
   	
@@ -245,21 +270,26 @@ class ContentGenerator {
   	if(it.published != null) {
   		val dt = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss"); 
   		date = dt.format(it.published)
-  	}
+  	} 
   	
   	'''
+	\begin{minipage}{\columnwidth}
   	«IF !authors.empty && !title.empty»
-	\byline{\it\Large «title»}{«authors»}
+		\byline{\it\Large «title»}{«authors»}
   	«ELSEIF !title.empty»
-	\headline{\it\Large «title»}
+		\headline{\it\Large «title»}
   	«ELSE»
-	\headline{\it\Large N.N.}
+		\headline{\it\Large N.N.}
   	«ENDIF»
-	\noindent 
-	{\bfseries «subtitle.trim()»} \medskip\newline
+	\medskip\par
+	{\bfseries «subtitle.trim()»} 
+	\end{minipage}
+	\medskip\par
 	
-	\noindent «contentWithFigures(content,images,imagesCnt)»
+	«contentWithFigures(content,images,imagesCnt)»
 	
+	\medskip
+	\begin{minipage}{\columnwidth}
 	«IF !newschannel.empty || !date.empty»
 		\begin{center}
 			\fbox{\parbox{0.8\columnwidth}{\footnotesize 
@@ -288,14 +318,18 @@ class ContentGenerator {
 			\end{tabular} }}
 		\end{center}
 	«ENDIF»
+	\closearticle
+	\end{minipage}
+	\bigskip\bigskip
 	
-	\closearticle 
   	'''
   	}
   	
   	def static String contentWithFigures(String str, LinkedList<String> images, int imagesCnt) {
   		var content = str
   		var split = (content.length/(images.size()+1))
+  		
+  		println("Path: " + System.getProperty("user.dir"))
   		for(var i = 0; i < imagesCnt && i < images.size(); i++) {
   			val splitIndex = content.indexOf(".",((i+1)*split)-1)+1
   			val contentFirst = content.substring(0,splitIndex).trim()
