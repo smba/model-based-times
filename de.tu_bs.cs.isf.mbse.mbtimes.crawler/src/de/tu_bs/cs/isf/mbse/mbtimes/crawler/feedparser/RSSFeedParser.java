@@ -23,6 +23,7 @@ import com.sun.syndication.io.XmlReader;
 
 import RSS.Category;
 import RSS.Channel;
+import RSS.Enclosure;
 import RSS.Image;
 import RSS.Item;
 import RSS.Language;
@@ -53,7 +54,9 @@ public class RSSFeedParser extends AbstractFeedParser {
 
 	@Override
 	public void run() {
-		System.out.println("Parsing " + url);
+		
+		log.log(Level.INFO, "Parsing " + url);
+		
 		HttpURLConnection httpcon = null;
 		try {
 			httpcon = (HttpURLConnection) this.url.openConnection();
@@ -87,9 +90,6 @@ public class RSSFeedParser extends AbstractFeedParser {
 		channel.setLastBuild(feed.getPublishedDate()); // TODO same
 
 		if (feed.getImage() != null) {
-
-			System.out.println(feed.getImage());
-
 			SyndImage feedImage = feed.getImage();
 			Image image = this.factory.createImage();
 			image.setTitle(feedImage.getTitle());
@@ -134,7 +134,13 @@ public class RSSFeedParser extends AbstractFeedParser {
 					SyndEnclosure enclosure = null;
 					if (element instanceof SyndEnclosure) {
 						enclosure = (SyndEnclosure) element;
-						System.out.println(enclosure.getUrl());
+						
+						//System.out.println(enclosure.getUrl());
+						
+						Enclosure itemEnclosure = this.factory.createEnclosure();
+						itemEnclosure.setUrl(enclosure.getUrl());
+						item.setEnclosure(itemEnclosure);
+					
 					} else {
 						log.log(Level.WARNING, "Enclosure wasn't a SyndEnclosure");
 					}
@@ -142,13 +148,18 @@ public class RSSFeedParser extends AbstractFeedParser {
 					try {
 						// TODO @Flo please code enclosure here
 						
-						System.err.println("Found enclosure " + enclosure.getUrl() + " " + enclosure.getType());
+						System.err.println();
+						
+						log.log(Level.INFO, "Found enclosure " + enclosure.getUrl() + " " + enclosure.getType());
+						
 						MessageDigest md = MessageDigest.getInstance("MD5");
 						
 						final String md5hash = String.format("%032x", new BigInteger(1, md.digest(enclosure.getUrl().getBytes())));
 						
 						ImageDownloader.downloadFile(md5hash + ".jpg", enclosure.getUrl());
-						System.err.println("saved enclosure as " + md5hash + ".jpg");
+						
+						log.log(Level.INFO, "saved enclosure as " + md5hash + ".jpg");
+						
 						/*
 						Enclosure enclosure = this.factory.createEnclosure();
 						enclosure.setType
@@ -192,7 +203,7 @@ public class RSSFeedParser extends AbstractFeedParser {
 					System.err.println("Could not retrieve fulltext for article " + entry.getLink() + ". Discarding article...");
 					continue;
 				} catch (MalformedURLException e) {
-					System.err.println("Malformed URL, discarding article.");
+					log.log(Level.SEVERE, "Malformed URL, discarding article.");
 					continue;
 				}
 
