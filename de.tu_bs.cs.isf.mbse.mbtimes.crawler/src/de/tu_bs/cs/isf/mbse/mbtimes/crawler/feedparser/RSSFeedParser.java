@@ -1,12 +1,10 @@
 package de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser;
 
 import java.io.IOException;
-import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -32,6 +30,7 @@ import RSS.RSSPackage;
 import de.l3s.boilerpipe.BoilerpipeProcessingException;
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.AtomCrawler;
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener.RSSFeedParserListener;
+
 /**
  * Parser dedicated to a single RSS feeds.
  * 
@@ -41,7 +40,7 @@ public class RSSFeedParser extends AbstractFeedParser {
 
 	/** Logger for this class */
 	private static final Logger log = Logger.getLogger(AtomCrawler.class.getName());
-	
+
 	private RSSFeedParserListener listener;
 	private URL url;
 	private RSSFactory factory;
@@ -54,9 +53,9 @@ public class RSSFeedParser extends AbstractFeedParser {
 
 	@Override
 	public void run() {
-		
+
 		log.log(Level.INFO, "Parsing " + url);
-		
+
 		HttpURLConnection httpcon = null;
 		try {
 			httpcon = (HttpURLConnection) this.url.openConnection();
@@ -103,9 +102,8 @@ public class RSSFeedParser extends AbstractFeedParser {
 		 * Dispose channel to listener
 		 */
 		this.listener.receiveRSSChannel(channel);
-		List<SyndEntry> entries = (feed.getEntries() instanceof List<?>) ? (List<SyndEntry>)feed.getEntries() : null;
-		
-		
+		List<SyndEntry> entries = (feed.getEntries() instanceof List<?>) ? (List<SyndEntry>) feed.getEntries() : null;
+
 		Iterator<SyndEntry> itEntries = entries.iterator();
 
 		while (itEntries.hasNext()) {
@@ -121,65 +119,53 @@ public class RSSFeedParser extends AbstractFeedParser {
 				item.setAuthor(entry.getAuthor());
 				item.setTitle(entry.getTitle());
 				item.setLink(entry.getLink());
-				item.setDescription(entry.getDescription().getValue()); 
+				item.setDescription(entry.getDescription().getValue());
 				item.setGuid(entry.getUri());
 				item.setPubDate(entry.getPublishedDate());
-				
-				
-				if (entry.getEnclosures().size() > 0) {
-					log.log(Level.INFO, "Found enclosure for article...");
-					
-					Object element = entry.getEnclosures().get(0);
-					
-					SyndEnclosure enclosure = null;
-					if (element instanceof SyndEnclosure) {
-						enclosure = (SyndEnclosure) element;
-						
-						//System.out.println(enclosure.getUrl());
-						
-						Enclosure itemEnclosure = this.factory.createEnclosure();
-						itemEnclosure.setUrl(enclosure.getUrl());
-						item.setEnclosure(itemEnclosure);
-					
-					} else {
-						log.log(Level.WARNING, "Enclosure wasn't a SyndEnclosure");
-					}
-					
-					try {
-						// TODO @Flo please code enclosure here
-						
-						System.err.println();
-						
-						log.log(Level.INFO, "Found enclosure " + enclosure.getUrl() + " " + enclosure.getType());
-						
-						MessageDigest md = MessageDigest.getInstance("MD5");
-						
-						final String md5hash = String.format("%032x", new BigInteger(1, md.digest(enclosure.getUrl().getBytes())));
-						
-						ImageDownloader.downloadFile(md5hash + ".jpg", enclosure.getUrl());
-						
-						log.log(Level.INFO, "saved enclosure as " + md5hash + ".jpg");
-						
-						/*
-						Enclosure enclosure = this.factory.createEnclosure();
-						enclosure.setType
-						item.setEnclosure()
-						*/
-					} catch (NullPointerException e) {
-						log.log(Level.INFO, "Enclosure for article " + entry.getLink() + " is malformed.");
-					} catch (NoSuchAlgorithmException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-					
-				} else {
-					log.log(Level.WARNING, "No enclosure found for article " + entry.getLink() + ".");
+
+				log.log(Level.INFO, "Found enclosure for article...");
+
+				// Object element = entry.getEnclosures().get(0);
+				List<?> enclosures = entry.getEnclosures();
+
+				if (enclosures.size() == 0) {
+					log.log(Level.INFO, "No enclosures found for article");
 				}
-				
+
+				Enclosure itemEnclosure = this.factory.createEnclosure();
+				itemEnclosure.setUrls( new HashMap<String, String>() );
+
+				for (Object enclosure : enclosures) {
+					if (enclosure instanceof SyndEnclosure) {
+						SyndEnclosure enclosureRome = (SyndEnclosure) enclosure;
+
+						if (enclosureRome.getType().startsWith("image")) {
+
+							try {
+
+								/*
+								 * Map: Enclosure (image/x) url to concrete MIME
+								 * type (e.g., image/jpeg)
+								 */
+
+								final String md5hash = ImageDownloader.md5(enclosureRome.getUrl());
+
+								final String type = enclosureRome.getType();
+								final String suffix = type.substring(type.indexOf('/') + 1);
+
+								ImageDownloader.downloadFile(md5hash + "." + suffix, enclosureRome.getUrl());
+									
+								assert (enclosureRome.getUrl() != null) && (enclosureRome.getType() != null);
+								itemEnclosure.getUrls().put( (String) enclosureRome.getUrl(), (String) enclosureRome.getType());
+
+							} catch (IOException e) {
+								log.log(Level.WARNING, "Could not retrieve image file " + enclosureRome.getUrl());
+							}
+						}
+					}
+				}
+
+				item.setEnclosure(itemEnclosure);
 
 				/*
 				 * Try to retrieve the full text
@@ -187,20 +173,21 @@ public class RSSFeedParser extends AbstractFeedParser {
 				try {
 					String content = super.getText(new URL(entry.getLink()));
 					item.setFulltext(content);
-					
-				
+
 				} catch (BoilerpipeProcessingException e) {
 					/**
-					 * Exception handling:
-					 * If the getText() method returns an IOException, 
-					 * we could not retrieve the fulltext. Therefore, the crawling job 
-					 * for the corresponding article is discarded.
+					 * Exception handling: If the getText() method returns an
+					 * IOException, we could not retrieve the fulltext.
+					 * Therefore, the crawling job for the corresponding article
+					 * is discarded.
 					 */
-					
+
 					/*
-					 * Could not retrieve fulltext, continue with next article in feed.
+					 * Could not retrieve fulltext, continue with next article
+					 * in feed.
 					 */
-					System.err.println("Could not retrieve fulltext for article " + entry.getLink() + ". Discarding article...");
+					System.err.println(
+							"Could not retrieve fulltext for article " + entry.getLink() + ". Discarding article...");
 					continue;
 				} catch (MalformedURLException e) {
 					log.log(Level.SEVERE, "Malformed URL, discarding article.");
@@ -242,6 +229,7 @@ public class RSSFeedParser extends AbstractFeedParser {
 			}
 		}
 	}
+
 
 	@Override
 	public void initialize() {

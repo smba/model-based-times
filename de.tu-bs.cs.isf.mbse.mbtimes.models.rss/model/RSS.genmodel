@@ -43,8 +43,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RSS.ecore#//Image/title"/>
     </genClasses>
     <genClasses ecoreClass="RSS.ecore#//Enclosure">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RSS.ecore#//Enclosure/url"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RSS.ecore#//Enclosure/length"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RSS.ecore#//Enclosure/urls"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RSS.ecore#//Enclosure/type"/>
     </genClasses>
   </genPackages>
