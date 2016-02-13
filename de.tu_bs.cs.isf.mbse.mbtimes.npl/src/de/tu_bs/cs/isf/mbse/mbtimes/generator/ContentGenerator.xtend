@@ -248,15 +248,6 @@ class ContentGenerator {
   	//TODO Fill LinkedList images with filenames or relative paths 
   	//	to the pictures of the corresponding article
   	
-  	var tmp = new Random().nextInt(3)
-  	if(tmp == 1) {
-  		images.add("Carolo-Cup_03.jpg")
-  	}
-  	if(tmp == 2) {
-  		images.add("Masterbild-6969c7796e984254.jpeg")
-  		images.add("pmz_Carolo_Cup-91311619635f7d7f.jpeg")
-  	}
-  	
   	//images.add("Carolo-Cup_03.jpg")
   	//images.add("Masterbild-6969c7796e984254.jpeg")
   	
