@@ -122,18 +122,18 @@ public class RSSFeedParser extends AbstractFeedParser {
 				item.setDescription(entry.getDescription().getValue());
 				item.setGuid(entry.getUri());
 				item.setPubDate(entry.getPublishedDate());
-
-				log.log(Level.INFO, "Found enclosure for article...");
-
-				// Object element = entry.getEnclosures().get(0);
+	
+				// (Object element = entry.getEnclosures().get(0);
 				List<?> enclosures = entry.getEnclosures();
 
 				if (enclosures.size() == 0) {
 					log.log(Level.INFO, "No enclosures found for article");
+				} else {
+					log.log(Level.INFO, "Found enclosure for article...");
 				}
 
 				Enclosure itemEnclosure = this.factory.createEnclosure();
-				itemEnclosure.setUrls( new HashMap<String, String>() );
+				itemEnclosure.setUrls(new HashMap<String, String>());
 
 				for (Object enclosure : enclosures) {
 					if (enclosure instanceof SyndEnclosure) {
@@ -154,9 +154,10 @@ public class RSSFeedParser extends AbstractFeedParser {
 								final String suffix = type.substring(type.indexOf('/') + 1);
 
 								ImageDownloader.downloadFile(md5hash + "." + suffix, enclosureRome.getUrl());
-									
+
 								assert (enclosureRome.getUrl() != null) && (enclosureRome.getType() != null);
-								itemEnclosure.getUrls().put( (String) enclosureRome.getUrl(), (String) enclosureRome.getType());
+								itemEnclosure.getUrls().put((String) enclosureRome.getUrl(),
+										(String) enclosureRome.getType());
 
 							} catch (IOException e) {
 								log.log(Level.WARNING, "Could not retrieve image file " + enclosureRome.getUrl());
@@ -229,7 +230,6 @@ public class RSSFeedParser extends AbstractFeedParser {
 			}
 		}
 	}
-
 
 	@Override
 	public void initialize() {

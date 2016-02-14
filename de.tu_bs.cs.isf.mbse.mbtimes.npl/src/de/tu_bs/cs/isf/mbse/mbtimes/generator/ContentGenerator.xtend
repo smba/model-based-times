@@ -47,21 +47,6 @@ class ContentGenerator {
 		fulltexts.add(a.content);
 	}
 	
-	//retrieve images
-	for(Article a : articles) {
-		var currentImages = a.image;
-		for(Object okey : currentImages.url.keySet) {
-			var String url = null
-			if (okey instanceof String) {
-				url = okey as String
-				var String md5 = ImageDownloader.md5(url)
-				var String mimeType =  currentImages.url.get(url) as String
-				var String fileType = ImageDownloader.truncateMIMEType(mimeType)
-				var String completeFileName = md5 + "." + fileType //this file is located in your home folder
-				//TODO implement LaTeX stuff from here
-			}
-		}
-	}
   	
   	vsm = new VectorSpaceModel( /*language*/ );
   	vsm.buildDocumentVectors(fulltexts);
@@ -141,9 +126,15 @@ class ContentGenerator {
   		}
   		if(vsm.getSimilarity(ranking.get(i)) >= median) {
 	  		val st = new StringTokenizer(article.content)
+	  		
+	  		var imagesCount = 0
+	  		if (d.imagesCnt != null) {
+	  			imagesCount = d.imagesCnt.value
+	  		}
+	  		
  	 		if(st.countTokens() >= d.articleWordsMin && st.countTokens() <= d.articleWordsMax) {
   				
-  				topicTex.append(compileArticle(article, topic, language, d.imagesCnt.value))
+  				topicTex.append(compileArticle(article, topic, language, imagesCount))
   				cntArticles++
   				
   				println("Title:\t\t" + article.title)
@@ -260,6 +251,31 @@ class ContentGenerator {
   	val LinkedList<String> images = new LinkedList<String>()
   	//TODO Fill LinkedList images with filenames or relative paths 
   	//	to the pictures of the corresponding article
+  	
+  	val articles = new ArrayList<Article>(UnifiedFileParser.loadArticles());
+  	
+	//retrieve images
+	println("About to print file image names ")
+	for(Article a : articles) {
+		
+		if (a.image != null) {
+			
+			var currentImages = a.image;
+			
+			for(Object okey : currentImages.url.keySet) {
+				var String url = null
+				if (okey instanceof String) {
+					url = okey as String
+					var String md5 = ImageDownloader.md5(url)
+					var String mimeType =  currentImages.url.get(url) as String
+					var String fileType = ImageDownloader.truncateMIMEType(mimeType)
+					var String completeFileName = md5 + "." + fileType //this file is located in your home folder
+					//TODO implement LaTeX stuff from here
+					System.err.println("retreived image file name: " + completeFileName)
+				}
+			}	
+		}
+	}
   	
   	//images.add("Carolo-Cup_03.jpg")
   	//images.add("Masterbild-6969c7796e984254.jpeg")
