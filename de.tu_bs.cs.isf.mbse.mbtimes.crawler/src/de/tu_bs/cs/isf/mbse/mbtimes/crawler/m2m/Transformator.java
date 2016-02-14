@@ -1,15 +1,12 @@
 package de.tu_bs.cs.isf.mbse.mbtimes.crawler.m2m;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.m2m.atl.core.ATLCoreException;
 import org.eclipse.m2m.atl.core.IExtractor;
 import org.eclipse.m2m.atl.core.IInjector;
@@ -23,7 +20,6 @@ import org.eclipse.m2m.atl.core.emf.EMFModelFactory;
 import org.eclipse.m2m.atl.core.emf.EMFReferenceModel;
 import org.eclipse.m2m.atl.core.launch.ILauncher;
 import org.eclipse.m2m.atl.engine.emfvm.launch.EMFVMLauncher;
-import org.osgi.framework.Bundle;
 
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.Utilities;
 
@@ -159,20 +155,15 @@ public class Transformator extends Observable implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		
-		System.err.println("Transformator update()");
-		
+		/*
+		 * Start M2M transformation
+		 */
 		transformAtomToUnified();
-		
-		System.err.println("Atom trafo fertig");
-		
 		transformRSStoUnified();
 		
-		System.err.println("RSS trafo fertig");
-		
-		System.err.println("Transformator update() fertig");
-		
-		System.out.println(this.countObservers() + " classes are waiting");
-		
+		/*
+		 * Trigger observer
+		 */
 		setChanged();
 		notifyObservers();
 	}

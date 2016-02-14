@@ -51,6 +51,7 @@ public class RSSFeedParser extends AbstractFeedParser {
 		this.factory = listener.getRSSFactory();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void run() {
 
@@ -102,9 +103,9 @@ public class RSSFeedParser extends AbstractFeedParser {
 		 * Dispose channel to listener
 		 */
 		this.listener.receiveRSSChannel(channel);
-		List<SyndEntry> entries = (feed.getEntries() instanceof List<?>) ? (List<SyndEntry>) feed.getEntries() : null;
+		List<?> entries = (feed.getEntries() instanceof List<?>) ? (List<?>) feed.getEntries() : null;
 
-		Iterator<SyndEntry> itEntries = entries.iterator();
+		Iterator<?> itEntries = entries.iterator();
 
 		while (itEntries.hasNext()) {
 			Object next = itEntries.next();
@@ -156,8 +157,7 @@ public class RSSFeedParser extends AbstractFeedParser {
 								ImageDownloader.downloadFile(md5hash + "." + suffix, enclosureRome.getUrl());
 
 								assert (enclosureRome.getUrl() != null) && (enclosureRome.getType() != null);
-								itemEnclosure.getUrls().put((String) enclosureRome.getUrl(),
-										(String) enclosureRome.getType());
+								itemEnclosure.getUrls().put((String) enclosureRome.getUrl(), (String) enclosureRome.getType());
 
 							} catch (IOException e) {
 								log.log(Level.WARNING, "Could not retrieve image file " + enclosureRome.getUrl());

@@ -4,38 +4,27 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.Map;
 
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 //import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.osgi.framework.Bundle;
 
 import UnifiedModel.UnifiedModelPackage;
+import de.tu_bs.cs.isf.mbse.mbtimes.crawler.Utilities;
 
 public class UnifiedFileParser {
 	
-	public static String crawlerBundlePathPrefix;
-	static {
-		Bundle bundle = Platform.getBundle("de.tu_bs.cs.isf.mbse.mbtimes.crawler");
-		int begin = bundle.getLocation().indexOf("/");
-		crawlerBundlePathPrefix = bundle.getLocation().substring(begin);
-		String prefix = (new File("dummy")).getAbsolutePath(); 
-		if(Platform.getOS().compareTo(Platform.OS_WIN32) == 0) {
-			prefix = prefix.substring(0,  prefix.lastIndexOf('\\') + 2);
-		} else {
-			prefix = prefix.substring(0,  prefix.lastIndexOf('/') + 1); 
-		}
-		crawlerBundlePathPrefix = crawlerBundlePathPrefix.substring(prefix.length(), crawlerBundlePathPrefix.length());
-	}
+	static String crawlerBundlePathPrefix = Utilities.getBundlePath();
 	
+	/*
 	public static void main(String[] args) {
 		LinkedList<UnifiedModel.Article> unifiedArticles= loadArticles();
 		System.out.println();
 		System.out.println(unifiedArticles.get(0).getContent());
 	}
+	*/
 	
 	public static LinkedList<UnifiedModel.Article> loadArticles() {
 	    // Initialize the model

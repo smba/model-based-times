@@ -94,8 +94,8 @@ public class AtomFeedParser extends AbstractFeedParser {
 		 */
 		this.listener.receiveAtomFeed(atomFeed);
 
-		List<SyndEntry> entries = feed.getEntries();
-		Iterator<SyndEntry> itEntries = entries.iterator();
+		List<?> entries = feed.getEntries();
+		Iterator<?> itEntries = entries.iterator();
 
 		while (itEntries.hasNext()) {
 			Object next = itEntries.next();
@@ -114,6 +114,7 @@ public class AtomFeedParser extends AbstractFeedParser {
 				entry.setSummary(syndEntry.getDescription().getValue());
 				entry.setTitle(syndEntry.getTitle());
 				entry.setUpdated(syndEntry.getUpdatedDate());
+				
 
 				/*
 				 * Try to retrieve the full text
