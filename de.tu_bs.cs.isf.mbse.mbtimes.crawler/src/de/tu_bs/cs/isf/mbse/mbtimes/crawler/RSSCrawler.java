@@ -7,8 +7,10 @@ import java.net.URL;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,6 +27,7 @@ import RSS.Image;
 import RSS.Item;
 import RSS.RSSFactory;
 import RSS.RSSPackage;
+import de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser.FeedParser;
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser.RSSFeedParser;
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener.RSSFeedParserListener;
 
@@ -33,16 +36,10 @@ import de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener.RSSFeedParserListener;
  * 
  * @version 14.01.2016
  */
-public class RSSCrawler extends AbstractCrawler implements Crawler, RSSFeedParserListener {
+public class RSSCrawler extends AbstractCrawler implements RSSFeedParserListener {
 
-	/** Logger for this class */
-	private static final Logger log = Logger.getLogger(AtomCrawler.class.getName());
-	
 	/** Ausgabepfad für die .rss-Datei (XMI) */
 	private static final String RSS_TARGET_PATH = crawlerBundlePathPrefix + "tmp/RssOutput.rss";
-
-	/** Maximale Anzahl an Feeds, welche gleichzeitig gecrawlt wird */
-	private static final int THREADPOOL_SIZE = 5;
 
 	/**
 	 * Factory, mittels welcher Elemente gemäß der RSS.ecore erstellt werden.
@@ -51,31 +48,6 @@ public class RSSCrawler extends AbstractCrawler implements Crawler, RSSFeedParse
 
 	/** Resource, welche in RSS_TARGET_PATH ge. bzw. überscrieben wird */
 	private Resource rssResource;
-
-	public void crawl(List<String> feeds) {
-
-		/**
-		 * Thread-Pool, in welchem die Threads für die Feed-Parser operieren.
-		 */
-		ExecutorService executor = Executors.newFixedThreadPool(THREADPOOL_SIZE);
-
-		/** Für jeden Feed wird ein eigener FeedParser gestartet. */
-		for (String feed : feeds) {
-			Runnable worker = null;
-			try {
-				worker = new RSSFeedParser(this, new URL(feed));
-			} catch (MalformedURLException e) {
-				
-				throw new RuntimeException("The URL " + feed + " is malformed. Please check the link.");
-			}
-			executor.execute(worker);
-		}
-		executor.shutdown();
-		while (!executor.isTerminated()) {
-			// wait
-		}
-
-	}
 
 	public RSSCrawler() {
 		RSSPackage.eINSTANCE.eClass();
@@ -141,5 +113,10 @@ public class RSSCrawler extends AbstractCrawler implements Crawler, RSSFeedParse
 		} catch (IOException e) {
 			log.log(Level.WARNING, "RSS resource file may be empty!");
 		}
+	}
+
+	@Override
+	protected FeedParser createParser(URL feed) {
+		return new RSSFeedParser(this, feed);
 	}
 }

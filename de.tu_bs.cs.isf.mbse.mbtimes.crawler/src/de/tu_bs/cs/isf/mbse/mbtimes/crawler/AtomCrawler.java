@@ -23,6 +23,8 @@ import Atom.Entry;
 import Atom.Feed;
 import RSS.RSSPackage;
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser.AtomFeedParser;
+import de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser.FeedParser;
+import de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser.RSSFeedParser;
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener.AtomFeedParserListener;
 
 /**
@@ -30,14 +32,8 @@ import de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener.AtomFeedParserListener;
  * 
  * @version 14.01.2016
  */
-public class AtomCrawler extends AbstractCrawler implements Crawler, AtomFeedParserListener {
-
-	/** Logger for this class */
-	private static final Logger log = Logger.getLogger(AtomCrawler.class.getName());
+public class AtomCrawler extends AbstractCrawler implements AtomFeedParserListener {
 	
-	/** Maximale Anzahl an Feeds, welche gleichzeitig gecrawlt wird */
-	private static final int THREADPOOL_SIZE = 5;
-
 	/** Factory, mittels welcher Elemente gemäß der Atom.ecore erstellt werden. */
 	private AtomFactory atomFactory;
 	
@@ -46,30 +42,6 @@ public class AtomCrawler extends AbstractCrawler implements Crawler, AtomFeedPar
 
 	/** Resource, welche in ATOM_TARGET_PATH ge. bzw. überscrieben wird */
 	private Resource atomResource;
-
-	public void crawl(List<String> feeds) {
-
-		/**
-		 * Thread-Pool, in welchem die Threads für die Feed-Parser operieren.
-		 */
-		ExecutorService executor = Executors.newFixedThreadPool(THREADPOOL_SIZE);
-
-		/** Für jeden Feed wird ein eigener FeedParser gestartet. */
-		for (String feed : feeds) {
-			Runnable worker = null;
-			try {
-				worker = new AtomFeedParser(this, new URL(feed));
-			} catch (MalformedURLException e) {
-				log.log(Level.SEVERE, "The URL " + feed + " is malformed. Please check the link.");
-				continue;
-			}
-			executor.execute(worker);
-		}
-		executor.shutdown();
-		while (!executor.isTerminated()) {
-			// wait
-		}
-	}
 
 	public AtomCrawler() {
 
@@ -119,5 +91,10 @@ public class AtomCrawler extends AbstractCrawler implements Crawler, AtomFeedPar
 	@Override
 	public AtomFactory getAtomFactory() {
 		return atomFactory;
+	}
+
+	@Override
+	protected FeedParser createParser(URL feed) {
+		return new AtomFeedParser(this, feed);
 	}
 }

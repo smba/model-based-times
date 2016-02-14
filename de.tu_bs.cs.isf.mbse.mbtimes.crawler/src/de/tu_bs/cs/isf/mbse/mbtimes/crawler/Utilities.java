@@ -15,7 +15,6 @@ abstract public class Utilities {
 	 *  Pfad zum Ausführungspunkt vom absoluten Pfad zum Plugin ab.
 	 *  */
 	public final static String getBundlePath() {
-		
 		final String crawlerBundlePathPrefix;
 		Bundle bundle = Platform.getBundle("de.tu_bs.cs.isf.mbse.mbtimes.crawler");
 		

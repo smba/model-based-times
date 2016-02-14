@@ -16,7 +16,7 @@ import de.l3s.boilerpipe.extractors.ArticleExtractor;
  * @version 14.01.2016
  *
  */
-public abstract class AbstractFeedParser implements FeedParser, Runnable {
+public abstract class AbstractFeedParser implements FeedParser {
 		
 	@Override
 	abstract public void run();
@@ -33,12 +33,6 @@ public abstract class AbstractFeedParser implements FeedParser, Runnable {
 		String text = "";
 		text = ArticleExtractor.getInstance().getText(url);
 		return text;
-	}
-	
-	//TODO Implement tag removal
-	@Deprecated
-	protected final String makePretty(String ugly) {
-		return null;
 	}
 	
 	abstract public void initialize();
