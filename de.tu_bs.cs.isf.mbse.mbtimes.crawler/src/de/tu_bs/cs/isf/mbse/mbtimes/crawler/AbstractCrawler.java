@@ -19,7 +19,7 @@ public abstract class AbstractCrawler implements Crawler {
 	 */
 	protected final static String crawlerBundlePathPrefix = Utilities.getBundlePath();
 	
-	private final static int THREADPOOL_SIZE = 8;
+	private final static int THREADPOOL_SIZE = 4;
 
 	protected final static Logger log = Logger.getLogger(AbstractCrawler.class.getName());
 	
