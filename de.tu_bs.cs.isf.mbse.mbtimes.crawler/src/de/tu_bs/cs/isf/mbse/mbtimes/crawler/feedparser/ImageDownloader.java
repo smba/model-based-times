@@ -56,5 +56,12 @@ public class ImageDownloader {
 		}
 		return hash;
 	}
+	
+	/*
+	 * transforms image/<file type> to <file type>
+	 */
+	public static String truncateMIMEType(String type) {
+		return type.substring(type.indexOf('/') + 1);
+	}
 
 }

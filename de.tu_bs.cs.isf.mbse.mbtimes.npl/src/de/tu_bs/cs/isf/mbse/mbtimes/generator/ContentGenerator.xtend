@@ -1,26 +1,23 @@
 package de.tu_bs.cs.isf.mbse.mbtimes.generator
 
-import UnifiedModel.NewsChannel
 import UnifiedModel.Article
+import UnifiedModel.NewsChannel
 import UnifiedModel.UnifiedModelPackage
+import de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser.ImageDownloader
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.unifiedParser.UnifiedFileParser
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.vsm.VectorSpaceModel
+import java.text.SimpleDateFormat
 import java.util.ArrayList
+import java.util.Collections
 import java.util.LinkedList
 import java.util.List
+import java.util.Map
 import java.util.StringTokenizer
+import org.apache.commons.lang3.StringUtils
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
-import java.util.Collections
-import java.util.Map
-import org.apache.commons.lang3.StringUtils
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.Random
-import java.io.File
-
 
 class ContentGenerator {
 
@@ -48,6 +45,22 @@ class ContentGenerator {
   	val fulltexts = new ArrayList<String>();
 	for(Article a : articles) {
 		fulltexts.add(a.content);
+	}
+	
+	//retrieve images
+	for(Article a : articles) {
+		var currentImages = a.image;
+		for(Object okey : currentImages.url.keySet) {
+			var String url = null
+			if (okey instanceof String) {
+				url = okey as String
+				var String md5 = ImageDownloader.md5(url)
+				var String mimeType =  currentImages.url.get(url) as String
+				var String fileType = ImageDownloader.truncateMIMEType(mimeType)
+				var String completeFileName = md5 + "." + fileType //this file is located in your home folder
+				//TODO implement LaTeX stuff from here
+			}
+		}
 	}
   	
   	vsm = new VectorSpaceModel( /*language*/ );
