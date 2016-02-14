@@ -27,15 +27,16 @@
         defaultValueLiteral="Null"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="author" lowerBound="1"
         upperBound="-1" eType="#//Author"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="image" upperBound="-1"
-        eType="#//Image"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="image" lowerBound="1" eType="#//Image"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="newschannel" lowerBound="1"
         eType="#//NewsChannel"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="category" lowerBound="1"
         upperBound="-1" eType="#//Category"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Image">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"
+        transient="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Author">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

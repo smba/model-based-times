@@ -58,3 +58,13 @@ rule Category2Category {
 			id <- s.domain	
 		)
 }
+
+rule Enclosure2Image {
+	from
+		s: RSS!Enclosure
+	to
+		t: Unified!Image (
+			url <- s.urls
+			type <- s.type
+		)
+}
