@@ -33,7 +33,7 @@ import de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener.AtomFeedParserListener;
  * 
  * @version 14.01.2016
  */
-public class AtomCrawler implements Crawler, AtomFeedParserListener {
+public class AtomCrawler extends AbstractCrawler implements Crawler, AtomFeedParserListener {
 
 	/** Logger for this class */
 	private static final Logger log = Logger.getLogger(AtomCrawler.class.getName());
@@ -43,23 +43,6 @@ public class AtomCrawler implements Crawler, AtomFeedParserListener {
 
 	/** Factory, mittels welcher Elemente gemäß der Atom.ecore erstellt werden. */
 	private AtomFactory atomFactory;
-
-	/**
-	 * Determine to 
-	 */
-	private static String crawlerBundlePathPrefix;
-	static {
-		Bundle bundle = Platform.getBundle("de.tu_bs.cs.isf.mbse.mbtimes.crawler");
-		int begin = bundle.getLocation().indexOf("/");
-		crawlerBundlePathPrefix = bundle.getLocation().substring(begin);
-		String prefix = (new File("dummy")).getAbsolutePath(); 
-		if(Platform.getOS().compareTo(Platform.OS_WIN32) == 0) {
-			prefix = prefix.substring(0,  prefix.lastIndexOf('\\') + 2);
-		} else {
-			prefix = prefix.substring(0,  prefix.lastIndexOf('/') + 1); 
-		}
-		crawlerBundlePathPrefix = crawlerBundlePathPrefix.substring(prefix.length(), crawlerBundlePathPrefix.length());
-	}
 	
 	/** Ausgabepfad für die .atom-Datei (XMI) */
 	private static final String ATOM_TARGET_PATH = crawlerBundlePathPrefix + "tmp/AtomOutput.atom";

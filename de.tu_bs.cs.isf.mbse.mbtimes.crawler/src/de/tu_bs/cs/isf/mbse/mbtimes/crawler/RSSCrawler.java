@@ -35,24 +35,10 @@ import de.tu_bs.cs.isf.mbse.mbtimes.crawler.listener.RSSFeedParserListener;
  * 
  * @version 14.01.2016
  */
-public class RSSCrawler implements Crawler, RSSFeedParserListener {
+public class RSSCrawler extends AbstractCrawler implements Crawler, RSSFeedParserListener {
 
 	/** Logger for this class */
 	private static final Logger log = Logger.getLogger(AtomCrawler.class.getName());
-	
-	private static String crawlerBundlePathPrefix;
-	static {
-		Bundle bundle = Platform.getBundle("de.tu_bs.cs.isf.mbse.mbtimes.crawler");
-		int begin = bundle.getLocation().indexOf("/");
-		crawlerBundlePathPrefix = bundle.getLocation().substring(begin);
-		String prefix = (new File("dummy")).getAbsolutePath(); 
-		if(Platform.getOS().compareTo(Platform.OS_WIN32) == 0) {
-			prefix = prefix.substring(0,  prefix.lastIndexOf('\\') + 2);
-		} else {
-			prefix = prefix.substring(0,  prefix.lastIndexOf('/') + 1); 
-		}
-		crawlerBundlePathPrefix = crawlerBundlePathPrefix.substring(prefix.length(), crawlerBundlePathPrefix.length());
-	}
 	
 	/** Ausgabepfad für die .rss-Datei (XMI) */
 	private static final String RSS_TARGET_PATH = crawlerBundlePathPrefix + "tmp/RssOutput.rss";
