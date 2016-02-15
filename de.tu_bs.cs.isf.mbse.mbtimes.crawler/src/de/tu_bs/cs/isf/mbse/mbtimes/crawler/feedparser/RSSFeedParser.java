@@ -163,6 +163,7 @@ public class RSSFeedParser extends AbstractFeedParser {
 								item.getEnclosure().add(itemEnclosure);
 								//itemEnclosure.getUrls().put((String) enclosureRome.getUrl(), (String) enclosureRome.getType());
 
+								listener.receiveRSSEnclosure(itemEnclosure);
 							} catch (IOException e) {
 								log.log(Level.WARNING, "Could not retrieve image file " + enclosureRome.getUrl());
 							}

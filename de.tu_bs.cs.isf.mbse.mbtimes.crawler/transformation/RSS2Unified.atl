@@ -1,3 +1,6 @@
+-- @path RSS=/de.tu-bs.cs.isf.mbse.mbtimes.models.rss/model/RSS.ecore
+-- @path Unified=/de.tu-bs.cs.isf.mbse.mbtimes.models.unified/model/unified.ecore
+
 module RSS2Unified;
 create OUT: Unified from IN: RSS;
 
@@ -17,7 +20,7 @@ rule Item2Article {
 			--author <- s.author,
 			--category <- s.categories,
 			--newschannel <- s.channel,
-			--image <- s.enclosure
+			image <- s.enclosure,
 			
 			author <- Sequence{author}.first(),
 			newschannel <- s.channel
@@ -65,3 +68,12 @@ rule Category2Category {
 		)
 }
 
+rule Enclosure2Image {
+	from
+		s: RSS!Enclosure
+	to
+		t: Unified!Image (
+			url <- s.url,
+			type <- s.type
+		)
+}
