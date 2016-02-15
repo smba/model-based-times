@@ -1,5 +1,6 @@
 package de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -9,6 +10,19 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 
 import com.sun.syndication.feed.synd.SyndCategory;
 import com.sun.syndication.feed.synd.SyndEnclosure;
@@ -41,6 +55,8 @@ public class RSSFeedParser extends AbstractFeedParser {
 	/** Logger for this class */
 	private static final Logger log = Logger.getLogger(AtomCrawler.class.getName());
 
+	private String imagePath;
+	
 	private RSSFeedParserListener listener;
 	private URL url;
 	private RSSFactory factory;
@@ -49,6 +65,19 @@ public class RSSFeedParser extends AbstractFeedParser {
 		this.listener = listener;
 		this.url = link;
 		this.factory = listener.getRSSFactory();
+		
+		//Receive path to the directory for the images
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		File workspaceDirectory = workspace.getRoot().getLocation().toFile();
+		System.out.println(workspaceDirectory.getPath());
+		File imageDir = new File(workspaceDirectory.getPath() + "/images/");
+		imageDir.mkdirs();
+		File[] files = imageDir.listFiles();
+		//Delete old files, may not be needed...
+		for(File f: files) {
+			f.delete();
+		}
+		this.imagePath = imageDir.getPath();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -133,6 +162,8 @@ public class RSSFeedParser extends AbstractFeedParser {
 					log.log(Level.INFO, "Found enclosure for article...");
 				}
 
+				//get location of workspace (java.io.File)
+
 				
 				//itemEnclosure.setUrl("");
 
@@ -152,9 +183,9 @@ public class RSSFeedParser extends AbstractFeedParser {
 								final String md5hash = ImageDownloader.md5(enclosureRome.getUrl());
 
 								final String type = enclosureRome.getType();
-								final String suffix = type.substring(type.indexOf('/') + 1);
-
-								ImageDownloader.downloadFile(md5hash + "." + suffix, enclosureRome.getUrl());
+								final String suffix = type.substring(type.indexOf('/') + 1);								
+								
+								ImageDownloader.downloadFile(imagePath + "/" + md5hash + "." + suffix, enclosureRome.getUrl());
 
 								assert (enclosureRome.getUrl() != null) && (enclosureRome.getType() != null);
 								Enclosure itemEnclosure = this.factory.createEnclosure();

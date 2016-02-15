@@ -222,6 +222,8 @@ class ContentGenerator {
 		if (it.newschannel != null) {
 			newschannel = new String(it.newschannel.title.getBytes("UTF-8"), "UTF-8")
 		}
+		
+		var articleLink = it.link
 
 		// content = new String(content.getBytes("UTF-8"),"UTF-8")
 		for (var i = 0; i < specialChars.length; i++) {
@@ -232,6 +234,7 @@ class ContentGenerator {
 			}
 			authors = authors.replace(specialChars.get(i), changedChars.get(i))
 			newschannel = newschannel.replace(specialChars.get(i), changedChars.get(i))
+			articleLink = articleLink.replace(specialChars.get(i), changedChars.get(i))
 		}
 
 		while (content.indexOf("(Bild") >= 0) {
@@ -251,22 +254,20 @@ class ContentGenerator {
 
 		// retrieve images
 		println("About to print file image names ")
-		for (Article a : articles) {
+			if (it.image != null) {
 
-			if (a.image != null) {
+				var currentImages = it.image;
 
-				var currentImages = a.image;
-
-				for (img : a.image) {
+				for (img : it.image) {
 					var String md5 = ImageDownloader.md5(img.url)
 					var String mimeType = img.type;
 					var String fileType = ImageDownloader.truncateMIMEType(mimeType)
 					var String completeFileName = md5 + "." + fileType // this file is located in your home folder
 					// TODO implement LaTeX stuff from here
 					System.err.println("retreived image file name: " + completeFileName)
+					images.add(completeFileName)
 				}
 			}
-		}
 
 		// images.add("Carolo-Cup_03.jpg")
 		// images.add("Masterbild-6969c7796e984254.jpeg")
@@ -306,7 +307,7 @@ class ContentGenerator {
 								\begin{tabular}{p{0.15\columnwidth}p{0.5\columnwidth}}
 								«IF language.equals("German")»
 									«IF !newschannel.empty»
-										\textbf{Quelle:} & \href{«it.link»}{«newschannel»}
+										\textbf{Quelle:} & \href{«articleLink»}{«newschannel»}
 									«ENDIF»
 									«IF !newschannel.empty && !date.empty»
 										\\
@@ -316,7 +317,7 @@ class ContentGenerator {
 									«ENDIF»
 								«ELSE»
 									«IF !newschannel.empty»
-										\textbf{Source:} & \href{«it.link»}{«newschannel»}
+										\textbf{Source:} & \href{«it.link.replace("#","\\#")»}{«newschannel»}
 									«ENDIF»
 									«IF !newschannel.empty && !date.empty»
 										\\
@@ -345,7 +346,7 @@ class ContentGenerator {
 			val contentFirst = content.substring(0, splitIndex).trim()
 			val contentSec = "\n" + '''
 				\begin{Figure}
-					\includegraphics[width=\columnwidth]{«images.get(i)»}
+					\includegraphics[width=\columnwidth]{../../images/«images.get(i)»}
 				\end{Figure}
 			'''
 			val contentThird = content.substring(splitIndex).trim()
