@@ -29,15 +29,13 @@ class NplValidator extends AbstractNplValidator {
 	}
 	
 	/**
-	 * This constraint checks whether at least one topic or not more than 12 topics have been defined.
+	 * This constraint checks whether at least one topic has been defined.
 	 */
 	 @Check
 	 def checkNumberOfTopics(Declaration declaration) {
 	 	if (declaration.topics.empty) {
 	 		error("Please specify at least one topic!", NplPackage.Literals.DECLARATION__TOPICS)
-	 	} else if (declaration.topics.size > 12) {
-	 		error("Please do not specify more than twelve topics!", NplPackage.Literals.DECLARATION__TOPICS)
-	 	}
+	 	} 
 	 } 
 	
 
@@ -77,8 +75,8 @@ class NplValidator extends AbstractNplValidator {
 	 */
 	@Check
 	def checkNrArticles(Declaration declaration) {
-		if (declaration.articleCnt < 1 || declaration.articleCnt > 5) {
-			error("Number of articles must be greater than 0 and smaller than 6", NplPackage.Literals.DECLARATION__ARTICLE_CNT)
+		if (declaration.articleCnt < 1) {
+			error("Number of articles must be greater than 0", NplPackage.Literals.DECLARATION__ARTICLE_CNT)
 		}
 	}
 	 
