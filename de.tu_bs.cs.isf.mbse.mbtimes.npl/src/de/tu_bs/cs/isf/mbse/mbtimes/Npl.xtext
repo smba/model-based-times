@@ -9,9 +9,8 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 generate npl "http://www.tu_bs.de/cs/isf/mbse/mbtimes/Npl"
 
 /*
- * This is the parser rule for the newpaper language grammar.
- * The newpaper name is set as the file name for the layout.tex.The topic name is set
- * as the file name for the content.tex which is included by the layout.tex.
+ * Definition of the newspaper grammar. Among other things, Xtext generates a Parser, Ecore-Models and an Editor
+ * based on the grammar. 
  */
 Declaration:
 	"newspaper" name=ID "{" &
@@ -34,25 +33,41 @@ Declaration:
 	"number of columns" columnsCnt=INT &
 	"font size" fontSize=FontSize &
 "}";
-/* 
-Topics:
-	topics +=Topic (topics+=Topic)*
+
+Pair:
+	type=FeedType key = STRING "<" value = URL ">"
 ;
 
-Feedlinks:
-	values += Pair (values+=Pair)*
-;
-*/
-
-ImagesCount:
-	value = INT
+FeedType:
+	"RSS" |
+	"Atom"
 ;
 
-FontSize:
-	value =  "small"  | 
-	value =  "medium" | 
-	value =  "large";
+Topic:
+	"topic" name=ID "as" title = STRING  "{"
+	tags+=STRING (", " tags+=STRING)*
+	"}";
+	
+Date: 
+	"{" day=INT '-' month=INT '-' year=INT "}";
+	
+Price:
+	"{" value=Float currency=Currency "}";
+	
+Currency:
+	value = "Euro" |
+	value = "EUR" |
+	value = "€" |
+	value = "Dollar" |
+	value = "USD" |
+	value = "$";	
+	
+Float returns ecore::EFloat: INT (('.'|',') INT)?;
 
+Language:
+	 value = "English" | 
+	 value = "German";
+	 
 Format:
 	value =  "DIN A6" | 
 	value =  "DIN A5" | 
@@ -62,33 +77,14 @@ Format:
 	value = "DIN A1" |
 	value = "DIN A0";
 
-Date: 
-	"{" day=INT '-' month=INT '-' year=INT "}";
-
-Language:
-	 value = "English" | 
-	 value = "German";
-	 
-
-Price:
-	"{" value=Float currency=Currency "}";
-
-Currency:
-	value = "Euro" |
-	value = "EUR" |
-	value = "€" |
-	value = "Dollar" |
-	value = "USD" |
-	value = "$";
-
-Topic:
-	"topic" name=ID "as" title = STRING  "{"
-	tags+=STRING (", " tags+=STRING)*
-	"}";
-
-Pair:
-	type=FeedType key = STRING "<" value = URL ">"
+ImagesCount:
+	value = INT
 ;
+
+FontSize:
+	value =  "small"  | 
+	value =  "medium" | 
+	value =  "large";
 
 // URLS are assumed to be of the form "protocol://host[:port][path][query]"
 terminal URL:
@@ -210,12 +206,3 @@ terminal URL:
             )+
         )*
     )?; 
-
-	 
-Float returns ecore::EFloat: INT (('.'|',') INT)?;
-	
-FeedType:
-	"RSS" |
-	"Atom"
-;
-
