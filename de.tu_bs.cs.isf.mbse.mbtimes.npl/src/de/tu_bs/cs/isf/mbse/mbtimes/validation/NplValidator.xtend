@@ -13,18 +13,20 @@ import java.util.Arrays
 import org.eclipse.xtext.validation.Check
 
 /**
- * This class contains different constraints for the defined DSL. 
+ * This class contains constraints for the defined DSL. 
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class NplValidator extends AbstractNplValidator {
 
 	/**
-	 * This constraint checks whether the newspaper name contains less than 21 characters.
+	 * This constraint checks whether the newspaper title contains less than 21 characters.
 	 */
 	@Check
 	def checkNewspaperDeclarationLength(Declaration declaration) {
-		if (declaration.name.length > 20) {
-			error("A newspaper declaration name must not be longer than 20 characters.", NplPackage.Literals.DECLARATION__NAME)
+		if (declaration.title.length > 20) {
+			error("A newspaper title must not be longer than 20 characters.", 
+				NplPackage.Literals.DECLARATION__NAME
+			)
 		}
 	}
 	
@@ -45,28 +47,28 @@ class NplValidator extends AbstractNplValidator {
 	 * This constraint checks whether the date specified by day, month and year is valid.
 	 */
 	@Check
-	def checkDate(Date date) {
+	def checkDate(Declaration declaration) {
 		var int[] days30 = #[4,6,9,11];
-		if (date.month < 1 || date.month > 12) {
-			error("Number " + date.month + " does not refer to any valid month.", NplPackage.Literals.DATE__MONTH)
+		if (declaration.date.month < 1 || declaration.date.month > 12) {
+			error("Number " + declaration.date.month + " does not refer to any valid month.", NplPackage.Literals.DATE__MONTH)
 		} 
-		if (date.day < 1) {
+		if (declaration.date.day < 1) {
 			error("Please enter a positive number.", NplPackage.Literals.DATE__DAY)
 		}
-		if (date.month.equals(2)) {
-			if (date.year % 4 == 0 && date.day > 29) {
+		if (declaration.date.month.equals(2)) {
+			if (declaration.date.year % 4 == 0 && declaration.date.day > 29) {
 				error("In a leap-year, february has 29 days.", NplPackage.Literals.DATE__DAY)
-			} else if (date.day > 28) {
+			} else if (declaration.date.day > 28) {
 				error("Usually, february has 28 days.", NplPackage.Literals.DATE__DAY)
 			}
 		} else {
-			if (Arrays.asList(days30).contains(date.month) && (date.day > 30)) {
+			if (Arrays.asList(days30).contains(declaration.date.month) && (declaration.date.day > 30)) {
 				error("This month has only 30 days.", NplPackage.Literals.DATE__DAY)
-			} else if (date.day > 31) {
+			} else if (declaration.date.day > 31) {
 				error("This month has only 31 days.", NplPackage.Literals.DATE__DAY)
 			}
 			
-			if (date.month == 12 && date.day < 27 && date.day > 23) {
+			if (declaration.date.month == 12 && declaration.date.day < 27 && declaration.date.day > 23) {
 				warning("Merry Christmas! :)", NplPackage.Literals.DATE__DAY)
 			} 
 		}
@@ -101,24 +103,33 @@ class NplValidator extends AbstractNplValidator {
 	 */
 	@Check
 	def checkNrImages(Declaration declaration) {
-		if (declaration.imagesCnt.value < 1 || declaration.imagesCnt.value > 5) {
-			error("Number of images must be greater than 0 and smaller than 6", NplPackage.Literals.DECLARATION__IMAGES_CNT)
+		if (declaration.imagesCnt.value < 1) {
+			error("Number of images must be greater than 0", NplPackage.Literals.DECLARATION__IMAGES_CNT)
 		}
 	}
 	 
 	/**
-	 * This constraint checks whether the number of images is positive and smaller than 6. 
+	 * This constraint checks whether the number of columns is positive and smaller than 6. 
+	 * Else, LaTeX generates an error.
 	 */
 	 @Check
 	 def checkNumberOfColumns(Declaration declaration) {
-	 	if (declaration.columnsCnt < 1 || declaration.columnsCnt > 10) {
-	 		error("Number of Columns must be greater than 0 and smaller than 11", NplPackage.Literals.DECLARATION__COLUMNS_CNT)
+	 	if (declaration.columnsCnt < 1 || declaration.columnsCnt > 5) {
+	 		error("Number of Columns must be greater than 0 and smaller than 6", 
+	 			NplPackage.Literals.DECLARATION__COLUMNS_CNT
+	 		)
 	 	}
 	 	if (declaration.columnsCnt > 3) {
-	 		warning("You'll have a big newspaper, huh?", NplPackage.Literals.DECLARATION__COLUMNS_CNT)
+	 		warning("You'll have a big newspaper, huh?", 
+	 			NplPackage.Literals.DECLARATION__COLUMNS_CNT
+	 		)
 	 	}
 	 }
-	 
+	
+	/**
+	 * This constraint checks whether the price has a positive value. If the price containts more than
+	 * two decimal places, a warning is generated. 
+	 */ 
 	 @Check
 	 def checkPrice(Declaration declaration) {
 	 	if (declaration.price.value < 0) {
@@ -129,14 +140,4 @@ class NplValidator extends AbstractNplValidator {
 	 	}
 	 }
 
-//  public static val INVALID_NAME = 'invalidName'
-//
-//	@Check
-//	def checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.name.charAt(0))) {
-//			warning('Name should start with a capital', 
-//					MyDslPackage.Literals.GREETING__NAME,
-//					INVALID_NAME)
-//		}
-//	}
 }
