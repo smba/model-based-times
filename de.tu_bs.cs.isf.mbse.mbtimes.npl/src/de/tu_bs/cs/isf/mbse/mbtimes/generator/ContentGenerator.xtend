@@ -208,24 +208,21 @@ class ContentGenerator {
 			content = content.replace(t, "\\textcolor{red}{" + t + "}")
 		}
 
-		val LinkedList<String> images = new LinkedList<String>()
-		// TODO Fill LinkedList images with filenames or relative paths 
-		// to the pictures of the corresponding article
-
 		// retrieve images
-		println("About to print file image names ")
-			if (it.image != null) {
+		val LinkedList<String> images = new LinkedList<String>()
 
-				for (img : it.image) {
-					var String md5 = ImageDownloader.md5(img.url)
-					var String mimeType = img.type;
-					var String fileType = ImageDownloader.truncateMIMEType(mimeType)
-					var String completeFileName = md5 + "." + fileType // this file is located in your home folder
-					// TODO implement LaTeX stuff from here
-					System.err.println("retreived image file name: " + completeFileName)
-					images.add(completeFileName)
-				}
+		println("About to print file image names ")
+		if (it.image != null) {
+
+			for (img : it.image) {
+				var String md5 = ImageDownloader.md5(img.url)
+				var String mimeType = img.type;
+				var String fileType = ImageDownloader.truncateMIMEType(mimeType)
+				var String completeFileName = md5 + "." + fileType // this file is located in your home folder
+				System.err.println("retreived image file name: " + completeFileName)
+				images.add(completeFileName)
 			}
+		}
 
 		title = title.trim()
 		newschannel = newschannel.trim()
