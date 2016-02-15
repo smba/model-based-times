@@ -96,7 +96,7 @@ class NplValidator extends AbstractNplValidator {
 	 
 	 /**
 	 * This constraint checks whether the number of images is positive and smaller than 6.
-	 */
+	 *
 	@Check
 	def checkNrImages(Declaration declaration) {
 		if (declaration.imagesCnt.value < 1) {
@@ -106,7 +106,6 @@ class NplValidator extends AbstractNplValidator {
 	 
 	/**
 	 * This constraint checks whether the number of columns is positive and smaller than 6. 
-	 * Else, LaTeX generates an error.
 	 */
 	 @Check
 	 def checkNumberOfColumns(Declaration declaration) {
