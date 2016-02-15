@@ -17,19 +17,41 @@ import org.apache.commons.lang3.StringUtils
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
+import java.util.HashMap
+import java.util.LinkedHashMap
 
 class ContentGenerator {
 
 	// Special Characters in LaTeX and the changed version
-	static val String[] specialChars = #['\\', '{', '}', '%', '^', '_', '&', '#', '~', '�', '�', '�', " . ", " , ",
-		"\""]
-	static val String[] changedChars = #["\\textbackslash", "\\{", "\\}", "\\%", "\\textasciicircum", "\\_", "\\&",
-		"\\#", "\\textasciitilde", "$^\\circ$", "\\pounds", "", ". ", ", ", "\"{}"]
+	//static val String[] specialChars = #['\\', '{', '}', '%', '^', '_', '&', '#', '~', '°', '$', " . ", " , ",
+	//	"\""]
+	//static val String[] changedChars = #["\\textbackslash", "\\{", "\\}", "\\%", "\\textasciicircum", "\\_", "\\&",
+	//	"\\#", "\\textasciitilde", "$^\\circ$", "\\$", ". ", ", ", "\"{}"]
+
+	static LinkedHashMap<String,String> specialChars
 
 	def ContentGenerator() {
 	}
 
 	static var vsm = new VectorSpaceModel();
+
+	def static void initSpecialCharHashMap() {
+		specialChars = new LinkedHashMap <String, String>()
+		specialChars.put("\\","\\textbackslash")
+		specialChars.put("{","\\{")
+		specialChars.put("}","\\}")
+		specialChars.put("%","\\%")
+		specialChars.put("^","\\textasciicircum")
+		specialChars.put("_","\\_")
+		specialChars.put("&","\\&")
+		specialChars.put("#","\\#")
+		specialChars.put("$","\\$")
+		specialChars.put("~","\\textasciitilde")
+		specialChars.put("°","$^\\circ$")
+		specialChars.put(" . ",". ")
+		specialChars.put(" , ",", ")
+		specialChars.put("\"","\"{}")
+	}
 
 	def static void initVSM(String language) {
 		val articles = new ArrayList<Article>(UnifiedFileParser.loadArticles());
@@ -187,17 +209,17 @@ class ContentGenerator {
 		var articleLink = it.link
 
 		// content = new String(content.getBytes("UTF-8"),"UTF-8")
-		for (var i = 0; i < specialChars.length; i++) {
-			content = content.replace(specialChars.get(i), changedChars.get(i))
-			subtitle = subtitle.replace(specialChars.get(i), changedChars.get(i))
+		for(key: specialChars.keySet) {
+			content = content.replace(key, specialChars.get(key))
+			subtitle = subtitle.replace(key, specialChars.get(key))
 			if (it.title != null) {
-				title = title.replace(specialChars.get(i), changedChars.get(i))
+				title = title.replace(key, specialChars.get(key))
 			}
-			authors = authors.replace(specialChars.get(i), changedChars.get(i))
-			newschannel = newschannel.replace(specialChars.get(i), changedChars.get(i))
-			articleLink = articleLink.replace(specialChars.get(i), changedChars.get(i))
+			authors = authors.replace(key, specialChars.get(key))
+			newschannel = newschannel.replace(key, specialChars.get(key))
+			articleLink = articleLink.replace(key, specialChars.get(key))
 		}
-
+		
 		while (content.indexOf("(Bild") >= 0) {
 			var index = content.indexOf("(Bild");
 			content = content.substring(0, index).trim() + " " +
@@ -207,7 +229,7 @@ class ContentGenerator {
 		for (t : topic) {
 			var tIsSubstring = false
 			for(t2: topic) {
-				if(!t.equals(t2) && t.contains(t2)) {
+				if(!t.equals(t2) && t2.contains(t)) {
 					tIsSubstring = true
 				}
 			}

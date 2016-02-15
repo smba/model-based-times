@@ -14,6 +14,8 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
 import java.util.Observable
+import java.util.ArrayList
+import de.tu_bs.cs.isf.mbse.mbtimes.crawler.unifiedParser.UnifiedFileParser
 
 /**
  * Generates code from your model files on save
@@ -159,10 +161,19 @@ class NplGenerator implements Observer, IGenerator {
 			}
 		}
 		
+		val newschannels = new ArrayList<UnifiedModel.NewsChannel>(UnifiedFileParser.loadNewsChannels);
+		
+		
 		feeds += "\\begin{itemize}\n"
-		for(f: d.feedlinks) {
-			feeds += "\\item " + f.key + ": " + "\\url{" + f.value + "}\n"
+		for(channel: newschannels) {
+			if(channel.title != null && channel.link != null) {
+				feeds += "\\item " + channel.title + ": " 
+					  + "\\url{" + channel.link + "}\n"
+			}
 		}
+//		for(f: d.feedlinks) {
+//			feeds += "\\item " + f.key + ": " + "\\url{" + f.value + "}\n"
+//		}
 		feeds += "\\end{itemize}"
 		
 		//«»
@@ -301,6 +312,7 @@ class NplGenerator implements Observer, IGenerator {
 				language = "DE"
 			}
     		ContentGenerator.initVSM(language)
+    		ContentGenerator.initSpecialCharHashMap()
     		
     		for(topic: d.topics) {
     			val topicText = ContentGenerator.compileTopic(topic.tags, topic.title,d)
