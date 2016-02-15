@@ -30,19 +30,6 @@ public abstract class AbstractCrawler implements Crawler {
 	
 	public final void crawl(List<String> feeds) {
 		
-		//Receive path to the directory for the images
-		IWorkspace workspace = ResourcesPlugin.getWorkspace();
-		File workspaceDirectory = workspace.getRoot().getLocation().toFile();
-		System.out.println(workspaceDirectory.getPath());
-		File imageDir = new File(workspaceDirectory.getPath() + "/images/");
-		imageDir.mkdirs();
-		File[] files = imageDir.listFiles();
-		//Delete old files, may not be needed...
-		for(File f: files) {
-			f.delete();
-		}
-		AbstractFeedParser.setImagePath(imageDir.getPath());
-		
 		/**
 		 * Thread-Pool, in welchem die Threads für die Feed-Parser operieren.
 		 */

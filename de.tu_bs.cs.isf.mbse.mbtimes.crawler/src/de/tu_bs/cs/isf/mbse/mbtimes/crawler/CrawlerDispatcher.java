@@ -1,15 +1,20 @@
 package de.tu_bs.cs.isf.mbse.mbtimes.crawler;
 
+import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
+
+import de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser.AbstractFeedParser;
 
 /**
  * Diese Klasse nimmt Aufträge zum Crawlen entgegen und verteilt diese
@@ -63,6 +68,19 @@ public class CrawlerDispatcher extends Observable implements Runnable {
 			
 			List<String> rssFeeds = new LinkedList<String>();
 			List<String> atomFeeds = new LinkedList<String>();
+			
+			//Receive path to the directory for the images
+			IWorkspace workspace = ResourcesPlugin.getWorkspace();
+			File workspaceDirectory = workspace.getRoot().getLocation().toFile();
+			System.out.println(workspaceDirectory.getPath());
+			File imageDir = new File(workspaceDirectory.getPath() + "/images/");
+			imageDir.mkdirs();
+			File[] files = imageDir.listFiles();
+			//Delete old files, may not be needed...
+			for(File f: files) {
+				f.delete();
+			}
+			AbstractFeedParser.setImagePath(imageDir.getPath());
 
 			/*
 			 * Aufteilen der Feeds auf die einzelnen speziellen Crawler
