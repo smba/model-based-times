@@ -17,7 +17,6 @@ import org.apache.commons.lang3.StringUtils
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
-import java.util.HashMap
 import java.util.LinkedHashMap
 
 class ContentGenerator {
@@ -161,6 +160,8 @@ class ContentGenerator {
 			}
 			topicTex.append("\\end{center}")
 		}
+		
+		System.err.println("Compiled tex for topic " + topicName)
 		return topicTex.toString
 	}
 
@@ -194,9 +195,7 @@ class ContentGenerator {
 
 	def static compileArticle(Article it, List<String> topic, String language, int imagesCnt) {
 		var content = new String(it.content.getBytes("UTF-8"), "UTF-8")
-		var subtitle = new String(it.subtitle.getBytes("UTF-8"), "UTF-8")
-		content = removeHTMLTags(content).trim()
-		subtitle = removeHTMLTags(subtitle).trim()
+		var subtitle = new String(it.subtitle.getBytes("UTF-8"), "UTF-8")	
 
 		var title = new String(it.title.getBytes("UTF-8"), "UTF-8")
 		var authors = ""
@@ -211,6 +210,10 @@ class ContentGenerator {
 		if (it.newschannel != null) {
 			newschannel = new String(it.newschannel.title.getBytes("UTF-8"), "UTF-8")
 		}
+		
+		content = removeHTMLTags(content).trim()
+		subtitle = removeHTMLTags(subtitle).trim()
+		title = removeHTMLTags(title).trim()
 		
 		var articleLink = it.link
 
@@ -324,19 +327,12 @@ class ContentGenerator {
 	}
 	
 	def static String removeHTMLTags(String str) {
-		var content = str
-		var searchIndex = 0
-		while(content.indexOf("<", searchIndex) >= 0) {
-			val firstIndex = content.indexOf("<")
-			val secondIndex = content.indexOf(">",firstIndex)
-			
-			if(secondIndex >= 0) {
-				content = content.substring(0,firstIndex).trim() + " " + content.substring(secondIndex+1).trim()
-			} else {
-				searchIndex = firstIndex + 1
-			}
-		}
-		return content
+		var html = str
+		html = html.replaceAll("\\<.*?>","")
+   		html = html.replace("&nbsp;","~");
+   		html = html.replace("&amp;","&");
+   		html = html.replace("&#38;","&")
+   		return html;
 	}
 
 	def static String contentWithFigures(String str, LinkedList<String> images, int imagesCnt) {
