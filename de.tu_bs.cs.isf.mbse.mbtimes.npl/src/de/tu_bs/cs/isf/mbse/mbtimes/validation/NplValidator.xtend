@@ -4,6 +4,7 @@
  */
 package de.tu_bs.cs.isf.mbse.mbtimes.validation
 
+import de.tu_bs.cs.isf.mbse.mbtimes.npl.Date
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage
 import java.util.Arrays
@@ -44,28 +45,28 @@ class NplValidator extends AbstractNplValidator {
 	 * This constraint checks whether the date specified by day, month and year is valid.
 	 */
 	@Check
-	def checkDate(Declaration declaration) {
+	def checkDate(Date date) {
 		var int[] days30 = #[4,6,9,11];
-		if (declaration.date.month < 1 || declaration.date.month > 12) {
-			error("Number " + declaration.date.month + " does not refer to any valid month.", NplPackage.Literals.DATE__MONTH)
+		if (date.month < 1 || date.month > 12) {
+			error("Number " + date.month + " does not refer to any valid month.", NplPackage.Literals.DATE__MONTH)
 		} 
-		if (declaration.date.day < 1) {
+		if (date.day < 1) {
 			error("Please enter a positive number.", NplPackage.Literals.DATE__DAY)
 		}
-		if (declaration.date.month.equals(2)) {
-			if (declaration.date.year % 4 == 0 && declaration.date.day > 29) {
+		if (date.month.equals(2)) {
+			if (date.year % 4 == 0 && date.day > 29) {
 				error("In a leap-year, february has 29 days.", NplPackage.Literals.DATE__DAY)
-			} else if (declaration.date.day > 28) {
+			} else if (date.day > 28) {
 				error("Usually, february has 28 days.", NplPackage.Literals.DATE__DAY)
 			}
 		} else {
-			if (Arrays.asList(days30).contains(declaration.date.month) && (declaration.date.day > 30)) {
+			if (Arrays.asList(days30).contains(date.month) && (date.day > 30)) {
 				error("This month has only 30 days.", NplPackage.Literals.DATE__DAY)
-			} else if (declaration.date.day > 31) {
+			} else if (date.day > 31) {
 				error("This month has only 31 days.", NplPackage.Literals.DATE__DAY)
 			}
 			
-			if (declaration.date.month == 12 && declaration.date.day < 27 && declaration.date.day > 23) {
+			if (date.month == 12 && date.day < 27 && date.day > 23) {
 				warning("Merry Christmas! :)", NplPackage.Literals.DATE__DAY)
 			} 
 		}
