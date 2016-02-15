@@ -147,8 +147,9 @@ class ContentGenerator {
 			}
 		}
 		val str = "\\bigskip\\bigskip"
-		topicTex.delete(topicTex.lastIndexOf(str), topicTex.lastIndexOf(str) + str.length)
-
+		if(topicTex.lastIndexOf(str) >= 0) {
+			topicTex.delete(topicTex.lastIndexOf(str), topicTex.lastIndexOf(str) + str.length)
+		}
 		topicTex.append("\\end{multicols}\n")
 		if (k == 0) {
 			topicTex.append("\\begin{center}")
