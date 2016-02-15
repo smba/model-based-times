@@ -1,7 +1,6 @@
 package de.tu_bs.cs.isf.mbse.mbtimes.generator
 
 import UnifiedModel.Article
-import UnifiedModel.NewsChannel
 import UnifiedModel.UnifiedModelPackage
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser.ImageDownloader
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.unifiedParser.UnifiedFileParser
@@ -30,16 +29,6 @@ class ContentGenerator {
 	def ContentGenerator() {
 	}
 
-	def static void main(String[] args) {
-		val x = new LinkedList<String>()
-		x.add("berlin")
-		x.add("london")
-
-		var topicTex = new StringBuffer()
-		// topicTex.append(compileTopic(x, "Berliner News"))
-		println(topicTex.toString)
-	}
-
 	static var vsm = new VectorSpaceModel();
 
 	def static void initVSM(String language) {
@@ -55,52 +44,28 @@ class ContentGenerator {
 
 	def static String compileTopic(List<String> topic, String topicName, Declaration d) {
 		val articles = new ArrayList<Article>(UnifiedFileParser.loadArticles());
-		val newschannels = new ArrayList<NewsChannel>(UnifiedFileParser.loadNewsChannels());
-
-		// index out of bound fix
-		if (newschannels.size > 0) {
-			println("crawled newschannel icon url: " + newschannels.get(0).icon);
-			println("Newschannel-Title: " + newschannels.get(0).title)
-		}
 
 		val topicTex = new StringBuffer()
 
-		// retreive List from articles
-//	val fulltexts = new ArrayList<String>();
-//	for(Article a : articles) {
-//		fulltexts.add(a.content);
-//	}
-//	var String language = null
-//	if (d.language != null && d.language.value.equals("English")) {
-//		language = "EN"
-//	} else if (d.language != null && d.language.value.equals("German")) {
-//		language = "DE"
-//	}
-//		
-//	
-//  	val vsm = new VectorSpaceModel( /*language*/ );
-//  	vsm.buildDocumentVectors(fulltexts);
-//  	
 		System.err.println("VSM computing similarities");
 
 		val ranking = vsm.computeSimilarities(vsm.getQueryVector(topic));
 
 		System.err.println("VSM computed similarities");
 
-		// topicTex.append("\\headline{{\\bfseries\\Huge " + topicName + "}\\linebreak\\medskip")
 		var tags = topic.get(0)
 		for (var i = 1; i < topic.size(); i++) {
 			tags += ", " + topic.get(i)
 		}
-		// topicTex.append("{\\footnotesize{\\bfseries Tags: }{\\it " + str + "}}}")
-		// topicTex.append("\\begin{multicols}{\\numberColumns}")
-		val headline = '''
+
+		val headline = 
+			'''
 			\headline{{\bfseries\Huge «topicName»}\\
 			\medskip
 			{\footnotesize{\bfseries Tags: }{\it «tags»}}}
 			\begin{multicols}{\numberColumns}
 			
-		'''
+			'''
 		topicTex.append(headline)
 
 		// calculate median of similarities for article selection
@@ -246,13 +211,10 @@ class ContentGenerator {
 		val LinkedList<String> images = new LinkedList<String>()
 		// TODO Fill LinkedList images with filenames or relative paths 
 		// to the pictures of the corresponding article
-		val articles = new ArrayList<Article>(UnifiedFileParser.loadArticles());
 
 		// retrieve images
 		println("About to print file image names ")
 			if (it.image != null) {
-
-				var currentImages = it.image;
 
 				for (img : it.image) {
 					var String md5 = ImageDownloader.md5(img.url)
@@ -265,13 +227,9 @@ class ContentGenerator {
 				}
 			}
 
-		// images.add("Carolo-Cup_03.jpg")
-		// images.add("Masterbild-6969c7796e984254.jpeg")
 		title = title.trim()
 		newschannel = newschannel.trim()
 		authors = authors.trim()
-
-		println("Authors: " + authors)
 
 		var date = ""
 		if (it.published != null) {
@@ -280,56 +238,56 @@ class ContentGenerator {
 		}
 
 		'''
-			\begin{minipage}{\columnwidth}
-			 	«IF !authors.empty && !title.empty»
-				\byline{\it\Large «title»}{«authors»}
-				«ELSEIF !title.empty»
-					\headline{\it\Large «title»}
-					«ELSE»
-						\headline{\it\Large N.N.}
-						«ENDIF»
-						\medskip\par
-						{\bfseries «subtitle.trim()»} 
-						\end{minipage}
-						\medskip\par
-						
-						«contentWithFigures(content,images,imagesCnt)»
-						
-						\medskip
-						\begin{minipage}{\columnwidth}
-						«IF !newschannel.empty || !date.empty»
-							\begin{center}
-								\fbox{\parbox{0.8\columnwidth}{\footnotesize 
-								\begin{tabular}{p{0.15\columnwidth}p{0.5\columnwidth}}
-								«IF language.equals("German")»
-									«IF !newschannel.empty»
-										\textbf{Quelle:} & \href{«articleLink»}{«newschannel»}
-									«ENDIF»
-									«IF !newschannel.empty && !date.empty»
-										\\
-									«ENDIF»
-									«IF !date.empty»
-										\textbf{Datum:} & «date»
-									«ENDIF»
-								«ELSE»
-									«IF !newschannel.empty»
-										\textbf{Source:} & \href{«it.link.replace("#","\\#")»}{«newschannel»}
-									«ENDIF»
-									«IF !newschannel.empty && !date.empty»
-										\\
-									«ENDIF»
-									«IF !date.empty»
-										\textbf{Date:} & «date»
-									«ENDIF»
-								«ENDIF»
-								\end{tabular} }}
-							\end{center}
-						«ENDIF»
-						\closearticle
-						\end{minipage}
-						\bigskip\bigskip
-						
-					 	'''
+		\begin{minipage}{\columnwidth}
+		«IF !authors.empty && !title.empty»
+		 	\byline{\it\Large «title»}{«authors»}
+		«ELSEIF !title.empty»
+		 	\headline{\it\Large «title»}
+		«ELSE»
+			\headline{\it\Large N.N.}
+		«ENDIF»
+		\medskip\par
+		{\bfseries «subtitle.trim()»} 
+		\end{minipage}
+		\medskip\par
+		
+		«contentWithFigures(content,images,imagesCnt)»
+		
+		\medskip
+		\begin{minipage}{\columnwidth}
+		«IF !newschannel.empty || !date.empty»
+			\begin{center}
+				\fbox{\parbox{0.8\columnwidth}{\footnotesize 
+				\begin{tabular}{p{0.15\columnwidth}p{0.5\columnwidth}}
+			«IF language.equals("German")»
+				«IF !newschannel.empty»
+					\textbf{Quelle:} & \href{«articleLink»}{«newschannel»}
+				«ENDIF»
+				«IF !newschannel.empty && !date.empty»
+					\\
+				«ENDIF»
+				«IF !date.empty»
+					\textbf{Datum:} & «date»
+				«ENDIF»
+			«ELSE»
+				«IF !newschannel.empty»
+					\textbf{Source:} & \href{«it.link.replace("#","\\#")»}{«newschannel»}
+				«ENDIF»
+				«IF !newschannel.empty && !date.empty»
+					\\
+				«ENDIF»
+				«IF !date.empty»
+					\textbf{Date:} & «date»
+				«ENDIF»
+			«ENDIF»
+			\end{tabular} }}
+			\end{center}
+		«ENDIF»
+		\closearticle
+		\end{minipage}
+		\bigskip\bigskip
+		
+		'''
 	}
 	
 	def static String removeHTMLTags(String str) {
@@ -352,15 +310,15 @@ class ContentGenerator {
 		var content = str
 		var split = (content.length / (images.size() + 1))
 
-		println("Path: " + System.getProperty("user.dir"))
 		for (var i = 0; i < imagesCnt && i < images.size(); i++) {
 			val splitIndex = content.indexOf(".", ((i + 1) * split) - 1) + 1
 			val contentFirst = content.substring(0, splitIndex).trim()
-			val contentSec = "\n" + '''
+			val contentSec = "\n" + 
+				'''
 				\begin{Figure}
 					\includegraphics[width=\columnwidth]{../../images/«images.get(i)»}
 				\end{Figure}
-			'''
+				'''
 			val contentThird = content.substring(splitIndex).trim()
 			content = contentFirst + contentSec + contentThird
 		}
