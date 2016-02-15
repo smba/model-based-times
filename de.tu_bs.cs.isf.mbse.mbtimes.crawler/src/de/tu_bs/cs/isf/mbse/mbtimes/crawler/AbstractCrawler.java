@@ -46,6 +46,8 @@ public abstract class AbstractCrawler implements Crawler {
 					log.log(Level.WARNING, "Connection and(/or execution were interrupted!");
 				} catch (NullPointerException e) {
 					log.log(Level.SEVERE, "Could not resolve thread address!");
+				} catch (StringIndexOutOfBoundsException e) {
+					log.log(Level.SEVERE, "Übrlaufsfehler");
 				}
 				
 			} catch (MalformedURLException e) {
