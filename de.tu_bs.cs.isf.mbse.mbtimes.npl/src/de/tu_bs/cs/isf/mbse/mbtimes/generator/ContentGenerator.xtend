@@ -262,12 +262,9 @@ class ContentGenerator {
 			
 			var currentImages = a.image;
 			
-			for(Object okey : currentImages.url.keySet) {
-				var String url = null
-				if (okey instanceof String) {
-					url = okey as String
-					var String md5 = ImageDownloader.md5(url)
-					var String mimeType =  currentImages.url.get(url) as String
+			for(img : a.image) {
+					var String md5 = ImageDownloader.md5(img.url)
+					var String mimeType =  img.type;
 					var String fileType = ImageDownloader.truncateMIMEType(mimeType)
 					var String completeFileName = md5 + "." + fileType //this file is located in your home folder
 					//TODO implement LaTeX stuff from here

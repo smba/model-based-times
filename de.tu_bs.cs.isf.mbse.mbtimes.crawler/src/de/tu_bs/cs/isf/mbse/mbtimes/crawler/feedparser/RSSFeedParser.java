@@ -133,8 +133,8 @@ public class RSSFeedParser extends AbstractFeedParser {
 					log.log(Level.INFO, "Found enclosure for article...");
 				}
 
-				Enclosure itemEnclosure = this.factory.createEnclosure();
-				itemEnclosure.setUrls(new HashMap<String, String>());
+				
+				//itemEnclosure.setUrl("");
 
 				for (Object enclosure : enclosures) {
 					if (enclosure instanceof SyndEnclosure) {
@@ -157,7 +157,11 @@ public class RSSFeedParser extends AbstractFeedParser {
 								ImageDownloader.downloadFile(md5hash + "." + suffix, enclosureRome.getUrl());
 
 								assert (enclosureRome.getUrl() != null) && (enclosureRome.getType() != null);
-								itemEnclosure.getUrls().put((String) enclosureRome.getUrl(), (String) enclosureRome.getType());
+								Enclosure itemEnclosure = this.factory.createEnclosure();
+								itemEnclosure.setUrl(enclosureRome.getUrl());
+								itemEnclosure.setType(enclosureRome.getType());
+								item.getEnclosure().add(itemEnclosure);
+								//itemEnclosure.getUrls().put((String) enclosureRome.getUrl(), (String) enclosureRome.getType());
 
 							} catch (IOException e) {
 								log.log(Level.WARNING, "Could not retrieve image file " + enclosureRome.getUrl());
@@ -166,7 +170,6 @@ public class RSSFeedParser extends AbstractFeedParser {
 					}
 				}
 
-				item.setEnclosure(itemEnclosure);
 
 				/*
 				 * Try to retrieve the full text
