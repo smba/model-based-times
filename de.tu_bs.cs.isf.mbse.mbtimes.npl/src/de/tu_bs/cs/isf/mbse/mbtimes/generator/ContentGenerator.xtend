@@ -205,7 +205,15 @@ class ContentGenerator {
 		}
 
 		for (t : topic) {
-			content = content.replace(t, "\\textcolor{red}{" + t + "}")
+			var tIsSubstring = false
+			for(t2: topic) {
+				if(!t.equals(t2) && t.contains(t2)) {
+					tIsSubstring = true
+				}
+			}
+			if(!tIsSubstring) {
+				content = content.replace(t, "\\textcolor{red}{" + t + "}")
+			}
 		}
 
 		// retrieve images
