@@ -48,9 +48,15 @@ class ContentGenerator {
 		specialChars.put("$","\\$")
 		specialChars.put("~","\\textasciitilde")
 		specialChars.put("°","$^\\circ$")
-		specialChars.put(" . ",". ")
-		specialChars.put(" , ",", ")
+		specialChars.put(" .",".")
+		specialChars.put(" ,",",")
+		specialChars.put(" :",":")
+		specialChars.put(" ;",";")
+		specialChars.put(" !","!")
+		specialChars.put(" ?","?")
 		specialChars.put("\"","\"{}")
+		specialChars.put((0x0a as char).toString(), " \\\\" + (0x0a as char).toString())
+		//specialChars.put((0x0d as char).toString(), "\\\\" + (0x0d as char).toString())
 	}
 
 	def static void initVSM(String language) {
@@ -338,7 +344,7 @@ class ContentGenerator {
 		var split = (content.length / (images.size() + 1))
 
 		for (var i = 0; i < imagesCnt && i < images.size(); i++) {
-			val splitIndex = content.indexOf(".", ((i + 1) * split) - 1) + 1
+			val splitIndex = content.indexOf(" \\\\", ((i + 1) * split) - 1) + 1
 			val contentFirst = content.substring(0, splitIndex).trim()
 			val contentSec = "\n" + 
 				'''
@@ -346,7 +352,7 @@ class ContentGenerator {
 					\includegraphics[width=\columnwidth]{../../images/«images.get(i)»}
 				\end{Figure}
 				'''
-			val contentThird = content.substring(splitIndex).trim()
+			val contentThird = content.substring(splitIndex+3).trim()
 			content = contentFirst + contentSec + contentThird
 		}
 		return content.trim()
