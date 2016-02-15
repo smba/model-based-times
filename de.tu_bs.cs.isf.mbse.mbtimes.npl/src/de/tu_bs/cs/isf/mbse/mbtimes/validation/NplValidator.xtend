@@ -4,11 +4,8 @@
  */
 package de.tu_bs.cs.isf.mbse.mbtimes.validation
 
-import de.tu_bs.cs.isf.mbse.mbtimes.npl.Date
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.Declaration
-import de.tu_bs.cs.isf.mbse.mbtimes.npl.ImagesCount
 import de.tu_bs.cs.isf.mbse.mbtimes.npl.NplPackage
-import de.tu_bs.cs.isf.mbse.mbtimes.npl.Price
 import java.util.Arrays
 import org.eclipse.xtext.validation.Check
 
@@ -25,7 +22,7 @@ class NplValidator extends AbstractNplValidator {
 	def checkNewspaperDeclarationLength(Declaration declaration) {
 		if (declaration.title.length > 20) {
 			error("A newspaper title must not be longer than 20 characters.", 
-				NplPackage.Literals.DECLARATION__NAME
+				NplPackage.Literals.DECLARATION__TITLE
 			)
 		}
 	}
@@ -115,7 +112,7 @@ class NplValidator extends AbstractNplValidator {
 	 @Check
 	 def checkNumberOfColumns(Declaration declaration) {
 	 	if (declaration.columnsCnt < 1 || declaration.columnsCnt > 5) {
-	 		error("Number of Columns must be greater than 0 and smaller than 6", 
+	 		error("Number of columns must be greater than 0 and smaller than 6", 
 	 			NplPackage.Literals.DECLARATION__COLUMNS_CNT
 	 		)
 	 	}
@@ -127,12 +124,12 @@ class NplValidator extends AbstractNplValidator {
 	 }
 	
 	/**
-	 * This constraint checks whether the price has a positive value. If the price containts more than
-	 * two decimal places, a warning is generated. 
+	 * This constraint checks whether the price has a positive value. If more than two decimal
+	 * places are specified, the number of decimal places will be reduced to two.
 	 */ 
 	 @Check
 	 def checkPrice(Declaration declaration) {
-	 	if (declaration.price.value < 0) {
+	 	if (declaration.price.value < 0) { // terminal rule for INT already covers values below 0 as error
 	 		error("You should pay for the newspaper, not us ;)", NplPackage.Literals.PRICE__VALUE);
 	 	}
 	 	if (Float.toString(declaration.price.value).split("\\.").get(1).length() > 2) {
