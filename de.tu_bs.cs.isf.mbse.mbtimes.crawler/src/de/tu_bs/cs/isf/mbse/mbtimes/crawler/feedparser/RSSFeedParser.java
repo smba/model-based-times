@@ -54,8 +54,6 @@ public class RSSFeedParser extends AbstractFeedParser {
 
 	/** Logger for this class */
 	private static final Logger log = Logger.getLogger(AtomCrawler.class.getName());
-
-	private String imagePath;
 	
 	private RSSFeedParserListener listener;
 	private URL url;
@@ -65,19 +63,6 @@ public class RSSFeedParser extends AbstractFeedParser {
 		this.listener = listener;
 		this.url = link;
 		this.factory = listener.getRSSFactory();
-		
-		//Receive path to the directory for the images
-		IWorkspace workspace = ResourcesPlugin.getWorkspace();
-		File workspaceDirectory = workspace.getRoot().getLocation().toFile();
-		System.out.println(workspaceDirectory.getPath());
-		File imageDir = new File(workspaceDirectory.getPath() + "/images/");
-		imageDir.mkdirs();
-		File[] files = imageDir.listFiles();
-		//Delete old files, may not be needed...
-		for(File f: files) {
-			f.delete();
-		}
-		this.imagePath = imageDir.getPath();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -272,6 +257,5 @@ public class RSSFeedParser extends AbstractFeedParser {
 		 * Register factory
 		 */
 		RSSPackage.eINSTANCE.eClass();
-		this.factory = RSSFactory.eINSTANCE;
 	}
 }

@@ -1,5 +1,6 @@
 package de.tu_bs.cs.isf.mbse.mbtimes.crawler;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -10,6 +11,10 @@ import java.util.concurrent.Future;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
+
+import de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser.AbstractFeedParser;
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser.FeedParser;
 
 public abstract class AbstractCrawler implements Crawler {
@@ -24,6 +29,19 @@ public abstract class AbstractCrawler implements Crawler {
 	protected final static Logger log = Logger.getLogger(AbstractCrawler.class.getName());
 	
 	public final void crawl(List<String> feeds) {
+		
+		//Receive path to the directory for the images
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		File workspaceDirectory = workspace.getRoot().getLocation().toFile();
+		System.out.println(workspaceDirectory.getPath());
+		File imageDir = new File(workspaceDirectory.getPath() + "/images/");
+		imageDir.mkdirs();
+		File[] files = imageDir.listFiles();
+		//Delete old files, may not be needed...
+		for(File f: files) {
+			f.delete();
+		}
+		AbstractFeedParser.setImagePath(imageDir.getPath());
 		
 		/**
 		 * Thread-Pool, in welchem die Threads für die Feed-Parser operieren.

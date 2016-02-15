@@ -202,12 +202,8 @@ class ContentGenerator {
 	def static compileArticle(Article it, List<String> topic, String language, int imagesCnt) {
 		var content = new String(it.content.getBytes("UTF-8"), "UTF-8")
 		var subtitle = new String(it.subtitle.getBytes("UTF-8"), "UTF-8")
-		if (subtitle.indexOf("<") >= 0) {
-			subtitle = subtitle.substring(0, subtitle.indexOf("<"));
-		}
-		if (subtitle.lastIndexOf(" ") >= 0) {
-			subtitle = subtitle.substring(0, subtitle.lastIndexOf(" "));
-		}
+		content = removeHTMLTags(content).trim()
+		subtitle = removeHTMLTags(subtitle).trim()
 
 		var title = new String(it.title.getBytes("UTF-8"), "UTF-8")
 		var authors = ""
@@ -334,6 +330,22 @@ class ContentGenerator {
 						\bigskip\bigskip
 						
 					 	'''
+	}
+	
+	def static String removeHTMLTags(String str) {
+		var content = str
+		var searchIndex = 0
+		while(content.indexOf("<", searchIndex) >= 0) {
+			val firstIndex = content.indexOf("<")
+			val secondIndex = content.indexOf(">",firstIndex)
+			
+			if(secondIndex >= 0) {
+				content = content.substring(0,firstIndex).trim() + " " + content.substring(secondIndex+1).trim()
+			} else {
+				searchIndex = firstIndex + 1
+			}
+		}
+		return content
 	}
 
 	def static String contentWithFigures(String str, LinkedList<String> images, int imagesCnt) {

@@ -1,7 +1,11 @@
 package de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
 
 import de.l3s.boilerpipe.BoilerpipeProcessingException;
 import de.l3s.boilerpipe.extractors.ArticleExtractor;
@@ -18,6 +22,9 @@ import de.l3s.boilerpipe.extractors.ArticleExtractor;
  */
 public abstract class AbstractFeedParser implements FeedParser {
 		
+	protected static String imagePath;
+
+	
 	@Override
 	abstract public void run();
 
@@ -33,6 +40,10 @@ public abstract class AbstractFeedParser implements FeedParser {
 		String text = "";
 		text = ArticleExtractor.getInstance().getText(url);
 		return text;
+	}
+	
+	public static final void setImagePath(String path) {
+		imagePath = path;
 	}
 	
 	abstract public void initialize();
