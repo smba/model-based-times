@@ -13,19 +13,13 @@ import java.util.LinkedList
 import java.util.List
 import java.util.Map
 import java.util.StringTokenizer
-import org.apache.commons.lang3.StringUtils
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import java.util.LinkedHashMap
+import org.apache.commons.lang3.StringEscapeUtils
 
 class ContentGenerator {
-
-	// Special Characters in LaTeX and the changed version
-	//static val String[] specialChars = #['\\', '{', '}', '%', '^', '_', '&', '#', '~', '°', '$', " . ", " , ",
-	//	"\""]
-	//static val String[] changedChars = #["\\textbackslash", "\\{", "\\}", "\\%", "\\textasciicircum", "\\_", "\\&",
-	//	"\\#", "\\textasciitilde", "$^\\circ$", "\\$", ". ", ", ", "\"{}"]
 
 	static LinkedHashMap<String,String> specialChars
 
@@ -34,6 +28,10 @@ class ContentGenerator {
 
 	static var vsm = new VectorSpaceModel();
 
+	/**
+ 	 * Creates a Map with characters and substrings, which have to be 
+ 	 * changed for the LaTeX files.
+	 */
 	def static void initSpecialCharHashMap() {
 		specialChars = new LinkedHashMap <String, String>()
 		specialChars.put("\\","\\textbackslash")
@@ -55,10 +53,15 @@ class ContentGenerator {
 		specialChars.put(" ?","?")
 		specialChars.put("[","{}[")
 		specialChars.put("\"","\"{}")
+		specialChars.put("<","\\textless")
+		specialChars.put(">","\\textgreater")
 		specialChars.put((0x0a as char).toString(), " \\\\" + (0x0a as char).toString())
 		//specialChars.put((0x0d as char).toString(), "\\\\" + (0x0d as char).toString())
 	}
 
+	/**
+ 	 * Initializes the Vector Space Machine for Content Selection
+	 */
 	def static void initVSM(String language) {
 		val articles = new ArrayList<Article>(UnifiedFileParser.loadArticles());
 		val fulltexts = new ArrayList<String>();
@@ -70,103 +73,96 @@ class ContentGenerator {
 		vsm.buildDocumentVectors(fulltexts);
 	}
 
+	/**
+	 * Compiles a topic in LaTeX, with all articles
+	 */
 	def static String compileTopic(List<String> topic, String topicName, Declaration d) {
 		val articles = new ArrayList<Article>(UnifiedFileParser.loadArticles());
 
-		val topicTex = new StringBuffer()
-
-		System.err.println("VSM computing similarities");
-
 		val ranking = vsm.computeSimilarities(vsm.getQueryVector(topic));
-
-		System.err.println("VSM computed similarities");
 
 		var tags = topic.get(0)
 		for (var i = 1; i < topic.size(); i++) {
 			tags += ", " + topic.get(i)
 		}
 
-		val headline = 
-			'''
-			\headline{{\bfseries\Huge «topicName»}\\
-			\medskip
-			{\footnotesize{\bfseries Tags: }{\it «tags»}}}
-			\begin{multicols}{\numberColumns}
-			
-			'''
-		topicTex.append(headline)
-
 		// calculate median of similarities for article selection
 		var median = medianOfSimilarities(ranking, d.articleCnt)
-
 		println("Median: " + median)
 
+		// Get informations from the Declaration
 		var language = ""
 		if (d.language != null) {
 			language = d.language.value
 		}
+		var imagesCount = 0
+		if (d.imagesCnt != null) {
+			imagesCount = d.imagesCnt.value
+		}
 
+		//Article Selection
 		var k = d.articleCnt
-		var cntArticles = 0
+		val articleList = new LinkedList<Article>()
 		for (var i = 0; i < k && i < ranking.size(); i++) {
 			val article = articles.get(ranking.get(i))
-			var countTags = 0;
-			for (var t = 0; t < topic.size(); t++) {
-				countTags += StringUtils.countMatches(article.content, topic.get(t))
-			}
 			if (vsm.getSimilarity(ranking.get(i)) >= median) {
 				val st = new StringTokenizer(article.content)
-
-				var imagesCount = 0
-				if (d.imagesCnt != null) {
-					imagesCount = d.imagesCnt.value
-				}
-
 				if (st.countTokens() >= d.articleWordsMin && st.countTokens() <= d.articleWordsMax) {
-
-					topicTex.append(compileArticle(article, topic, language, imagesCount))
-					cntArticles++
+					articleList.add(article)
 
 					println("Title:\t\t" + article.title)
 					println("numberWords:\t" + st.countTokens())
-					println("countTags:\t" + countTags)
 					println("Similarity:\t" + vsm.getSimilarity(ranking.get(i)))
 					println()
 				} else {
 					k++
 				}
-			} else {
-				k = 0
 			}
-		}
-		val str = "\\bigskip\\bigskip"
-		if(topicTex.lastIndexOf(str) >= 0) {
-			topicTex.delete(topicTex.lastIndexOf(str), topicTex.lastIndexOf(str) + str.length)
-		}
-		topicTex.append("\\end{multicols}\n")
-		if (k == 0) {
-			topicTex.append("\\begin{center}")
-			if (d.language != null && d.language.value.equals("German")) {
-				if (cntArticles == 0) {
-					topicTex.append("{\\it\\huge Keine passenden Artikel gefunden!}")
-				} else {
-					topicTex.append("{\\it\\huge Keine weiteren passenden Artikel gefunden!}")
-				}
-			} else {
-				if (cntArticles == 0) {
-					topicTex.append("{\\it\\huge No suitable articles found!}")
-				} else {
-					topicTex.append("{\\it\\huge No other suitable articles found!}")
-				}
-			}
-			topicTex.append("\\end{center}")
 		}
 		
-		System.err.println("Compiled tex for topic " + topicName)
-		return topicTex.toString
+		System.err.println("Compiled tex for topic \"" + topicName + "\"")
+		
+		//The template for the topic
+		'''
+		««« Titel and Tags for the topic
+		\headline{{\bfseries\Huge «topicName»}\\
+		\medskip
+		{\footnotesize{\bfseries Tags: }{\it «tags»}}}
+		\begin{multicols}{\numberColumns}
+		
+		««« Add Articles
+		«FOR a:articleList»
+			«compileArticle(a, topic, language, imagesCount)»
+			«IF articleList.last != a»
+				\bigskip\bigskip
+				
+			«ENDIF»
+		«ENDFOR»
+		\end{multicols}
+		
+		««« Set a information, if the number of articles is smaller than the number of wanted ones
+		«IF articleList.size < d.articleCnt»
+			\begin{center}
+				«IF language.equals("German")»
+					{\it\huge Keine «IF !articleList.empty»weiteren «ENDIF»passenden Artikel gefunden!}
+				«ELSE»
+					{\it\huge No «IF !articleList.empty»other «ENDIF»suitable articles found!}
+				«ENDIF»
+			\end{center}
+		«ENDIF»
+		'''
 	}
 
+	/**
+	 * Calculates the median of all similarities > 0.0, but the value should be at least 0.05, otherwise
+	 * non-suitable articles gets selected.
+	 * It is not the real median, because in the even case we use get(middle - 1) as median
+	 * instead of (get(middle - 1) + get(middle)) / 2.0.
+	 * @return If the number of positive similarities is larger 
+	 * than the number of wanted articles then max(median,0.05) is returned; otherwise a fix constant 0.05.
+	 */
 	def static double medianOfSimilarities(Map<Integer, Integer> ranking, int articleCnt) {
+		//Get the positive similarities and sort them
 		val simArray = new LinkedList<Double>()
 		for (var i = 0; i < ranking.size(); i++) {
 			if (vsm.getSimilarity(ranking.get(i)) > 0.0) {
@@ -174,30 +170,36 @@ class ContentGenerator {
 			}
 		}
 		Collections.sort(simArray)
+		
+		// Calculate median
 		var median = 0.0
 		if (simArray.size > 1) {
 			var middle = simArray.size / 2;
 			if (simArray.size % 2 == 1) {
 				median = simArray.get(middle);
 			} else {
-				median = (simArray.get(middle - 1) + simArray.get(middle)) / 2.0;
+				median = simArray.get(middle - 1);
 			}
 		} else if (!simArray.empty) {
-			median = 0.01
+			median = 0.00
 		}
 
 		if (simArray.size > articleCnt) {
-			return median
+			return Math.max(median,0.05)
 		} else {
-			return 0.01
+			return 0.05
 		}
 
 	}
 
+	/**
+	 * Compile an article for LaTeX.
+	 */
 	def static compileArticle(Article it, List<String> topic, String language, int imagesCnt) {
+		
+		//Get information from article and encode them in UTF-8.
 		var content = new String(it.content.getBytes("UTF-8"), "UTF-8")
 		var subtitle = new String(it.subtitle.getBytes("UTF-8"), "UTF-8")	
-
 		var title = new String(it.title.getBytes("UTF-8"), "UTF-8")
 		var authors = ""
 		if (it.author != null && it.author.size() > 0) {
@@ -206,40 +208,33 @@ class ContentGenerator {
 				authors += ", " + new String(it.author.get(i).name.getBytes("UTF-8"), "UTF-8")
 			}
 		}
-
 		var newschannel = ""
 		if (it.newschannel != null) {
 			newschannel = new String(it.newschannel.title.getBytes("UTF-8"), "UTF-8")
 		}
+		var articleLink = new String(it.link.getBytes("UTF-8"), "UTF-8")
 		
-		content = removeHTMLTags(content).trim()
-		subtitle = removeHTMLTags(subtitle).trim()
-		title = removeHTMLTags(title).trim()
-		
-		var articleLink = it.link
-
-		// content = new String(content.getBytes("UTF-8"),"UTF-8")
-		for(key: specialChars.keySet) {
-			content = content.replace(key, specialChars.get(key))
-			subtitle = subtitle.replace(key, specialChars.get(key))
-			if (it.title != null) {
-				title = title.replace(key, specialChars.get(key))
-			}
-			authors = authors.replace(key, specialChars.get(key))
-			newschannel = newschannel.replace(key, specialChars.get(key))
-			articleLink = articleLink.replace(key, specialChars.get(key))
+		var date = ""
+		if (it.published != null) {
+			val dt = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+			date = dt.format(it.published)
 		}
-		
-		while (content.indexOf("(Bild") >= 0) {
-			var index = content.indexOf("(Bild");
-			content = content.substring(0, index).trim() + " " +
-				content.substring(content.indexOf(")", index) + 1).trim()
-		}
+	
+		//Convert from HTML to LaTeX.
+		content = convertHTMLToLatex(content)
+		subtitle = convertHTMLToLatex(subtitle)
+		title = convertHTMLToLatex(title)
+		authors = convertHTMLToLatex(authors)
+		newschannel = convertHTMLToLatex(newschannel)
+		articleLink = convertHTMLToLatex(articleLink)
 
+		//Color the tags in the fulltext with red color
 		for (t : topic) {
 			var tHasSubstring = false
 			for(t2: topic) {
 				// Smaller tags is part of larger, color larger part
+				// If the smaller tag was colored before the larger one
+				// the last part of the larger gets no color, so convert them back
 				if(!t.equals(t2) && t.contains(t2)) {
 					var expr = ""
 					expr = t.substring(0,t.indexOf(t2))
@@ -254,10 +249,8 @@ class ContentGenerator {
 
 		// retrieve images
 		val LinkedList<String> images = new LinkedList<String>()
-
 		println("About to print file image names ")
 		if (it.image != null) {
-
 			for (img : it.image) {
 				var String md5 = ImageDownloader.md5(img.url)
 				var String mimeType = img.type;
@@ -267,18 +260,20 @@ class ContentGenerator {
 				images.add(completeFileName)
 			}
 		}
-
-		title = title.trim()
-		newschannel = newschannel.trim()
-		authors = authors.trim()
-
-		var date = ""
-		if (it.published != null) {
-			val dt = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-			date = dt.format(it.published)
+		
+		var sourceStr = ""
+		var dateStr = ""
+		if(language.equals("German")) {
+			sourceStr = "Quelle"
+			dateStr = "Datum"
+		} else {
+			sourceStr = "Source"
+			dateStr = "Date"
 		}
 
+		//Template for an article
 		'''
+		««« Title, subtitle and author (if exists)
 		\begin{minipage}{\columnwidth}
 		«IF !authors.empty && !title.empty»
 		 	\byline{\it\Large «title»}{«authors»}
@@ -294,52 +289,63 @@ class ContentGenerator {
 		
 		«contentWithFigures(content,images,imagesCnt)»
 		
+		««« Informationbox at the end of the article, with source and date
 		\medskip
 		\begin{minipage}{\columnwidth}
 		«IF !newschannel.empty || !date.empty»
 			\begin{center}
 				\fbox{\parbox{0.8\columnwidth}{\footnotesize 
 				\begin{tabular}{p{\widthof{Source}}p{0.7\columnwidth-\widthof{Source}}}
-			«IF language.equals("German")»
 				«IF !newschannel.empty»
-					\textbf{Quelle:} & \href{«articleLink»}{«newschannel»}
+					\textbf{«sourceStr»:} & \href{«articleLink»}{«newschannel»}
 				«ENDIF»
 				«IF !newschannel.empty && !date.empty»
 					\\
 				«ENDIF»
 				«IF !date.empty»
-					\textbf{Datum:} & «date»
+					\textbf{«dateStr»:} & «date»
 				«ENDIF»
-			«ELSE»
-				«IF !newschannel.empty»
-					\textbf{Source:} & \href{«it.link.replace("#","\\#")»}{«newschannel»}
-				«ENDIF»
-				«IF !newschannel.empty && !date.empty»
-					\\
-				«ENDIF»
-				«IF !date.empty»
-					\textbf{Date:} & «date»
-				«ENDIF»
-			«ENDIF»
 			\end{tabular} }}
 			\end{center}
 		«ENDIF»
 		\closearticle
 		\end{minipage}
-		\bigskip\bigskip
-		
 		'''
 	}
 	
-	def static String removeHTMLTags(String str) {
+	/**
+	 * Converts a HTML String to a LaTeX compactible String.
+	 * This method changes first all HTML special characters (e.g. &nbsp;) to ordinary charaters and
+	 * then LaTeX special characters (e.g. %) to LaTeX plain text characters (e.g. \%) 
+	 * Then the HTML-Tags are removed or changed to LaTeX Code
+	 */
+	def static String convertHTMLToLatex(String str) {
 		var html = str
+
+		//Change HTML special characters (e.g. &nbsp;) to ordinary charaters
+   		html = StringEscapeUtils.unescapeHtml4(html)
+		
+		//Change all LaTeX special characters
+		for(key: specialChars.keySet) {
+			html = html.replace(key, specialChars.get(key))
+		}
+		
+		//Change some HTML Tags to LaTeX Code
+		html = html.replace("<b>", "\\textbf{").replace("</b>","}")
+		html = html.replace("<strong>", "\\textbf{").replace("</strong>","}")
+		html = html.replace("<i>", "\\textit{").replace("</i>","}")
+		html = html.replace("<em>", "\\textit{").replace("</em>","}")
+		
+		//Remove remaining HTML Tags (e.g. <p></p>
 		html = html.replaceAll("\\<.*?>","")
-   		html = html.replace("&nbsp;","~");
-   		html = html.replace("&amp;","&");
-   		html = html.replace("&#38;","&")
+				
    		return html;
 	}
 
+	/**
+	 * Add images to fulltext. Having x images, splits the fulltext in x+1 almost 
+	 * equal parts and inserted an image after each part, expect the last one.
+	 */
 	def static String contentWithFigures(String str, LinkedList<String> images, int imagesCnt) {
 		var content = str
 		var split = (content.length / (images.size() + 1))
