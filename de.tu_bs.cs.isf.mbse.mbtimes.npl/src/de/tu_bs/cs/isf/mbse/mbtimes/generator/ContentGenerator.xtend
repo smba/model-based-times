@@ -349,8 +349,9 @@ class ContentGenerator {
 			val contentFirst = content.substring(0, splitIndex).trim()
 			val contentSec = "\n" + 
 				'''
+				\settowidth\imagewidth{\includegraphics{../../images/«images.get(i)»}}
 				\begin{Figure}
-					\includegraphics[width=\columnwidth]{../../images/«images.get(i)»}
+					\includegraphics[width=\minof{\columnwidth}{\imagewidth}]{../../images/«images.get(i)»}
 				\end{Figure}
 				'''
 			val contentThird = content.substring(splitIndex+3).trim()

@@ -164,20 +164,9 @@ class NplGenerator implements Observer, IGenerator {
 		val newschannels = new ArrayList<UnifiedModel.NewsChannel>(UnifiedFileParser.loadNewsChannels);
 		
 		
-		var feedlinks = "\\begin{tabular}{R{0.3\\textwidth}cL{0.6\\textwidth}}\n"
+		var feedlinks = "\\begin{tabular}{R{0.3\\textwidth}cL{0.65\\textwidth}}\n"
 		for(channel: newschannels) {
-//			if(channel.icon != null && !channel.icon.empty) {
-//				var String md5 = ImageDownloader.md5(channel.icon)
-//				var String fileType = channel.icon.substring(channel.icon.lastIndexOf(".") + 1);
-//				var String completeFileName = md5 + "." + fileType
-//				System.err.println("retreived image file name: " + completeFileName)
-//				val includeImage = "\\includegraphics[height=2\\baselineskip]{../../images/" + completeFileName + "}"
-//				
-//				feeds += includeImage + " : "
-//			} else {
-				feedlinks += channel.title
-//			}
-			feedlinks += "&:&\\url{" + channel.link + "}\\\\\n"
+			feedlinks += channel.title + "&:&\\url{" + channel.link + "}\\\\\n"
 		}
 		feedlinks += "\\end{tabular}"
 		
@@ -220,6 +209,8 @@ class NplGenerator implements Observer, IGenerator {
 		\setlength\topmargin{(\paperheight-\textheight
 			-\headheight-\footskip)/2 - 0.75in}
 		\setlength\oddsidemargin{(\paperwidth-\textwidth)/2 - 1in}
+		
+		\newlength\imagewidth
 		
 		\makeatletter
 		% Redefine \maketitle. Delete elements do not needed from the newspaper package 
@@ -265,8 +256,8 @@ class NplGenerator implements Observer, IGenerator {
 		
 		% New environment for pictures
 		\newenvironment{Figure}
-		{\linebreak\par\minipage{\linewidth}}
-		{\endminipage\par\bigskip}
+		{\linebreak\par\minipage{\columnwidth}\begin{center}}
+		{\end{center}\endminipage\par\bigskip}
 		
 		% Set data for title
 		
@@ -303,7 +294,6 @@ class NplGenerator implements Observer, IGenerator {
 				\fbox{\parbox{\textwidth}{\footnotesize 
 				«feeds»
 				
-				\hspace{0.05\textwidth}
 				«feedlinks»
 				
 				\bigskip
