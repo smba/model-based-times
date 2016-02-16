@@ -53,6 +53,7 @@ class ContentGenerator {
 		specialChars.put(" ;",";")
 		specialChars.put(" !","!")
 		specialChars.put(" ?","?")
+		specialChars.put("[","{}[")
 		specialChars.put("\"","\"{}")
 		specialChars.put((0x0a as char).toString(), " \\\\" + (0x0a as char).toString())
 		//specialChars.put((0x0d as char).toString(), "\\\\" + (0x0d as char).toString())

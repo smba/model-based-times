@@ -16,9 +16,6 @@ import org.eclipse.xtext.generator.IGenerator
 import java.util.Observable
 import java.util.ArrayList
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.unifiedParser.UnifiedFileParser
-import java.util.TreeMap
-import de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser.ImageDownloader
-import java.util.LinkedHashMap
 
 /**
  * Generates code from your model files on save
@@ -167,7 +164,7 @@ class NplGenerator implements Observer, IGenerator {
 		val newschannels = new ArrayList<UnifiedModel.NewsChannel>(UnifiedFileParser.loadNewsChannels);
 		
 		
-		var feedlinks = "\\begin{tabular}{R{0.3\\textwidth}L{0.6\\textwidth}}\n"
+		var feedlinks = "\\begin{tabular}{R{0.3\\textwidth}cL{0.6\\textwidth}}\n"
 		for(channel: newschannels) {
 //			if(channel.icon != null && !channel.icon.empty) {
 //				var String md5 = ImageDownloader.md5(channel.icon)
@@ -180,7 +177,7 @@ class NplGenerator implements Observer, IGenerator {
 //			} else {
 				feedlinks += channel.title
 //			}
-			feedlinks += " : & \\url{" + channel.link + "}\\\\\n"
+			feedlinks += "&:&\\url{" + channel.link + "}\\\\\n"
 		}
 		feedlinks += "\\end{tabular}"
 		
