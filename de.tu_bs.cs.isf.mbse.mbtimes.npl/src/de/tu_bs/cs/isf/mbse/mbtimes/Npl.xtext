@@ -69,8 +69,6 @@ Language:
 	 value = "German";
 	 
 Format:
-	value =  "DIN A6" | 
-	value =  "DIN A5" | 
 	value =  "DIN A4" | 
 	value =  "DIN A3" | 
 	value = "DIN A2" | 
