@@ -16,6 +16,9 @@ import org.eclipse.xtext.generator.IGenerator
 import java.util.Observable
 import java.util.ArrayList
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.unifiedParser.UnifiedFileParser
+import java.util.TreeMap
+import de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser.ImageDownloader
+import java.util.LinkedHashMap
 
 /**
  * Generates code from your model files on save
@@ -164,17 +167,22 @@ class NplGenerator implements Observer, IGenerator {
 		val newschannels = new ArrayList<UnifiedModel.NewsChannel>(UnifiedFileParser.loadNewsChannels);
 		
 		
-		feeds += "\\begin{itemize}\n"
+		var feedlinks = "\\begin{tabular}{R{0.3\\textwidth}L{0.6\\textwidth}}\n"
 		for(channel: newschannels) {
-			if(channel.title != null && channel.link != null) {
-				feeds += "\\item " + channel.title + ": " 
-					  + "\\url{" + channel.link + "}\n"
-			}
+//			if(channel.icon != null && !channel.icon.empty) {
+//				var String md5 = ImageDownloader.md5(channel.icon)
+//				var String fileType = channel.icon.substring(channel.icon.lastIndexOf(".") + 1);
+//				var String completeFileName = md5 + "." + fileType
+//				System.err.println("retreived image file name: " + completeFileName)
+//				val includeImage = "\\includegraphics[height=2\\baselineskip]{../../images/" + completeFileName + "}"
+//				
+//				feeds += includeImage + " : "
+//			} else {
+				feedlinks += channel.title
+//			}
+			feedlinks += " : & \\url{" + channel.link + "}\\\\\n"
 		}
-//		for(f: d.feedlinks) {
-//			feeds += "\\item " + f.key + ": " + "\\url{" + f.value + "}\n"
-//		}
-		feeds += "\\end{itemize}"
+		feedlinks += "\\end{tabular}"
 		
 		//«»
 		'''
@@ -199,7 +207,12 @@ class NplGenerator implements Observer, IGenerator {
 		\usepackage{wrapfig}
 		\usepackage{picinpar}
 		\usepackage{eurosym}
+		\usepackage{array}
 		\usepackage[hidelinks]{hyperref}
+		
+		\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+		\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+		\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 		
 		% Change geometry and dimensions
 		
@@ -265,8 +278,8 @@ class NplGenerator implements Observer, IGenerator {
 		«ELSE»
 		\newdate{newsDate}{\number\day}{\number\month}{\number\year}
 		«ENDIF»
-		\date{\protect\dayofweekname{\getdateday{newsDate}}{\getdatemonth{newsDate}}{\getdateyear{newsDate}}, 
-				\getdateday{newsDate}. \monthname[\getdatemonth{newsDate}] \getdateyear{newsDate}}
+		\date{\protect\«IF format>4»short«ENDIF»dayofweekname{\getdateday{newsDate}}{\getdatemonth{newsDate}}{\getdateyear{newsDate}}, 
+				\getdateday{newsDate}. \«IF format>4»short«ENDIF»monthname[\getdatemonth{newsDate}] \getdateyear{newsDate}}
 		\currentvolume{«d.volume»}
 		\currentissue{«d.number»}
 		\SetPaperName{«d.title»}
@@ -290,8 +303,13 @@ class NplGenerator implements Observer, IGenerator {
 						
 			\vfill
 			\begin{center}
-				\fbox{\parbox{\textwidth}{\footnotesize «feeds»
-				\medskip
+				\fbox{\parbox{\textwidth}{\footnotesize 
+				«feeds»
+				
+				\hspace{0.05\textwidth}
+				«feedlinks»
+				
+				\bigskip
 				«copyright»}}
 			\end{center}
 			

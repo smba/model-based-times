@@ -34,7 +34,7 @@ rule Item2Article {
 
 rule Channel2NewsChannel {
 	from
-		s: RSS!Channel
+		s: RSS!Channel 
 	to
 		t: Unified!NewsChannel (
 			title <- s.title,
@@ -42,20 +42,16 @@ rule Channel2NewsChannel {
 			updated <- s.lastBuild,
 			subtitle <- s.description,
 			editor <- s.managingEditor,
-			category <- s.categories
+			category <- s.categories,
 			--icon <- q.url
 			--title <- q.title
-		)
-}
-
-rule Image2NewsChannel {
-	from
-		s: RSS!Image
-	to
-		t: Unified!NewsChannel (
-			icon <- s.url,
-			title <- s.title
-		)
+			icon <- if (s.image.oclIsUndefined()) then
+				''
+			else
+				s.image.url
+			endif
+			-- icon <- s.image.url (s.hasImage())			
+    	)
 }
 
 rule Category2Category {

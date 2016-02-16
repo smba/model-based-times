@@ -92,7 +92,19 @@ public class RSSFeedParser extends AbstractFeedParser {
 			SyndImage feedImage = feed.getImage();
 			Image image = this.factory.createImage();
 			image.setTitle(feedImage.getTitle());
-			image.setUrl(feedImage.getLink());
+			image.setUrl(feedImage.getUrl());
+			
+			try {
+				final String md5hash = ImageDownloader.md5(image.getUrl());
+
+				final String suffix = image.getUrl().substring(image.getUrl().lastIndexOf(".") + 1);								
+
+				ImageDownloader.downloadFile(imagePath + "/" + md5hash + "." + suffix, image.getUrl());
+			} catch (IOException e) {
+				log.log(Level.WARNING, "Could not retrieve image file " + image.getUrl());
+			}
+			
+			channel.setImage(image);
 
 			// dispose image to listener
 			this.listener.receiveRSSImage(image);

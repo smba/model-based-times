@@ -236,15 +236,19 @@ class ContentGenerator {
 		}
 
 		for (t : topic) {
-			var tIsSubstring = false
+			var tHasSubstring = false
 			for(t2: topic) {
-				if(!t.equals(t2) && t2.contains(t)) {
-					tIsSubstring = true
+				// Smaller tags is part of larger, color larger part
+				if(!t.equals(t2) && t.contains(t2)) {
+					var expr = ""
+					expr = t.substring(0,t.indexOf(t2))
+					expr += "\\textcolor{red}{" + t2 + "}"
+					expr += t.substring(t.indexOf(t2)+t2.length)
+					tHasSubstring = true
+					content = content.replace(expr, t)
 				}
 			}
-			if(!tIsSubstring) {
-				content = content.replace(t, "\\textcolor{red}{" + t + "}")
-			}
+			content = content.replace(t, "\\textcolor{red}{" + t + "}")
 		}
 
 		// retrieve images
@@ -294,7 +298,7 @@ class ContentGenerator {
 		«IF !newschannel.empty || !date.empty»
 			\begin{center}
 				\fbox{\parbox{0.8\columnwidth}{\footnotesize 
-				\begin{tabular}{p{0.15\columnwidth}p{0.5\columnwidth}}
+				\begin{tabular}{p{\widthof{Source}}p{0.7\columnwidth-\widthof{Source}}}
 			«IF language.equals("German")»
 				«IF !newschannel.empty»
 					\textbf{Quelle:} & \href{«articleLink»}{«newschannel»}
