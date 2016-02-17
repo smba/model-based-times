@@ -21,19 +21,19 @@ import org.apache.commons.lang3.StringEscapeUtils
 
 class ContentGenerator {
 
-	static LinkedHashMap<String,String> specialChars
+	static val LinkedHashMap<String,String> specialChars = new LinkedHashMap <String, String>()
+	static var VectorSpaceModel vsm = null
+	static val articles = new LinkedList<Article>()
+	
 
 	def ContentGenerator() {
 	}
-
-	static var vsm = new VectorSpaceModel();
 
 	/**
  	 * Creates a Map with characters and substrings, which have to be 
  	 * changed for the LaTeX files.
 	 */
 	def static void initSpecialCharHashMap() {
-		specialChars = new LinkedHashMap <String, String>()
 		specialChars.put("\\","\\textbackslash")
 		specialChars.put("{","\\{")
 		specialChars.put("}","\\}")
@@ -53,19 +53,26 @@ class ContentGenerator {
 		specialChars.put(" ?","?")
 		specialChars.put("[","{}[")
 		specialChars.put("\"","\"{}")
-		specialChars.put((0x0a as char).toString(), " \\\\" + (0x0a as char).toString())
-		//specialChars.put((0x0d as char).toString(), "\\\\" + (0x0d as char).toString())
 	}
 
 	/**
- 	 * Initializes the Vector Space Machine for Content Selection
+ 	 * Initializes the Vector Space Machine for Content Selection,, 
+ 	 * use only articles with the wanted number of words
 	 */
-	def static void initVSM(String language) {
-		val articles = new ArrayList<Article>(UnifiedFileParser.loadArticles());
+	def static void initVSM(String language,int min, int max) {
+		val articleList = new ArrayList<Article>(UnifiedFileParser.loadArticles());
 		val fulltexts = new ArrayList<String>();
-		for (Article a : articles) {
-			fulltexts.add(a.content);
+		println("Articles in VSM:")
+		for (Article a : articleList) {
+			val st = new StringTokenizer(a.content)
+			if (st.countTokens() >= min && st.countTokens() <= max) {
+				fulltexts.add(a.content);
+				articles.add(a)
+				
+				println(a.title)
+			}
 		}
+		println("Articles in VSM: " + articles.size)
 
 		vsm = new VectorSpaceModel( /*language*/ );
 		vsm.buildDocumentVectors(fulltexts);
@@ -75,8 +82,6 @@ class ContentGenerator {
 	 * Compiles a topic in LaTeX, with all articles
 	 */
 	def static String compileTopic(List<String> topic, String topicName, Declaration d) {
-		val articles = new ArrayList<Article>(UnifiedFileParser.loadArticles());
-
 		val ranking = vsm.computeSimilarities(vsm.getQueryVector(topic));
 
 		var tags = topic.get(0)
@@ -99,22 +104,18 @@ class ContentGenerator {
 		}
 
 		//Article Selection
-		var k = d.articleCnt
 		val articleList = new LinkedList<Article>()
-		for (var i = 0; i < k && i < ranking.size(); i++) {
+		for (var i = 0; i < d.articleCnt && i < ranking.size(); i++) {
 			val article = articles.get(ranking.get(i))
 			if (vsm.getSimilarity(ranking.get(i)) >= median) {
 				val st = new StringTokenizer(article.content)
-				if (st.countTokens() >= d.articleWordsMin && st.countTokens() <= d.articleWordsMax) {
-					articleList.add(article)
+				articleList.add(article)
 
-					println("Title:\t\t" + article.title)
-					println("numberWords:\t" + st.countTokens())
-					println("Similarity:\t" + vsm.getSimilarity(ranking.get(i)))
-					println()
-				} else {
-					k++
-				}
+				println("Title:\t\t" + article.title)
+				println("numberWords:\t" + st.countTokens())
+				println("Similarity:\t" + vsm.getSimilarity(ranking.get(i)))
+				println()
+				
 			}
 		}
 		
@@ -125,16 +126,21 @@ class ContentGenerator {
 		\headline{{\bfseries\Huge «topicName»}\\
 		\medskip
 		{\footnotesize{\bfseries Tags: }{\it «tags»}}}
-		\begin{multicols}{\numberColumns}
+		«IF d.columnsCnt>1»
+			\begin{multicols}{\numberColumns}
+		«ENDIF»
 		
 		«FOR a:articleList»
 			«compileArticle(a, topic, language, imagesCount)»
 			«IF articleList.last != a»
-				\vfill\columnbreak
+				\bigskip
+«««\vfill\columnbreak
 				
 			«ENDIF»
 		«ENDFOR»
-		\end{multicols}
+		«IF d.columnsCnt>1»
+			\end{multicols}
+		«ENDIF»
 		
 		«IF articleList.size < d.articleCnt»
 			\begin{center}
@@ -250,7 +256,7 @@ class ContentGenerator {
 				var String md5 = ImageDownloader.md5(img.url)
 				var String mimeType = img.type;
 				var String fileType = ImageDownloader.truncateMIMEType(mimeType)
-				var String completeFileName = md5 + "." + fileType // this file is located in your home folder
+				var String completeFileName = md5 + "." + fileType
 				System.err.println("retreived image file name: " + completeFileName)
 				images.add(completeFileName)
 			}
@@ -313,6 +319,7 @@ class ContentGenerator {
 	 */
 	def static String convertHTMLToLatex(String str) {
 		var html = str
+		val latexNewLine = "\\\\" + (0x0a as char).toString()
 		
 		//remove tabs (\t)
 		html = html.replace("&#x9;","")
@@ -325,20 +332,29 @@ class ContentGenerator {
 		for(key: specialChars.keySet) {
 			html = html.replace(key, specialChars.get(key))
 		}
+		html = html.replace((0x0a as char).toString, latexNewLine)
 		
 		//Change some HTML Tags to LaTeX Code
+		html = html.replaceAll("/(<br\\s*\\/?>)+/",latexNewLine)
 		html = html.replace("<b>", "\\textbf{").replace("</b>","}")
 		html = html.replace("<strong>", "\\textbf{").replace("</strong>","}")
 		html = html.replace("<i>", "\\textit{").replace("</i>","}")
 		html = html.replace("<em>", "\\textit{").replace("</em>","}")
 		
 		//Remove remaining HTML Tags (e.g. <p></p>)
-		html = html.replaceAll("\\<.*?>","")
+		html = html.replaceAll("\\<.*?\\>","")
+		
+		//Some texts start and/or ends with new line commands, LaTeX doesn't like it.
+		println("LO: " + html.lastIndexOf(latexNewLine) + " L: " + html.length
+			+ " E: " + (html.length-latexNewLine.length)
+		)
+		while(html.lastIndexOf(latexNewLine)==html.length-latexNewLine.length) {
+			html = html.substring(0,html.lastIndexOf(latexNewLine)).trim
+		}
 		
 		html = html.trim
-		//Some texts start with new lines commands, LaTeX doesn't like it.
-		while(html.indexOf("\\\\" + (0x0a as char).toString())==0) {
-			html = html.substring(("\\\\" + (0x0a as char).toString()).length).trim
+		while(html.indexOf(latexNewLine)==0) {
+			html = html.substring(latexNewLine.length).trim
 		}
 				
    		return html

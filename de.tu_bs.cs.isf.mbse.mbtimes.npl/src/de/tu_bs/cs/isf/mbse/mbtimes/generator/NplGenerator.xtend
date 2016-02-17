@@ -266,8 +266,8 @@ class NplGenerator implements Observer, IGenerator {
 		«ELSE»
 		\newdate{newsDate}{\number\day}{\number\month}{\number\year}
 		«ENDIF»
-		\date{\protect\«IF format>4»short«ENDIF»dayofweekname{\getdateday{newsDate}}{\getdatemonth{newsDate}}{\getdateyear{newsDate}}, 
-				\getdateday{newsDate}. \«IF format>4»short«ENDIF»monthname[\getdatemonth{newsDate}] \getdateyear{newsDate}}
+		\date{\protect\dayofweekname{\getdateday{newsDate}}{\getdatemonth{newsDate}}{\getdateyear{newsDate}}, 
+				\getdateday{newsDate}. \monthname[\getdatemonth{newsDate}] \getdateyear{newsDate}}
 		\currentvolume{«d.volume»}
 		\currentissue{«d.number»}
 		\SetPaperName{«d.title»}
@@ -316,7 +316,7 @@ class NplGenerator implements Observer, IGenerator {
 			} else if (d.language != null && d.language.value.equals("German")) {
 				language = "DE"
 			}
-    		ContentGenerator.initVSM(language)
+    		ContentGenerator.initVSM(language,d.articleWordsMin,d.articleWordsMax)
     		ContentGenerator.initSpecialCharHashMap()
     		
     		for(topic: d.topics) {
