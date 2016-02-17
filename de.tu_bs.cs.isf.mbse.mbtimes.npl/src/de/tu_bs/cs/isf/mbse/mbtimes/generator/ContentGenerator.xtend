@@ -122,23 +122,20 @@ class ContentGenerator {
 		
 		//The template for the topic
 		'''
-		««« Titel and Tags for the topic
 		\headline{{\bfseries\Huge «topicName»}\\
 		\medskip
 		{\footnotesize{\bfseries Tags: }{\it «tags»}}}
 		\begin{multicols}{\numberColumns}
 		
-		««« Add Articles
 		«FOR a:articleList»
 			«compileArticle(a, topic, language, imagesCount)»
 			«IF articleList.last != a»
-				\bigskip\bigskip
+				\vfill\columnbreak
 				
 			«ENDIF»
 		«ENDFOR»
 		\end{multicols}
 		
-		««« Set a information, if the number of articles is smaller than the number of wanted ones
 		«IF articleList.size < d.articleCnt»
 			\begin{center}
 				«IF language.equals("German")»
@@ -271,7 +268,6 @@ class ContentGenerator {
 
 		//Template for an article
 		'''
-		««« Title, subtitle and author (if exists)
 		\begin{minipage}{\columnwidth}
 		«IF !authors.empty && !title.empty»
 		 	\byline{\it\Large «title»}{«authors»}
@@ -287,8 +283,6 @@ class ContentGenerator {
 		
 		«contentWithFigures(content,images,imagesCnt)»
 		
-		««« Informationbox at the end of the article, with source and date
-		\medskip
 		\begin{minipage}{\columnwidth}
 		«IF !newschannel.empty || !date.empty»
 			\begin{center}
@@ -319,6 +313,10 @@ class ContentGenerator {
 	 */
 	def static String convertHTMLToLatex(String str) {
 		var html = str
+		
+		//remove tabs (\t)
+		html = html.replace("&#x9;","")
+		html = html.replace((0x09 as char).toString,"")
 
 		//Change HTML special characters (e.g. &nbsp;) to ordinary charaters
    		html = StringEscapeUtils.unescapeHtml4(html)
@@ -334,22 +332,31 @@ class ContentGenerator {
 		html = html.replace("<i>", "\\textit{").replace("</i>","}")
 		html = html.replace("<em>", "\\textit{").replace("</em>","}")
 		
-		//Remove remaining HTML Tags (e.g. <p></p>
+		//Remove remaining HTML Tags (e.g. <p></p>)
 		html = html.replaceAll("\\<.*?>","")
+		
+		html = html.trim
+		//Some texts start with new lines commands, LaTeX doesn't like it.
+		while(html.indexOf("\\\\" + (0x0a as char).toString())==0) {
+			html = html.substring(("\\\\" + (0x0a as char).toString()).length).trim
+		}
 				
-   		return html;
+   		return html
 	}
 
 	/**
 	 * Add images to fulltext. Having x images, splits the fulltext in x+1 almost 
-	 * equal parts and inserted an image after each part, expect the last one.
+	 * equal parts, seperated by LaTeX's new line command ("\\") and inserted an image after each part, expect the last one.
 	 */
 	def static String contentWithFigures(String str, LinkedList<String> images, int imagesCnt) {
 		var content = str
 		var split = (content.length / (images.size() + 1))
 
 		for (var i = 0; i < imagesCnt && i < images.size(); i++) {
-			val splitIndex = content.indexOf(" \\\\", ((i + 1) * split) - 1) + 1
+			var splitIndex = 0
+			if(content.indexOf("\\\\", ((i + 1) * split) - 1) > 0) {
+				splitIndex = content.indexOf("\\\\", ((i + 1) * split) - 1)
+			}
 			val contentFirst = content.substring(0, splitIndex).trim()
 			val contentSec = "\n" + 
 				'''
@@ -358,7 +365,10 @@ class ContentGenerator {
 					\includegraphics[width=\minof{\columnwidth}{\imagewidth}]{../../images/«images.get(i)»}
 				\end{Figure}
 				'''
-			val contentThird = content.substring(splitIndex+3).trim()
+			var contentThird = ""
+			if(content.length > splitIndex+2) {
+				contentThird = content.substring(splitIndex+2).trim
+			}
 			content = contentFirst + contentSec + contentThird
 		}
 		return content.trim()
