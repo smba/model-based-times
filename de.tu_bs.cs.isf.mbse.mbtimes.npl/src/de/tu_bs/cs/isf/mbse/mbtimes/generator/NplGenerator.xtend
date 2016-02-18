@@ -16,6 +16,7 @@ import org.eclipse.xtext.generator.IGenerator
 import java.util.Observable
 import java.util.ArrayList
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.unifiedParser.UnifiedFileParser
+import java.io.File
 
 /**
  * Generates code from your model files on save
@@ -27,10 +28,28 @@ class NplGenerator implements Observer, IGenerator {
 	var Resource resource;
 	var IFileSystemAccess fsa; 
 	
+	var String project = null
+	var String outputFolder = null
+	
+	def setProjectName(String project) {
+		this.project = project
+	}
+	
+	def setOutputFolder(String folder) {
+		this.outputFolder = folder
+	}
+	
 	override doGenerate(Resource resource, IFileSystemAccess fsa) {
+
+		if(project == null || outputFolder == null) {
+			throw new NullPointerException("Project name or output folder not initialized")
+		}
 
 		this.resource = resource
 		this.fsa = fsa
+
+		println(project)
+		println(outputFolder)
 
 		val feeds = new HashMap<String, String>()
 		
@@ -39,7 +58,7 @@ class NplGenerator implements Observer, IGenerator {
 		]
 		
 		val cd = new CrawlerDispatcher()
-		cd.initialize(feeds)
+		cd.initialize(feeds, "/" + project + "/")
 		
 		val Transformator trafo = Transformator.getInstance()
 		cd.addObserver(trafo);
@@ -256,8 +275,8 @@ class NplGenerator implements Observer, IGenerator {
 		
 		% New environment for pictures
 		\newenvironment{Figure}
-		{\linebreak\par\minipage{\columnwidth}\begin{center}}
-		{\end{center}\endminipage\par\bigskip}
+		{\par\minipage{\columnwidth}\begin{center}}
+		{\end{center}\endminipage\par\smallskip}
 		
 		% Set data for title
 		
@@ -309,6 +328,18 @@ class NplGenerator implements Observer, IGenerator {
 		System.err.println("Compiling .tex s")
 		/* Compiling topics */
 		
+		println("ImagePath: " + arg + "images/")
+		ContentGenerator.projectPath = arg as String
+		ContentGenerator.outputFolder = outputFolder
+		
+		//Receive path to the directory for the images
+		val imageDir = new File(arg + "images/");
+		imageDir.mkdirs();
+		//Delete old files, may not be needed...
+		for(f: imageDir.listFiles()) {
+			f.delete();
+		}
+		
 		for(d: resource.allContents.toIterable.filter(Declaration)) {
     		var String language = null
 			if (d.language != null && d.language.value.equals("English")) {
@@ -316,6 +347,7 @@ class NplGenerator implements Observer, IGenerator {
 			} else if (d.language != null && d.language.value.equals("German")) {
 				language = "DE"
 			}
+			
     		ContentGenerator.initVSM(language,d.articleWordsMin,d.articleWordsMax)
     		ContentGenerator.initSpecialCharHashMap()
     		
@@ -327,5 +359,4 @@ class NplGenerator implements Observer, IGenerator {
 			fsa.generateFile(	d.name + ".tex", d.compileLayout)
     	}
 	}
-	
 }

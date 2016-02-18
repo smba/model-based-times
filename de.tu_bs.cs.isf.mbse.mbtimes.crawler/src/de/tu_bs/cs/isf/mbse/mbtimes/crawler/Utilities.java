@@ -1,6 +1,8 @@
 package de.tu_bs.cs.isf.mbse.mbtimes.crawler;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.eclipse.core.runtime.Platform;
 import org.osgi.framework.Bundle;
@@ -19,13 +21,21 @@ abstract public class Utilities {
 		Bundle bundle = Platform.getBundle("de.tu_bs.cs.isf.mbse.mbtimes.crawler");
 		
 		int begin = bundle.getLocation().indexOf("/");
-		crawlerBundlePathPrefix = bundle.getLocation().substring(begin);
+		if(Platform.getOS().compareTo(Platform.OS_WIN32) == 0) {
+			crawlerBundlePathPrefix = bundle.getLocation().substring(begin+1);
+		} else {
+			crawlerBundlePathPrefix = bundle.getLocation().substring(begin);
+		}
 		String prefix = (new File("dummy")).getAbsolutePath(); 
 		if(Platform.getOS().compareTo(Platform.OS_WIN32) == 0) {
-			prefix = prefix.substring(0,  prefix.lastIndexOf('\\') + 2);
+			prefix = prefix.substring(0,  prefix.lastIndexOf('\\') + 1);
 		} else {
 			prefix = prefix.substring(0,  prefix.lastIndexOf('/') + 1); 
 		}
-		return crawlerBundlePathPrefix.substring(prefix.length(), crawlerBundlePathPrefix.length());
+		
+		Path p1 = Paths.get(crawlerBundlePathPrefix);
+		Path p2 = Paths.get(prefix);
+		return p2.relativize(p1).toString();
+		//return crawlerBundlePathPrefix.substring(prefix.length(), crawlerBundlePathPrefix.length());
 	}
 }

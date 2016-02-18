@@ -94,16 +94,6 @@ public class RSSFeedParser extends AbstractFeedParser {
 			image.setTitle(feedImage.getTitle());
 			image.setUrl(feedImage.getUrl());
 			
-			try {
-				final String md5hash = ImageDownloader.md5(image.getUrl());
-
-				final String suffix = image.getUrl().substring(image.getUrl().lastIndexOf(".") + 1);								
-
-				ImageDownloader.downloadFile(imagePath + "/" + md5hash + "." + suffix, image.getUrl());
-			} catch (IOException e) {
-				log.log(Level.WARNING, "Could not retrieve image file " + image.getUrl());
-			}
-			
 			channel.setImage(image);
 
 			// dispose image to listener
@@ -154,32 +144,19 @@ public class RSSFeedParser extends AbstractFeedParser {
 						SyndEnclosure enclosureRome = (SyndEnclosure) enclosure;
 
 						if (enclosureRome.getType().startsWith("image")) {
+							/*
+							 * Map: Enclosure (image/x) url to concrete MIME
+							 * type (e.g., image/jpeg)
+							 */
 
-							try {
+							assert (enclosureRome.getUrl() != null) && (enclosureRome.getType() != null);
+							Enclosure itemEnclosure = this.factory.createEnclosure();
+							itemEnclosure.setUrl(enclosureRome.getUrl());
+							itemEnclosure.setType(enclosureRome.getType());
+							item.getEnclosure().add(itemEnclosure);
+							//itemEnclosure.getUrls().put((String) enclosureRome.getUrl(), (String) enclosureRome.getType());
 
-								/*
-								 * Map: Enclosure (image/x) url to concrete MIME
-								 * type (e.g., image/jpeg)
-								 */
-
-								final String md5hash = ImageDownloader.md5(enclosureRome.getUrl());
-
-								final String type = enclosureRome.getType();
-								final String suffix = type.substring(type.indexOf('/') + 1);								
-								
-								ImageDownloader.downloadFile(imagePath + "/" + md5hash + "." + suffix, enclosureRome.getUrl());
-
-								assert (enclosureRome.getUrl() != null) && (enclosureRome.getType() != null);
-								Enclosure itemEnclosure = this.factory.createEnclosure();
-								itemEnclosure.setUrl(enclosureRome.getUrl());
-								itemEnclosure.setType(enclosureRome.getType());
-								item.getEnclosure().add(itemEnclosure);
-								//itemEnclosure.getUrls().put((String) enclosureRome.getUrl(), (String) enclosureRome.getType());
-
-								listener.receiveRSSEnclosure(itemEnclosure);
-							} catch (IOException e) {
-								log.log(Level.WARNING, "Could not retrieve image file " + enclosureRome.getUrl());
-							}
+							listener.receiveRSSEnclosure(itemEnclosure);
 						}
 					}
 				}

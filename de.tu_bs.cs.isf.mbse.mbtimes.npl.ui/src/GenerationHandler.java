@@ -25,8 +25,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xml.type.SimpleAnyType;
 import org.eclipse.emf.ecore.xml.type.XMLTypeFactory;
-import org.eclipse.jface.viewers.ISelection; 
-import org.eclipse.jface.viewers.IStructuredSelection;
 
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -34,25 +32,22 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.handlers.HandlerUtil; 
-import org.eclipse.xtext.builder.EclipseResourceFileSystemAccess;
 import org.eclipse.xtext.builder.EclipseResourceFileSystemAccess2;
-import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.generator.OutputConfiguration;
 import org.eclipse.xtext.resource.IResourceDescriptions; 
-import org.eclipse.xtext.resource.XtextResource;
-import org.eclipse.xtext.ui.editor.XtextEditor;
-import org.eclipse.xtext.ui.resource.IResourceSetProvider; 
+import org.eclipse.xtext.ui.resource.IResourceSetProvider;
 import org.eclipse.ui.part.FileEditorInput;
 
 import com.google.inject.Inject; 
 import com.google.inject.Provider;
 
+import de.tu_bs.cs.isf.mbse.mbtimes.generator.NplGenerator;
+
 public class GenerationHandler extends AbstractHandler implements IHandler {
 	
 	
     @Inject
-    private IGenerator generator;
+    private NplGenerator generator;
  
     @Inject
     private Provider<EclipseResourceFileSystemAccess2> fileAccessProvider;
@@ -72,7 +67,6 @@ public class GenerationHandler extends AbstractHandler implements IHandler {
     	  try {
     	     mode = event.getCommand().getName();
     	  } catch (NotDefinedException e1) {
-    	  // TODO Auto-generated catch block
     	    e1.printStackTrace();
     	  }
     	 
@@ -92,6 +86,7 @@ public class GenerationHandler extends AbstractHandler implements IHandler {
     	  IFile file= workspace.getRoot().getFileForLocation(location);
     	 
     	  IProject project = file.getProject();
+    	  
     	  IFolder srcGenFolder = project.getFolder("src-gen");
     	  if (!srcGenFolder.exists()) {
     	    try {
@@ -138,6 +133,9 @@ public class GenerationHandler extends AbstractHandler implements IHandler {
     	  // add string to resource
     	  r.getContents().add(wrapper);
     	 
+    	  
+    	  generator.setProjectName(project.getName());
+    	  generator.setOutputFolder(srcGenFolder.getName().toString());
     	  generator.doGenerate(r, fsa);
     	 
     	  return null;

@@ -18,15 +18,27 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import java.util.LinkedHashMap
 import org.apache.commons.lang3.StringEscapeUtils
+import java.io.IOException
+import java.nio.file.Paths
 
 class ContentGenerator {
 
 	static val LinkedHashMap<String,String> specialChars = new LinkedHashMap <String, String>()
 	static var VectorSpaceModel vsm = null
 	static val articles = new LinkedList<Article>()
+	static var String projectPath = null
+	static var String outputFolder = null
 	
 
 	def ContentGenerator() {
+	}
+
+	def static setProjectPath(String path) {
+		projectPath = path
+	}
+	
+	def static setOutputFolder(String folder) {
+		outputFolder = folder
 	}
 
 	/**
@@ -253,12 +265,18 @@ class ContentGenerator {
 		println("About to print file image names ")
 		if (it.image != null) {
 			for (img : it.image) {
-				var String md5 = ImageDownloader.md5(img.url)
-				var String mimeType = img.type;
-				var String fileType = ImageDownloader.truncateMIMEType(mimeType)
-				var String completeFileName = md5 + "." + fileType
-				System.err.println("retreived image file name: " + completeFileName)
-				images.add(completeFileName)
+				var fileName = downloadImage(img)
+				
+				if(fileName != null) {
+					images.add(fileName)
+				}
+				
+//				var String md5 = ImageDownloader.md5(img.url)
+//				var String mimeType = img.type;
+//				var String fileType = ImageDownloader.truncateMIMEType(mimeType)
+//				var String completeFileName = md5 + "." + fileType
+//				System.err.println("retreived image file name: " + completeFileName)
+//				images.add(completeFileName)
 			}
 		}
 		
@@ -342,14 +360,11 @@ class ContentGenerator {
 		html = html.replace("<em>", "\\textit{").replace("</em>","}")
 		
 		//Remove remaining HTML Tags (e.g. <p></p>)
-		html = html.replaceAll("\\<.*?\\>","")
+		html = html.replaceAll("\\<(.|\\s)*?>","")
 		
 		//Some texts start and/or ends with new line commands, LaTeX doesn't like it.
-		println("LO: " + html.lastIndexOf(latexNewLine) + " L: " + html.length
-			+ " E: " + (html.length-latexNewLine.length)
-		)
 		while(html.lastIndexOf(latexNewLine)==html.length-latexNewLine.length) {
-			html = html.substring(0,html.lastIndexOf(latexNewLine)).trim
+			html = html.substring(0,html.lastIndexOf(latexNewLine))
 		}
 		
 		html = html.trim
@@ -367,6 +382,9 @@ class ContentGenerator {
 	def static String contentWithFigures(String str, LinkedList<String> images, int imagesCnt) {
 		var content = str
 		var split = (content.length / (images.size() + 1))
+		
+		val relativePath = Paths.get(projectPath + outputFolder)
+				.relativize(Paths.get(projectPath + "images")).toString.replace("\\","/")
 
 		for (var i = 0; i < imagesCnt && i < images.size(); i++) {
 			var splitIndex = 0
@@ -376,18 +394,38 @@ class ContentGenerator {
 			val contentFirst = content.substring(0, splitIndex).trim()
 			val contentSec = "\n" + 
 				'''
-				\settowidth\imagewidth{\includegraphics{../../images/«images.get(i)»}}
+				\settowidth\imagewidth{\includegraphics{«relativePath»/«images.get(i)»}}
 				\begin{Figure}
-					\includegraphics[width=\minof{\columnwidth}{\imagewidth}]{../../images/«images.get(i)»}
+					\includegraphics[width=\minof{\columnwidth}{\imagewidth}]{«relativePath»/«images.get(i)»}
 				\end{Figure}
 				'''
 			var contentThird = ""
-			if(content.length > splitIndex+2) {
+			if (splitIndex == 0) {
+				contentThird = content
+			} else if (content.length > splitIndex+2) {
 				contentThird = content.substring(splitIndex+2).trim
 			}
 			content = contentFirst + contentSec + contentThird
 		}
 		return content.trim()
+	}
+	
+	def static String downloadImage(UnifiedModel.Image img) {
+		val url = img.url
+		val type = img.type
+		val md5hash = ImageDownloader.md5(url)
+		val suffix = type.substring(type.indexOf('/') + 1);
+		
+		var String filename = null
+		try {
+			ImageDownloader.downloadFile(projectPath + "/images/" + md5hash + "." + suffix, url);
+			filename = md5hash + "." + suffix
+		} catch(IOException e) {
+			System.err.println("Could not receive image " + url)
+		}			
+		println(projectPath + "/images/" + md5hash + "." + suffix)
+		println(filename)		
+		return filename
 	}
 
 	def doEMFSetup() {

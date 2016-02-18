@@ -1,6 +1,9 @@
 package de.tu_bs.cs.isf.mbse.mbtimes.crawler;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -13,8 +16,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-
-import de.tu_bs.cs.isf.mbse.mbtimes.crawler.feedparser.AbstractFeedParser;
 
 /**
  * Diese Klasse nimmt Aufträge zum Crawlen entgegen und verteilt diese
@@ -36,6 +37,8 @@ public class CrawlerDispatcher extends Observable implements Runnable {
 	private Crawler rssCrawler;
 	
 	private Map<String, String> feeds;
+	
+	private String projectDir = null;
 
 	public CrawlerDispatcher() {
 		atomCrawler = new AtomCrawler();
@@ -43,8 +46,12 @@ public class CrawlerDispatcher extends Observable implements Runnable {
 	}
 
 	
-	public void initialize(Map<String, String> feeds) {
+	public void initialize(Map<String, String> feeds, String project) {
 		this.feeds = feeds;
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		File workspaceDirectory = workspace.getRoot().getLocation().toFile();
+
+		projectDir = workspaceDirectory.getPath() + project;
 	}
 	/**
 	 * Diese Methode initialisiert und startet den Crawlvorgang. Übergeben wird
@@ -69,18 +76,7 @@ public class CrawlerDispatcher extends Observable implements Runnable {
 			List<String> rssFeeds = new LinkedList<String>();
 			List<String> atomFeeds = new LinkedList<String>();
 			
-			//Receive path to the directory for the images
-			IWorkspace workspace = ResourcesPlugin.getWorkspace();
-			File workspaceDirectory = workspace.getRoot().getLocation().toFile();
-			System.out.println(workspaceDirectory.getPath());
-			File imageDir = new File(workspaceDirectory.getPath() + "/images/");
-			imageDir.mkdirs();
-			File[] files = imageDir.listFiles();
-			//Delete old files, may not be needed...
-			for(File f: files) {
-				f.delete();
-			}
-			AbstractFeedParser.setImagePath(imageDir.getPath());
+//			AbstractFeedParser.setImagePath(imageDir.getPath());
 
 			/*
 			 * Aufteilen der Feeds auf die einzelnen speziellen Crawler
@@ -110,13 +106,13 @@ public class CrawlerDispatcher extends Observable implements Runnable {
 			this.atomCrawler.dispose();
 			this.rssCrawler.dispose();
 		}
-
+		
 		/*
 		 * Triggern des Ausführens der automatisierten M2M-Transformationen 
 		 * (RSS -> Unified, Atom -> Unified)
 		 */
 		setChanged();
-		notifyObservers();
+		notifyObservers(projectDir);
 		
 	}
 	
@@ -168,8 +164,24 @@ public class CrawlerDispatcher extends Observable implements Runnable {
 		default:
 			break;
 		}
+	    
+	    DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+		//get current date time with Date()
+	    Date date = new Date();
+		long startTime = date.getTime();
 		
 		dispatchAndCrawl(useCrawler);
+		
+		System.out.println("Start:\t" + dateFormat.format(date));
+		date = new Date();
+		System.out.println("Ende:\t" + dateFormat.format(date));
+	    long diff = date.getTime() - startTime;
+	    long diffSeconds = diff / 1000 % 60;
+	    long diffMinutes = diff / (60 * 1000) % 60;
+	    
+	    String time = String.format("%d:%02d",diffMinutes,diffSeconds);
+	    System.out.println("Runtime:\t" + time);
+		
 		
 		display.asyncExec(new Runnable() {
 
