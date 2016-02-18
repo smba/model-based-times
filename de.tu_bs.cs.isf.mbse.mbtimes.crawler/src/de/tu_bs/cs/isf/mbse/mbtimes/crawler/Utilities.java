@@ -35,7 +35,7 @@ abstract public class Utilities {
 		
 		Path p1 = Paths.get(crawlerBundlePathPrefix);
 		Path p2 = Paths.get(prefix);
-		return p2.relativize(p1).toString();
+		return p2.relativize(p1).toString() + "/";
 		//return crawlerBundlePathPrefix.substring(prefix.length(), crawlerBundlePathPrefix.length());
 	}
 }
