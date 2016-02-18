@@ -134,7 +134,7 @@ public class GenerationHandler extends AbstractHandler implements IHandler {
     	  r.getContents().add(wrapper);
     	 
     	  
-    	  generator.setProjectName(project.getName());
+    	  generator.setProjectPath(project.getLocation().toOSString());
     	  generator.setOutputFolder(srcGenFolder.getName().toString());
     	  generator.doGenerate(r, fsa);
     	 

@@ -20,6 +20,9 @@ import java.util.LinkedHashMap
 import org.apache.commons.lang3.StringEscapeUtils
 import java.io.IOException
 import java.nio.file.Paths
+import java.util.regex.Pattern
+import java.util.regex.Matcher
+import org.eclipse.xtext.xbase.controlflow.IEarlyExitComputer.ExitPoint
 
 class ContentGenerator {
 
@@ -46,6 +49,7 @@ class ContentGenerator {
  	 * changed for the LaTeX files.
 	 */
 	def static void initSpecialCharHashMap() {
+		specialChars.clear
 		specialChars.put("\\","\\textbackslash")
 		specialChars.put("{","\\{")
 		specialChars.put("}","\\}")
@@ -72,6 +76,7 @@ class ContentGenerator {
  	 * use only articles with the wanted number of words
 	 */
 	def static void initVSM(String language,int min, int max) {
+		articles.clear
 		val articleList = new ArrayList<Article>(UnifiedFileParser.loadArticles());
 		val fulltexts = new ArrayList<String>();
 		println("Articles in VSM:")
@@ -239,7 +244,7 @@ class ContentGenerator {
 		title = convertHTMLToLatex(title)
 		authors = convertHTMLToLatex(authors)
 		newschannel = convertHTMLToLatex(newschannel)
-		articleLink = convertHTMLToLatex(articleLink)
+		articleLink = convertHTMLToLatex(articleLink)		
 
 		//Color the tags in the fulltext with red color
 		for (t : topic) {
@@ -259,6 +264,10 @@ class ContentGenerator {
 			}
 			content = content.replace(t, "\\textcolor{red}{" + t + "}")
 		}
+		
+		content = convertForeignLanguages(content, language)
+		subtitle = convertForeignLanguages(subtitle, language)
+		title = convertForeignLanguages(title, language)
 
 		// retrieve images
 		val LinkedList<String> images = new LinkedList<String>()
@@ -271,12 +280,6 @@ class ContentGenerator {
 					images.add(fileName)
 				}
 				
-//				var String md5 = ImageDownloader.md5(img.url)
-//				var String mimeType = img.type;
-//				var String fileType = ImageDownloader.truncateMIMEType(mimeType)
-//				var String completeFileName = md5 + "." + fileType
-//				System.err.println("retreived image file name: " + completeFileName)
-//				images.add(completeFileName)
 			}
 		}
 		
@@ -374,6 +377,30 @@ class ContentGenerator {
 				
    		return html
 	}
+	
+	
+	def static String convertForeignLanguages(String str, String language) {
+		var text = str
+		
+		// Filter japanese symbols
+		val japanese = "(/[\\u3000-\\u303F]|[\\u3040-\\u309F]|[\\u30A0-\\u30FF]|[\\uFF00-\\uFFEF]|[\\u4E00-\\u9FAF]|[\\u2605-\\u2606]|[\\u2190-\\u2195]|\\u203B/g)+"
+		
+		val pattern = Pattern.compile(japanese);
+	    val matcher = pattern.matcher(text);
+	    
+	    var start = 0
+	    while(matcher.find(start)) {
+	    	var textFirst = text.substring(0,matcher.start) + "\\textit{***";
+	    	if(language.equals("German")) {
+	    		textFirst += "Japanische Zeichen"
+	    	} else {
+	    		textFirst += "japanese symbols"
+	    	}
+	    	text = textFirst + "***}" + text.substring(matcher.end)
+	    	start = matcher.end
+	    }
+	    return text
+	}
 
 	/**
 	 * Add images to fulltext. Having x images, splits the fulltext in x+1 almost 
@@ -418,12 +445,12 @@ class ContentGenerator {
 		
 		var String filename = null
 		try {
-			ImageDownloader.downloadFile(projectPath + "/images/" + md5hash + "." + suffix, url);
+			ImageDownloader.downloadFile(projectPath + "images/" + md5hash + "." + suffix, url);
 			filename = md5hash + "." + suffix
 		} catch(IOException e) {
 			System.err.println("Could not receive image " + url)
 		}			
-		println(projectPath + "/images/" + md5hash + "." + suffix)
+		println(projectPath + "images/" + md5hash + "." + suffix)
 		println(filename)		
 		return filename
 	}

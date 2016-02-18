@@ -31,7 +31,7 @@ class NplGenerator implements Observer, IGenerator {
 	var String project = null
 	var String outputFolder = null
 	
-	def setProjectName(String project) {
+	def setProjectPath(String project) {
 		this.project = project
 	}
 	
@@ -44,12 +44,10 @@ class NplGenerator implements Observer, IGenerator {
 		if(project == null || outputFolder == null) {
 			throw new NullPointerException("Project name or output folder not initialized")
 		}
+		project = project + "/"
 
 		this.resource = resource
 		this.fsa = fsa
-
-		println(project)
-		println(outputFolder)
 
 		val feeds = new HashMap<String, String>()
 		
@@ -58,7 +56,7 @@ class NplGenerator implements Observer, IGenerator {
 		]
 		
 		val cd = new CrawlerDispatcher()
-		cd.initialize(feeds, "/" + project + "/")
+		cd.initialize(feeds, project)
 		
 		val Transformator trafo = Transformator.getInstance()
 		cd.addObserver(trafo);
@@ -328,12 +326,12 @@ class NplGenerator implements Observer, IGenerator {
 		System.err.println("Compiling .tex s")
 		/* Compiling topics */
 		
-		println("ImagePath: " + arg + "images/")
-		ContentGenerator.projectPath = arg as String
+		println("ImagePath: " + project + "images/")
+		ContentGenerator.projectPath = project
 		ContentGenerator.outputFolder = outputFolder
 		
 		//Receive path to the directory for the images
-		val imageDir = new File(arg + "images/");
+		val imageDir = new File(project + "images/");
 		imageDir.mkdirs();
 		//Delete old files, may not be needed...
 		for(f: imageDir.listFiles()) {

@@ -48,10 +48,11 @@ public class CrawlerDispatcher extends Observable implements Runnable {
 	
 	public void initialize(Map<String, String> feeds, String project) {
 		this.feeds = feeds;
-		IWorkspace workspace = ResourcesPlugin.getWorkspace();
-		File workspaceDirectory = workspace.getRoot().getLocation().toFile();
-
-		projectDir = workspaceDirectory.getPath() + project;
+		projectDir = project;
+//		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+//		File workspaceDirectory = workspace.getRoot().getLocation().toFile();
+//
+//		projectDir = workspaceDirectory.getPath() + project;
 	}
 	/**
 	 * Diese Methode initialisiert und startet den Crawlvorgang. Übergeben wird
