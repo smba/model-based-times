@@ -9,8 +9,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
@@ -173,9 +176,27 @@ public class CrawlerDispatcher extends Observable implements Runnable {
 		
 		dispatchAndCrawl(useCrawler);
 		
+		// Refresh project to see new files
+		String projectName = projectDir;
+		if(Platform.getOS().equals(Platform.OS_WIN32)) {
+			projectName = projectName.substring(projectDir.lastIndexOf("\\", projectDir.length()-2)+1, projectDir.length()-1);
+		} else {
+			projectName = projectName.substring(projectDir.lastIndexOf("/", projectDir.length()-2)+1, projectDir.length()-1);
+		}
+
+		for(IProject p: ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
+			try {
+				if(p.getName().equals(projectName)) {
+					p.refreshLocal(IResource.DEPTH_INFINITE, null);
+				}
+			} catch (CoreException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		System.out.println("Start:\t" + dateFormat.format(date));
 		date = new Date();
-		System.out.println("Ende:\t" + dateFormat.format(date));
+		System.out.println("End:\t" + dateFormat.format(date));
 	    long diff = date.getTime() - startTime;
 	    long diffSeconds = diff / 1000 % 60;
 	    long diffMinutes = diff / (60 * 1000) % 60;

@@ -21,8 +21,6 @@ import org.apache.commons.lang3.StringEscapeUtils
 import java.io.IOException
 import java.nio.file.Paths
 import java.util.regex.Pattern
-import java.util.regex.Matcher
-import org.eclipse.xtext.xbase.controlflow.IEarlyExitComputer.ExitPoint
 
 class ContentGenerator {
 
@@ -50,16 +48,16 @@ class ContentGenerator {
 	 */
 	def static void initSpecialCharHashMap() {
 		specialChars.clear
-		specialChars.put("\\","\\textbackslash")
+		specialChars.put("\\","\\textbackslash{}")
 		specialChars.put("{","\\{")
 		specialChars.put("}","\\}")
 		specialChars.put("%","\\%")
-		specialChars.put("^","\\textasciicircum")
+		specialChars.put("^","\\textasciicircum{}")
 		specialChars.put("_","\\_")
 		specialChars.put("&","\\&")
 		specialChars.put("#","\\#")
 		specialChars.put("$","\\$")
-		specialChars.put("~","\\textasciitilde")
+		specialChars.put("~","\\textasciitilde{}")
 		specialChars.put("°","$^\\circ$")
 		specialChars.put(" .",".")
 		specialChars.put(" ,",",")
@@ -69,6 +67,9 @@ class ContentGenerator {
 		specialChars.put(" ?","?")
 		specialChars.put("[","{}[")
 		specialChars.put("\"","\"{}")
+		specialChars.put("€", "\\euro{}")
+		specialChars.put((0x97 as char).toString, "--")
+		specialChars.put((0x3000 as char).toString, " ") // Freaky space
 	}
 
 	/**
@@ -81,15 +82,16 @@ class ContentGenerator {
 		val fulltexts = new ArrayList<String>();
 		println("Articles in VSM:")
 		for (Article a : articleList) {
-			val st = new StringTokenizer(a.content)
+			val text = StringEscapeUtils.unescapeHtml4(a.content).replaceAll("\\<(.|\\s)*?>","")
+			val st = new StringTokenizer(text)
 			if (st.countTokens() >= min && st.countTokens() <= max) {
-				fulltexts.add(a.content);
+				fulltexts.add(text);
 				articles.add(a)
 				
 				println(a.title)
 			}
 		}
-		println("Articles in VSM: " + articles.size)
+		println("Articles in VSM: " + articles.size + " of " + articleList.size)
 
 		vsm = new VectorSpaceModel( /*language*/ );
 		vsm.buildDocumentVectors(fulltexts);
@@ -365,6 +367,8 @@ class ContentGenerator {
 		//Remove remaining HTML Tags (e.g. <p></p>)
 		html = html.replaceAll("\\<(.|\\s)*?>","")
 		
+		html = html.replaceAll((0xA0 as char).toString, "~");
+		
 		//Some texts start and/or ends with new line commands, LaTeX doesn't like it.
 		while(html.lastIndexOf(latexNewLine)==html.length-latexNewLine.length) {
 			html = html.substring(0,html.lastIndexOf(latexNewLine))
@@ -383,13 +387,19 @@ class ContentGenerator {
 		var text = str
 		
 		// Filter japanese symbols
-		val japanese = "(/[\\u3000-\\u303F]|[\\u3040-\\u309F]|[\\u30A0-\\u30FF]|[\\uFF00-\\uFFEF]|[\\u4E00-\\u9FAF]|[\\u2605-\\u2606]|[\\u2190-\\u2195]|\\u203B/g)+"
+		val japanese = "(/[\\u3000-\\u303F]|[\\u3040-\\u309F]|[\\u30A0-\\u30FF]|
+						[\\uFF00-\\uFFEF]|[\\u4E00-\\u9FAF]|[\\u2605-\\u2606]|
+						[\\u2190-\\u2195]|\\u203B/g)+"
 		
 		val pattern = Pattern.compile(japanese);
-	    val matcher = pattern.matcher(text);
+	    var matcher = pattern.matcher(text);
 	    
 	    var start = 0
 	    while(matcher.find(start)) {
+//	    	var textFirst = text.substring(0,matcher.start) + "\\begin{CJK}{UTF8}{min}"
+//	    	textFirst += matcher.group + "\\end{CJK}"
+//	    	start = textFirst.length
+//	    	text = textFirst + text.substring(matcher.end)
 	    	var textFirst = text.substring(0,matcher.start) + "\\textit{***";
 	    	if(language.equals("German")) {
 	    		textFirst += "Japanische Zeichen"
@@ -397,8 +407,11 @@ class ContentGenerator {
 	    		textFirst += "japanese symbols"
 	    	}
 	    	text = textFirst + "***}" + text.substring(matcher.end)
-	    	start = matcher.end
+	    	start = textFirst.length + 3
+	    	matcher = pattern.matcher(text);
 	    }
+	    var t = '　'
+	    println(t.charAt(0) as int + "   " + ' '.charAt(0) as int)
 	    return text
 	}
 
@@ -411,7 +424,7 @@ class ContentGenerator {
 		var split = (content.length / (images.size() + 1))
 		
 		val relativePath = Paths.get(projectPath + outputFolder)
-				.relativize(Paths.get(projectPath + "images")).toString.replace("\\","/")
+				.relativize(Paths.get(projectPath + outputFolder + "/images")).toString.replace("\\","/")
 
 		for (var i = 0; i < imagesCnt && i < images.size(); i++) {
 			var splitIndex = 0
@@ -445,7 +458,7 @@ class ContentGenerator {
 		
 		var String filename = null
 		try {
-			ImageDownloader.downloadFile(projectPath + "images/" + md5hash + "." + suffix, url);
+			ImageDownloader.downloadFile(projectPath + outputFolder + "/images/" + md5hash + "." + suffix, url);
 			filename = md5hash + "." + suffix
 		} catch(IOException e) {
 			System.err.println("Could not receive image " + url)

@@ -17,6 +17,10 @@ import java.util.Observable
 import java.util.ArrayList
 import de.tu_bs.cs.isf.mbse.mbtimes.crawler.unifiedParser.UnifiedFileParser
 import java.io.File
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.util.concurrent.TimeUnit
+import java.lang.ProcessBuilder.Redirect
 
 /**
  * Generates code from your model files on save
@@ -199,8 +203,8 @@ class NplGenerator implements Observer, IGenerator {
 		\usepackage[a«format»paper]{geometry}
 		«language»
 		\usepackage{datetime}
-		\usepackage[T1]{fontenc}    
-		\usepackage[utf8x]{inputenc}
+		\usepackage[T1]{fontenc}
+		\usepackage[utf8]{inputenc}
 		\usepackage{newspaper}
 		\usepackage{times}
 		\usepackage{graphicx}
@@ -331,7 +335,7 @@ class NplGenerator implements Observer, IGenerator {
 		ContentGenerator.outputFolder = outputFolder
 		
 		//Receive path to the directory for the images
-		val imageDir = new File(project + "images/");
+		val imageDir = new File(project + outputFolder + "/images/");
 		imageDir.mkdirs();
 		//Delete old files, may not be needed...
 		for(f: imageDir.listFiles()) {
@@ -355,6 +359,33 @@ class NplGenerator implements Observer, IGenerator {
     		}
     		
 			fsa.generateFile(	d.name + ".tex", d.compileLayout)
+			
+			
+			// Run pdflatex
+			var path = project + outputFolder + "/"
+			val pb = new ProcessBuilder("pdflatex", d.name + ".tex")
+			pb.directory(new File(path))
+			pb.inheritIO
+			val process = pb.start
+			
+//			val stdin = process.getInputStream();
+//			val isr = new InputStreamReader(stdin);
+//			val br = new BufferedReader(isr);
+//
+//			var line = ""
+//			System.out.println("<OUTPUT>");
+//
+//			while ( (line = br.readLine()) != null)
+//		    System.out.println(line);
+//
+//			System.out.println("</OUTPUT>");
+			
+			if(process.waitFor(10,TimeUnit.SECONDS)) {
+				println("\nPDF created!")
+			} else {
+				println("\nPDF not created!")
+			}
+			
     	}
 	}
 }

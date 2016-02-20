@@ -3,6 +3,7 @@ import java.io.File;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.eclipse.core.commands.AbstractHandler; 
 import org.eclipse.core.commands.ExecutionEvent; 
@@ -19,6 +20,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource; 
@@ -32,8 +34,11 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.xtext.builder.EclipseOutputConfigurationProvider;
 import org.eclipse.xtext.builder.EclipseResourceFileSystemAccess2;
+import org.eclipse.xtext.generator.IOutputConfigurationProvider;
 import org.eclipse.xtext.generator.OutputConfiguration;
+import org.eclipse.xtext.generator.OutputConfigurationProvider;
 import org.eclipse.xtext.resource.IResourceDescriptions; 
 import org.eclipse.xtext.ui.resource.IResourceSetProvider;
 import org.eclipse.ui.part.FileEditorInput;
@@ -45,6 +50,8 @@ import de.tu_bs.cs.isf.mbse.mbtimes.generator.NplGenerator;
 
 public class GenerationHandler extends AbstractHandler implements IHandler {
 	
+	@Inject
+	private EclipseOutputConfigurationProvider outputConfigurationProvider;
 	
     @Inject
     private NplGenerator generator;
@@ -87,7 +94,17 @@ public class GenerationHandler extends AbstractHandler implements IHandler {
     	 
     	  IProject project = file.getProject();
     	  
+    	  Set<OutputConfiguration> teste2 = outputConfigurationProvider.getOutputConfigurations(project);
+    	  Iterator<OutputConfiguration> it2 = teste2.iterator();
+     	 
+    	  //Find specified output folder or use src.gen as default
     	  IFolder srcGenFolder = project.getFolder("src-gen");
+    	  while(it2.hasNext()){
+    	    OutputConfiguration out = it2.next();
+    	    System.out.println(out.getOutputDirectory());
+    	    srcGenFolder = project.getFolder(out.getOutputDirectory());
+    	  }
+    	  
     	  if (!srcGenFolder.exists()) {
     	    try {
     	      srcGenFolder.create(true, true, new NullProgressMonitor());
@@ -132,6 +149,11 @@ public class GenerationHandler extends AbstractHandler implements IHandler {
     	 
     	  // add string to resource
     	  r.getContents().add(wrapper);
+    	  
+    	  SimpleAnyType wrapper2 = XMLTypeFactory.eINSTANCE.createSimpleAnyType();
+    	  wrapper2.setInstanceType(EcorePackage.eINSTANCE.getEString());
+    	  wrapper2.setValue(Platform.getOS());
+    	  r.getContents().add(wrapper2);
     	 
     	  
     	  generator.setProjectPath(project.getLocation().toOSString());
