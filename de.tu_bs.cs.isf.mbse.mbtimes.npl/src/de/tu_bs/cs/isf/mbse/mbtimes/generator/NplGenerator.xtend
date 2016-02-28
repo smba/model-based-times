@@ -365,28 +365,50 @@ class NplGenerator implements Observer, IGenerator {
 			// Run pdflatex
 			
 			try{
-			var path = project + outputFolder + "/"
+				var path = project + outputFolder + "/"
 			
-			var command = "pdflatex"
-			if(System.getProperty("os.name").toLowerCase.indexOf("mac") >= 0) {
+				var command = "pdflatex"
 				val rt = Runtime.getRuntime();
-                //Process pr = rt.exec("cmd /c dir");
-                val pr = rt.exec("which pdflatex");
+				if(System.getProperty("os.name").toLowerCase.indexOf("win") >= 0) {
+            	    //Process pr = rt.exec("cmd /c dir");
+                	val pr = rt.exec("where pdflatex");
  
-                val input = new BufferedReader(new InputStreamReader(pr.getInputStream()));
+					val input = new BufferedReader(new InputStreamReader(pr.getInputStream()));
+ 	
+    	            var line=""//input.readLine()
+    	            //command = input.readLine()
+    	            while((line=input.readLine()) != null) {
+    	            	println(line)
+    	            	if(line.trim != "") {
+    	            		command = "\"" + line.trim + "\""
+    	            	}
+    	            }
+				} else {
+                	val pr = rt.exec("which pdflatex");
  
-                var line=input.readLine()
-                if(line == null) {
-                	throw new IOException()
+					val input = new BufferedReader(new InputStreamReader(pr.getInputStream()));
+ 	
+    	            var line=""//input.readLine()
+    	            //command = input.readLine()
+    	            while((line=input.readLine()) != null) {
+    	            	println(line)
+    	            	if(line.trim != "") {
+    	            		command = line.trim
+    	            		if(command.indexOf("\\ ") < 0 && command.indexOf(" ") >= 0) {
+    	            			command.replace(" ", "\\ ")
+    	            		}
+    	            	}
+    	            }
+   				}
+				println("Path to pdflatex: " + command)
+        	    if(command == null || command.equals("\"\"") || command.empty) {
+            	  	throw new IOException("pdflatex does not exist")
                 }
- 				println("Path to pdflatex: " + line)
-				command = line.trim
-			}
 			
-			val pb = new ProcessBuilder(command, d.name + ".tex")
-			pb.directory(new File(path))
-			pb.inheritIO
-			val process = pb.start
+				val pb = new ProcessBuilder(command, d.name + ".tex")
+				pb.directory(new File(path))
+				pb.inheritIO
+				val process = pb.start
 			
 //			val stdin = process.getInputStream();
 //			val isr = new InputStreamReader(stdin);
@@ -400,13 +422,14 @@ class NplGenerator implements Observer, IGenerator {
 //
 //			System.out.println("</OUTPUT>");
 			
-			if(process.waitFor(10,TimeUnit.SECONDS)) {
-				println("\nPDF created!")
-			} else {
-				println("\nPDF not created!")
-			}
+				if(process.waitFor(10,TimeUnit.SECONDS)) {
+					println("\nPDF created!")
+				} else {
+					println("\nPDF not created!")
+				}
 			
 			} catch (Exception e) {
+				e.printStackTrace
 				println("\nPDF not created!")
 			}
 			
