@@ -375,12 +375,12 @@ class NplGenerator implements Observer, IGenerator {
  
                 val input = new BufferedReader(new InputStreamReader(pr.getInputStream()));
  
-                var line="";
- 
-                while((line=input.readLine()) != null) {
+                var line=input.readLine()
+                if(line == null) {
+                	throw new IOException()
                 }
  				println("Path to pdflatex: " + line)
-				command = line
+				command = line.trim
 			}
 			
 			val pb = new ProcessBuilder(command, d.name + ".tex")
@@ -406,7 +406,7 @@ class NplGenerator implements Observer, IGenerator {
 				println("\nPDF not created!")
 			}
 			
-			} catch (IOException e) {
+			} catch (Exception e) {
 				println("\nPDF not created!")
 			}
 			
