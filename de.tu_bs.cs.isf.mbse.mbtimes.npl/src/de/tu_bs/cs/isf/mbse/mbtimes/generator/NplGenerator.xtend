@@ -21,6 +21,7 @@ import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.util.concurrent.TimeUnit
 import java.lang.ProcessBuilder.Redirect
+import java.io.IOException
 
 /**
  * Generates code from your model files on save
@@ -362,8 +363,27 @@ class NplGenerator implements Observer, IGenerator {
 			
 			
 			// Run pdflatex
+			
+			try{
 			var path = project + outputFolder + "/"
-			val pb = new ProcessBuilder("pdflatex", d.name + ".tex")
+			
+			var command = "pdflatex"
+			if(System.getProperty("os.name").toLowerCase.indexOf("mac") >= 0) {
+				val rt = Runtime.getRuntime();
+                //Process pr = rt.exec("cmd /c dir");
+                val pr = rt.exec("which pdflatex");
+ 
+                val input = new BufferedReader(new InputStreamReader(pr.getInputStream()));
+ 
+                var line="";
+ 
+                while((line=input.readLine()) != null) {
+                }
+ 				println("Path to pdflatex: " + line)
+				command = line
+			}
+			
+			val pb = new ProcessBuilder(command, d.name + ".tex")
 			pb.directory(new File(path))
 			pb.inheritIO
 			val process = pb.start
@@ -383,6 +403,10 @@ class NplGenerator implements Observer, IGenerator {
 			if(process.waitFor(10,TimeUnit.SECONDS)) {
 				println("\nPDF created!")
 			} else {
+				println("\nPDF not created!")
+			}
+			
+			} catch (IOException e) {
 				println("\nPDF not created!")
 			}
 			
